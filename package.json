@@ -13,7 +13,7 @@
     "test": "jest",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "prepublishOnly": "jest --passWithNoTests --silent"
+    "prepublishOnly": "npx jest --passWithNoTests --silent"
   },
   "keywords": [
     "vibe-coding",

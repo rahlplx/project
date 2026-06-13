@@ -1,7 +1,7 @@
 {
   "project": "vibe-stack",
   "version": "2.0.0",
-  "phase": "ship",
+  "phase": "done",
   "step": 0,
   "mode": "guided",
   "agent": "opencode",
@@ -17,7 +17,9 @@
     "harness-6-checks",
     "review-code-audit",
     "review-security-audit",
-    "review-fix-critical-issues"
+    "review-fix-critical-issues",
+    "ship-pr-created",
+    "retro-complete"
   ],
   "skills": {
     "total": 45,
@@ -96,5 +98,5 @@
     "testsPassing": 209
   },
   "created": "2026-06-13T12:00:00Z",
-  "updated": "2026-06-13T14:52:29.435Z"
+  "updated": "2026-06-13T14:55:47.427Z"
 }
