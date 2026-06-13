@@ -38,6 +38,20 @@ Open a PR that:
 2. Proves it works (screenshot, test output, or demo)
 3. Notes the license and verification status
 
+## Pre-Flight Checklist (Before Adding a Tool)
+
+1. **Confirm repo_url resolves** — visit and confirm it's the right repo
+2. **Confirm license** — must be MIT, Apache 2.0, BSD-3-Clause, MPL-2.0, or generous free tier
+3. **Confirm stars ≥ threshold** — typically 1k+ for a new tool, 5k+ for established categories
+4. **Confirm last commit ≤ 6 months** — abandoned repos don't go in
+5. **THEN write description** — use agent-native format (what_it_does + how_agent_uses)
+
+## Editorial Rules
+
+- **Append new tools to the END of `catalog/tools.yaml`.** YAML order doesn't matter. Inserting mid-file causes whitespace edit conflicts with no benefit.
+- **Batch additions when possible.** If adding >5 tools, do it in 1 pipeline run — not 3 incremental runs.
+- **Write agent-native descriptions.** Every entry needs `what_it_does` (for vibe coder) + `how_agent_uses` (for agent). Include specific command examples.
+
 ## What We DON'T Do
 
 - No CLIs for humans — agents handle the terminal

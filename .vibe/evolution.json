@@ -1,0 +1,108 @@
+{
+  "version": "2.0.0",
+  "last_evolution": "2026-06-13",
+  "rules": {
+    "tdd.md": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "last_updated": "2026-06-13",
+      "note": "Not applicable — curation project has no production code to TDD"
+    },
+    "agent-native-catalog.md": {
+      "fires": 35,
+      "helpful": 35,
+      "false_positive": 0,
+      "quality_score": 1.0,
+      "last_updated": "2026-06-13",
+      "note": "Applied to every tool entry. Zero false positives. Keep as hard requirement."
+    },
+    "yaml-only-direct-push.md": {
+      "fires": 3,
+      "helpful": 3,
+      "false_positive": 0,
+      "quality_score": 1.0,
+      "last_updated": "2026-06-13",
+      "note": "Applied to 3 catalog commits. No regressions. Safe."
+    },
+    "auto-pipeline-for-curation.md": {
+      "fires": 3,
+      "helpful": 3,
+      "false_positive": 0,
+      "quality_score": 1.0,
+      "last_updated": "2026-06-13",
+      "note": "3 successful pipeline runs. Structured thinking consistently valuable."
+    },
+    "mid-file-yaml-edits.md": {
+      "fires": 3,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": 0.0,
+      "last_updated": "2026-06-13",
+      "note": "Anti-pattern. 3 edit failures caused by mid-file insertions."
+    },
+    "incremental-catalog-runs.md": {
+      "fires": 3,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": 0.0,
+      "last_updated": "2026-06-13",
+      "note": "Anti-pattern. 3 runs when 1 would suffice. Redundant overhead."
+    },
+    "verify-before-describe.md": {
+      "fires": 2,
+      "helpful": 0,
+      "false_positive": 1,
+      "quality_score": 0.0,
+      "last_updated": "2026-06-13",
+      "note": "Anti-pattern. 2 tools needed post-hoc corrections."
+    }
+  },
+  "harness": {
+    "catalog-yaml-valid.sh": {
+      "runs": 3,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1.0,
+      "note": "YAML validated every time. Zero syntax errors across 35 entries."
+    },
+    "catalog-category-count.sh": {
+      "runs": 3,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1.0,
+      "note": "Category counts verified every run. All hitting targets."
+    },
+    "test-suite.sh": {
+      "runs": 3,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1.0,
+      "note": "209 tests pass after every catalog change. Zero regressions."
+    }
+  },
+  "proposed_rules": [
+    {
+      "name": "pre-verify-tool-metadata",
+      "type": "harness-check",
+      "reason": "anti-patterns/verify-before-describe — write descriptions only after verifying repo_url, license, stars, activity",
+      "proposed_quality": 0.0,
+      "status": "pending"
+    },
+    {
+      "name": "batch-catalog-additions",
+      "type": "process-rule",
+      "reason": "anti-patterns/incremental-catalog-runs — if adding >5 tools, do it in 1 pipeline run",
+      "proposed_quality": 0.0,
+      "status": "pending"
+    },
+    {
+      "name": "append-not-insert-yaml",
+      "type": "process-rule",
+      "reason": "anti-patterns/mid-file-yaml-edits — add new tools to end of file to avoid whitespace conflicts",
+      "proposed_quality": 0.0,
+      "status": "pending"
+    }
+  ]
+}
