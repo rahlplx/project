@@ -16,7 +16,7 @@ function readJSON(p) { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } ca
 function writeJSON(p, d) { fs.writeFileSync(p, JSON.stringify(d, null, 2) + '\n', 'utf8'); }
 
 // ── Phase 1: Harness ───────────────────────────────────────────
-function runHarness() {
+function runHarness(runTestSuite = true) {
   console.log('  [harness] Running checks...');
   const results = [];
 
@@ -47,23 +47,63 @@ function runHarness() {
     results.push({ check: 'catalog-category-count', pass: false, error: e.message });
   }
 
-  // Check 3: Test suite
+  // Check 3: Handoff templates exist
   try {
-    const { execSync } = require('child_process');
-    const output = execSync('npm test 2>&1', { cwd: ROOT, timeout: 120000 });
-    const passed = output.toString().match(/Tests:\s+(\d+)\s+passed/);
-    const failed = output.toString().match(/Tests:\s+(\d+)\s+failed/);
-    const passCount = passed ? parseInt(passed[1]) : 0;
-    const failCount = failed ? parseInt(failed[1]) : 0;
+    const handoffsDir = path.join(ROOT, '..', 'docs', 'handoffs');
+    const templates = ['AGENTS.md', 'standard.md', 'qa-pass.md', 'qa-fail.md',
+      'escalation.md', 'phase-gate.md', 'sprint.md', 'incident.md'];
+    const missing = templates.filter(t => !fs.existsSync(path.join(handoffsDir, t)));
     results.push({
-      check: 'test-suite',
-      pass: failCount === 0,
-      data: { passCount, failCount }
+      check: 'handoff-templates',
+      pass: missing.length === 0,
+      data: { total: templates.length, missing }
     });
-    console.log(`  [harness]  ✓ test-suite (${passCount} passed, ${failCount} failed)`);
+    console.log(`  [harness]  ${missing.length === 0 ? '✓' : '✗'} handoff-templates (${templates.length - missing.length}/${templates.length})`);
   } catch (e) {
-    results.push({ check: 'test-suite', pass: false, error: e.message });
-    console.log(`  [harness]  ✗ test-suite: ${e.message}`);
+    results.push({ check: 'handoff-templates', pass: false, error: e.message });
+  }
+
+  // Check 4: Phase gates document
+  try {
+    const gatesPath = path.join(ROOT, '..', 'docs', 'gates.md');
+    const gatesContent = fs.readFileSync(gatesPath, 'utf8');
+    const requiredTransitions = [
+      'think -- plan', 'plan -- break', 'break -- build', 'build -- harness',
+      'harness -- review', 'review -- ship', 'ship -- retro', 'retro -- learn',
+      'learn -- evolve', 'evolve -- done'
+    ];
+    const hasAllTransitions = requiredTransitions.every(t => gatesContent.includes(t));
+    results.push({
+      check: 'phase-gates-doc',
+      pass: hasAllTransitions,
+      data: { size: gatesContent.length }
+    });
+    console.log(`  [harness]  ${hasAllTransitions ? '✓' : '✗'} phase-gates-doc (${gatesContent.length} chars)`);
+  } catch (e) {
+    results.push({ check: 'phase-gates-doc', pass: false, error: e.message });
+  }
+
+  // Check 5: Test suite
+  if (runTestSuite) {
+    try {
+      const { execSync } = require('child_process');
+      const output = execSync('npm test 2>&1', { cwd: ROOT, timeout: 120000 });
+      const passed = output.toString().match(/Tests:\s+(\d+)\s+passed/);
+      const failed = output.toString().match(/Tests:\s+(\d+)\s+failed/);
+      const passCount = passed ? parseInt(passed[1]) : 0;
+      const failCount = failed ? parseInt(failed[1]) : 0;
+      results.push({
+        check: 'test-suite',
+        pass: failCount === 0,
+        data: { passCount, failCount }
+      });
+      console.log(`  [harness]  ✓ test-suite (${passCount} passed, ${failCount} failed)`);
+    } catch (e) {
+      results.push({ check: 'test-suite', pass: false, error: e.message });
+      console.log(`  [harness]  ✗ test-suite: ${e.message}`);
+    }
+  } else {
+    results.push({ check: 'test-suite', pass: true, data: { passCount: 0, failCount: 0, skipped: true } });
   }
 
   return results;

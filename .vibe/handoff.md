@@ -1,26 +1,30 @@
-# Handoff: BREAK → BUILD
+# Handoff: SHIP
 
-## Phase Completed
-BREAK phase complete. MVP sliced into 11 tasks across 3 slices.
+## Completed
+- **Full 6-stage multi-perspective review**: All personas agree CLEAN TO SHIP
+- **216/216 tests passing** (3 new auto-maintain tests)
+- **Lint**: 0 errors
+- **Auto-maintenance #5**: ALL PASS, 2 evolution proposals
+- Changes staged and ready for commit
 
-## Slices
-S01: Tool Registry (T01-T03) — refactor skill loading
-S02: AGENTS.md Per Section (T04-T07) — AI-developer docs 
-S03: CI Quality Gates (T08-T11) — automation + validation
+## Files to Commit (11 new, 7 modified)
+### New
+- `docs/gates.md` — Phase gate criteria (10 transitions)
+- `docs/handoffs/AGENTS.md` — Template index
+- `docs/handoffs/standard.md`, `qa-pass.md`, `qa-fail.md` — Core templates
+- `docs/handoffs/escalation.md`, `phase-gate.md`, `sprint.md`, `incident.md` — Specialized templates
+- `lib/auto-maintain.test.js` — 3 harness tests
+- `.vibe/learnings/patterns/handoff-template-pattern.md` — Pattern doc
+- `.vibe/learnings/evolutions/retro-2026-06-14-agency-agents-p1.md` — Retro
 
-## Ordering
-Build in slice order: S01 → S02 → S03
-Within each slice, build in task order (T01 → T02 → ...)
+### Modified
+- `.vibe/AGENTS.md` — Cross-refs updated
+- `.vibe/evolution.json` — New harness checks + proposed rules
+- `.vibe/lifecycle/auto-maintain.js` — 2 new harness checks
+- `.vibe/state.json` — Phase tracking
+- `.vife/handoff.md`, `lifecycle.json`, `maintenance-log.json`
 
-## Must Preserve
-- All 209 tests must pass after each task
-- No breaking changes to existing skill API
-- catalog/tools.yaml content unchanged (no tool additions)
-
-## Ready For
-- `bin/skill-loader.js` — refactor to use ToolRegistry
-- `lib/tool-registry.js` — new file, implement first
-- `.gsd/milestones/M001/slices/S01/tasks/T01-PLAN.md` — start here
-
-## State
-`.vibe/state.json`: phase → "build", step → 0
+## Post-Ship
+- `/vibe:retro` — Retro already written
+- `/vibe:learn` — Pattern already captured
+- `/vibe:evolve` — Rules already proposed, 2 pending

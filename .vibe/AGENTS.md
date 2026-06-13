@@ -74,5 +74,7 @@ Each rule has:
 
 - `SKILL.md` for lifecycle trigger conditions
 - `docs/design-doc.md` for the enhancement roadmap
+- `docs/gates.md` for phase gate criteria
+- `docs/handoffs/AGENTS.md` for handoff template guide
 - `references/vibe-retro.md` for retro phase
 - `references/vibe-curation.md` for curation rules

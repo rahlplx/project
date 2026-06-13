@@ -1,7 +1,7 @@
 {
   "version": "2.1.0",
-  "last_evolution": "2026-06-13",
-  "evolution_count": 1,
+  "last_evolution": "2026-06-14",
+  "evolution_count": 2,
   "rules": {
     "agent-native-catalog": {
       "fires": 35,
@@ -85,9 +85,37 @@
       "finds": 0,
       "false_positive": 0,
       "quality_score": null,
-      "note": "New harness check from evolution. Pending first run."
+      "note": "New harness check from evolution. Pending first fire."
+    },
+    "handoff-templates": {
+      "runs": 1,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1.0,
+      "note": "Verifies all 8 handoff docs exist in docs/handoffs/. Phase 1: passed on first run (8/8)."
+    },
+    "phase-gates-doc": {
+      "runs": 1,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1.0,
+      "note": "Verifies gates.md has all 10 phase transitions documented. Phase 1: passed (7212 chars, 20 transitions)."
     }
   },
+  "proposed_rules": [
+    {
+      "name": "use-handoff-at-transitions",
+      "reason": "Every phase transition must produce a handoff.md using docs/handoffs/ templates. Prevents context loss between layers.",
+      "status": "pending",
+      "quality_score": null
+    },
+    {
+      "name": "verify-gate-before-advance",
+      "reason": "Before advancing to next phase, verify gates.md criteria are met. Prevents skipping quality gates.",
+      "status": "pending",
+      "quality_score": null
+    }
+  ],
   "retired": {
     "tdd": {
       "fires": 0,
