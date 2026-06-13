@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const path = require('path');
 const fs = require('fs');
+const { registry } = require('../lib/tool-registry');
 
 function loadAllSkills() {
   const skillsDir = path.join(__dirname, '..', 'skills');
@@ -24,7 +25,14 @@ function loadAllSkills() {
           } else {
             instance = {};
           }
-          skills[`${cat}/${name}`] = { mod, instance, category: cat, name };
+          const entry = { mod, instance, category: cat, name };
+          skills[`${cat}/${name}`] = entry;
+          registry.register(`${cat}/${name}`, {
+            category: cat,
+            description: instance.description || '',
+            factory: () => instance,
+            metadata: { mod },
+          });
         } catch (e) {
           console.error('SKIP: ' + cat + '/' + name + ' - ' + e.message);
         }
@@ -61,4 +69,12 @@ function discoverTools(skills) {
   return tools;
 }
 
-module.exports = { loadAllSkills, discoverTools };
+function getRegisteredSkills() {
+  return registry.getAll();
+}
+
+function getUsableSkills(category) {
+  return registry.findUsable(category);
+}
+
+module.exports = { loadAllSkills, discoverTools, getRegisteredSkills, getUsableSkills };

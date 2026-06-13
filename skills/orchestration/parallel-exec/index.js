@@ -15,8 +15,8 @@ class ParallelExec {
 
     return {
       success: true,
+      groupCount: groups.length,
       taskCount: tasks.length,
-      groups: groups.length,
       estimatedTimeUnits: totalTime,
       sequentialTime: tasks.length,
       speedup: tasks.length / totalTime,

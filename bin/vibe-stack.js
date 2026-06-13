@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const { loadAllSkills } = require('./skill-loader');
+const { loadAllSkills, getRegisteredSkills, getUsableSkills } = require('./skill-loader');
 
 const mode = process.argv[2];
 
@@ -19,6 +19,7 @@ if (!mode || mode === '--help' || mode === '-h') {
     npx vibe-stack <skill-path> <method> [args...]
     npx vibe-stack mcp          (start MCP server for AI agents)
     npx vibe-stack list         (list all skills)
+    npx vibe-stack list --all   (list all registered tools)
     npx vibe-stack --help       (this message)
 
   EXAMPLES:
@@ -41,6 +42,26 @@ if (!mode || mode === '--help' || mode === '-h') {
 }
 
 if (mode === 'list' || mode === 'ls') {
+  const filterCat = process.argv[3];
+  const showAll = process.argv.includes('--all');
+  if (showAll || filterCat === '--all') {
+    const all = getRegisteredSkills();
+    console.log('\n  All registered tools (' + all.length + '):\n');
+    for (const e of all) {
+      console.log('  [' + e.category + '] ' + e.name);
+    }
+    console.log();
+    process.exit(0);
+  }
+  if (filterCat) {
+    const usable = getUsableSkills(filterCat);
+    console.log('\n  Usable tools in [' + filterCat + '] (' + usable.length + '):\n');
+    for (const e of usable) {
+      console.log('    ' + e.name);
+    }
+    console.log();
+    process.exit(0);
+  }
   const byCat = {};
   for (const key of keys) {
     const cat = key.split('/')[0];

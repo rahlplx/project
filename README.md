@@ -1,5 +1,7 @@
 # Vibe-Stack
 
+[![Quality Gates](https://github.com/rahlplx/project/actions/workflows/quality-gates.yml/badge.svg)](https://github.com/rahlplx/project/actions/workflows/quality-gates.yml)
+
 **The curated collection of AI tools for people who build with vibes.**
 
 > You have an idea. Your AI agent has skills. We have the tools that connect them.

@@ -41,7 +41,7 @@ class CodeExplainer {
     if (/require\(|module\.exports|import\s+|export\s+|const\s+|let\s+|=>|console\.log|function\s*(\*|\w)/.test(code)) return 'JavaScript';
     if (/def\s+\w+\s*\(|import\s+\w+|from\s+\w+|class\s+\w+:|print\s*\(/.test(code)) return 'Python';
     if (/fn\s+\w+|let\s+mut|fn\s+main|println!|->\s*\w+/.test(code)) return 'Rust';
-    if (/func\s+\w+|package\s+\w+|import\s+\"|fmt\.Println/.test(code)) return 'Go';
+    if (/func\s+\w+|package\s+\w+|import\s+"|fmt\.Println/.test(code)) return 'Go';
     if (/public\s+(class|static)|System\.out|@Override/.test(code)) return 'Java';
     if (/interface\s+|type\s+\w+\s*=|import\s+{/.test(code)) return 'TypeScript';
     return 'Unknown';

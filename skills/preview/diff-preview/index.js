@@ -100,7 +100,7 @@ class DiffPreview {
   groupIntoHunks(diff) {
     const hunks = [];
     let currentHunk = null;
-    let hunkStart = 0;
+    const hunkStart = 0;
     
     for (let i = 0; i < diff.length; i++) {
       const change = diff[i];
