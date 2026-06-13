@@ -1,7 +1,7 @@
 {
   "project": "Vibe-Stack Curated Collection",
   "version": "2.0.0",
-  "phase": "build",
+  "phase": "done",
   "goal": "Curated collection of community-verified AI engineering tools for vibe coders",
   "step": 0,
   "mode": "auto",
@@ -47,7 +47,8 @@
     "learnings-saved",
     "pipeline-3-complete",
     "design-doc-written",
-    "gsd-break-created"
+    "gsd-break-created",
+    "mvp-mining-enhancements"
   ],
   "skills": {
     "total": 45,
@@ -126,12 +127,12 @@
     "testsPassing": 209
   },
   "lifecycle": {
-    "last_maintenance": "2026-06-13T16:01:54.771Z",
-    "maintenance_count": 2,
+    "last_maintenance": "2026-06-13T20:04:33.100Z",
+    "maintenance_count": 3,
     "interaction_count": 0
   },
   "created": "2026-06-13T12:00:00Z",
-  "updated": "2026-06-13T18:54:39.391Z",
+  "updated": "2026-06-13T20:04:33.104Z",
   "auto_pipeline": {
     "started": "2026-06-13T15:48:56.337Z",
     "goal": "Expand all 7 catalog categories from 3-4 tools to 5+ tools each",
