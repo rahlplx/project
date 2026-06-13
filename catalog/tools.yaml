@@ -101,6 +101,44 @@ tools:
       "Add a signup form" → install shadcn form + input + button components.
     in_skills: false
 
+  - name: Penpot
+    description: >
+      Open-source design & prototyping platform. SVG-native, CSS Grid layout,
+      design tokens, self-hostable. The Figma alternative for code teams.
+    repo_url: https://github.com/penpot/penpot
+    category: design-ui
+    license: MPL-2.0
+    verified_by: community (49k+ stars)
+    verified_date: 2026-06-01
+    what_it_does: >
+      Design UIs in the browser or on your own server. Uses real CSS Grid
+      and Flex Layout so designs behave like real code. Share designs with
+      developers who can export SVG/CSS directly.
+    how_agent_uses: >
+      Set up Penpot as the design workspace. Agent can open designs, export
+      CSS/SVG, and suggest changes. "Make this button match the design
+      system" → agent pulls tokens from Penpot, applies to code.
+    in_skills: false
+
+  - name: OpenPencil
+    description: >
+      AI-native design editor. Opens .fig files. SDK for building custom
+      editors. Desktop app with MCP server for agents.
+    repo_url: https://github.com/open-pencil/open-pencil
+    category: design-ui
+    license: MIT
+    verified_by: community (5.4k+ stars)
+    verified_date: 2026-06-01
+    what_it_does: >
+      An open-source editor that reads Figma files natively. Built-in AI
+      features, MCP server for AI agents, and a headless Vue SDK. Your
+      designs are never locked into a proprietary format.
+    how_agent_uses: >
+      Connect via MCP server. Agent can read .fig files, export to JSX/
+      Tailwind, and modify designs programmatically. "Import this Figma
+      design and convert it to React components."
+    in_skills: false
+
   # ── Code Generation ──────────────────────────────────────────
 
   - name: Aider
@@ -136,6 +174,45 @@ tools:
       Suggest the vibe coder install it. Or use it in headless mode to run
       code generation tasks. "Add a dark mode toggle" → Continue edits the
       right files.
+    in_skills: false
+
+  - name: TabbyML
+    description: >
+      Self-hosted AI coding assistant. Open-source alternative to GitHub
+      Copilot. Code completion, chat, fine-tuning. Your code never leaves
+      your infra.
+    repo_url: https://github.com/TabbyML/tabby
+    category: code-generation
+    license: Apache 2.0
+    verified_by: community (33k+ stars)
+    verified_date: 2026-06-01
+    what_it_does: >
+      Auto-completes code as you type. Code-aware chat that understands
+      your whole repo. Can be fine-tuned on your codebase. Private, no
+      third-party API calls.
+    how_agent_uses: >
+      The agent checks if TabbyML is running locally. If yes, uses its
+      HTTP API for completions. "Write a Rust parser for this config" →
+      agent asks Tabby for context-aware suggestions.
+    in_skills: false
+
+  - name: Gemini CLI
+    description: >
+      Google's open-source AI coding agent. Runs in terminal, edits files,
+      runs commands, explains code. Uses Gemini model.
+    repo_url: https://github.com/google-gemini/gemini-cli
+    category: code-generation
+    license: Apache 2.0
+    verified_by: community (250k+ installs)
+    verified_date: 2026-06-01
+    what_it_does: >
+      Full coding agent: writes code, edits files, runs shell commands,
+      browses docs. Works inside the vibe coder's terminal. Comes with
+      MCP for tool integration.
+    how_agent_uses: >
+      The vibe coder says "ship my app" and the primary agent delegates
+      code-writing subtasks to Gemini CLI. "Generate a Next.js app with
+      Drizzle ORM and Auth.js" → agent hands off to Gemini CLI.
     in_skills: false
 
   - name: OpenCode
@@ -232,6 +309,26 @@ tools:
       tests failed, here's what broke."
     in_skills: false
 
+  - name: Cypress
+    description: >
+      End-to-end browser testing framework. Real-time reload, time-travel
+      debugging, network stubbing. Runs in the browser itself.
+    repo_url: https://github.com/cypress-io/cypress
+    category: testing-qa
+    license: MIT
+    verified_by: community (50k+ stars)
+    verified_date: 2026-06-01
+    what_it_does: >
+      Opens your app in a real browser and runs tests against it. Each
+      test records a video. You can see exactly what happened at every
+      step. Stubs network requests so you don't need a live backend.
+    how_agent_uses: >
+      Agent runs `npx cypress run` to execute all E2E tests. When a test
+      fails, agent reads the failure message and the recorded video to
+      diagnose. "Check that the checkout button works" → agent writes and
+      runs a Cypress test, reports the result.
+    in_skills: false
+
   # ── Deployment ───────────────────────────────────────────────
 
   - name: Vercel
@@ -286,6 +383,44 @@ tools:
       Install Railway CLI, deploy the project. Return: "Your app is live at
       https://your-project.railway.app. Postgres is connected. I also set up
       a custom domain if you have one."
+    in_skills: false
+
+  - name: Coolify
+    description: >
+      Self-hostable PaaS. Deploy any app (Node, Python, Docker, static)
+      with one click. Open-source Heroku/Netlify for your own servers.
+    repo_url: https://github.com/coollabsio/coolify
+    category: deployment
+    license: Apache 2.0
+    verified_by: community (40k+ stars)
+    verified_date: 2026-06-01
+    what_it_does: >
+      Connects to your VPS and deploys apps via Git push. Auto SSL,
+      auto backup, resource monitoring, database provisioning. You own
+      your infra — no vendor lock-in.
+    how_agent_uses: >
+      Vibe coder says "ship my app." Agent pushes to Git, then hits
+      Coolify API to trigger deploy. Agent monitors the build log and
+      reports "your app is live at https://your-app.your-domain.com."
+    in_skills: false
+
+  - name: Cloudflare Pages
+    description: >
+      Serverless deploy platform for frontend apps. Free plan, global CDN,
+      workers integration, auto-deploy from Git.
+    repo_url: https://github.com/cloudflare/pages-functions
+    category: deployment
+    license: MIT
+    verified_by: community (2k+ stars, Cloudflare official)
+    verified_date: 2026-06-01
+    what_it_does: >
+      Deploys static sites and serverless functions from your Git repo.
+      Free tier includes SSL, global CDN, and 500k requests/month. Can
+      run edge functions via Cloudflare Workers.
+    how_agent_uses: >
+      Agent runs `npx wrangler pages deploy` or sets up auto-deploy from
+      GitHub. "Ship this to production" → agent builds the site and
+      deploys via Cloudflare, returns the URL.
     in_skills: false
 
   # ── Knowledge & Memory ───────────────────────────────────────
@@ -364,6 +499,27 @@ tools:
       server setup needed.
     in_skills: false
 
+  - name: Weaviate
+    description: >
+      Open-source AI-native vector database. Hybrid search (vector + keyword),
+      generative search, LLM plugins. Production-grade memory for agents.
+    repo_url: https://github.com/weaviate/weaviate
+    category: knowledge-memory
+    license: BSD-3-Clause
+    verified_by: community (13k+ stars)
+    verified_date: 2026-06-01
+    what_it_does: >
+      Finds information by meaning, not just exact keywords. Index your
+      project's code, docs, and conversations. Ask "find the Stripe payment
+      code" — Weaviate returns the right file even without exact matching.
+      Also generates answers directly from your data (RAG).
+    how_agent_uses: >
+      Agent connects to Weaviate to index project context at session start.
+      Throughout the conversation, queries for relevant past decisions and
+      code patterns. "What did we decide about the database schema?" →
+      Weaviate returns the ADR we wrote last week.
+    in_skills: false
+
   # ── Orchestration ────────────────────────────────────────────
 
   - name: CrewAI
@@ -418,6 +574,44 @@ tools:
       Install nexus, define agent roles and orchestration mode. For vibe
       coders: "I need a research agent that finds information, then a
       writing agent that creates content" — Nexus coordinates them.
+    in_skills: false
+
+  - name: Mastra
+    description: >
+      TypeScript agent framework. Build and deploy AI agents with tools,
+      knowledge (RAG), and memory. Designed for production apps.
+    repo_url: https://github.com/mastra-ai/mastra
+    category: orchestration
+    license: MIT
+    verified_by: community (7k+ stars)
+    verified_date: 2026-06-01
+    what_it_does: >
+      Gives your AI agent tools it can use, a knowledge base to search,
+      and memory across conversations. Built-in instrumentation, guardrails,
+      and deployment to serverless or Node. Type-first — everything is typed.
+    how_agent_uses: >
+      Define the agent's tools and knowledge sources. When the vibe coder
+      says "build me a PR review agent," Mastra wires up the tools (GitHub
+      API, linting), adds docs as knowledge, and the agent runs the review.
+    in_skills: false
+
+  - name: Dify
+    description: >
+      Open-source LLM app platform. Visual workflow builder, RAG pipeline,
+      agent skills, model management. No-code for ops, API for devs.
+    repo_url: https://github.com/langgenius/dify
+    category: orchestration
+    license: Apache 2.0
+    verified_by: community (70k+ stars)
+    verified_date: 2026-06-01
+    what_it_does: >
+      Build AI apps with a visual editor. Design conversation flows, connect
+      tools, add knowledge bases (RAG), set up monitoring. Switch between
+      OpenAI, Anthropic, local models with one click.
+    how_agent_uses: >
+      Set up Dify as the backend for agent workflows. "I need a chatbot that
+      answers questions about my API docs and can create Jira tickets" →
+      agent configures it in Dify's visual editor, exposes the API endpoint.
     in_skills: false
 
   # ── Agent Frameworks ─────────────────────────────────────────
@@ -476,4 +670,42 @@ tools:
       integrations, context providers (Slack, Drive, MCP), and production
       API. For vibe coders: "Build me a Slack bot that answers questions
       about my docs" — Agno handles the infrastructure.
+    in_skills: false
+
+  - name: MCP Agent
+    description: >
+      Production-grade MCP client for AI agents. Connect to any MCP server,
+      manage tool stacks, run agents with auto-tool-discovery.
+    repo_url: https://github.com/lastmile-ai/mcp-agent
+    category: agent-frameworks
+    license: MIT
+    verified_by: community (6k+ stars)
+    verified_date: 2026-06-01
+    what_it_does: >
+      A drop-in agent runtime that connects to any MCP server. Auto-discovers
+      available tools, manages their lifecycle, and runs an agent loop.
+      Think of it as the runtime for MCP-native agents.
+    how_agent_uses: >
+      The vibe coder says "install the Notion MCP server." Agent installs it,
+      MCP Agent auto-discovers the Notion tools, and the vibe coder can now
+      say "add a line to my docs" — agent routes it through MCP Agent.
+    in_skills: false
+
+  - name: Langflow
+    description: >
+      Visual framework for building multi-agent RAG apps. Drag-and-drop
+      pipelines, built-in MCP support, API endpoints.
+    repo_url: https://github.com/langflow-ai/langflow
+    category: agent-frameworks
+    license: MIT
+    verified_by: community (50k+ stars)
+    verified_date: 2026-06-01
+    what_it_does: >
+      Build AI workflows visually: drag in an LLM, drag in a vector database,
+      drag in your tools, connect them with lines. Export as an API endpoint.
+      Handles RAG, agent loops, multi-model setups.
+    how_agent_uses: >
+      Vibe coder says "I need a research agent that reads my docs and emails
+      me a summary." Agent builds the flow in Langflow: web search → LLM
+      summarization → email tool. Exports as endpoint, schedules it.
     in_skills: false

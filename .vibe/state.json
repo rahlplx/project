@@ -1,8 +1,8 @@
 {
   "project": "Vibe-Stack Curated Collection",
   "version": "2.0.0",
-  "phase": "done",
-  "step": 6,
+  "phase": "think",
+  "step": 0,
   "mode": "auto",
   "agent": "opencode",
   "stack": {
@@ -34,7 +34,14 @@
     "auto-ship-complete",
     "retro-written",
     "learn-captured",
-    "auto-pipeline-complete"
+    "auto-pipeline-complete",
+    "think-gap-fill",
+    "gap-fill-orchestration",
+    "gap-fill-agent-frameworks",
+    "all-categories-3-plus",
+    "think-deeper-catalog",
+    "build-deeper-catalog",
+    "all-categories-5-plus"
   ],
   "skills": {
     "total": 45,
@@ -113,11 +120,11 @@
     "testsPassing": 209
   },
   "created": "2026-06-13T12:00:00Z",
-  "updated": "2026-06-13T15:23:09.802Z",
+  "updated": "2026-06-13T15:48:56.338Z",
   "goal": "Curated collection of community-verified AI engineering tools for vibe coders",
   "auto_pipeline": {
-    "started": "2026-06-13T15:18:33.558Z",
-    "goal": "Systematically expand the curated catalog — research, verify, and add community-verified AI tools to cover all categories",
+    "started": "2026-06-13T15:48:56.337Z",
+    "goal": "Expand all 7 catalog categories from 3-4 tools to 5+ tools each",
     "state_machine": [
       "think",
       "plan",
@@ -126,10 +133,6 @@
       "harness",
       "review",
       "ship",
-      "retro",
-      "learn",
-      "evolve",
-      "telemetry",
       "done"
     ]
   }
