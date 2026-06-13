@@ -35,7 +35,7 @@ class Checkpoints {
     const taskDone = this.checkpoints.reduce((s, c) => s + c.tasks.filter(t => t.done).length, 0);
 
     return {
-      checkpoints: { total, completed: done, pct: total > 0 ? Math.round((done / total) * 100) : 0 },
+      summary: { total, completed: done, pct: total > 0 ? Math.round((done / total) * 100) : 0 },
       tasks: { total: taskTotal, completed: taskDone, pct: taskTotal > 0 ? Math.round((taskDone / taskTotal) * 100) : 0 },
       checkpoints: this.checkpoints,
       timestamp: new Date().toISOString()

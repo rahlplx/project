@@ -31,13 +31,13 @@ class IntentCapture {
 
   _extractName(description) {
     const patterns = [
-      /(?:called|named|called "([^"]+)"|named "([^"]+)")/i,
+      /(?:called\s+"([^"]+)"|named\s+"([^"]+)"|called\s+(\w+)|named\s+(\w+))/i,
       /an?\s+(\w+(?:\s+\w+){0,3})\s+(?:app|website|site|tool|dashboard|platform|api|bot|service)/i,
       /(\w+(?:\s+\w+){0,2})\s+(?:builder|maker|tracker|finder|manager|generator)/i
     ];
     for (const pat of patterns) {
       const m = description.match(pat);
-      if (m) return m[1] || m[0].split(' ').slice(0, 3).join(' ');
+      if (m) return m[1] || m[2] || m[3] || m[4] || m[0].split(' ').slice(0, 3).join(' ');
     }
     return 'Untitled Project';
   }

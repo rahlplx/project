@@ -24,7 +24,7 @@ class CodeExplainer {
       language,
       summary: this._generateSummary(summary, functions, classes, imports, complexity),
       details: {
-        imports: imports.length,
+        imports: imports,
         functions: functions.map(f => ({ name: f.name, params: f.params, lineCount: f.lineCount })),
         classes: classes.map(c => ({ name: c.name, methods: c.methods.length })),
         complexity: {
@@ -38,7 +38,7 @@ class CodeExplainer {
   }
 
   _detectLanguage(code) {
-    if (/require\(|module\.exports|import\s+|export\s+|const\s+|let\s+|=>|console\.log|function\s*\*/.test(code)) return 'JavaScript';
+    if (/require\(|module\.exports|import\s+|export\s+|const\s+|let\s+|=>|console\.log|function\s*(\*|\w)/.test(code)) return 'JavaScript';
     if (/def\s+\w+\s*\(|import\s+\w+|from\s+\w+|class\s+\w+:|print\s*\(/.test(code)) return 'Python';
     if (/fn\s+\w+|let\s+mut|fn\s+main|println!|->\s*\w+/.test(code)) return 'Rust';
     if (/func\s+\w+|package\s+\w+|import\s+\"|fmt\.Println/.test(code)) return 'Go';

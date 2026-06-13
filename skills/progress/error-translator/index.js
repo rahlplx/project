@@ -36,9 +36,9 @@ class ErrorTranslator {
       { match: /(fatal|error).*no upstream/i, translation: 'This branch is not linked to a remote branch yet.', suggestion: 'Run "git push --set-upstream origin <branch-name>" to link it.' },
 
       // General
-      { match: /(undefined|is not defined|is not a function)/i, translation: 'The code tried to use something that does not exist.', suggestion: 'Check that all variables and functions are spelled correctly and defined before use.' },
       { match: /(cannot read|Cannot read).*null/i, translation: 'The code tried to access a value that is empty (null).', suggestion: 'Check that the data exists before trying to use it. Add a check like "if (data) { ... }".' },
       { match: /(cannot read|Cannot read).*undefined/i, translation: 'The code tried to access a value that has not been set yet.', suggestion: 'Make sure the variable or property is assigned a value before accessing it.' },
+      { match: /(undefined|is not defined|is not a function)/i, translation: 'The code tried to use something that does not exist.', suggestion: 'Check that all variables and functions are spelled correctly and defined before use.' },
       { match: /(invalid|unexpected).*token/i, translation: 'There is a typo in the code — something is misplaced.', suggestion: 'Check for missing commas, brackets, or quotes. Use a linter to catch these automatically.' },
       { match: /(out of memory|heap out)/i, translation: 'The program used too much memory.', suggestion: 'Reduce the data size or increase the memory limit with --max-old-space-size.' },
       { match: /(syntax|parsing).*error/i, translation: 'The code has a mistake in its structure.', suggestion: 'Look for missing punctuation or brackets. Use a code editor with syntax highlighting.' }

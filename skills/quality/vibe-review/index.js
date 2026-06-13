@@ -48,7 +48,7 @@ class VibeReview {
       findings.push({ severity: 'info', category: 'todo', message: `Found ${todos} TODO/FIXME comment(s). Review before shipping.` });
     }
 
-    if (/API_KEY=|SECRET=|password\s*=|token\s*=\s*['"][^'"]{8,}['"]/.test(codeStr)) {
+    if (/API_KEY\s*=|SECRET\s*=|password\s*=|token\s*=\s*['"][^'"]{8,}['"]/.test(codeStr)) {
       findings.push({ severity: 'critical', category: 'security', message: 'Potential hardcoded secret detected! Use environment variables instead.' });
     }
 

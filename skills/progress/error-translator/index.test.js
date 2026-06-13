@@ -35,7 +35,7 @@ describe('ErrorTranslator', () => {
   it('should translate connection refused', () => {
     const s = new ErrorTranslator();
     const r = s.translate('ECONNREFUSED');
-    expect(r.translation).toContain('could not connect');
+    expect(r.translation).toContain('Could not connect');
   });
 
   it('should translate timeout errors', () => {

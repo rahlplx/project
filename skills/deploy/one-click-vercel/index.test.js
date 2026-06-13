@@ -31,7 +31,7 @@ describe('OneClickVercel', () => {
   it('should return metadata via toJSON', () => {
     const skill = new OneClickVercel();
     const json = skill.toJSON();
-    expect(json.dependencies).toContain('Vercel CLI');
+    expect(json.dependencies[0]).toContain('Vercel CLI');
     expect(json.usage).toHaveProperty('deploy');
   });
 });

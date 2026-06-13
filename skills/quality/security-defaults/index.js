@@ -10,7 +10,7 @@ class SecurityDefaults {
   audit(code, options = {}) {
     if (!code) return { success: false, error: 'No code to audit.' };
 
-    const checks = this._runChecks(code);
+    const checks = this._runChecks(code, options);
     const passed = checks.filter(c => c.passed);
     const failed = checks.filter(c => !c.passed);
     const score = Math.round((passed.length / checks.length) * 100);
@@ -26,9 +26,9 @@ class SecurityDefaults {
     };
   }
 
-  _runChecks(code) {
+  _runChecks(code, options = {}) {
     const checks = [
-      { id: 'SEC01', name: 'No hardcoded secrets', category: 'secrets', passed: !/['"][A-Za-z0-9_]{20,}['"]/.test(code) && !/(sk-|pk-|api_key|secret)\s*[:=]\s*['"][^'"]+['"]/i.test(code) },
+      { id: 'SEC01', name: 'No hardcoded secrets', category: 'secrets', passed: !/['"][A-Za-z0-9_-]{20,}['"]/.test(code) && !/(sk-|pk-|api_key|secret)\s*[:=]\s*['"][^'"]+['"]/i.test(code) },
       { id: 'SEC02', name: 'Uses environment variables for config', category: 'config', passed: /process\.env|os\.getenv|config|\.env/i.test(code) || options.noEnvCheck },
       { id: 'SEC03', name: 'No eval() or dangerous functions', category: 'code', passed: !/\beval\s*\(/.test(code) },
       { id: 'SEC04', name: 'Input validation present', category: 'input', passed: /(validate|sanitize|escape|trim|check|verify|isNaN|typeof)/i.test(code) || options.skipInputCheck },

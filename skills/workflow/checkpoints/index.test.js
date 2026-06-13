@@ -25,6 +25,6 @@ describe('Checkpoints', () => {
     s.define('Phase 1', ['a']);
     s.define('Phase 2', ['b']);
     const p = s.progress();
-    expect(p.checkpoints.total).toBe(2);
+    expect(p.summary.total).toBe(2);
   });
 });

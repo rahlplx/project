@@ -22,7 +22,7 @@ class Rollback {
 
   suggestRecovery(scenario) {
     const lower = scenario.toLowerCase();
-    if (/wrong commit/i.test(lower)) return { type: 'undo-commit', command: this.buildCommand('undo-commit', 'HEAD'), explanation: 'Creates a new commit that undoes the bad one — safe for teams.' };
+    if (/wrong (commit|branch)/i.test(lower)) return { type: 'undo-commit', command: this.buildCommand('undo-commit', 'HEAD'), explanation: 'Creates a new commit that undoes the bad one — safe for teams.' };
     if (/delete.*file|accidentally.*remove/i.test(lower)) return { type: 'revert-file', command: this.buildCommand('revert-file'), explanation: 'Restores the file from the last commit.' };
     if (/merge.*wrong|wrong.*merge/i.test(lower)) return { type: 'undo-merge', command: this.buildCommand('undo-merge', 'HEAD'), explanation: 'Undoes the merge while keeping branch history.' };
     if (/start over|everything.*wrong|reset/i.test(lower)) return { type: 'reset-to-commit', command: this.buildCommand('reset-to-commit'), explanation: 'Resets everything to a known good state.', warning: 'This is destructive. Make sure you have a backup.' };
