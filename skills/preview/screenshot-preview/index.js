@@ -246,8 +246,17 @@ class ScreenshotPreview {
   /**
    * Open screenshot in default viewer
    */
+  _safePath(filename) {
+    const base = path.basename(filename);
+    const safe = path.join(this.outputDir, base);
+    if (!safe.startsWith(this.outputDir)) {
+      throw new Error(`Invalid path: ${filename}`);
+    }
+    return safe;
+  }
+
   open(filename) {
-    const filepath = path.join(this.outputDir, filename);
+    const filepath = this._safePath(filename);
     if (!fs.existsSync(filepath)) {
       throw new Error(`Screenshot not found: ${filepath}`);
     }
@@ -263,7 +272,11 @@ class ScreenshotPreview {
       command = `xdg-open "${filepath}"`;
     }
     
-    execSync(command, { stdio: 'ignore' });
+    try {
+      execSync(command, { stdio: 'ignore' });
+    } catch {
+      return { opened: filename, warning: 'Could not open viewer' };
+    }
     return { opened: filename };
   }
 
@@ -271,7 +284,7 @@ class ScreenshotPreview {
    * Delete a screenshot
    */
   delete(filename) {
-    const filepath = path.join(this.outputDir, filename);
+    const filepath = this._safePath(filename);
     if (!fs.existsSync(filepath)) {
       throw new Error(`Screenshot not found: ${filepath}`);
     }
@@ -333,8 +346,8 @@ class ScreenshotPreview {
    * Create thumbnail of screenshot
    */
   async createThumbnail(filename, width = 200) {
-    const inputPath = path.join(this.outputDir, filename);
-    const outputPath = path.join(this.outputDir, `thumb_${filename}`);
+    const inputPath = this._safePath(filename);
+    const outputPath = path.join(this.outputDir, `thumb_${path.basename(filename)}`);
     
     if (!fs.existsSync(inputPath)) {
       throw new Error(`Screenshot not found: ${inputPath}`);
@@ -359,8 +372,8 @@ class ScreenshotPreview {
    * Add annotation to screenshot
    */
   async annotate(filename, annotation) {
-    const inputPath = path.join(this.outputDir, filename);
-    const outputPath = path.join(this.outputDir, `annotated_${filename}`);
+    const inputPath = this._safePath(filename);
+    const outputPath = path.join(this.outputDir, `annotated_${path.basename(filename)}`);
     
     if (!fs.existsSync(inputPath)) {
       throw new Error(`Screenshot not found: ${inputPath}`);
@@ -407,7 +420,7 @@ class ScreenshotPreview {
    * Get screenshot metadata
    */
   getMetadata(filename) {
-    const filepath = path.join(this.outputDir, filename);
+    const filepath = this._safePath(filename);
     if (!fs.existsSync(filepath)) {
       throw new Error(`Screenshot not found: ${filepath}`);
     }

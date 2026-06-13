@@ -1,18 +1,28 @@
 {
   "name": "vibe-stack",
-  "version": "1.0.0",
-  "description": "The AI agent skills repository for vibe coders - 45+ skills to build production-ready software without writing code",
-  "main": "index.js",
+  "version": "1.1.0",
+  "description": "45 AI agent skills for vibe coders — deploy, design, review, orchestrate. Works with Codex, OpenCode, Claude Code, Antigravity, and any MCP-compatible agent.",
+  "main": "bin/vibe-stack.js",
+  "bin": {
+    "vibe-stack": "bin/vibe-stack.js"
+  },
   "scripts": {
+    "start": "node bin/vibe-stack.js",
+    "mcp": "node bin/vibe-stack.js mcp",
     "wizard": "node skills/setup/project-wizard/index.js",
-    "start": "node skills/setup/quick-start/index.js",
     "test": "jest",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepublishOnly": "jest --passWithNoTests --silent"
   },
   "keywords": [
     "vibe-coding",
     "ai-agent",
+    "mcp",
+    "model-context-protocol",
+    "codex",
+    "opencode",
+    "claude-code",
     "no-code",
     "low-code",
     "prompt-engineering",
@@ -23,7 +33,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/vibe-stack.git"
+    "url": "https://github.com/rahlplx/project.git"
   },
   "engines": {
     "node": ">=18.0.0"

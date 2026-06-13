@@ -321,7 +321,9 @@ async function scaffold(options) {
   } else if (template.repo) {
     log(`  Cloning from ${template.repo}...`, 'blue');
     try {
-      execSync(`git clone --depth 1 --branch ${template.branch} ${template.repo} "${projectDir}"`, {
+      const safeBranch = template.branch.replace(/[^a-zA-Z0-9._-]/g, '');
+      const safeRepo = template.repo.replace(/[^a-zA-Z0-9._:/@-]/g, '');
+      execSync(`git clone --depth 1 --branch ${safeBranch} ${safeRepo} "${projectDir}"`, {
         stdio: 'pipe',
       });
       log(`  Cloned successfully`, 'green');
@@ -380,7 +382,8 @@ async function scaffold(options) {
       // Install dev dependencies
       if (template.devDeps && template.devDeps.length > 0) {
         log('  Installing dev dependencies...', 'blue');
-        execSync(`npm install --save-dev ${template.devDeps.join(' ')}`, {
+        const safeDeps = template.devDeps.map(d => d.replace(/[^a-zA-Z0-9@._/-]/g, ''));
+        execSync(`npm install --save-dev ${safeDeps.join(' ')}`, {
           stdio: 'inherit',
           cwd: projectDir,
         });
@@ -466,11 +469,14 @@ ${Object.keys(TEMPLATES).map(t => `  - ${t}`).join('\n')}
 `);
 }
 
-// Main execution
-const options = parseArgs(process.argv);
-scaffold(options)
-  .then(() => process.exit(0))
-  .catch(error => {
-    console.error('Error:', error.message);
-    process.exit(1);
-  });
+// Main execution (only when run directly, not when required as module)
+if (require.main === module) {
+  const options = parseArgs(process.argv);
+  scaffold(options)
+    .then(() => process.exit(0))
+    .catch(error => {
+      console.error('Error:', error.message);
+      process.exit(1);
+    });
+}
+module.exports = { scaffold, TEMPLATES };

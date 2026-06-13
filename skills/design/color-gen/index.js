@@ -147,7 +147,7 @@ class ColorGenerator {
     
     if (preferredColor) {
       const ratio = this.getContrastRatio(bgColor, preferredColor);
-      if (ratio >= 4.5) return preferredColor;
+      if (ratio >= 4.5) return { color: preferredColor, ratio };
     }
 
     const lightRatio = this.getContrastRatio(bgColor, lightText);
