@@ -122,8 +122,17 @@
     "toolsDiscovered": 243,
     "testsPassing": 209
   },
+  "lifecycle": {
+    "version": "1.0",
+    "auto_maintain": true,
+    "trigger": ".vibe/lifecycle.json → interaction_threshold (10) or day_threshold (7 days)",
+    "script": ".vibe/lifecycle/auto-maintain.js",
+    "last_maintenance": "2026-06-13T22:00:00.000Z",
+    "maintenance_count": 2,
+    "interaction_count": 0
+  },
   "created": "2026-06-13T12:00:00Z",
-  "updated": "2026-06-13T15:48:56.338Z",
+  "updated": "2026-06-13T16:01:54.773Z",
   "goal": "Curated collection of community-verified AI engineering tools for vibe coders",
   "auto_pipeline": {
     "started": "2026-06-13T15:48:56.337Z",
@@ -138,5 +147,10 @@
       "ship",
       "done"
     ]
+  },
+  "lifecycle": {
+    "last_maintenance": "2026-06-13T16:01:54.771Z",
+    "maintenance_count": 2,
+    "interaction_count": 0
   }
 }

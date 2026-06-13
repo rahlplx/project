@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "session_count": 0,
+  "interaction_count": 0,
+  "total_sessions": 0,
+  "total_interactions": 0,
+  "last_maintenance": "2026-06-13T16:01:54.771Z",
+  "last_maintenance_phase": "full",
+  "maintenance_count": 2,
+  "triggers": {
+    "interaction_threshold": 10,
+    "day_threshold": 7,
+    "auto_after_pipeline": true
+  },
+  "pipeline_count": 3,
+  "created": "2026-06-13",
+  "updated": "2026-06-13T16:01:54.771Z"
+}

@@ -9,8 +9,15 @@ The primary interface is `SKILL.md` — AI agents read it to learn how to help.
 
 ```bash
 npm test          # Run 209 tests across 45 skills
+node .vibe/lifecycle/auto-maintain.js  # Run auto-maintenance cycle
 git add -A && git commit -m "..." && git push  # Ship changes
 ```
+
+## Autonomous Lifecycle
+
+This project self-improves via `.vibe/lifecycle/` — at session start, check
+`.vibe/lifecycle.json` and run maintenance if interaction_count >= 10 or
+days_since_last >= 7. Full details in SKILL.md §"Autonomous Lifecycle".
 
 ## How to Help
 

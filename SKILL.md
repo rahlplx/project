@@ -114,3 +114,48 @@ Each entry has: what it does, who verified it, how to use it with the vibe coder
 - Translate errors: "File not found" → "I can't find that file. Let me look in the right place."
 - If you don't have a skill for what they need, check the catalog for a community tool.
 - If nothing fits, tell them honestly and suggest an alternative approach.
+
+## ⚡ Autonomous Lifecycle (READ THIS FIRST EVERY SESSION)
+
+This project self-improves. At the start of every session, check whether maintenance is due:
+
+### Trigger Check
+Read `.vibe/lifecycle.json`. Run the full auto-maintenance cycle if ANY of:
+1. `interaction_count >= interaction_threshold` (default: 10)
+2. `days since last_maintenance >= day_threshold` (default: 7)
+3. A pipeline just completed and `auto_after_pipeline` is true
+
+If none triggered, increment `session_count` by 1 and continue working.
+
+### Tracking Interactions During the Session
+After each significant action (commit, catalog edit, tool discovery, architecture
+decision), increment `interaction_count` in `.vibe/lifecycle.json`. After
+incrementing, check if the threshold is hit — if so, queue maintenance
+to run after current work completes.
+
+### How to Run Maintenance
+```bash
+node .vibe/lifecycle/auto-maintain.js
+```
+
+This runs 5 phases automatically:
+1. **harness** — validate YAML, count categories, run test suite
+2. **telemetry** — snapshot recent commits and session stats to `.vibe/telemetry/sessions/`
+3. **retro** — assess health, note failures
+4. **learn** — count patterns/anti-patterns, flag low-quality rules
+5. **evolve** — generate proposals for rule retirement or creation
+
+Results are logged to `.vibe/maintenance-log.json`. State is reset.
+
+### What to Capture During the Session
+As you work, write these to `.vibe/telemetry/sessions/` as they happen:
+- **`discovery-<name>.json`** — when you find a useful tool or pattern
+- **`incident-<name>.json`** — when something breaks or blocks you
+- **`decision-<name>.json`** — when you make an architectural choice
+
+These feed the next maintenance cycle's learn phase automatically.
+
+### Manual Triggers
+- `/vibe:maintenance` — run the cycle now
+- `/vibe:harness` — run checks only
+- `/vibe:evolve` — manual evolution (for when proposals need user approval)
