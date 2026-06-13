@@ -1,7 +1,7 @@
 {
-  "project": "vibe-stack",
+  "project": "Vibe-Stack Curated Collection",
   "version": "2.0.0",
-  "phase": "done",
+  "phase": "curation",
   "step": 0,
   "mode": "guided",
   "agent": "opencode",
@@ -19,7 +19,11 @@
     "review-security-audit",
     "review-fix-critical-issues",
     "ship-pr-created",
-    "retro-complete"
+    "retro-complete",
+    "git-cloned-to-live-root",
+    "all-209-tests-verified",
+    "catalog-created",
+    "skill-md-created"
   ],
   "skills": {
     "total": 45,
@@ -98,5 +102,6 @@
     "testsPassing": 209
   },
   "created": "2026-06-13T12:00:00Z",
-  "updated": "2026-06-13T14:55:47.427Z"
+  "updated": "2026-06-13T15:15:50.372Z",
+  "goal": "Curated collection of community-verified AI engineering tools for vibe coders"
 }

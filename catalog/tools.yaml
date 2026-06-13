@@ -1,0 +1,325 @@
+# Vibe-Stack Curated Tool Catalog
+#
+# Community-verified AI engineering tools, organized for vibe coders.
+# The AI agent reads this to find the right tool for whatever the vibe coder needs.
+#
+# How to add: find a proven tool → add entry → get it community-verified → done.
+
+categories:
+  design-ui:
+    label: Design & UI
+    description: Make things look good without hiring a designer
+    vibe_example: '"Make my site look like it cost $10K"'
+
+  code-generation:
+    label: Code Generation
+    description: AI agents that write code from descriptions
+    vibe_example: '"Build me a todo app"'
+
+  testing-qa:
+    label: Testing & QA
+    description: Catch bugs before your users do
+    vibe_example: '"Check if my app is broken"'
+
+  deployment:
+    label: Deployment
+    description: Ship to the world with zero config
+    vibe_example: '"Put this on the internet"'
+
+  knowledge-memory:
+    label: Knowledge & Memory
+    description: Remember context, understand codebases
+    vibe_example: '"Remember this for next time"'
+
+  orchestration:
+    label: Orchestration
+    description: Coordinate multiple tools and agents
+    vibe_example: '"Build me a full app from scratch"'
+
+  agent-frameworks:
+    label: Agent Frameworks
+    description: Run AI agents that use tools and skills
+    vibe_example: '"Make an agent that does my whole workflow"'
+
+tools:
+  # ── Design & UI ──────────────────────────────────────────────
+
+  - name: Impeccable
+    description: >
+      Design critique engine. 23 commands for polish, audit, animate,
+      typography, layout, color. Catches AI slop before it ships.
+    repo_url: https://github.com/rahlplx/impeccable
+    category: design-ui
+    license: Apache 2.0
+    verified_by: community-vibe-stack
+    verified_date: 2026-06-01
+    what_it_does: >
+      Your design partner. Runs anti-pattern checks, generates color palettes,
+      fixes typography, audits accessibility. The vibe coder says "make it look
+      professional" and Impeccable tells you exactly what to fix.
+    how_agent_uses: >
+      Load reference docs from vendor/impeccable/reference/. Run critique/audit
+      on the current project. Return findings in plain language: "Your font is
+      too small, your contrast ratio is 3:1 instead of 4.5:1, and your layout
+      has 3 nested cards which is a known anti-pattern."
+    in_skills: false
+
+  - name: Stitch
+    description: >
+      Google's design generation platform. Generate UIs from prompts,
+      manage design systems, create variants.
+    repo_url: https://stitch.google
+    category: design-ui
+    license: Proprietary (free tier)
+    verified_by: google-labs
+    verified_date: 2026-05-15
+    what_it_does: >
+      Type a description of a screen, get a designed UI back. Change colors
+      across your whole app with one command. Generate 5 variations of a
+      landing page in seconds.
+    how_agent_uses: >
+      Via Stitch MCP tools. Call generate_screen_from_text with a prompt.
+      Apply design systems. Generate variants. Return the resulting HTML/image
+      to the vibe coder.
+    in_skills: true
+    skill_path: skills/setup/prompt-templates/
+
+  - name: shadcn/ui
+    description: >
+      Industry-standard React component library. Accessible, customizable,
+      copy-paste friendly.
+    repo_url: https://github.com/shadcn-ui/ui
+    category: design-ui
+    license: MIT
+    verified_by: community (76k+ stars)
+    verified_date: 2026-04-01
+    what_it_does: >
+      Beautiful buttons, forms, dialogs, navigation, and more. Every component
+      is accessible, responsive, and looks professional out of the box.
+    how_agent_uses: >
+      Install via npx, add components as needed by the vibe coder's requests.
+      "Add a signup form" → install shadcn form + input + button components.
+    in_skills: false
+
+  # ── Code Generation ──────────────────────────────────────────
+
+  - name: Aider
+    description: >
+      Open-source AI coding agent in your terminal. Works with any LLM.
+      Edits code directly, handles git automatically.
+    repo_url: https://github.com/paul-gauthier/aider
+    category: code-generation
+    license: Apache 2.0
+    verified_by: community (25k+ stars)
+    verified_date: 2026-05-01
+    what_it_does: >
+      An AI that writes code for you. Give it a task, it edits files, runs
+      tests, commits changes. Works with Claude, GPT, Gemini, any model.
+    how_agent_uses: >
+      Install aider, point it at the project. For vibe coders: you run aider
+      in the background, they tell you what they want, you relay to aider.
+    in_skills: false
+
+  - name: Continue.dev
+    description: >
+      Open-source AI code assistant. IDE plugin for VS Code and JetBrains.
+      Chat, edit, and code with any AI model.
+    repo_url: https://github.com/continuedev/continue
+    category: code-generation
+    license: Apache 2.0
+    verified_by: community (22k+ stars)
+    verified_date: 2026-04-15
+    what_it_does: >
+      Chat with AI inside your editor. Ask questions, edit code, generate
+      new features. Works with any model (Claude, GPT, local models).
+    how_agent_uses: >
+      Suggest the vibe coder install it. Or use it in headless mode to run
+      code generation tasks. "Add a dark mode toggle" → Continue edits the
+      right files.
+    in_skills: false
+
+  # ── Testing & QA ─────────────────────────────────────────────
+
+  - name: Playwright
+    description: >
+      Microsoft's browser testing framework. Record, run, and debug tests
+      in Chromium, Firefox, Safari.
+    repo_url: https://github.com/microsoft/playwright
+    category: testing-qa
+    license: Apache 2.0
+    verified_by: microsoft
+    verified_date: 2026-03-01
+    what_it_does: >
+      Opens your app in a real browser and clicks through it to find bugs.
+      Takes screenshots so you can see what broke.
+    how_agent_uses: >
+      Write a test script, run it with Playwright, show the vibe coder the
+      results: "Everything works" or "I found 3 broken buttons."
+    in_skills: false
+
+  - name: Vitest
+    description: >
+      Blazing-fast unit test framework. Vite-native, works with any JS/TS
+      project. Runs tests in parallel.
+    repo_url: https://github.com/vitest-dev/vitest
+    category: testing-qa
+    license: MIT
+    verified_by: community (13k+ stars)
+    verified_date: 2026-02-01
+    what_it_does: >
+      Checks that every function in your app does what it's supposed to.
+      Catches regressions before they reach users.
+    how_agent_uses: >
+      Write tests, run vitest, report results. "All 42 tests pass" or "2
+      tests failed, here's what broke."
+    in_skills: false
+
+  # ── Deployment ───────────────────────────────────────────────
+
+  - name: Vercel
+    description: >
+      One-click deployment platform. Connect your repo, get a live URL
+      in seconds. Handles domains, SSL, CDN.
+    repo_url: https://vercel.com
+    category: deployment
+    license: Proprietary (free tier)
+    verified_by: vercel
+    verified_date: 2026-01-01
+    what_it_does: >
+      Takes your project and puts it on the internet with a real URL.
+      Updates automatically when you make changes.
+    how_agent_uses: >
+      Run vercel CLI. Return the URL to the vibe coder. "Your site is live
+      at https://your-project.vercel.app"
+    in_skills: true
+    skill_path: skills/deploy/one-click-vercel/
+
+  - name: Netlify
+    description: >
+      Deployment platform with built-in CI/CD, forms, serverless functions.
+      Free tier included.
+    repo_url: https://netlify.com
+    category: deployment
+    license: Proprietary (free tier)
+    verified_by: netlify
+    verified_date: 2026-01-01
+    what_it_does: >
+      Same as Vercel — push your project live. Extra features: contact
+      forms that work without a backend, serverless functions, split testing.
+    how_agent_uses: >
+      Run netlify CLI. Return the URL. "Your site is live."
+    in_skills: true
+    skill_path: skills/deploy/one-click-netlify/
+
+  # ── Knowledge & Memory ───────────────────────────────────────
+
+  - name: Qdrant
+    description: >
+      Vector database for semantic search. Find similar code, docs, or
+      concepts by meaning, not just keywords.
+    repo_url: https://github.com/qdrant/qdrant
+    category: knowledge-memory
+    license: Apache 2.0
+    verified_by: qdrant
+    verified_date: 2026-04-01
+    what_it_does: >
+      Remembers what your project does and finds things by meaning.
+      "Find the login code I wrote last week" — Qdrant finds it even if
+      you don't remember the file name.
+    how_agent_uses: >
+      Index the project, then query by meaning. "Find all places where we
+      handle user authentication" → Qdrant returns the relevant files.
+    in_skills: false
+
+  - name: LangChain
+    description: >
+      Framework for building LLM-powered applications. Chains, agents,
+      RAG, tool use, memory.
+    repo_url: https://github.com/langchain-ai/langchain
+    category: knowledge-memory
+    license: MIT
+    verified_by: community (100k+ stars)
+    verified_date: 2026-01-01
+    what_it_does: >
+      Gives AI agents memory, tools, and the ability to follow multi-step
+      workflows. Powers most production AI applications.
+    how_agent_uses: >
+      Use LangChain internally to chain together skills and tools. When
+      a vibe coder says "build me a chatbot that remembers our
+      conversation," LangChain makes it possible.
+    in_skills: false
+
+  # ── Orchestration ────────────────────────────────────────────
+
+  - name: CrewAI
+    description: >
+      Multi-agent orchestration framework. Define agent roles, give them
+      tools, and let them work together.
+    repo_url: https://github.com/crewAIInc/crewAI
+    category: orchestration
+    license: MIT
+    verified_by: community (25k+ stars)
+    verified_date: 2026-03-01
+    what_it_does: >
+      Creates a virtual team of AI agents. A designer agent, a developer
+      agent, a QA agent — all working together on the same project.
+    how_agent_uses: >
+      For complex projects: define roles (designer, developer, reviewer),
+      give each access to relevant skills, let them collaborate. Report
+      progress to the vibe coder.
+    in_skills: false
+
+  - name: LangGraph
+    description: >
+      Build stateful, multi-step AI agent workflows. Graph-based agent
+      orchestration from LangChain.
+    repo_url: https://github.com/langchain-ai/langgraph
+    category: orchestration
+    license: MIT
+    verified_by: langchain
+    verified_date: 2026-03-15
+    what_it_does: >
+      Defines workflows as a graph: step 1 → step 2 → if error → step 3.
+      Agents follow the graph automatically.
+    how_agent_uses: >
+      Define the build pipeline as a graph. Each node is a skill or tool.
+      LangGraph handles routing, retries, and state between steps.
+    in_skills: false
+
+  # ── Agent Frameworks ─────────────────────────────────────────
+
+  - name: Smolagents
+    description: >
+      Lightweight agent framework by Hugging Face. Minimal dependencies,
+      maximum flexibility. Lets AI agents use tools and browse the web.
+    repo_url: https://github.com/huggingface/smolagents
+    category: agent-frameworks
+    license: Apache 2.0
+    verified_by: huggingface
+    verified_date: 2026-05-01
+    what_it_does: >
+      Runs AI agents that can use tools, browse the web, and execute code.
+      Lightweight enough to run anywhere.
+    how_agent_uses: >
+      Use as the agent runtime. Smolagents calls the skills, you
+      orchestrate. For vibe coders: they talk to you, you talk to
+      smolagents, smolagents uses the tools.
+    in_skills: false
+
+  - name: FastMCP
+    description: >
+      Build MCP servers in minutes. TypeScript SDK for the Model Context
+      Protocol — connect AI agents to any tool or API.
+    repo_url: https://github.com/anthropics/fastmcp
+    category: agent-frameworks
+    license: MIT
+    verified_by: anthropic
+    verified_date: 2026-04-01
+    what_it_does: >
+      Turns any tool or API into something an AI agent can use. The
+      standard way to give agents superpowers.
+    how_agent_uses: >
+      Our MCP server (bin/mcp-server.js) uses this pattern. Agents connect
+      to the MCP server and discover all 45+ skills as tools automatically.
+    in_skills: true
+    skill_path: bin/mcp-server.js

@@ -1,59 +1,44 @@
-# CLAUDE.md
+# CLAUDE.md — Vibe-Stack Curation Project
 
-This file provides guidance to Claude Code (claude.ai/code) when working with this repository.
+## What This Is
+
+A curated collection of community-verified AI engineering tools for vibe coders.
+The primary interface is `SKILL.md` — AI agents read it to learn how to help.
 
 ## Commands
 
 ```bash
-# Run the interactive project wizard
-npm run wizard
-
-# Run the quick-start scaffolding tool
-npm start
-
-# Run all tests
-npm test
-
-# Run a single test file
-npx jest skills/design/anti-slop/index.test.js
-
-# Lint
-npm run lint
-
-# Format
-npm run format
+npm test          # Run 209 tests across 45 skills
+git add -A && git commit -m "..." && git push  # Ship changes
 ```
 
-## Architecture
+## How to Help
 
-**Vibe-Stack** is a collection of reusable AI agent skills for Node.js (≥18). Each skill lives in `skills/<category>/<skill-name>/index.js` and operates as a standalone module — no cross-skill imports.
+- The vibe coder talks in plain language ("make this look good", "ship my app")
+- You use the skills in `skills/` and the catalog in `catalog/tools.yaml`
+- Never make the vibe coder use a terminal — you handle everything
+- Never show code unless they ask — show results, previews, URLs
+- Translate errors into plain English
 
-### Skill structure
+## Curation Guidelines
 
-Every skill follows the same pattern:
+- Tools in `catalog/tools.yaml` must be community-verified (stars, active, documented)
+- Add new tools via PR with proof it works
+- Every tool needs: what it does, who verified it, how an agent uses it
+- No abandoned repos (>1 year inactive)
+- No CLIs for humans — agents handle the terminal
 
-- **Class-based**: One exported class per skill with a configuration object in the constructor.
-- **Generation methods**: Named after what they produce — `generate*()`, `analyze()`, `toCSS()`, `toJSON()`, `toMermaid()`, `toHTML()`.
-- **Multi-format output**: Each skill returns a structured object with multiple export formats (e.g., `.visual`, `.summary`, `.stats`) rather than a single string.
-- **Structured metadata**: Return objects include `timestamp`, `type`, and relevant `stats`.
+## File Structure
 
-### Categories (current implementation)
+```
+SKILL.md              → Agent entry point — start here
+catalog/tools.yaml    → Curated community tools
+catalog/verified-by.md → Verification tracking
+skills/               → 45 agent skills (kept as-is)
+references/           → Phase guides
+```
 
-| Category | Skills | Purpose |
-|----------|--------|---------|
-| `setup/` | `project-wizard`, `quick-start`, `prompt-templates` | Project initialization and scaffolding |
-| `preview/` | `visual-plans`, `diff-preview`, `flowchart-gen`, `screenshot-preview` | Visualization and code diffs |
-| `design/` | `anti-slop`, `color-gen`, `design-system`, `theme-factory`, `typography-rules` | Design quality enforcement |
+## State
 
-### Key design constraints
-
-- **`anti-slop`** enforces 41 deterministic rules (no ML). Rules are hardcoded in the class — not configurable at runtime.
-- **`color-gen`** and **`design-system`** enforce WCAG contrast ratios; accessibility is a first-class concern throughout the design category.
-- **`flowchart-gen`** uses AST parsing to produce diagrams in 6 formats (Mermaid, ASCII, SVG, React Flow, etc.).
-- **`diff-preview`** implements LCS-based diffing internally — no external diff library.
-
-### Adding a new skill
-
-1. Create `skills/<category>/<skill-name>/index.js` with a default-exported class.
-2. Add a `README.md` alongside it documenting the API (methods, parameters, return shape).
-3. No registration or index file needs updating — skills are self-contained.
+`.vibe/state.json` — tracks project phase. Phase `curation` means we're building
+the curated collection.
