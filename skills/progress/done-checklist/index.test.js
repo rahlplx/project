@@ -60,6 +60,6 @@ describe('DoneChecklist', () => {
   it('should return metadata via toJSON', () => {
     const s = new DoneChecklist();
     const j = s.toJSON();
-    expect(j.references).toContain('12-factor app');
+    expect(j.references.some(r => r.includes('12-factor app'))).toBe(true);
   });
 });

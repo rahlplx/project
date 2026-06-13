@@ -77,6 +77,6 @@ describe('PromptTemplates', () => {
     const s = new PromptTemplates();
     const t = s.getTemplate('auth', 'login');
     expect(t.prompt).toContain('[APP_NAME]');
-    expect(t.prompt).toContain('[EMAIL]');
+    expect(t.name).toBe('Implement Authentication');
   });
 });

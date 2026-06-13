@@ -2,13 +2,14 @@
 
 /**
  * Project Wizard - Interactive CLI for generating project specs
- * 
  * Usage: node index.js
+ * Wraps: inquirer (npm), chalk (npm), ora (npm)
  */
 
-const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path');
+let inquirer;
+try { inquirer = require('inquirer'); } catch { inquirer = null; }
 
 const PROJECT_TYPES = [
   { name: 'Web Application (React)', value: 'react-web' },
@@ -158,6 +159,10 @@ ${answers.notes || ''}
 }
 
 async function main() {
+  if (!inquirer) {
+    console.error('\n❌ inquirer package not available. Install with: npm install inquirer@^8\n');
+    process.exit(1);
+  }
   console.log('\n🎯 Project Wizard - Generate Your Project Spec\n');
   console.log('Answer a few questions to create a comprehensive PROJECT.md\n');
 
