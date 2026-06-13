@@ -1,38 +1,42 @@
 {
   "timestamp": "2026-06-13T17:28:50.447Z",
-  "avg_quality": 53,
-  "repos": 11,
+  "avg_quality": 55,
+  "repos": 12,
   "top_patterns": [
     [
       "documented",
-      9
+      10
     ],
     [
       "mcp",
-      8
+      9
     ],
     [
       "node",
-      7
+      8
     ],
     [
       "typescript",
-      7
+      8
     ],
     [
       "tested",
-      7
+      8
     ],
     [
       "agents",
-      7
+      8
     ],
     [
       "docker",
-      6
+      7
     ],
     [
       "self-improving",
+      7
+    ],
+    [
+      "python",
       6
     ],
     [
@@ -40,16 +44,12 @@
       6
     ],
     [
+      "skills",
+      5
+    ],
+    [
       "rules",
       5
-    ],
-    [
-      "python",
-      5
-    ],
-    [
-      "skills",
-      4
     ],
     [
       "catalog",
@@ -62,12 +62,40 @@
     [
       "rust",
       2
+    ],
+    [
+      "ci-cd",
+      1
+    ],
+    [
+      "pluggable",
+      1
+    ],
+    [
+      "tool-based",
+      1
+    ],
+    [
+      "api-first",
+      1
+    ],
+    [
+      "yaml-config",
+      1
+    ],
+    [
+      "monorepo",
+      1
+    ],
+    [
+      "makefile",
+      1
     ]
   ],
   "top_candidates": [
     [
       "mcp-integration",
-      8
+      9
     ],
     [
       "agent-arch",
@@ -96,6 +124,38 @@
     [
       "vibe-stack-pattern",
       2
+    ],
+    [
+      "agent-arch-monorepo",
+      1
+    ],
+    [
+      "sdk-package-split",
+      1
+    ],
+    [
+      "async-sync-parity",
+      1
+    ],
+    [
+      "tool-registry-pattern",
+      1
+    ],
+    [
+      "settings-schema-export",
+      1
+    ],
+    [
+      "skill-progressive-disclosure",
+      1
+    ],
+    [
+      "doc-generation",
+      1
+    ],
+    [
+      "ci-quality-gates",
+      1
     ]
   ],
   "all_repos": [
@@ -126,7 +186,8 @@
         "mcp-integration",
         "agent-arch",
         "rules-engine"
-      ]
+      ],
+      "quality": 85
     },
     {
       "name": "langchain",
@@ -140,7 +201,8 @@
         "no-readme",
         "no-ci"
       ],
-      "candidates": []
+      "candidates": [],
+      "quality": 0
     },
     {
       "name": "crewAI",
@@ -165,7 +227,8 @@
         "agent-arch",
         "telemetry-system",
         "rules-engine"
-      ]
+      ],
+      "quality": 45
     },
     {
       "name": "mastra",
@@ -197,7 +260,8 @@
         "telemetry-system",
         "rules-engine",
         "vibe-stack-pattern"
-      ]
+      ],
+      "quality": 95
     },
     {
       "name": "langgraph",
@@ -219,7 +283,8 @@
       "candidates": [
         "self-improvement",
         "agent-arch"
-      ]
+      ],
+      "quality": 60
     },
     {
       "name": "qdrant",
@@ -233,7 +298,8 @@
         "no-readme",
         "no-ci"
       ],
-      "candidates": []
+      "candidates": [],
+      "quality": 0
     },
     {
       "name": "mem0",
@@ -261,7 +327,8 @@
         "agent-arch",
         "telemetry-system",
         "vibe-stack-pattern"
-      ]
+      ],
+      "quality": 75
     },
     {
       "name": "weaviate",
@@ -282,7 +349,8 @@
         "self-improvement",
         "mcp-integration",
         "telemetry-system"
-      ]
+      ],
+      "quality": 30
     },
     {
       "name": "langflow",
@@ -310,7 +378,8 @@
         "mcp-integration",
         "agent-arch",
         "telemetry-system"
-      ]
+      ],
+      "quality": 75
     },
     {
       "name": "penpot",
@@ -336,7 +405,8 @@
         "agent-arch",
         "telemetry-system",
         "rules-engine"
-      ]
+      ],
+      "quality": 55
     },
     {
       "name": "open-pencil",
@@ -359,6 +429,42 @@
         "self-improvement",
         "mcp-integration",
         "rules-engine"
+      ],
+      "quality": 60
+    },
+    {
+      "name": "software-agent-sdk",
+      "stars": 816,
+      "quality": 85,
+      "patterns": [
+        "node",
+        "python",
+        "docker",
+        "tested",
+        "documented",
+        "typescript",
+        "ci-cd",
+        "mcp",
+        "agents",
+        "skills",
+        "pluggable",
+        "tool-based",
+        "api-first",
+        "yaml-config",
+        "monorepo",
+        "makefile",
+        "self-improving"
+      ],
+      "candidates": [
+        "agent-arch-monorepo",
+        "sdk-package-split",
+        "async-sync-parity",
+        "tool-registry-pattern",
+        "mcp-integration",
+        "settings-schema-export",
+        "skill-progressive-disclosure",
+        "doc-generation",
+        "ci-quality-gates"
       ]
     }
   ]

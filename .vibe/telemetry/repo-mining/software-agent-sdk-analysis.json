@@ -1,0 +1,37 @@
+{
+  "name": "software-agent-sdk",
+  "url": "https://github.com/OpenHands/software-agent-sdk",
+  "stars": 816,
+  "license": "MIT",
+  "days_since_update": 0,
+  "quality_score": 85,
+  "patterns": [
+    "node", "python", "docker", "tested", "documented", "typescript",
+    "ci-cd", "mcp", "agents", "skills", "pluggable", "tool-based",
+    "api-first", "yaml-config", "monorepo", "makefile", "self-improving"
+  ],
+  "anti_patterns": [],
+  "candidates": [
+    "agent-arch-monorepo",
+    "sdk-package-split",
+    "async-sync-parity",
+    "tool-registry-pattern",
+    "mcp-integration",
+    "settings-schema-export",
+    "skill-progressive-disclosure",
+    "doc-generation",
+    "ci-quality-gates"
+  ],
+  "strengths": [
+    "Monorepo with 4 distributable packages (sdk, tools, workspace, agent-server)",
+    "Async/sync parity — every async method has sync counterpart",
+    "Tool Registry pattern with is_usable() filtering",
+    "Settings schema exported programmatically",
+    "Progressive disclosure for agent skills (1-1024 char descriptions)",
+    "Comprehensive CI: pre-commit hooks, typecheck (pyright), lint (ruff), tests",
+    "REST API + SDK dual interface",
+    "MCP config uses FastMCP typed MCPConfig",
+    "Separate AGENTS.md per package for AI-agent development",
+    "Behavior tests (realistic scenarios) + integration tests + stress tests + unit tests"
+  ]
+}
