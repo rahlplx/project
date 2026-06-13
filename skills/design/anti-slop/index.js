@@ -27,7 +27,7 @@ class AntiSlopSkill {
         id: 1,
         category: 'color',
         name: 'Purple Gradient Ban',
-        pattern: /gradient.*purple|linear-gradient.*#?[8b5cf6|#8b5cf6|violet|purple]/i,
+        pattern: /gradient.*purple|linear-gradient.*#?(?:8b5cf6|#8b5cf6|violet|purple)/i,
         message: 'Purple gradients are an AI cliché. Use purposeful, brand-specific colors.',
         severity: 'medium',
         fix: 'Use brand-appropriate gradient or solid colors from your design system.'

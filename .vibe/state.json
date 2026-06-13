@@ -1,0 +1,102 @@
+{
+  "project": "vibe-stack",
+  "version": "2.0.0",
+  "phase": "done",
+  "step": 0,
+  "mode": "guided",
+  "agent": "opencode",
+  "stack": {
+    "framework": "node",
+    "language": "javascript",
+    "testFramework": "node:test",
+    "testCommand": "node --test",
+    "buildCommand": null,
+    "lintCommand": null
+  },
+  "completed": [
+    "harness-6-checks",
+    "review-code-audit",
+    "review-security-audit",
+    "review-fix-critical-issues",
+    "ship-pr-created",
+    "retro-complete"
+  ],
+  "skills": {
+    "total": 45,
+    "categories": {
+      "deploy": [
+        "git-free-deploy",
+        "one-click-netlify",
+        "one-click-vercel"
+      ],
+      "design": [
+        "anti-slop",
+        "color-gen",
+        "design-system",
+        "template-gallery",
+        "theme-factory",
+        "typography-rules"
+      ],
+      "explain": [
+        "code-explainer",
+        "code-translator",
+        "intent-capture"
+      ],
+      "knowledge": [
+        "context-memory",
+        "graphify",
+        "knowledge-base",
+        "wednesday-graph"
+      ],
+      "orchestration": [
+        "model-router",
+        "parallel-exec",
+        "task-coordinator",
+        "virtual-team"
+      ],
+      "preview": [
+        "diff-preview",
+        "flowchart-gen",
+        "screenshot-preview",
+        "visual-plans"
+      ],
+      "progress": [
+        "dashboard",
+        "done-checklist",
+        "error-translator",
+        "tracker"
+      ],
+      "quality": [
+        "anti-patterns",
+        "code-review",
+        "guardrails",
+        "health-check",
+        "security-defaults",
+        "testing-guide",
+        "vibe-review"
+      ],
+      "setup": [
+        "project-wizard",
+        "prompt-templates",
+        "quick-start"
+      ],
+      "workflow": [
+        "checkpoints",
+        "git-ops",
+        "planning-agent",
+        "rollback",
+        "spec-driven",
+        "tdd-vibe",
+        "verification"
+      ]
+    }
+  },
+  "infrastructure": {
+    "mcpServer": true,
+    "skillLoader": true,
+    "toolsDiscovered": 243,
+    "testsPassing": 209
+  },
+  "created": "2026-06-13T12:00:00Z",
+  "updated": "2026-06-13T14:55:47.427Z"
+}

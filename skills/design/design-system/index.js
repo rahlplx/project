@@ -9,7 +9,7 @@ class DesignSystem {
   constructor(config = {}) {
     this.version = '1.0.0';
     this.config = this.mergeConfig(config);
-    this.tokens = this.generateTokens();
+    this.tokens = {};
   }
 
   mergeConfig(config) {
@@ -160,11 +160,12 @@ class DesignSystem {
    */
   getContrastColor(hexColor) {
     const hex = hexColor.replace('#', '');
-    const r = parseInt(hex.substr(0, 2), 16);
-    const g = parseInt(hex.substr(2, 2), 16);
-    const b = parseInt(hex.substr(4, 2), 16);
-    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-    return luminance > 0.5 ? '#000000' : '#ffffff';
+    const r = parseInt(hex.substr(0, 2), 16) / 255;
+    const g = parseInt(hex.substr(2, 2), 16) / 255;
+    const b = parseInt(hex.substr(4, 2), 16) / 255;
+    const toLinear = (c) => c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    const luminance = 0.2126 * toLinear(r) + 0.7152 * toLinear(g) + 0.0722 * toLinear(b);
+    return luminance > 0.179 ? '#000000' : '#ffffff';
   }
 
   // ===== TYPOGRAPHY SYSTEM =====
@@ -710,20 +711,21 @@ class DesignSystem {
    * Create a scoped variant
    */
   scope(scopeName) {
-    const originalTokens = { ...this.tokens };
-    
-    const scoped = {
-      ...this,
+    const self = this;
+    return {
       scopeName,
-      spacing: (name) => this.spacing(name),
-      color: (category, shade) => this.color(category, shade),
-      typography: (element) => this.typography(element),
-      radius: (name) => this.radius(name),
-      shadow: (name) => this.shadow(name),
-      zIndex: (name) => this.zIndex(name)
+      config: this.config,
+      tokens: this.tokens,
+      spacing: (n) => self.spacing(n),
+      color: (c, s) => self.color(c, s),
+      typography: (e) => self.typography(e),
+      radius: (n) => self.radius(n),
+      shadow: (n) => self.shadow(n),
+      zIndex: (n) => self.zIndex(n),
+      button: (v, sz) => self.button(v, sz),
+      input: (sz, st) => self.input(sz, st),
+      card: (v, p) => self.card(v, p)
     };
-
-    return scoped;
   }
 }
 

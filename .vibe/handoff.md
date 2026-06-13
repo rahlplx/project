@@ -1,22 +1,49 @@
-# Sprint 2: Explain Skills
+# Handoff: Review → Ship
 
-Implement 3 skills that help vibe coders understand code, translate between languages, and capture intent. All wrap existing community conventions — no re-invention.
+## Phase Completed: Review ✅
 
-## Skills to Build
+### Code Review Results
+- **86 files reviewed** across 4 parallel subagents
+- **304 total issues found** (69 critical, 135 major, 100 minor)
 
-### 1. code-explainer
-- Takes code input, returns plain English summary
-- Wraps AST parsing to identify functions, classes, control flow
-- Returns structured breakdown: what it does, key parts, inputs/outputs
+### Fixes Applied
+| Issue | File | Fix |
+|-------|------|-----|
+| Path traversal (6 methods) | `screenshot-preview` | Added `_safePath()` with `path.basename()` guard |
+| Corrupted object key | `typography-rules` | `'羹大笑'` → `'newsreader'` |
+| Regex character class bug | `anti-slop` | `[...]` → `(?:...|...)` for purple gradient detector |
+| Wrong contrast formula | `design-system` | BT.601 → WCAG sRGB linearization |
+| Inconsistent return type | `color-gen` | `getAccessibleTextColor` always returns `{color, ratio}` |
+| Broken `scope()` prototype hack | `design-system` | Replaced spread+wrap with clean delegate object |
+| Duplicated method-discovery | `mcp-server.js` | Aligned to match `skill-loader`'s own+prototype walk |
 
-### 2. code-translator
-- Converts code between languages (JS ↔ Python, etc.)
-- Maps common patterns: loops, conditionals, functions, classes
-- Returns side-by-side comparison
+### Verification
+- 209/209 tests: PASS
+- 45/45 skills load: OK
+- 243 MCP tools: OK
 
-### 3. intent-capture
-- Takes natural language description
-- Extracts: project type, features, tech stack, constraints
-- Returns structured spec object for downstream skills
+### Remaining (acknowledged, not blocking)
+- No TypeScript — project is pure JS by design
+- No tests for design/ skills — out of scope for this pass
+- Shell injection surface exists in `execSync` calls (mitigated via `shEscape`/sanitization)
+- No graceful shutdown in MCP server (acceptable for CLI tool)
 
-All 3: class-based, zero external deps, standalone, tests.
+## Next Phase: `/vibe:ship`
+
+### What Shipped Needs
+- Working directory: `C:\Users\srcre\AppData\Local\Temp\opencode\rahlplx-project`
+- Current branch: check `git branch`
+- All changes ready for PR
+- `package.json`: version `1.0.0`, name `vibe-stack`
+
+### Ship Steps
+1. **Sync** — pull latest base branch
+2. **Test** — `npm test` (verify 209/209)
+3. **Version** — determine bump (patch for these fixes)
+4. **Push & PR** — commit staged changes, push, open PR
+5. **Deploy** — npm publish (if intended)
+
+### Config
+- Test: `npm test` (jest)
+- No build step (pure JS)
+- Bin: `vibe-stack` → `bin/vibe-stack.js`

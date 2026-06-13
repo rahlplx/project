@@ -166,7 +166,7 @@ class TypographyRules {
         mood: 'Swiss precision, modern grotesque',
         useCase: ['Corporate', 'Finance', 'Professional']
       },
-      '羹大笑': {
+      'newsreader': {
         heading: '"Newsreader", Georgia, serif',
         body: '"Newsreader", Georgia, serif',
         display: '"Newsreader", Georgia, serif',
