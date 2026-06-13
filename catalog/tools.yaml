@@ -138,7 +138,65 @@ tools:
       right files.
     in_skills: false
 
+  - name: OpenCode
+    description: >
+      The most-starred open-source AI coding agent (172k+ stars). Terminal-native,
+      works with any editor, supports 75+ model providers.
+    repo_url: https://github.com/anomalyco/opencode
+    category: code-generation
+    license: MIT
+    verified_by: community (172k+ stars)
+    verified_date: 2026-06-01
+    what_it_does: >
+      Your AI coding partner. Describe what you want to build, and OpenCode
+      writes the code, edits files, runs tests. Works with Claude, GPT, Gemini,
+      or any model you choose. Free, open source, privacy-first.
+    how_agent_uses: >
+      Run opencode in headless/background mode. Pass the vibe coder's request
+      as a task. Return the result: "Done. I built your API endpoint. Here's
+      what it does and how to test it."
+    in_skills: false
+
   # ── Testing & QA ─────────────────────────────────────────────
+
+  - name: nit
+    description: >
+      AI quality agent that auto-detects your stack and generates tests.
+      Covers unit, integration, and E2E. Self-healing selectors.
+    repo_url: https://github.com/getnit-dev/nit
+    category: testing-qa
+    license: MIT
+    verified_by: community (growing)
+    verified_date: 2026-06-01
+    what_it_does: >
+      Looks at your project, figures out what stack you're using (React,
+      Python, Go, whatever), and writes tests automatically. If a button
+      selector changes, nit fixes the test itself.
+    how_agent_uses: >
+      Run nit on the project. It auto-detects the stack and generates tests.
+      Report: "nit found 3 untested functions and wrote tests for them.
+      100% coverage achieved."
+    in_skills: false
+
+  - name: vibe-testing
+    description: >
+      Code-aware browser testing agent. 13 MCP tools for AI editors.
+      Reads your codebase, tests everything, reports with screenshots.
+    repo_url: https://github.com/AishwaryShrivastav/vibe-testing
+    category: testing-qa
+    license: MIT
+    verified_by: community
+    verified_date: 2026-06-01
+    what_it_does: >
+      Opens your app in a real browser, clicks every button, fills every
+      form, and tells you what works and what breaks — with screenshots
+      of everything it did.
+    how_agent_uses: >
+      Run as MCP server. Scan the codebase, explore every route, test
+      every form. Return: "Tested 12 routes. 11 pass, 1 failed — the
+      signup form throws an error when email is invalid. Here's the
+      screenshot."
+    in_skills: false
 
   - name: Playwright
     description: >
@@ -211,6 +269,25 @@ tools:
     in_skills: true
     skill_path: skills/deploy/one-click-netlify/
 
+  - name: Railway
+    description: >
+      Easiest deployment platform for indie projects. Push code, get a URL.
+      One-click Postgres/Redis. Usage-based pricing starts at $5/month.
+    repo_url: https://railway.com
+    category: deployment
+    license: Proprietary (free tier)
+    verified_by: community
+    verified_date: 2026-06-01
+    what_it_does: >
+      Takes your code and puts it on the internet with a real URL in under
+      60 seconds. Handles databases, domains, SSL. Pay only for what you use.
+      Free tier for hobby projects.
+    how_agent_uses: >
+      Install Railway CLI, deploy the project. Return: "Your app is live at
+      https://your-project.railway.app. Postgres is connected. I also set up
+      a custom domain if you have one."
+    in_skills: false
+
   # ── Knowledge & Memory ───────────────────────────────────────
 
   - name: Qdrant
@@ -247,6 +324,44 @@ tools:
       Use LangChain internally to chain together skills and tools. When
       a vibe coder says "build me a chatbot that remembers our
       conversation," LangChain makes it possible.
+    in_skills: false
+
+  - name: Mem0
+    description: >
+      Drop-in memory layer for AI agents. Vector + graph memory with
+      conflict detection. Default choice for memory-enabled agents.
+    repo_url: https://github.com/mem0ai/mem0
+    category: knowledge-memory
+    license: Apache 2.0
+    verified_by: community (28k+ stars)
+    verified_date: 2026-05-01
+    what_it_does: >
+      Gives AI agents long-term memory. Remembers what the vibe coder said
+      last session, what preferences they set, what they've already built.
+      No more starting from scratch every conversation.
+    how_agent_uses: >
+      Store memories when the vibe coder says something important: "Remember
+      I prefer dark mode." Later, when they start a new session, load
+      memories automatically. The agent remembers who they are.
+    in_skills: false
+
+  - name: Chroma
+    description: >
+      Easiest vector database for prototypes. Install one pip/npm command,
+      start searching by meaning. SQLite-backed locally.
+    repo_url: https://github.com/chroma-core/chroma
+    category: knowledge-memory
+    license: Apache 2.0
+    verified_by: community (17k+ stars)
+    verified_date: 2026-04-01
+    what_it_does: >
+      The simplest way to search code and docs by meaning, not keywords.
+      "Find the part about authentication" — Chroma finds it even if
+      the file name is different.
+    how_agent_uses: >
+      Index the codebase, then query semantically. "Find all error handling
+      code" → Chroma returns relevant files with similarity scores. No
+      server setup needed.
     in_skills: false
 
   # ── Orchestration ────────────────────────────────────────────
