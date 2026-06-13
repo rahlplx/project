@@ -1,10 +1,23 @@
 #!/usr/bin/env node
 
+const { execSync } = require('child_process');
+
 class GitOps {
   constructor() {
     this.name = 'git-ops';
     this.version = '1.0.0';
-    this.description = 'Git operations without CLI knowledge — generates git commands';
+    this.description = 'Git operations without CLI knowledge — wraps git CLI';
+  }
+
+  run(action, args = {}) {
+    const cmd = this.buildCommand(action, args);
+    if (cmd.error) return cmd;
+    try {
+      const output = execSync(cmd.cmd, { encoding: 'utf-8', cwd: args.cwd || process.cwd() });
+      return { success: true, action, command: cmd.cmd, description: cmd.desc, output: output.trim() };
+    } catch (err) {
+      return { success: false, action, command: cmd.cmd, error: err.stderr?.trim() || err.message };
+    }
   }
 
   buildCommand(action, args = {}) {

@@ -1,4 +1,5 @@
 const GitOps = require('./index');
+const path = require('path');
 
 describe('GitOps', () => {
   it('should create instance', () => {
@@ -28,5 +29,12 @@ describe('GitOps', () => {
     const s = new GitOps();
     const w = s.suggestWorkflow('feature');
     expect(w.length).toBeGreaterThan(0);
+  });
+
+  it('should run git commands via CLI', () => {
+    const s = new GitOps();
+    const r = s.run('status', { cwd: path.resolve(__dirname) });
+    expect(r.success).toBe(true);
+    expect(r.output).toContain('branch');
   });
 });
