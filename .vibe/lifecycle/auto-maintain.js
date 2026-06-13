@@ -122,6 +122,22 @@ function runHarness(runTestSuite = true) {
     console.log(`  [harness]  ✗ skill-originality: ${e.message}`);
   }
 
+  // Check 7: Skill lint
+  try {
+    const { lintSkills } = require(path.join(ROOT, '..', 'lib', 'lint-skills.js'));
+    const result = lintSkills({ rootDir: path.join(ROOT, '..') });
+    const errCount = result.issues.reduce((s, i) => s + i.errors.length, 0);
+    results.push({
+      check: 'skill-lint',
+      pass: errCount === 0,
+      data: { files: result.files, clean: result.clean, issues: result.issues.length }
+    });
+    console.log(`  [harness]  ${errCount === 0 ? '✓' : '✗'} skill-lint (${result.files} files, ${result.clean} clean, ${result.issues.length} with warnings)`);
+  } catch (e) {
+    results.push({ check: 'skill-lint', pass: false, error: e.message });
+    console.log(`  [harness]  ✗ skill-lint: ${e.message}`);
+  }
+
   return results;
 }
 
