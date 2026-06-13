@@ -401,6 +401,25 @@ tools:
       LangGraph handles routing, retries, and state between steps.
     in_skills: false
 
+  - name: Nexus
+    description: >
+      Multi-agent orchestration with 3 modes (Graph, Router, Adaptive).
+      MCP + A2A protocol support. 100+ LLM providers via LiteLLM.
+    repo_url: https://github.com/sontianye/nexus
+    category: orchestration
+    license: MIT
+    verified_by: community
+    verified_date: 2026-06-01
+    what_it_does: >
+      Lets you orchestrate multiple AI agents in different ways: a fixed
+      step-by-step graph, a dynamic router that picks the right agent, or
+      adaptive matching. Supports MCP tools out of the box.
+    how_agent_uses: >
+      Install nexus, define agent roles and orchestration mode. For vibe
+      coders: "I need a research agent that finds information, then a
+      writing agent that creates content" — Nexus coordinates them.
+    in_skills: false
+
   # ── Agent Frameworks ─────────────────────────────────────────
 
   - name: Smolagents
@@ -438,3 +457,23 @@ tools:
       to the MCP server and discover all 45+ skills as tools automatically.
     in_skills: true
     skill_path: bin/mcp-server.js
+
+  - name: Agno
+    description: >
+      Full-stack SDK for building agent platforms. 100+ integrations,
+      production API, human approval loops, tracing, RBAC.
+    repo_url: https://github.com/agno-agi/agno
+    category: agent-frameworks
+    license: Apache 2.0
+    verified_by: community (40k+ stars)
+    verified_date: 2026-06-01
+    what_it_does: >
+      The platform for building AI agents that can use tools, remember
+      context, get human approval when needed, and run on schedules.
+      Comes with a dashboard to manage everything.
+    how_agent_uses: >
+      Set up Agno as the agent platform. Use its 100+ pre-built tool
+      integrations, context providers (Slack, Drive, MCP), and production
+      API. For vibe coders: "Build me a Slack bot that answers questions
+      about my docs" — Agno handles the infrastructure.
+    in_skills: false
