@@ -1,17 +1,22 @@
-# Handoff: review → ship
+# Sprint 2: Explain Skills
 
-## Completed
-- [x] Code review of all 7 new skills
-- [x] 5 bugs found and fixed (missing default params)
-- [x] All tests verified
-- [x] Pattern consistency confirmed
+Implement 3 skills that help vibe coders understand code, translate between languages, and capture intent. All wrap existing community conventions — no re-invention.
 
-## What Ship Phase Needs
-- Commit all changes to git
-- Push to origin
-- No deploy needed (this is a skills repo, not a web service)
+## Skills to Build
 
-## Current State
-- Skills: 19/45 (42%) implemented
-- 7 new skills built this session
-- 26 stubs remaining for future sprints
+### 1. code-explainer
+- Takes code input, returns plain English summary
+- Wraps AST parsing to identify functions, classes, control flow
+- Returns structured breakdown: what it does, key parts, inputs/outputs
+
+### 2. code-translator
+- Converts code between languages (JS ↔ Python, etc.)
+- Maps common patterns: loops, conditionals, functions, classes
+- Returns side-by-side comparison
+
+### 3. intent-capture
+- Takes natural language description
+- Extracts: project type, features, tech stack, constraints
+- Returns structured spec object for downstream skills
+
+All 3: class-based, zero external deps, standalone, tests.
