@@ -8,7 +8,7 @@ The primary interface is `SKILL.md` — AI agents read it to learn how to help.
 ## Commands
 
 ```bash
-npm test          # Run 209 tests across 45 skills
+npm test          # Run 493 tests across 50 suites
 node .vibe/lifecycle/auto-maintain.js  # Run auto-maintenance cycle
 git add -A && git commit -m "..." && git push  # Ship changes
 ```
@@ -43,6 +43,8 @@ catalog/tools.yaml    → Curated community tools
 catalog/verified-by.md → Verification tracking
 skills/               → 45 agent skills (kept as-is)
 references/           → Phase guides
+.vibe/                → State tracking, evolution, lifecycle
+docs/                 → Design docs, gates, handoffs
 ```
 
 ## State

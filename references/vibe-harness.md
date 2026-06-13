@@ -1,56 +1,64 @@
 # vibe:harness — Production Readiness Gate
 
-Validates code against 6 known production failure patterns. This is a MANDATORY gate — cannot proceed to review without passing.
+Auto-maintenance harness that runs 7 automated checks. This is a MANDATORY gate — cannot proceed without passing.
 
 ## When to Run
 
 After `/vibe:build` completes all tasks. Before `/vibe:review`.
 
-## The 6 Checks
+Trigger: `node .vibe/lifecycle/auto-maintain.js`
 
-### 1. Error Handling Audit
-- Every external call wrapped in try/catch
-- Graceful degradation paths exist
-- No unhandled promise rejections
-- Error messages don't leak internals
+## The 7 Checks
 
-### 2. Input Validation
-- All user/API inputs validated at boundary
-- Type coercion prevented
-- Injection vectors closed
-- Rate limiting considered
+### 1. Catalog YAML Valid
+- Verifies `catalog/tools.yaml` is valid YAML
+- Counts registered tools
+- Uses `js-yaml` for parsing
 
-### 3. State Consistency
-- No stale state after errors
-- Transactions roll back cleanly
-- Race conditions identified and handled
-- Caching invalidation correct
+### 2. Catalog Category Count
+- Ensures every category has ≥3 tools
+- Reports per-category distribution
+- Prevents thin categories
 
-### 4. Resource Management
-- File handles closed in all paths (including error)
-- Database connections pooled and released
-- Memory limits considered
-- No unbounded array/object growth
+### 3. Handoff Templates Exist
+- Checks `docs/handoffs/` for all 8 required templates:
+  - AGENTS.md, standard.md, qa-pass.md, qa-fail.md
+  - escalation.md, phase-gate.md, sprint.md, incident.md
 
-### 5. Configuration Safety
-- Secrets not hardcoded
-- Environment variables validated at startup
-- Sensible defaults with explicit overrides
-- Config changes don't require code changes
+### 4. Phase Gates Document
+- Validates `docs/gates.md` contains all 10 phase transitions
+  - think→plan, plan→break, break→build, build→harness
+  - harness→review, review→ship, ship→retro
+  - retro→learn, learn→evolve, evolve→done
 
-### 6. Logging & Observability
-- Logs at appropriate levels (info/warn/error)
-- No sensitive data in logs
-- Correlation IDs for request tracing
-- Startup health validated
+### 5. Test Suite
+- Runs `npm test` with 120s timeout
+- Passes only if 0 failures
+- Reports suite count and test count
+
+### 6. Skill Originality
+- Runs `lib/check-originality.js` Jaccard similarity check
+- Flags skills exceeding similarity threshold (default 40%)
+- Warns on borderline similarity (default 20%)
+
+### 7. Skill Lint
+- Runs `lib/lint-skills.js` structural linter
+- Checks all 45 skills for:
+  - module.exports presence (error if missing)
+  - class/object pattern compliance
+  - Minimum file size (warning if <10 lines)
+  - this.name and this.description for class-based skills
 
 ## Failure Protocol
+
 ```
 ANY FAIL → Fix the issue → Re-run harness → Loop until all pass
 ALL PASS → Write handoff → /clear → Enter review phase
 ```
 
 ## Reference
-- v1.1: Production readiness harness
-- OWASP ASVS (Application Security Verification Standard)
-- Twelve-Factor App methodology
+
+- `.vibe/lifecycle/auto-maintain.js` — harness implementation
+- `lib/check-originality.js` — originality checking engine
+- `lib/lint-skills.js` — structural linter
+- `.vibe/evolution.json` — harness check configuration

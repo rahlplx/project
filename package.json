@@ -45,10 +45,14 @@
     "ora": "^7.0.1"
   },
   "jest": {
+    "modulePathIgnorePatterns": [
+      "\\.vibe",
+      "\\.gsd"
+    ],
     "testPathIgnorePatterns": [
       "node_modules",
-      ".vibe",
-      ".gsd"
+      "\\.vibe",
+      "\\.gsd"
     ]
   },
   "devDependencies": {

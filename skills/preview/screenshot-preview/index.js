@@ -5,7 +5,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync, spawn } = require('child_process');
+const { spawnSync } = require('child_process');
 
 class ScreenshotPreview {
   constructor(options = {}) {
@@ -260,20 +260,21 @@ class ScreenshotPreview {
     if (!fs.existsSync(filepath)) {
       throw new Error(`Screenshot not found: ${filepath}`);
     }
-    
+
     const platform = process.platform;
-    let command;
-    
+    let cmd;
+    let args;
+
     if (platform === 'darwin') {
-      command = `open "${filepath}"`;
+      cmd = 'open'; args = [filepath];
     } else if (platform === 'win32') {
-      command = `start "" "${filepath}"`;
+      cmd = 'cmd'; args = ['/c', 'start', '""', filepath];
     } else {
-      command = `xdg-open "${filepath}"`;
+      cmd = 'xdg-open'; args = [filepath];
     }
-    
+
     try {
-      execSync(command, { stdio: 'ignore' });
+      spawnSync(cmd, args, { stdio: 'ignore' });
     } catch {
       return { opened: filename, warning: 'Could not open viewer' };
     }

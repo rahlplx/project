@@ -9,7 +9,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 
 // Template definitions
 const TEMPLATES = {
@@ -318,14 +318,13 @@ async function scaffold(options) {
 
   if (template.files) {
     await createFromFiles(template, projectDir);
-  } else if (template.repo) {
-    log(`  Cloning from ${template.repo}...`, 'blue');
-    try {
-      const safeBranch = template.branch.replace(/[^a-zA-Z0-9._-]/g, '');
-      const safeRepo = template.repo.replace(/[^a-zA-Z0-9._:/@-]/g, '');
-      execSync(`git clone --depth 1 --branch ${safeBranch} ${safeRepo} "${projectDir}"`, {
-        stdio: 'pipe',
-      });
+    } else if (template.repo) {
+      log(`  Cloning from ${template.repo}...`, 'blue');
+      try {
+        const safeRepo = template.repo.replace(/[^a-zA-Z0-9._:/@-]/g, '');
+        execFileSync('git', ['clone', '--depth', '1', '--branch', template.branch, safeRepo, projectDir], {
+          stdio: 'pipe',
+        });
       log(`  Cloned successfully`, 'green');
 
       // Remove .git folder for clean start
@@ -377,13 +376,11 @@ async function scaffold(options) {
       process.chdir(projectDir);
       log('  Running npm install...', 'blue');
 
-      execSync('npm install', { stdio: 'inherit', cwd: projectDir });
+      execFileSync('npm', ['install'], { stdio: 'inherit', cwd: projectDir });
 
-      // Install dev dependencies
       if (template.devDeps && template.devDeps.length > 0) {
         log('  Installing dev dependencies...', 'blue');
-        const safeDeps = template.devDeps.map(d => d.replace(/[^a-zA-Z0-9@._/-]/g, ''));
-        execSync(`npm install --save-dev ${safeDeps.join(' ')}`, {
+        execFileSync('npm', ['install', '--save-dev', ...template.devDeps], {
           stdio: 'inherit',
           cwd: projectDir,
         });

@@ -11,11 +11,11 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 
 let exitCode = 0;
 
-const changedFiles = execSync('git diff --cached --name-only', { encoding: 'utf8' })
+const changedFiles = execFileSync('git', ['diff', '--cached', '--name-only'], { encoding: 'utf8' })
   .split('\n')
   .map(l => l.trim())
   .filter(Boolean);

@@ -10,19 +10,19 @@ describe('GitOps', () => {
   it('should build git commands', () => {
     const s = new GitOps();
     const r = s.buildCommand('status');
-    expect(r.cmd).toBe('git status');
+    expect(r.display).toBe('git status');
   });
 
   it('should build commit command', () => {
     const s = new GitOps();
     const r = s.buildCommand('commit', { message: 'feat: add login' });
-    expect(r.cmd).toContain('feat: add login');
+    expect(r.gitArgs).toContain('feat: add login');
   });
 
   it('should build push with upstream', () => {
     const s = new GitOps();
     const r = s.buildCommand('push', { first: true, branch: 'feat/x' });
-    expect(r.cmd).toContain('--set-upstream');
+    expect(r.display).toContain('--set-upstream');
   });
 
   it('should suggest workflows', () => {

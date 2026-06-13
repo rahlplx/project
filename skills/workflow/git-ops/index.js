@@ -1,11 +1,6 @@
 #!/usr/bin/env node
 
-const { execSync } = require('child_process');
-
-function shEscape(s) {
-  if (!s) return '';
-  return `'${s.replace(/'/g, "'\\''")}'`;
-}
+const { execFileSync } = require('child_process');
 
 class GitOps {
   constructor() {
@@ -15,30 +10,41 @@ class GitOps {
   }
 
   run(action, args = {}) {
-    const cmd = this.buildCommand(action, args);
-    if (cmd.error) return cmd;
+    const result = this.buildCommand(action, args);
+    if (result.error) return result;
     try {
-      const output = execSync(cmd.cmd, { encoding: 'utf-8', cwd: args.cwd || process.cwd() });
-      return { success: true, action, command: cmd.cmd, description: cmd.desc, output: output.trim() };
+      const output = execFileSync('git', result.gitArgs, { encoding: 'utf-8', cwd: args.cwd || process.cwd() });
+      return { success: true, action, command: result.display, description: result.desc, output: output.trim() };
     } catch (err) {
-      return { success: false, action, command: cmd.cmd, error: err.stderr?.trim() || err.message };
+      return { success: false, action, command: result.display, error: err.stderr?.trim() || err.message };
     }
   }
 
   buildCommand(action, args = {}) {
+    const files = args.files || '.';
+    const message = args.message || 'Update';
+    const name = args.name || '';
+    const branch = args.branch || 'main';
+    const remote = args.remote || 'origin';
+    const stashAction = args.action || '';
+
     const commands = {
-      init: { cmd: 'git init', desc: 'Initialize a new git repository' },
-      status: { cmd: 'git status', desc: 'Check current repository status' },
-      add: { cmd: `git add ${shEscape(args.files) || '.'}`, desc: 'Stage files for commit' },
-      commit: { cmd: `git commit -m ${shEscape(args.message || 'Update')}`, desc: 'Commit staged changes' },
-      branch: { cmd: `git branch ${shEscape(args.name)}`, desc: 'List or create branches' },
-      checkout: { cmd: `git checkout ${shEscape(args.name || 'main')}`, desc: 'Switch branches' },
-      pull: { cmd: `git pull ${shEscape(args.remote || 'origin')} ${shEscape(args.branch || 'main')}`, desc: 'Pull latest changes' },
-      push: { cmd: args.first ? `git push --set-upstream origin ${shEscape(args.branch || 'main')}` : `git push ${shEscape(args.remote || 'origin')} ${shEscape(args.branch)}`, desc: 'Push changes to remote' },
-      log: { cmd: 'git log --oneline --graph -10', desc: 'Show recent commits' },
-      diff: { cmd: 'git diff', desc: 'Show unstaged changes' },
-      stash: { cmd: `git stash ${shEscape(args.action)}`, desc: 'Temporarily save changes' },
-      merge: { cmd: `git merge ${shEscape(args.branch)}`, desc: 'Merge a branch into current' }
+      init: { gitArgs: ['init'], cmd: 'git init', display: 'git init', desc: 'Initialize a new git repository' },
+      status: { gitArgs: ['status'], cmd: 'git status', display: 'git status', desc: 'Check current repository status' },
+      add: { gitArgs: ['add', files], cmd: `git add ${files}`, display: `git add ${files}`, desc: 'Stage files for commit' },
+      commit: { gitArgs: ['commit', '-m', message], cmd: `git commit -m "${message}"`, display: `git commit -m "${message}"`, desc: 'Commit staged changes' },
+      branch: { gitArgs: ['branch'], cmd: 'git branch', display: 'git branch', desc: 'List branches' },
+      'branch-create': { gitArgs: ['branch', name], cmd: `git branch ${name}`, display: `git branch ${name}`, desc: 'Create a branch' },
+      checkout: { gitArgs: ['checkout', branch], cmd: `git checkout ${branch}`, display: `git checkout ${branch}`, desc: 'Switch branches' },
+      'checkout-new': { gitArgs: ['checkout', '-b', branch], cmd: `git checkout -b ${branch}`, display: `git checkout -b ${branch}`, desc: 'Create and switch branches' },
+      pull: { gitArgs: ['pull', remote, branch], cmd: `git pull ${remote} ${branch}`, display: `git pull ${remote} ${branch}`, desc: 'Pull latest changes' },
+      push: args.first
+        ? { gitArgs: ['push', '--set-upstream', 'origin', branch], cmd: `git push --set-upstream origin ${branch}`, display: `git push --set-upstream origin ${branch}`, desc: 'Push changes to remote' }
+        : { gitArgs: ['push', remote, branch], cmd: `git push ${remote} ${branch}`, display: `git push ${remote} ${branch}`, desc: 'Push changes to remote' },
+      log: { gitArgs: ['log', '--oneline', '--graph', '-10'], cmd: 'git log --oneline --graph -10', display: 'git log --oneline --graph -10', desc: 'Show recent commits' },
+      diff: { gitArgs: ['diff'], cmd: 'git diff', display: 'git diff', desc: 'Show unstaged changes' },
+      stash: stashAction ? { gitArgs: ['stash', stashAction], cmd: `git stash ${stashAction}`, display: `git stash ${stashAction}`, desc: 'Manage stash' } : { gitArgs: ['stash'], cmd: 'git stash', display: 'git stash', desc: 'Temporarily save changes' },
+      merge: { gitArgs: ['merge', branch], cmd: `git merge ${branch}`, display: `git merge ${branch}`, desc: 'Merge a branch into current' }
     };
     return commands[action] || { error: `Unknown action: ${action}` };
   }

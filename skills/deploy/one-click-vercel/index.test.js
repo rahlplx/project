@@ -10,22 +10,24 @@ describe('OneClickVercel', () => {
   it('should build deploy command', () => {
     const skill = new OneClickVercel();
     const cmd = skill.buildDeployCommand('./my-app');
-    expect(cmd).toContain('npx vercel');
-    expect(cmd).toContain('./my-app');
-    expect(cmd).toContain('--yes');
+    expect(cmd.cmd).toBe('npx');
+    expect(cmd.args).toContain('./my-app');
+    expect(cmd.args).toContain('--yes');
   });
 
   it('should add --prod flag for production', () => {
     const skill = new OneClickVercel();
     const cmd = skill.buildDeployCommand('.', { production: true });
-    expect(cmd).toContain('--prod');
+    expect(cmd.args).toContain('--prod');
   });
 
   it('should build env commands', () => {
     const skill = new OneClickVercel();
     const result = skill.buildEnvCommand({ KEY: 'val' });
     expect(result.count).toBe(1);
-    expect(result.commands[0]).toContain('vercel env add');
+    expect(result.commands[0].cmd).toBe('npx');
+    expect(result.commands[0].args).toContain('env');
+    expect(result.commands[0].args).toContain('add');
   });
 
   it('should return metadata via toJSON', () => {

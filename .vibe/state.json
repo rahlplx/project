@@ -1,9 +1,9 @@
 {
   "project": "Vibe-Stack Curated Collection",
   "version": "2.0.0",
-  "phase": "retro",
+  "phase": "done",
   "goal": "Agency-agents merge Phase 2 — originality check (Jaccard similarity)",
-  "step": 4,
+  "step": 10,
   "mode": "auto",
   "agent": "opencode",
   "stack": {
@@ -55,7 +55,24 @@
     "p2-harness-wired",
     "p2-retro-complete",
     "p2-learn-captured",
-    "p2-evolve-updated"
+    "p2-evolve-updated",
+    "agency-agents-phase-3-linter",
+    "agency-agents-p3-shipped",
+    "deep-audit-complete",
+    "p0-fixes-applied",
+    "p1-drx-fix-applied",
+    "p2-security-fixes-applied",
+    "jest-regex-fixed",
+    "all-12-untested-skills-tested",
+    "harness-6-verified",
+    "retro-deep-audit-captured",
+    "learnings-saved-deep-audit",
+    "evolution-2.4.0",
+    "review-deep-audit-complete",
+    "all-critical-fixes-applied",
+    "all-high-fixes-applied",
+    "493-tests-passing",
+    "harness-13-clean"
   ],
   "skills": {
     "total": 45,
@@ -131,18 +148,19 @@
     "mcpServer": true,
     "skillLoader": true,
     "toolsDiscovered": 243,
-    "testsPassing": 209
+    "testsPassing": 493,
+    "testSuites": 50
   },
   "lifecycle": {
-    "last_maintenance": "2026-06-13T21:24:12.210Z",
-    "maintenance_count": 5,
+    "last_maintenance": "2026-06-13T23:40:34.815Z",
+    "maintenance_count": 13,
     "interaction_count": 0
   },
   "created": "2026-06-13T12:00:00Z",
-  "updated": "2026-06-13T21:24:12.210Z",
+  "updated": "2026-06-13T23:40:34.817Z",
   "auto_pipeline": {
     "started": "2026-06-14T02:30:00.000Z",
-    "goal": "Agency-agents merge Phase 2 — originality check (Jaccard similarity)",
+    "goal": "Agency-agents merge Phase 3 — skill linter",
     "state_machine": [
       "think",
       "plan",

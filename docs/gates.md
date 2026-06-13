@@ -12,7 +12,7 @@ Every phase transition in the vibe-stack pipeline requires passing its quality g
 | plan -- break | Plan Approval Gate | Orchestrator | Plan document approved, tasks enumerated, approach decided |
 | break -- build | Slice Ready Gate | Orchestrator | Atomic tasks, dependencies mapped, TDD-ready per task |
 | build -- harness | Implementation Gate | Orchestrator | All builds done, tests written, no reds, lint clean |
-| harness -- review | Production Gate | Harness | 6 harness checks green, evolution checks pass |
+| harness -- review | Production Gate | Harness | 7 harness checks green, evolution checks pass |
 | review -- ship | Quality Gate | Orchestrator | 0 CRITICAL, 0 HIGH issues, all REVIEW items resolved |
 | ship -- retro | Deployment Gate | Orchestrator | Shipped to main, all CI gates passed, PR merged |
 | retro -- learn | Learning Gate | Orchestrator | Retro written, patterns and pain points documented |
@@ -81,10 +81,11 @@ Every phase transition in the vibe-stack pipeline requires passing its quality g
 |-----------|-----------|-------------------|
 | Catalog YAML valid | Tools.yaml parses cleanly | Harness check output |
 | Catalog category count | Min 3 tools per category | Harness check output |
+| Handoff templates | All 8 templates exist | Harness check output |
+| Phase gates doc | All 10 transitions documented | Harness check output |
 | Test suite passes | All tests green | Harness check output |
-| Pre-verify metadata | Evolution rules checked | Harness check output |
-| No critical security issues | Zero CRITICAL findings | Security audit output |
-| Handoff doc exists | .vibe/handoff.md present | File existence check |
+| Skill originality | Worst similarity < 40% | Harness check output |
+| Skill lint | No errors, warnings advisory | Harness check output |
 
 **Failure**: Fix specific failed checks, re-run harness.
 

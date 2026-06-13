@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 const https = require('https');
 
 const MINING_DIR = path.join(__dirname, '..', 'repo-mining');
@@ -9,11 +9,6 @@ const OUTPUT_DIR = path.join(__dirname, '..', 'telemetry', 'repo-mining');
 [MINING_DIR, OUTPUT_DIR].forEach(dir => {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 });
-
-function exec(cmd, cwd) {
-  try { return execSync(cmd, { cwd, encoding: 'utf8', timeout: 120000 }); }
-  catch (e) { return e.stdout || e.message || ''; }
-}
 
 function readJson(f) { try { return JSON.parse(fs.readFileSync(f, 'utf8')); } catch { return null; } }
 function writeJson(f, d) { fs.writeFileSync(f, JSON.stringify(d, null, 2) + '\n', 'utf8'); }
@@ -161,8 +156,12 @@ async function mine(approved) {
   for (const repo of approved) {
     const repoDir = path.join(MINING_DIR, repo.name);
     console.log(`  ${repo.name}...`);
-    try { exec(`git clone --depth 1 --single-branch ${repo.url} "${repoDir}"`, MINING_DIR); }
-    catch { console.log(`    ✗ Clone failed`); continue; }
+    try {
+      execFileSync('git', ['clone', '--depth', '1', '--single-branch', repo.url, repoDir], { cwd: MINING_DIR, encoding: 'utf8', timeout: 120000 });
+    } catch {
+      console.log(`    ✗ Clone failed`);
+      continue;
+    }
 
     const analysis = analyzeStructure(repoDir, repo.name);
     const candidates = extractCandidates(analysis);

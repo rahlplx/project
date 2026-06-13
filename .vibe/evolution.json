@@ -1,13 +1,13 @@
 {
-  "version": "2.2.0",
+  "version": "2.4.0",
   "last_evolution": "2026-06-14",
-  "evolution_count": 3,
+  "evolution_count": 5,
   "rules": {
     "agent-native-catalog": {
       "fires": 35,
       "helpful": 35,
       "false_positive": 0,
-      "quality_score": 1.0,
+      "quality_score": 1,
       "last_updated": "2026-06-13",
       "status": "active",
       "note": "Hard requirement. Applied to all 35 entries. Zero false positives."
@@ -16,28 +16,37 @@
       "fires": 3,
       "helpful": 3,
       "false_positive": 0,
-      "quality_score": 1.0,
+      "quality_score": 1,
       "last_updated": "2026-06-13",
       "status": "active",
       "note": "Best practice for data-only commits. No regressions across 3 pushes."
     },
     "auto-pipeline-for-curation": {
-      "fires": 4,
-      "helpful": 4,
+      "fires": 5,
+      "helpful": 5,
       "false_positive": 0,
-      "quality_score": 1.0,
+      "quality_score": 1,
       "last_updated": "2026-06-14",
       "status": "active",
       "note": "Cross-domain pattern. 4 successful curation pipeline runs, including Phase 2."
     },
-    "pre-verify-tool-metadata": {
-      "fires": 0,
-      "helpful": 0,
+    "execFileSync-over-execSync": {
+      "fires": 3,
+      "helpful": 3,
       "false_positive": 0,
-      "quality_score": null,
-      "last_updated": "2026-06-13",
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
       "status": "active",
-      "note": "New rule from verify-before-describe anti-pattern. Pending first fire."
+      "note": "Security: never use execSync(string). 3 files migrated to execFileSync/spawnSync(array). No regressions."
+    },
+    "test-for-every-skill": {
+      "fires": 12,
+      "helpful": 12,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Every skill MUST have a test file. 12 untested skills identified and fixed. 168 new assertions."
     },
     "batch-catalog-additions": {
       "fires": 0,
@@ -61,7 +70,7 @@
       "fires": 1,
       "helpful": 1,
       "false_positive": 0,
-      "quality_score": 1.0,
+      "quality_score": 1,
       "last_updated": "2026-06-14",
       "status": "active",
       "note": "Shingle-based Jaccard similarity check for skill originality. 45 skills checked, worst 13.8%, zero false positives."
@@ -70,67 +79,82 @@
       "fires": 2,
       "helpful": 2,
       "false_positive": 0,
-      "quality_score": 1.0,
+      "quality_score": 1,
       "last_updated": "2026-06-14",
       "status": "active",
       "note": "Promoted from proposed. Verified across Phase 1 (10 transitions) and Phase 2 (build-test cycle). Prevents skipping quality gates."
+    },
+    "skill-structural-linter": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Structural lint check on 45 skills. 39 clean, 6 warnings, 0 errors. Multi-line regex fix applied during review."
     }
   },
   "harness": {
     "catalog-yaml-valid": {
-      "runs": 3,
+      "runs": 5,
       "finds": 0,
       "false_positive": 0,
-      "quality_score": 1.0,
+      "quality_score": 1,
       "note": "YAML validated every time. Zero syntax errors across 35 entries."
     },
     "catalog-category-count": {
-      "runs": 3,
+      "runs": 5,
       "finds": 6,
       "false_positive": 0,
-      "quality_score": 1.0,
+      "quality_score": 1,
       "note": "Category counts verified every run. All hitting targets. 6 gap finds."
     },
     "test-suite": {
-      "runs": 4,
+      "runs": 6,
       "finds": 0,
       "false_positive": 0,
-      "quality_score": 1.0,
-      "note": "236 tests pass after Phase 2. Zero regressions. Up from 209 baseline."
-    },
-    "pre-verify-metadata": {
-      "runs": 0,
-      "finds": 0,
-      "false_positive": 0,
-      "quality_score": null,
-      "note": "New harness check from evolution. Pending first fire."
+      "quality_score": 1,
+      "note": "425 tests passing across 49 suites. Up from 247 baseline. All 45 skills have tests."
     },
     "handoff-templates": {
       "runs": 2,
       "finds": 0,
       "false_positive": 0,
-      "quality_score": 1.0,
+      "quality_score": 1,
       "note": "Verifies all 8 handoff docs exist in docs/handoffs/. Passed both runs (8/8)."
     },
     "phase-gates-doc": {
       "runs": 2,
       "finds": 0,
       "false_positive": 0,
-      "quality_score": 1.0,
+      "quality_score": 1,
       "note": "Verifies gates.md has all 10 phase transitions documented. Passed both runs."
     },
     "skill-originality": {
-      "runs": 1,
+      "runs": 2,
       "finds": 0,
       "false_positive": 0,
-      "quality_score": 1.0,
-      "note": "Jaccard similarity check on 45 skills. Worst: 13.8%. Zero fails, zero warns."
+      "quality_score": 1,
+      "note": "45 skills checked, worst 13.8%, zero fails. Verified across 2 runs."
+    },
+    "skill-lint": {
+      "runs": 2,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "45 skills checked, 39 clean, 6 warnings, 0 errors. Verified across 2 runs."
     }
   },
   "proposed_rules": [
     {
       "name": "use-handoff-at-transitions",
       "reason": "Every phase transition must produce a handoff.md using docs/handoffs/ templates. Prevents context loss between layers.",
+      "status": "pending",
+      "quality_score": null
+    },
+    {
+      "name": "regex-in-jest-config",
+      "reason": "Escape dots in Jest testPathIgnorePatterns and modulePathIgnorePatterns — they use regex, not glob. Bug hid 2 test files (10 tests).",
       "status": "pending",
       "quality_score": null
     }
@@ -148,7 +172,7 @@
       "fires": 3,
       "helpful": 0,
       "false_positive": 0,
-      "quality_score": 0.0,
+      "quality_score": 0,
       "retired_at": "2026-06-13",
       "reason": "Reclassified as anti-pattern. Replaced by active rule: append-not-insert-yaml."
     },
@@ -156,7 +180,7 @@
       "fires": 3,
       "helpful": 0,
       "false_positive": 0,
-      "quality_score": 0.0,
+      "quality_score": 0,
       "retired_at": "2026-06-13",
       "reason": "Reclassified as anti-pattern. Replaced by active rule: batch-catalog-additions."
     },
@@ -164,9 +188,17 @@
       "fires": 2,
       "helpful": 0,
       "false_positive": 1,
-      "quality_score": 0.0,
+      "quality_score": 0,
       "retired_at": "2026-06-13",
       "reason": "Reclassified as anti-pattern. Replaced by active rule: pre-verify-tool-metadata."
+    },
+    "pre-verify-tool-metadata": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "retired_at": "2026-06-14",
+      "reason": "Never implemented. 0 fires in lifetime. No harness check. Replaced by test-for-every-skill and regex-in-jest-config."
     }
   }
 }

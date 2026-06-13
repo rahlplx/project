@@ -13,27 +13,34 @@ class OneClickNetlify {
   }
 
   buildDeployCommand(projectPath = '.', options = {}) {
-    const parts = [this.cliCommand, 'deploy', '--dir', `"${projectPath}"`];
-    if (options.production) parts.push('--prod');
-    if (options.site) parts.push('--site', options.site);
-    if (options.message) parts.push('--message', `"${options.message}"`);
-    parts.push('--json');
-    return parts.join(' ');
+    const parts = this.cliCommand.split(' ');
+    const cmd = parts[0];
+    const args = [...parts.slice(1), 'deploy', '--dir', projectPath];
+    if (options.production) args.push('--prod');
+    if (options.site) args.push('--site', options.site);
+    if (options.message) args.push('--message', options.message);
+    args.push('--json');
+    return { cmd, args };
   }
 
   buildInitCommand(projectPath = '.') {
-    return `${this.cliCommand} init --cwd "${projectPath}"`;
+    const parts = this.cliCommand.split(' ');
+    return { cmd: parts[0], args: [...parts.slice(1), 'init', '--cwd', projectPath] };
   }
 
   buildOpenCommand() {
-    return `${this.cliCommand} open:site`;
+    const parts = this.cliCommand.split(' ');
+    return { cmd: parts[0], args: [...parts.slice(1), 'open:site'] };
   }
 
   buildEnvCommand(vars = {}) {
-    const cmds = Object.entries(vars).map(([key, value]) =>
-      `${this.cliCommand} env:set ${key} "${value}"`
-    );
-    return { commands: cmds, count: cmds.length };
+    const parts = this.cliCommand.split(' ');
+    const cmd = parts[0];
+    const commands = Object.entries(vars).map(([key, value]) => ({
+      cmd,
+      args: [...parts.slice(1), 'env:set', key, value]
+    }));
+    return { commands, count: commands.length };
   }
 
   toJSON() {
@@ -57,7 +64,7 @@ if (require.main === module) {
   const isProd = process.argv.includes('--prod');
   const cmd = skill.buildDeployCommand(projectPath, { production: isProd });
   console.log('Run this command:\n');
-  console.log(cmd);
+  console.log(`${cmd.cmd} ${cmd.args.join(' ')}`);
 }
 
 module.exports = OneClickNetlify;

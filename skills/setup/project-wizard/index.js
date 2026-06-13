@@ -347,4 +347,5 @@ async function main() {
 }
 
 if (require.main === module) main();
-module.exports = { main, generateProjectSpec };
+const scaffold = generateProjectSpec;
+module.exports = { main, generateProjectSpec, scaffold, PROJECT_TYPES, DEPLOYMENT_TARGETS, FEATURES };

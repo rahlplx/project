@@ -22,21 +22,22 @@ describe('GitFreeDeploy', () => {
   it('should build serve command with custom port', () => {
     const skill = new GitFreeDeploy();
     const cmd = skill.buildServeCommand('./dist', 5000);
-    expect(cmd).toContain('npx serve');
-    expect(cmd).toContain('-p 5000');
+    expect(cmd.cmd).toBe('npx');
+    expect(cmd.args).toEqual(['serve', './dist', '-p', '5000']);
   });
 
   it('should build surge command', () => {
     const skill = new GitFreeDeploy();
     const cmd = skill.buildSurgeCommand('./dist', 'my-site.surge.sh');
-    expect(cmd).toContain('npx surge');
-    expect(cmd).toContain('my-site.surge.sh');
+    expect(cmd.cmd).toBe('npx');
+    expect(cmd.args).toEqual(['surge', './dist', 'my-site.surge.sh']);
   });
 
   it('should build netlify drop command', () => {
     const skill = new GitFreeDeploy();
     const cmd = skill.buildNetlifyDropCommand('./dist');
-    expect(cmd).toContain('netlify-cli deploy');
+    expect(cmd.cmd).toBe('npx');
+    expect(cmd.args).toEqual(['netlify-cli', 'deploy', '--dir', './dist']);
   });
 
   it('should prepare static files', () => {

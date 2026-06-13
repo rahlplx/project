@@ -13,23 +13,29 @@ class OneClickVercel {
   }
 
   buildDeployCommand(projectPath = '.', options = {}) {
-    const parts = [this.cliCommand, '--cwd', `"${projectPath}"`, '--yes'];
-    if (options.production) parts.push('--prod');
-    if (options.name) parts.push('--name', options.name);
-    if (options.scope) parts.push('--scope', options.scope);
-    if (options.public) parts.push('--public');
-    return parts.join(' ');
+    const parts = this.cliCommand.split(' ');
+    const cmd = parts[0];
+    const args = [...parts.slice(1), '--cwd', projectPath, '--yes'];
+    if (options.production) args.push('--prod');
+    if (options.name) args.push('--name', options.name);
+    if (options.scope) args.push('--scope', options.scope);
+    if (options.public) args.push('--public');
+    return { cmd, args };
   }
 
   buildEnvCommand(vars = {}, projectPath = '.') {
-    const cmds = Object.entries(vars).map(([key, value]) =>
-      `${this.cliCommand} env add ${key} "${value}" --cwd "${projectPath}" --yes`
-    );
-    return { commands: cmds, count: cmds.length };
+    const parts = this.cliCommand.split(' ');
+    const cmd = parts[0];
+    const commands = Object.entries(vars).map(([key, value]) => ({
+      cmd,
+      args: [...parts.slice(1), 'env', 'add', key, value, '--cwd', projectPath, '--yes']
+    }));
+    return { commands, count: commands.length };
   }
 
   buildLinkCommand(projectPath = '.') {
-    return `${this.cliCommand} link --cwd "${projectPath}" --yes`;
+    const parts = this.cliCommand.split(' ');
+    return { cmd: parts[0], args: [...parts.slice(1), 'link', '--cwd', projectPath, '--yes'] };
   }
 
   toJSON() {
@@ -53,7 +59,7 @@ if (require.main === module) {
   const isProd = process.argv.includes('--prod');
   const cmd = skill.buildDeployCommand(projectPath, { production: isProd });
   console.log('Run this command:\n');
-  console.log(cmd);
+  console.log(`${cmd.cmd} ${cmd.args.join(' ')}`);
 }
 
 module.exports = OneClickVercel;

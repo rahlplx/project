@@ -316,8 +316,803 @@
           "reason": "Before advancing to next phase, verify gates.md criteria are met. Prevents skipping quality gates."
         }
       ]
+    },
+    {
+      "date": "2026-06-13T22:31:46.221Z",
+      "run_number": 6,
+      "harness": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 7268
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 425,
+            "failCount": 0,
+            "suiteCount": 49
+          }
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 45,
+            "worst": 13.8,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 45,
+            "clean": 39,
+            "issues": 6
+          }
+        }
+      ],
+      "retro": {
+        "timestamp": "2026-06-13T22:31:46.217Z",
+        "assessment": "healthy",
+        "harness_summary": {
+          "total": 7,
+          "passed": 7,
+          "failed": 0
+        },
+        "telemetry": {
+          "commits_since_last": 10,
+          "total_sessions": 0
+        },
+        "notes": "All checks passed."
+      },
+      "learn": {
+        "timestamp": "2026-06-13T22:31:46.219Z",
+        "anti_pattern_count": 4,
+        "pattern_count": 7,
+        "low_quality_rules": []
+      },
+      "evolve_proposals": [
+        {
+          "action": "pending-proposal",
+          "rule": "use-handoff-at-transitions",
+          "reason": "Every phase transition must produce a handoff.md using docs/handoffs/ templates. Prevents context loss between layers."
+        }
+      ]
+    },
+    {
+      "date": "2026-06-13T23:21:39.049Z",
+      "run_number": 7,
+      "harness": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 7268
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 425,
+            "failCount": 0,
+            "suiteCount": 49
+          }
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 45,
+            "worst": 13.8,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 45,
+            "clean": 39,
+            "issues": 6
+          }
+        }
+      ],
+      "retro": {
+        "timestamp": "2026-06-13T23:21:39.045Z",
+        "assessment": "healthy",
+        "harness_summary": {
+          "total": 7,
+          "passed": 7,
+          "failed": 0
+        },
+        "telemetry": {
+          "commits_since_last": 10,
+          "total_sessions": 0
+        },
+        "notes": "All checks passed."
+      },
+      "learn": {
+        "timestamp": "2026-06-13T23:21:39.048Z",
+        "anti_pattern_count": 5,
+        "pattern_count": 9,
+        "low_quality_rules": []
+      },
+      "evolve_proposals": [
+        {
+          "action": "pending-proposal",
+          "rule": "use-handoff-at-transitions",
+          "reason": "Every phase transition must produce a handoff.md using docs/handoffs/ templates. Prevents context loss between layers."
+        },
+        {
+          "action": "pending-proposal",
+          "rule": "regex-in-jest-config",
+          "reason": "Escape dots in Jest testPathIgnorePatterns and modulePathIgnorePatterns — they use regex, not glob. Bug hid 2 test files (10 tests)."
+        }
+      ]
+    },
+    {
+      "date": "2026-06-13T23:37:56.435Z",
+      "run_number": 8,
+      "harness": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 7268
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": false,
+          "error": "spawnSync npm ENOENT"
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 45,
+            "worst": 19.3,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 45,
+            "clean": 39,
+            "issues": 6
+          }
+        }
+      ],
+      "retro": {
+        "timestamp": "2026-06-13T23:37:56.431Z",
+        "assessment": "degraded",
+        "harness_summary": {
+          "total": 7,
+          "passed": 6,
+          "failed": 1
+        },
+        "telemetry": {
+          "commits_since_last": 10,
+          "total_sessions": 0
+        },
+        "notes": "Harness failed: test-suite"
+      },
+      "learn": {
+        "timestamp": "2026-06-13T23:37:56.433Z",
+        "anti_pattern_count": 5,
+        "pattern_count": 9,
+        "low_quality_rules": []
+      },
+      "evolve_proposals": [
+        {
+          "action": "pending-proposal",
+          "rule": "use-handoff-at-transitions",
+          "reason": "Every phase transition must produce a handoff.md using docs/handoffs/ templates. Prevents context loss between layers."
+        },
+        {
+          "action": "pending-proposal",
+          "rule": "regex-in-jest-config",
+          "reason": "Escape dots in Jest testPathIgnorePatterns and modulePathIgnorePatterns — they use regex, not glob. Bug hid 2 test files (10 tests)."
+        }
+      ]
+    },
+    {
+      "date": "2026-06-13T23:38:31.331Z",
+      "run_number": 9,
+      "harness": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 7268
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 0,
+            "failCount": 0,
+            "suiteCount": 0
+          }
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 45,
+            "worst": 19.3,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 45,
+            "clean": 39,
+            "issues": 6
+          }
+        }
+      ],
+      "retro": {
+        "timestamp": "2026-06-13T23:38:31.327Z",
+        "assessment": "healthy",
+        "harness_summary": {
+          "total": 7,
+          "passed": 7,
+          "failed": 0
+        },
+        "telemetry": {
+          "commits_since_last": 10,
+          "total_sessions": 0
+        },
+        "notes": "All checks passed."
+      },
+      "learn": {
+        "timestamp": "2026-06-13T23:38:31.330Z",
+        "anti_pattern_count": 5,
+        "pattern_count": 9,
+        "low_quality_rules": []
+      },
+      "evolve_proposals": [
+        {
+          "action": "pending-proposal",
+          "rule": "use-handoff-at-transitions",
+          "reason": "Every phase transition must produce a handoff.md using docs/handoffs/ templates. Prevents context loss between layers."
+        },
+        {
+          "action": "pending-proposal",
+          "rule": "regex-in-jest-config",
+          "reason": "Escape dots in Jest testPathIgnorePatterns and modulePathIgnorePatterns — they use regex, not glob. Bug hid 2 test files (10 tests)."
+        }
+      ]
+    },
+    {
+      "date": "2026-06-13T23:38:57.197Z",
+      "run_number": 10,
+      "harness": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 7268
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": false,
+          "error": "spawnSync npm.cmd EINVAL"
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 45,
+            "worst": 19.3,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 45,
+            "clean": 39,
+            "issues": 6
+          }
+        }
+      ],
+      "retro": {
+        "timestamp": "2026-06-13T23:38:57.193Z",
+        "assessment": "degraded",
+        "harness_summary": {
+          "total": 7,
+          "passed": 6,
+          "failed": 1
+        },
+        "telemetry": {
+          "commits_since_last": 10,
+          "total_sessions": 0
+        },
+        "notes": "Harness failed: test-suite"
+      },
+      "learn": {
+        "timestamp": "2026-06-13T23:38:57.196Z",
+        "anti_pattern_count": 5,
+        "pattern_count": 9,
+        "low_quality_rules": []
+      },
+      "evolve_proposals": [
+        {
+          "action": "pending-proposal",
+          "rule": "use-handoff-at-transitions",
+          "reason": "Every phase transition must produce a handoff.md using docs/handoffs/ templates. Prevents context loss between layers."
+        },
+        {
+          "action": "pending-proposal",
+          "rule": "regex-in-jest-config",
+          "reason": "Escape dots in Jest testPathIgnorePatterns and modulePathIgnorePatterns — they use regex, not glob. Bug hid 2 test files (10 tests)."
+        }
+      ]
+    },
+    {
+      "date": "2026-06-13T23:39:21.914Z",
+      "run_number": 11,
+      "harness": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 7268
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 0,
+            "failCount": 0,
+            "suiteCount": 0
+          }
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 45,
+            "worst": 19.3,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 45,
+            "clean": 39,
+            "issues": 6
+          }
+        }
+      ],
+      "retro": {
+        "timestamp": "2026-06-13T23:39:21.908Z",
+        "assessment": "healthy",
+        "harness_summary": {
+          "total": 7,
+          "passed": 7,
+          "failed": 0
+        },
+        "telemetry": {
+          "commits_since_last": 10,
+          "total_sessions": 0
+        },
+        "notes": "All checks passed."
+      },
+      "learn": {
+        "timestamp": "2026-06-13T23:39:21.912Z",
+        "anti_pattern_count": 5,
+        "pattern_count": 9,
+        "low_quality_rules": []
+      },
+      "evolve_proposals": [
+        {
+          "action": "pending-proposal",
+          "rule": "use-handoff-at-transitions",
+          "reason": "Every phase transition must produce a handoff.md using docs/handoffs/ templates. Prevents context loss between layers."
+        },
+        {
+          "action": "pending-proposal",
+          "rule": "regex-in-jest-config",
+          "reason": "Escape dots in Jest testPathIgnorePatterns and modulePathIgnorePatterns — they use regex, not glob. Bug hid 2 test files (10 tests)."
+        }
+      ]
+    },
+    {
+      "date": "2026-06-13T23:40:14.683Z",
+      "run_number": 12,
+      "harness": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 7268
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 0,
+            "failCount": 0,
+            "suiteCount": 0
+          }
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 45,
+            "worst": 19.3,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 45,
+            "clean": 39,
+            "issues": 6
+          }
+        }
+      ],
+      "retro": {
+        "timestamp": "2026-06-13T23:40:14.679Z",
+        "assessment": "healthy",
+        "harness_summary": {
+          "total": 7,
+          "passed": 7,
+          "failed": 0
+        },
+        "telemetry": {
+          "commits_since_last": 10,
+          "total_sessions": 0
+        },
+        "notes": "All checks passed."
+      },
+      "learn": {
+        "timestamp": "2026-06-13T23:40:14.681Z",
+        "anti_pattern_count": 5,
+        "pattern_count": 9,
+        "low_quality_rules": []
+      },
+      "evolve_proposals": [
+        {
+          "action": "pending-proposal",
+          "rule": "use-handoff-at-transitions",
+          "reason": "Every phase transition must produce a handoff.md using docs/handoffs/ templates. Prevents context loss between layers."
+        },
+        {
+          "action": "pending-proposal",
+          "rule": "regex-in-jest-config",
+          "reason": "Escape dots in Jest testPathIgnorePatterns and modulePathIgnorePatterns — they use regex, not glob. Bug hid 2 test files (10 tests)."
+        }
+      ]
+    },
+    {
+      "date": "2026-06-13T23:40:34.815Z",
+      "run_number": 13,
+      "harness": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 7268
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 493,
+            "failCount": 0,
+            "suiteCount": 50
+          }
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 45,
+            "worst": 19.3,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 45,
+            "clean": 39,
+            "issues": 6
+          }
+        }
+      ],
+      "retro": {
+        "timestamp": "2026-06-13T23:40:34.812Z",
+        "assessment": "healthy",
+        "harness_summary": {
+          "total": 7,
+          "passed": 7,
+          "failed": 0
+        },
+        "telemetry": {
+          "commits_since_last": 10,
+          "total_sessions": 0
+        },
+        "notes": "All checks passed."
+      },
+      "learn": {
+        "timestamp": "2026-06-13T23:40:34.814Z",
+        "anti_pattern_count": 5,
+        "pattern_count": 9,
+        "low_quality_rules": []
+      },
+      "evolve_proposals": [
+        {
+          "action": "pending-proposal",
+          "rule": "use-handoff-at-transitions",
+          "reason": "Every phase transition must produce a handoff.md using docs/handoffs/ templates. Prevents context loss between layers."
+        },
+        {
+          "action": "pending-proposal",
+          "rule": "regex-in-jest-config",
+          "reason": "Escape dots in Jest testPathIgnorePatterns and modulePathIgnorePatterns — they use regex, not glob. Bug hid 2 test files (10 tests)."
+        }
+      ]
     }
   ],
   "created": "2026-06-13",
-  "updated": "2026-06-13T21:09:06.356Z"
+  "updated": "2026-06-13T23:40:34.815Z"
 }

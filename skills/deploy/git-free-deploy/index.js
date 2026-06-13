@@ -11,16 +11,17 @@ class GitFreeDeploy {
   }
 
   buildServeCommand(projectPath = '.', port = 3000) {
-    return `npx serve "${projectPath}" -p ${port}`;
+    return { cmd: 'npx', args: ['serve', projectPath, '-p', String(port)] };
   }
 
   buildSurgeCommand(projectPath = '.', domain) {
-    const cmd = `npx surge "${projectPath}"`;
-    return domain ? `${cmd} ${domain}` : cmd;
+    const args = ['surge', projectPath];
+    if (domain) args.push(domain);
+    return { cmd: 'npx', args };
   }
 
   buildNetlifyDropCommand(projectPath = '.') {
-    return `npx netlify-cli deploy --dir "${projectPath}"`;
+    return { cmd: 'npx', args: ['netlify-cli', 'deploy', '--dir', projectPath] };
   }
 
   prepareStaticFiles(sourceDir = '.') {
@@ -48,9 +49,9 @@ class GitFreeDeploy {
       success: true,
       fileCount: files.fileCount,
       commands: [
-        { label: 'Local preview', cmd: this.buildServeCommand(sourceDir) },
-        { label: 'Deploy via Surge.sh', cmd: this.buildSurgeCommand(sourceDir) },
-        { label: 'Deploy via Netlify Drop', cmd: this.buildNetlifyDropCommand(sourceDir) }
+        { label: 'Local preview', ...this.buildServeCommand(sourceDir) },
+        { label: 'Deploy via Surge.sh', ...this.buildSurgeCommand(sourceDir) },
+        { label: 'Deploy via Netlify Drop', ...this.buildNetlifyDropCommand(sourceDir) }
       ],
       timestamp: new Date().toISOString()
     };
@@ -75,7 +76,7 @@ if (require.main === module) {
   const skill = new GitFreeDeploy();
   const dir = process.argv[2] || '.';
   const pkg = skill.generateDeployPackage(dir);
-  console.log(pkg.success ? pkg.commands.map(c => `${c.label}: ${c.cmd}`).join('\n') : JSON.stringify(pkg));
+  console.log(pkg.success ? pkg.commands.map(c => `${c.label}: ${c.cmd} ${c.args.join(' ')}`).join('\n') : JSON.stringify(pkg));
 }
 
 module.exports = GitFreeDeploy;

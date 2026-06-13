@@ -1,19 +1,22 @@
 const fs = require('fs');
 const path = require('path');
+const { execFileSync, execSync } = require('child_process');
 
 // ── Paths ──────────────────────────────────────────────────────
 const ROOT = path.resolve(__dirname, '..');
+const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
 const LIFECYCLE_PATH = path.join(ROOT, 'lifecycle.json');
 const STATE_PATH = path.join(ROOT, 'state.json');
 const EVOLUTION_PATH = path.join(ROOT, 'evolution.json');
 const MAINTENANCE_LOG_PATH = path.join(ROOT, 'maintenance-log.json');
 const LEARNINGS_DIR = path.join(ROOT, 'learnings');
-const SOLUTIONS_DIR = path.join(ROOT, '..', 'docs', 'solutions');
+const SOLUTIONS_DIR = path.join(PROJECT_ROOT, 'docs', 'solutions');
 const TELEMETRY_SESSIONS = path.join(ROOT, 'telemetry', 'sessions');
 
 // ── Helpers ────────────────────────────────────────────────────
 function readJSON(p) { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return null; } }
 function writeJSON(p, d) { fs.writeFileSync(p, JSON.stringify(d, null, 2) + '\n', 'utf8'); }
+function stripAnsi(s) { return s.replace(/\x1b\[[0-9;]*m/g, ''); }
 
 // ── Phase 1: Harness ───────────────────────────────────────────
 function runHarness(runTestSuite = true) {
@@ -23,7 +26,7 @@ function runHarness(runTestSuite = true) {
   // Check 1: YAML valid
   try {
     const yaml = require('js-yaml');
-    const toolsYaml = fs.readFileSync(path.join(ROOT, '..', 'catalog', 'tools.yaml'), 'utf8');
+    const toolsYaml = fs.readFileSync(path.join(PROJECT_ROOT, 'catalog', 'tools.yaml'), 'utf8');
     const doc = yaml.load(toolsYaml);
     const toolCount = doc.tools?.length || 0;
     results.push({ check: 'catalog-yaml-valid', pass: true, data: { toolCount } });
@@ -36,7 +39,7 @@ function runHarness(runTestSuite = true) {
   // Check 2: Category counts
   try {
     const yaml = require('js-yaml');
-    const toolsYaml = fs.readFileSync(path.join(ROOT, '..', 'catalog', 'tools.yaml'), 'utf8');
+    const toolsYaml = fs.readFileSync(path.join(PROJECT_ROOT, 'catalog', 'tools.yaml'), 'utf8');
     const doc = yaml.load(toolsYaml);
     const cats = {};
     doc.tools.forEach(t => { cats[t.category] = (cats[t.category] || 0) + 1; });
@@ -49,7 +52,7 @@ function runHarness(runTestSuite = true) {
 
   // Check 3: Handoff templates exist
   try {
-    const handoffsDir = path.join(ROOT, '..', 'docs', 'handoffs');
+    const handoffsDir = path.join(PROJECT_ROOT, 'docs', 'handoffs');
     const templates = ['AGENTS.md', 'standard.md', 'qa-pass.md', 'qa-fail.md',
       'escalation.md', 'phase-gate.md', 'sprint.md', 'incident.md'];
     const missing = templates.filter(t => !fs.existsSync(path.join(handoffsDir, t)));
@@ -65,7 +68,7 @@ function runHarness(runTestSuite = true) {
 
   // Check 4: Phase gates document
   try {
-    const gatesPath = path.join(ROOT, '..', 'docs', 'gates.md');
+    const gatesPath = path.join(PROJECT_ROOT, 'docs', 'gates.md');
     const gatesContent = fs.readFileSync(gatesPath, 'utf8');
     const requiredTransitions = [
       'think -- plan', 'plan -- break', 'break -- build', 'build -- harness',
@@ -86,18 +89,19 @@ function runHarness(runTestSuite = true) {
   // Check 5: Test suite
   if (runTestSuite) {
     try {
-      const { execSync } = require('child_process');
-      const output = execSync('npm test 2>&1', { cwd: ROOT, timeout: 120000 });
-      const passed = output.toString().match(/Tests:\s+(\d+)\s+passed/);
-      const failed = output.toString().match(/Tests:\s+(\d+)\s+failed/);
+      const output = stripAnsi(execSync('npm test 2>&1', { cwd: PROJECT_ROOT, timeout: 120000, encoding: 'utf8' }));
+      const suites = output.match(/Test Suites:\s+(\d+)\s+passed/);
+      const passed = output.match(/Tests:\s+(\d+)\s+passed/);
+      const failed = output.match(/Tests:\s+(\d+)\s+failed/);
       const passCount = passed ? parseInt(passed[1]) : 0;
       const failCount = failed ? parseInt(failed[1]) : 0;
+      const suiteCount = suites ? parseInt(suites[1]) : 0;
       results.push({
         check: 'test-suite',
         pass: failCount === 0,
-        data: { passCount, failCount }
+        data: { passCount, failCount, suiteCount }
       });
-      console.log(`  [harness]  ✓ test-suite (${passCount} passed, ${failCount} failed)`);
+      console.log(`  [harness]  ✓ test-suite (${suiteCount} suites, ${passCount} passed, ${failCount} failed)`);
     } catch (e) {
       results.push({ check: 'test-suite', pass: false, error: e.message });
       console.log(`  [harness]  ✗ test-suite: ${e.message}`);
@@ -108,8 +112,8 @@ function runHarness(runTestSuite = true) {
 
   // Check 6: Skill originality
   try {
-    const { checkOriginality } = require(path.join(ROOT, '..', 'lib', 'check-originality.js'));
-    const result = checkOriginality({ rootDir: path.join(ROOT, '..') });
+    const { checkOriginality } = require(path.join(PROJECT_ROOT, 'lib', 'check-originality.js'));
+    const result = checkOriginality({ rootDir: PROJECT_ROOT });
     const hasFails = result.fails.length > 0;
     results.push({
       check: 'skill-originality',
@@ -124,8 +128,8 @@ function runHarness(runTestSuite = true) {
 
   // Check 7: Skill lint
   try {
-    const { lintSkills } = require(path.join(ROOT, '..', 'lib', 'lint-skills.js'));
-    const result = lintSkills({ rootDir: path.join(ROOT, '..') });
+    const { lintSkills } = require(path.join(PROJECT_ROOT, 'lib', 'lint-skills.js'));
+    const result = lintSkills({ rootDir: PROJECT_ROOT });
     const errCount = result.issues.reduce((s, i) => s + i.errors.length, 0);
     results.push({
       check: 'skill-lint',
@@ -167,10 +171,10 @@ function captureTelemetry() {
 
 function getRecentCommits() {
   try {
-    const { execSync } = require('child_process');
-    const output = execSync('git log --oneline -10', { cwd: ROOT, timeout: 5000 });
+    const output = execSync('git log --oneline -10', { cwd: PROJECT_ROOT, timeout: 5000, encoding: 'utf8' });
     return output.toString().trim().split('\n').map(l => l.trim());
-  } catch {
+  } catch (e) {
+    console.warn('[telemetry] git log failed: ' + e.message);
     return [];
   }
 }
