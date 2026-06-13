@@ -1,108 +1,125 @@
 {
-  "version": "2.0.0",
+  "version": "2.1.0",
   "last_evolution": "2026-06-13",
+  "evolution_count": 1,
   "rules": {
-    "tdd.md": {
-      "fires": 0,
-      "helpful": 0,
-      "false_positive": 0,
-      "quality_score": null,
-      "last_updated": "2026-06-13",
-      "note": "Not applicable — curation project has no production code to TDD"
-    },
-    "agent-native-catalog.md": {
+    "agent-native-catalog": {
       "fires": 35,
       "helpful": 35,
       "false_positive": 0,
       "quality_score": 1.0,
       "last_updated": "2026-06-13",
-      "note": "Applied to every tool entry. Zero false positives. Keep as hard requirement."
+      "status": "active",
+      "note": "Hard requirement. Applied to all 35 entries. Zero false positives."
     },
-    "yaml-only-direct-push.md": {
+    "yaml-only-direct-push": {
       "fires": 3,
       "helpful": 3,
       "false_positive": 0,
       "quality_score": 1.0,
       "last_updated": "2026-06-13",
-      "note": "Applied to 3 catalog commits. No regressions. Safe."
+      "status": "active",
+      "note": "Best practice for data-only commits. No regressions across 3 pushes."
     },
-    "auto-pipeline-for-curation.md": {
+    "auto-pipeline-for-curation": {
       "fires": 3,
       "helpful": 3,
       "false_positive": 0,
       "quality_score": 1.0,
       "last_updated": "2026-06-13",
-      "note": "3 successful pipeline runs. Structured thinking consistently valuable."
+      "status": "active",
+      "note": "Cross-domain pattern. 3 successful curation pipeline runs."
     },
-    "mid-file-yaml-edits.md": {
-      "fires": 3,
+    "pre-verify-tool-metadata": {
+      "fires": 0,
       "helpful": 0,
       "false_positive": 0,
-      "quality_score": 0.0,
+      "quality_score": null,
       "last_updated": "2026-06-13",
-      "note": "Anti-pattern. 3 edit failures caused by mid-file insertions."
+      "status": "active",
+      "note": "New rule from verify-before-describe anti-pattern. Pending first fire."
     },
-    "incremental-catalog-runs.md": {
-      "fires": 3,
+    "batch-catalog-additions": {
+      "fires": 0,
       "helpful": 0,
       "false_positive": 0,
-      "quality_score": 0.0,
+      "quality_score": null,
       "last_updated": "2026-06-13",
-      "note": "Anti-pattern. 3 runs when 1 would suffice. Redundant overhead."
+      "status": "active",
+      "note": "New rule from incremental-catalog-runs anti-pattern. Pending first fire."
     },
-    "verify-before-describe.md": {
-      "fires": 2,
+    "append-not-insert-yaml": {
+      "fires": 0,
       "helpful": 0,
-      "false_positive": 1,
-      "quality_score": 0.0,
+      "false_positive": 0,
+      "quality_score": null,
       "last_updated": "2026-06-13",
-      "note": "Anti-pattern. 2 tools needed post-hoc corrections."
+      "status": "active",
+      "note": "New rule from mid-file-yaml-edits anti-pattern. Pending first fire."
     }
   },
   "harness": {
-    "catalog-yaml-valid.sh": {
+    "catalog-yaml-valid": {
       "runs": 3,
       "finds": 0,
       "false_positive": 0,
       "quality_score": 1.0,
       "note": "YAML validated every time. Zero syntax errors across 35 entries."
     },
-    "catalog-category-count.sh": {
+    "catalog-category-count": {
       "runs": 3,
-      "finds": 0,
+      "finds": 6,
       "false_positive": 0,
       "quality_score": 1.0,
-      "note": "Category counts verified every run. All hitting targets."
+      "note": "Category counts verified every run. All hitting targets. 6 gap finds."
     },
-    "test-suite.sh": {
+    "test-suite": {
       "runs": 3,
       "finds": 0,
       "false_positive": 0,
       "quality_score": 1.0,
       "note": "209 tests pass after every catalog change. Zero regressions."
+    },
+    "pre-verify-metadata": {
+      "runs": 0,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "note": "New harness check from evolution. Pending first run."
     }
   },
-  "proposed_rules": [
-    {
-      "name": "pre-verify-tool-metadata",
-      "type": "harness-check",
-      "reason": "anti-patterns/verify-before-describe — write descriptions only after verifying repo_url, license, stars, activity",
-      "proposed_quality": 0.0,
-      "status": "pending"
+  "retired": {
+    "tdd": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "retired_at": "2026-06-13",
+      "reason": "No production code in curation projects. Rule had zero applicability."
     },
-    {
-      "name": "batch-catalog-additions",
-      "type": "process-rule",
-      "reason": "anti-patterns/incremental-catalog-runs — if adding >5 tools, do it in 1 pipeline run",
-      "proposed_quality": 0.0,
-      "status": "pending"
+    "mid-file-yaml-edits": {
+      "fires": 3,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": 0.0,
+      "retired_at": "2026-06-13",
+      "reason": "Reclassified as anti-pattern. Replaced by active rule: append-not-insert-yaml."
     },
-    {
-      "name": "append-not-insert-yaml",
-      "type": "process-rule",
-      "reason": "anti-patterns/mid-file-yaml-edits — add new tools to end of file to avoid whitespace conflicts",
-      "proposed_quality": 0.0,
-      "status": "pending"
+    "incremental-catalog-runs": {
+      "fires": 3,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": 0.0,
+      "retired_at": "2026-06-13",
+      "reason": "Reclassified as anti-pattern. Replaced by active rule: batch-catalog-additions."
+    },
+    "verify-before-describe": {
+      "fires": 2,
+      "helpful": 0,
+      "false_positive": 1,
+      "quality_score": 0.0,
+      "retired_at": "2026-06-13",
+      "reason": "Reclassified as anti-pattern. Replaced by active rule: pre-verify-tool-metadata."
     }
-  ]
+  }
 }
