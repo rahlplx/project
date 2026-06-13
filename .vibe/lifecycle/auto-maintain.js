@@ -106,6 +106,22 @@ function runHarness(runTestSuite = true) {
     results.push({ check: 'test-suite', pass: true, data: { passCount: 0, failCount: 0, skipped: true } });
   }
 
+  // Check 6: Skill originality
+  try {
+    const { checkOriginality } = require(path.join(ROOT, '..', 'lib', 'check-originality.js'));
+    const result = checkOriginality({ rootDir: path.join(ROOT, '..') });
+    const hasFails = result.fails.length > 0;
+    results.push({
+      check: 'skill-originality',
+      pass: !hasFails,
+      data: { files: result.files, worst: result.worst, fails: result.fails.length, warns: result.warns.length }
+    });
+    console.log(`  [harness]  ${hasFails ? '✗' : '✓'} skill-originality (worst: ${result.worst}%, fails: ${result.fails.length}, warns: ${result.warns.length})`);
+  } catch (e) {
+    results.push({ check: 'skill-originality', pass: false, error: e.message });
+    console.log(`  [harness]  ✗ skill-originality: ${e.message}`);
+  }
+
   return results;
 }
 

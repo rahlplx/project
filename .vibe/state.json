@@ -1,9 +1,9 @@
 {
   "project": "Vibe-Stack Curated Collection",
   "version": "2.0.0",
-  "phase": "ship",
-  "goal": "Agency-agents merge Phase 1 — handoff templates + phase gates",
-  "step": 19,
+  "phase": "retro",
+  "goal": "Agency-agents merge Phase 2 — originality check (Jaccard similarity)",
+  "step": 4,
   "mode": "auto",
   "agent": "opencode",
   "stack": {
@@ -49,7 +49,13 @@
     "design-doc-written",
     "gsd-break-created",
     "mvp-mining-enhancements",
-    "agency-agents-phase-1-handoffs-and-gates"
+    "agency-agents-phase-1-handoffs-and-gates",
+    "agency-agents-p1-shipped",
+    "p2-originality-built",
+    "p2-harness-wired",
+    "p2-retro-complete",
+    "p2-learn-captured",
+    "p2-evolve-updated"
   ],
   "skills": {
     "total": 45,
@@ -128,15 +134,15 @@
     "testsPassing": 209
   },
   "lifecycle": {
-    "last_maintenance": "2026-06-13T21:09:06.354Z",
+    "last_maintenance": "2026-06-13T21:24:12.210Z",
     "maintenance_count": 5,
     "interaction_count": 0
   },
   "created": "2026-06-13T12:00:00Z",
-  "updated": "2026-06-13T21:09:06.357Z",
+  "updated": "2026-06-13T21:24:12.210Z",
   "auto_pipeline": {
-    "started": "2026-06-13T15:48:56.337Z",
-    "goal": "Expand all 7 catalog categories from 3-4 tools to 5+ tools each",
+    "started": "2026-06-14T02:30:00.000Z",
+    "goal": "Agency-agents merge Phase 2 — originality check (Jaccard similarity)",
     "state_machine": [
       "think",
       "plan",
@@ -145,6 +151,9 @@
       "harness",
       "review",
       "ship",
+      "retro",
+      "learn",
+      "evolve",
       "done"
     ]
   }

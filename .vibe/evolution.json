@@ -1,7 +1,7 @@
 {
-  "version": "2.1.0",
+  "version": "2.2.0",
   "last_evolution": "2026-06-14",
-  "evolution_count": 2,
+  "evolution_count": 3,
   "rules": {
     "agent-native-catalog": {
       "fires": 35,
@@ -22,13 +22,13 @@
       "note": "Best practice for data-only commits. No regressions across 3 pushes."
     },
     "auto-pipeline-for-curation": {
-      "fires": 3,
-      "helpful": 3,
+      "fires": 4,
+      "helpful": 4,
       "false_positive": 0,
       "quality_score": 1.0,
-      "last_updated": "2026-06-13",
+      "last_updated": "2026-06-14",
       "status": "active",
-      "note": "Cross-domain pattern. 3 successful curation pipeline runs."
+      "note": "Cross-domain pattern. 4 successful curation pipeline runs, including Phase 2."
     },
     "pre-verify-tool-metadata": {
       "fires": 0,
@@ -56,6 +56,24 @@
       "last_updated": "2026-06-13",
       "status": "active",
       "note": "New rule from mid-file-yaml-edits anti-pattern. Pending first fire."
+    },
+    "jaccard-originality-check": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1.0,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Shingle-based Jaccard similarity check for skill originality. 45 skills checked, worst 13.8%, zero false positives."
+    },
+    "verify-gate-before-advance": {
+      "fires": 2,
+      "helpful": 2,
+      "false_positive": 0,
+      "quality_score": 1.0,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Promoted from proposed. Verified across Phase 1 (10 transitions) and Phase 2 (build-test cycle). Prevents skipping quality gates."
     }
   },
   "harness": {
@@ -74,11 +92,11 @@
       "note": "Category counts verified every run. All hitting targets. 6 gap finds."
     },
     "test-suite": {
-      "runs": 3,
+      "runs": 4,
       "finds": 0,
       "false_positive": 0,
       "quality_score": 1.0,
-      "note": "209 tests pass after every catalog change. Zero regressions."
+      "note": "236 tests pass after Phase 2. Zero regressions. Up from 209 baseline."
     },
     "pre-verify-metadata": {
       "runs": 0,
@@ -88,30 +106,31 @@
       "note": "New harness check from evolution. Pending first fire."
     },
     "handoff-templates": {
-      "runs": 1,
+      "runs": 2,
       "finds": 0,
       "false_positive": 0,
       "quality_score": 1.0,
-      "note": "Verifies all 8 handoff docs exist in docs/handoffs/. Phase 1: passed on first run (8/8)."
+      "note": "Verifies all 8 handoff docs exist in docs/handoffs/. Passed both runs (8/8)."
     },
     "phase-gates-doc": {
+      "runs": 2,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1.0,
+      "note": "Verifies gates.md has all 10 phase transitions documented. Passed both runs."
+    },
+    "skill-originality": {
       "runs": 1,
       "finds": 0,
       "false_positive": 0,
       "quality_score": 1.0,
-      "note": "Verifies gates.md has all 10 phase transitions documented. Phase 1: passed (7212 chars, 20 transitions)."
+      "note": "Jaccard similarity check on 45 skills. Worst: 13.8%. Zero fails, zero warns."
     }
   },
   "proposed_rules": [
     {
       "name": "use-handoff-at-transitions",
       "reason": "Every phase transition must produce a handoff.md using docs/handoffs/ templates. Prevents context loss between layers.",
-      "status": "pending",
-      "quality_score": null
-    },
-    {
-      "name": "verify-gate-before-advance",
-      "reason": "Before advancing to next phase, verify gates.md criteria are met. Prevents skipping quality gates.",
       "status": "pending",
       "quality_score": null
     }
