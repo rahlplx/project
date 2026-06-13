@@ -1,0 +1,25 @@
+{
+  "name": "crewAI",
+  "url": "https://github.com/crewAIInc/crewAI.git",
+  "stars": 53445,
+  "license": "MIT",
+  "quality_score": 45,
+  "patterns": [
+    "python",
+    "documented",
+    "skills",
+    "catalog",
+    "telemetry",
+    "mcp",
+    "agents",
+    "rules"
+  ],
+  "anti_patterns": [],
+  "candidates": [
+    "catalog-pattern",
+    "mcp-integration",
+    "agent-arch",
+    "telemetry-system",
+    "rules-engine"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "mem0",
+  "url": "https://github.com/mem0ai/mem0.git",
+  "stars": 58480,
+  "license": "Apache-2.0",
+  "quality_score": 75,
+  "patterns": [
+    "node",
+    "python",
+    "docker",
+    "typescript",
+    "tested",
+    "documented",
+    "skills",
+    "telemetry",
+    "mcp",
+    "agents",
+    "vibe-stack"
+  ],
+  "anti_patterns": [],
+  "candidates": [
+    "skill-adoption",
+    "mcp-integration",
+    "agent-arch",
+    "telemetry-system",
+    "vibe-stack-pattern"
+  ]
+}

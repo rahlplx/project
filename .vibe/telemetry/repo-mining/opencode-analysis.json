@@ -1,0 +1,29 @@
+{
+  "name": "opencode",
+  "url": "https://github.com/anomalyco/opencode.git",
+  "stars": 173952,
+  "license": "MIT",
+  "quality_score": 85,
+  "patterns": [
+    "node",
+    "docker",
+    "typescript",
+    "tested",
+    "documented",
+    "skills",
+    "catalog",
+    "self-improving",
+    "mcp",
+    "agents",
+    "rules"
+  ],
+  "anti_patterns": [],
+  "candidates": [
+    "skill-adoption",
+    "catalog-pattern",
+    "self-improvement",
+    "mcp-integration",
+    "agent-arch",
+    "rules-engine"
+  ]
+}

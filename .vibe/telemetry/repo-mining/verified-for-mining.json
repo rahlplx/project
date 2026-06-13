@@ -1,0 +1,196 @@
+{
+  "timestamp": "2026-06-13T16:16:03.503Z",
+  "verified": [
+    {
+      "name": "opencode",
+      "url": "https://github.com/anomalyco/opencode.git",
+      "status": "pass",
+      "score": 80,
+      "stars": 173952,
+      "forks": 20974,
+      "license": "MIT",
+      "days_since_update": 0,
+      "description": "The open source coding agent.",
+      "issues": []
+    },
+    {
+      "name": "langchain",
+      "url": "https://github.com/langchain-ai/langchain.git",
+      "status": "pass",
+      "score": 80,
+      "stars": 139196,
+      "forks": 23078,
+      "license": "MIT",
+      "days_since_update": 0,
+      "description": "The agent engineering platform.",
+      "issues": []
+    },
+    {
+      "name": "crewAI",
+      "url": "https://github.com/crewAIInc/crewAI.git",
+      "status": "pass",
+      "score": 80,
+      "stars": 53445,
+      "forks": 7479,
+      "license": "MIT",
+      "days_since_update": 0,
+      "description": "Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks.",
+      "issues": []
+    },
+    {
+      "name": "mastra",
+      "url": "https://github.com/mastra-ai/mastra.git",
+      "status": "pass",
+      "score": 65,
+      "stars": 25014,
+      "forks": 2222,
+      "license": "NOASSERTION",
+      "days_since_update": 0,
+      "description": "From the team behind Gatsby, Mastra is a framework for building AI-powered applications and agents with a modern TypeScript stack.",
+      "issues": []
+    },
+    {
+      "name": "langgraph",
+      "url": "https://github.com/langchain-ai/langgraph.git",
+      "status": "pass",
+      "score": 80,
+      "stars": 34622,
+      "forks": 5815,
+      "license": "MIT",
+      "days_since_update": 0,
+      "description": "Build resilient agents.",
+      "issues": []
+    },
+    {
+      "name": "qdrant",
+      "url": "https://github.com/qdrant/qdrant.git",
+      "status": "pass",
+      "score": 80,
+      "stars": 32133,
+      "forks": 2356,
+      "license": "Apache-2.0",
+      "days_since_update": 0,
+      "description": "Qdrant - High-performance, massive-scale Vector Database and Vector Search Engine for the next generation of AI. Also available in the cloud https://cloud.qdrant.io/",
+      "issues": []
+    },
+    {
+      "name": "mem0",
+      "url": "https://github.com/mem0ai/mem0.git",
+      "status": "pass",
+      "score": 80,
+      "stars": 58480,
+      "forks": 6717,
+      "license": "Apache-2.0",
+      "days_since_update": 0,
+      "description": "Universal memory layer for AI Agents",
+      "issues": []
+    },
+    {
+      "name": "weaviate",
+      "url": "https://github.com/weaviate/weaviate.git",
+      "status": "pass",
+      "score": 80,
+      "stars": 16324,
+      "forks": 1309,
+      "license": "BSD-3-Clause",
+      "days_since_update": 0,
+      "description": "Weaviate is an open-source vector database that stores both objects and vectors, allowing for the combination of vector search with structured filtering with the fault tolerance and scalability of a cloud-native database​.",
+      "issues": []
+    },
+    {
+      "name": "langflow",
+      "url": "https://github.com/langflow-ai/langflow.git",
+      "status": "pass",
+      "score": 80,
+      "stars": 149615,
+      "forks": 9255,
+      "license": "MIT",
+      "days_since_update": 0,
+      "description": "Langflow is a powerful tool for building and deploying AI-powered agents and workflows.",
+      "issues": []
+    },
+    {
+      "name": "penpot",
+      "url": "https://github.com/penpot/penpot.git",
+      "status": "pass",
+      "score": 80,
+      "stars": 49640,
+      "forks": 3188,
+      "license": "MPL-2.0",
+      "days_since_update": 0,
+      "description": "Penpot: The open-source design tool for design and code collaboration",
+      "issues": []
+    },
+    {
+      "name": "open-pencil",
+      "url": "https://github.com/open-pencil/open-pencil.git",
+      "status": "pass",
+      "score": 60,
+      "stars": 5560,
+      "forks": 509,
+      "license": "MIT",
+      "days_since_update": 1,
+      "description": "AI-native design editor. Open-source Figma alternative.",
+      "issues": []
+    }
+  ],
+  "skipped": [
+    {
+      "name": "project",
+      "url": "https://github.com/rahlplx/project.git",
+      "status": "skip",
+      "score": 20,
+      "stars": 0,
+      "forks": 0,
+      "license": "NONE",
+      "days_since_update": 0,
+      "description": "",
+      "issues": [
+        "low_stars",
+        "no_license"
+      ]
+    },
+    {
+      "name": "gstack",
+      "url": "https://github.com/gstackio/gstack.git",
+      "status": "skip",
+      "reason": "api_unavailable",
+      "score": 0
+    },
+    {
+      "name": "gsd",
+      "url": "https://github.com/gsd-platform/gsd.git",
+      "status": "skip",
+      "reason": "api_unavailable",
+      "score": 0
+    },
+    {
+      "name": "superpowers",
+      "url": "https://github.com/superpowers/superpowers.git",
+      "status": "skip",
+      "reason": "api_unavailable",
+      "score": 0
+    },
+    {
+      "name": "fastmcp",
+      "url": "https://github.com/anthropics/fastmcp.git",
+      "status": "skip",
+      "reason": "api_unavailable",
+      "score": 0
+    },
+    {
+      "name": "autogen",
+      "url": "https://github.com/autogen-ai/autogen.git",
+      "status": "skip",
+      "reason": "api_unavailable",
+      "score": 0
+    },
+    {
+      "name": "dify",
+      "url": "https://github.com/dify/dify.git",
+      "status": "skip",
+      "reason": "api_unavailable",
+      "score": 0
+    }
+  ]
+}

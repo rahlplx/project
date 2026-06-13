@@ -1,0 +1,14 @@
+{
+  "name": "langchain",
+  "url": "https://github.com/langchain-ai/langchain.git",
+  "stars": 139196,
+  "license": "MIT",
+  "quality_score": 0,
+  "patterns": [],
+  "anti_patterns": [
+    "no-tests",
+    "no-readme",
+    "no-ci"
+  ],
+  "candidates": []
+}
