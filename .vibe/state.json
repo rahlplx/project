@@ -113,10 +113,15 @@
     "mcp-sdk-integration-shipped",
     "retro-mcp-sdk-captured",
     "learn-extracted-3-new-anti-patterns",
-    "evolution-v2.7.0"
+    "evolution-v2.7.0",
+    "telemetry-commit-shipped",
+    "harness-14-checks-passing",
+    "tools-discovered-validation-added",
+    "vibe-telemetry-cli-implemented",
+    "open-source-release-v2.3.0"
   ],
   "skills": {
-    "total": 50,
+    "total": 49,
     "categories": {
       "deploy": [
         "git-free-deploy",
@@ -189,8 +194,10 @@
     "mcpServer": true,
     "skillLoader": true,
     "toolsDiscovered": 243,
-    "testsPassing": 770,
-    "testSuites": 78
+    "testsPassing": 920,
+    "testSuites": 77,
+    "harnessChecks": 14,
+    "nodeTestCount": 148
   },
   "lifecycle": {
     "last_maintenance": "2026-06-14T07:48:23.191Z",
@@ -199,7 +206,7 @@
   },
   "telemetry": true,
   "created": "2026-06-13T12:00:00Z",
-  "updated": "2026-06-14T07:48:23.194Z",
+  "updated": "2026-06-14T07:50:00.000Z",
   "auto_pipeline": {
     "started": "2026-06-14T10:00:00Z",
     "goal": "Adopt 5-phase workflow: SCOPE→BUILD→VERIFY→SHIP→EVOLVE→done",
