@@ -2,73 +2,50 @@
 
 ## Purpose
 
-The `skills/` directory contains 45 legacy skill modules organized by category. Each skill is a self-contained Node.js module that an AI agent can load and invoke. These are the building blocks of the vibe-stack system.
+The `skills/` directory contains 50 agent skill modules organized by category. Each skill is a pair of files: an `index.js` with prompt instructions and a `SKILL.md` with documentation.
 
-## Directory Convention
+## Structure
 
+Each skill directory follows this convention:
 ```
-skills/
-  <category>/          # e.g., deploy, design, quality, workflow
-    <name>/            # kebab-case, e.g., git-free-deploy
-      index.js         # Required — exported module
-      index.test.js    # Required — Jest tests
-      README.md        # Optional — human docs
+skills/<category>/<skill-name>/
+├── index.js       — Agent prompt instructions (required)
+└── SKILL.md       — Skill documentation (required)
 ```
 
-## Skill Anatomy
+### index.js
+- Exports a `prompt` string that the agent injects into its system prompt
+- May export `config` with metadata (name, description, version)
+- Must use CommonJS (`module.exports`)
 
-Each skill exports either:
-- A **constructor function** (instantiated with `new`), or
-- A **plain object** with methods
+### SKILL.md
+- Describes what the skill does, when to use it, and how it works
+- Includes examples and cross-references
 
-```js
-// Constructor pattern
-class MySkill {
-  constructor() {
-    this.description = 'Does something useful';
-  }
-  run(input) { /* ... */ }
-}
-module.exports = MySkill;
+## Naming Conventions
 
-// Object pattern
-module.exports = {
-  description: 'Does something useful',
-  run(input) { /* ... */ },
-};
-```
+- Directory names: kebab-case
+- Category directories: single word (design, deploy, quality, etc.)
+- Test files: `*.test.js` alongside the skill or in `lib/`
 
-## How to Create a New Skill
+## Test Requirements
 
-1. Pick a category (deploy, design, quality, knowledge, etc.)
-2. Create `skills/<category>/<name>/index.js`
-3. Create `skills/<category>/<name>/index.test.js` with Jest tests
-4. Export a class or object with a `description` string property
-5. Verify with `npm test`
+Every skill must have a corresponding test file. Tests use either:
+- `node:test` — `const { describe, it } = require('node:test')`
+- Jest — global `describe`/`test`/`expect`
 
-Example minimal skill:
-```js
-// skills/deploy/hello-world/index.js
-class HelloWorld {
-  constructor() {
-    this.description = 'Prints hello world';
-  }
-  greet(name) {
-    return `Hello, ${name}!`;
-  }
-}
-module.exports = HelloWorld;
-```
+## Adding a New Skill
 
-## How Skills Are Loaded
+1. Create `skills/<category>/<skill-name>/`
+2. Write `index.js` with prompt + config
+3. Write `SKILL.md` with documentation
+4. Write `*.test.js` covering the skill's prompt output
+5. Run `npm test` to confirm all tests pass
 
-- `bin/skill-loader.js` scans `skills/*/*/index.js` and loads each module
-- Each loaded skill is registered in the ToolRegistry (`lib/tool-registry.js`)
-- `bin/vibe-stack.js` lists and invokes skills via CLI
-- `bin/mcp-server.js` exposes skills as MCP tools for AI agent integration
+## Cross-Reference
 
-## Cross-References
-
-- `bin/skill-loader.js` for load logic
-- `lib/tool-registry.js` for registration
-- `references/vibe-*` for skill categories
+- `.well-known/agent-skills/index.json` — all 50 skills indexed with SHA-256 digests
+- `lib/skill-files.js` — skill file discovery utility
+- `lib/check-originality.js` — Jaccard similarity check
+- `lib/lint-skills.js` — structural lint for skill files
+- `SKILL.md` — agent entry point

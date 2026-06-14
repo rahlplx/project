@@ -29,6 +29,7 @@ function loadAllSkills() {
           skills[`${cat}/${name}`] = entry;
           registry.register(`${cat}/${name}`, {
             category: cat,
+            isUsable: () => fs.existsSync(indexPath),
             description: instance.description || '',
             factory: () => instance,
             metadata: { mod },

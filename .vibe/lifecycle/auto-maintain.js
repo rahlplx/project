@@ -71,9 +71,7 @@ function runHarness(runTestSuite = true) {
     const gatesPath = path.join(PROJECT_ROOT, 'docs', 'gates.md');
     const gatesContent = fs.readFileSync(gatesPath, 'utf8');
     const requiredTransitions = [
-      'think -- plan', 'plan -- break', 'break -- build', 'build -- harness',
-      'harness -- review', 'review -- ship', 'ship -- retro', 'retro -- learn',
-      'learn -- evolve', 'evolve -- done'
+      'SCOPE → BUILD', 'BUILD → VERIFY', 'VERIFY → SHIP', 'SHIP → EVOLVE', 'EVOLVE → done'
     ];
     const hasAllTransitions = requiredTransitions.every(t => gatesContent.includes(t));
     results.push({
@@ -214,7 +212,7 @@ function runHarness(runTestSuite = true) {
     results.push({ check: 'node-test-suite', pass: true, data: { passCount: 0, failCount: 0, skipped: true } });
   } else {
     try {
-      const output = stripAnsi(execFileSync('node', ['--test', 'lib/security-scan.test.js', 'lib/security-scan.report.test.js', 'lib/phase-timing.test.js', 'lib/error-trends.test.js', 'lib/stuck-detector.test.js', 'lib/install-ide.test.js'], { cwd: PROJECT_ROOT, timeout: 120000, encoding: 'utf8' }));
+      const output = stripAnsi(execFileSync('node', ['--test', 'lib/security-scan.test.js', 'lib/security-scan.report.test.js', 'lib/phase-timing.test.js', 'lib/error-trends.test.js', 'lib/stuck-detector.test.js', 'lib/install-ide.test.js', 'lib/agents-md.test.js', 'lib/tool-registry.test.js', 'lib/lint-config.test.js'], { cwd: PROJECT_ROOT, timeout: 120000, encoding: 'utf8' }));
       const passed = output.match(/tests (\d+)/);
       const failed = output.match(/fail (\d+)/);
       const passCount = passed ? parseInt(passed[1]) : 0;
@@ -229,6 +227,21 @@ function runHarness(runTestSuite = true) {
       results.push({ check: 'node-test-suite', pass: false, error: e.message });
       console.log(`  [harness]  ✗ node-test-suite: ${e.message}`);
     }
+  }
+
+  // Check 13: ESLint lint check (warnings allowed, errors block)
+  try {
+    const eslintBin = path.join(PROJECT_ROOT, 'node_modules', 'eslint', 'bin', 'eslint.js');
+    const eslintOutput = stripAnsi(execFileSync(process.execPath, [eslintBin, 'lib/', 'bin/', '--no-eslintrc', '-c', '.eslintrc.js', '--format', 'json'], { cwd: PROJECT_ROOT, timeout: 30000, encoding: 'utf8' }));
+    const results_json = JSON.parse(eslintOutput);
+    const errorCount = results_json.reduce((sum, f) => sum + f.errorCount, 0);
+    const warningCount = results_json.reduce((sum, f) => sum + f.warningCount, 0);
+    const pass = errorCount === 0;
+    results.push({ check: 'eslint-lint-pass', pass, data: { errors: errorCount, warnings: warningCount } });
+    console.log(`  [harness]  ${pass ? '✓' : '✗'} eslint-lint-pass (${errorCount} errors, ${warningCount} warnings)`);
+  } catch (e) {
+    results.push({ check: 'eslint-lint-pass', pass: false, error: e.message });
+    console.log(`  [harness]  ✗ eslint-lint-pass: ${e.message}`);
   }
 
   return results;

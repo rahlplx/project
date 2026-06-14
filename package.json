@@ -58,7 +58,10 @@
         "security-scan\\.report\\.test\\.js",
         "phase-timing\\.test\\.js",
         "error-trends\\.test\\.js",
-        "stuck-detector\\.test\\.js"
+        "stuck-detector\\.test\\.js",
+        "agents-md\\.test\\.js",
+        "tool-registry\\.test\\.js",
+        "lint-config\\.test\\.js"
       ]
   },
   "devDependencies": {

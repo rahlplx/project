@@ -141,11 +141,58 @@ Export project settings as a typed schema that agents can read programmatically:
 
 ---
 
+## Workflow Evolution — 5-Phase Adoption
+
+Based on a comprehensive risk analysis against industry research (AI-DLC, Agentic Dev Playbook, ABIvan-Tech workflows, ShepAlderson/copilot-orchestra), the original 11-phase pipeline (think→plan→break→build→harness→review→ship→retro→learn→evolve→done) is being streamlined into a 5-phase model:
+
+### New Phases
+
+| Phase | Merges From | Rationale |
+|-------|-------------|-----------|
+| **SCOPE** | think + plan + break | All pre-work in one phase with a structured template and readiness gate |
+| **BUILD** | build | Unchanged — TDD execution per atomic slice |
+| **VERIFY** | harness + review | Combined into single fresh-context independent agent invocation with 7 structural scans |
+| **SHIP** | ship | Unchanged — push, handoff, re-scope |
+| **EVOLVE** | retro + learn + evolve | Single SESSION-EVAL.json output instead of 3 separate phases |
+
+### Key Changes
+
+1. **Readiness gate before BUILD**: SCOPE.md must have all required fields filled; if any are BLOCKED/empty, the gate prevents advancement (AI-DLC backpressure pattern)
+2. **Independent VERIFY agent**: Separate agent invocation with `/clear` between BUILD and VERIFY — fresh context reads only SCOPE.md + build output (ShepAlderson/copilot-orchestra pattern)
+3. **Plan Delta for scope changes**: If scope changes mid-BUILD, agent writes SCOPE-DELTA.md with "what changed, why, impact" and re-enters readiness gate (ABIvan-Tech pattern)
+4. **Single EVOLVE output**: SESSION-EVAL.json replaces retro.md + patterns/ + anti-patterns/ + evolution.json updates — machine-readable, AI-parsable
+
+### Migration Path
+
+The 5-phase model is adopted immediately for new work. The 11-phase state machine entry in `.vibe/state.json` is replaced. Existing completed milestones remain unchanged.
+
+---
+
 ## Open Questions
 
 1. Should async/sync parity use Promises or callbacks? (Proposal: Promises, matches Node ecosystem)
 2. Should the Tool Registry auto-discover skills from the filesystem or require explicit registration? (Proposal: Explicit — simpler, more reliable)
 3. Should CI gates run pre-commit or pre-push? (Proposal: Both — quick checks pre-commit, full suite pre-push)
+
+---
+
+## Review Feedback (from /vibe:plan)
+
+| Perspective | Key Input | Incorporated |
+|-------------|-----------|-------------|
+| **CEO** | Narrowest wedge = AGENTS.md per section (zero code, proves concept) | Priority order adjusted: P2 → P1 → P3 → P4 → P5 |
+| **CEO** | 10-star version = agent auto-discovers + explains why tools are unusable | Added to use cases: "why is tool X unavailable?" |
+| **Eng** | isUsable() needs 3s timeout to prevent network hangs | Added to Tool Registry spec |
+| **Eng** | Registry should return BOTH usable AND unusable tools with reasons | Added getUnusable() method |
+| **Eng** | Test matrix needs 4 layers: unit, integration, existence, config | Added to test plan |
+| **Out of scope** | Async/sync parity, settings schema, monorepo split, visual builder | Confirmed as deferred |
+
+### Implementation Order (This Cycle)
+1. **AGENTS.md per section** — 4 files, zero code, proves concept
+2. **Tool Registry** — highest impact, lowest code cost
+3. **CI Quality Gates** — ESLint + pre-commit + harness update
+
+See `plans/plan-design-doc-implementation.md` for full breakdown.
 
 ---
 

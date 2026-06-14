@@ -1,8 +1,8 @@
 {
   "project": "Vibe-Stack Curated Collection",
-  "version": "2.0.0",
-  "phase": "done",
-  "goal": "6-track parallel enhancement completed",
+  "version": "2.1.0",
+  "phase": "ship",
+  "goal": "Implement design doc enhancement: AGENTS.md + Tool Registry + CI Gates",
   "step": 0,
   "mode": "auto",
   "agent": "opencode",
@@ -95,7 +95,21 @@
     "harness-12-checks-passing",
     "retro-d-grade-fixes-captured",
     "learnings-saved-d-grade-fixes",
-    "evolution-v2.5.1"
+    "evolution-v2.5.1",
+    "workflow-evolution-plan-created",
+    "design-doc-workflow-section-added",
+    "gates-rewritten-5-phase",
+    "scope-md-template-created",
+    "verify-md-template-created",
+    "scope-delta-md-template-created",
+    "state-machine-updated-to-5-phase",
+    "retro-workflow-evolution-captured",
+    "2-new-patterns-extracted",
+    "1-new-anti-pattern-extracted",
+    "3-proposed-rules-promoted-to-active",
+    "2-new-proposed-rules-added",
+    "evolution-v2.6.0",
+    "index-md-rebuilt-15-patterns-8-anti-9-retros"
   ],
   "skills": {
     "total": 50,
@@ -182,18 +196,13 @@
   "created": "2026-06-13T12:00:00Z",
   "updated": "2026-06-14T10:00:00.000Z",
   "auto_pipeline": {
-    "started": "2026-06-14T02:30:00Z",
-    "goal": "Agency-agents merge Phase 3 — skill linter",
+    "started": "2026-06-14T10:00:00Z",
+    "goal": "Adopt 5-phase workflow: SCOPE→BUILD→VERIFY→SHIP→EVOLVE→done",
     "state_machine": [
-      "think",
-      "plan",
-      "break",
+      "scope",
       "build",
-      "harness",
-      "review",
+      "verify",
       "ship",
-      "retro",
-      "learn",
       "evolve",
       "done"
     ]

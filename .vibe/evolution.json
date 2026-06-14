@@ -1,7 +1,7 @@
 {
-  "version": "2.5.0",
+  "version": "2.6.0",
   "last_evolution": "2026-06-14",
-  "evolution_count": 6,
+  "evolution_count": 7,
   "rules": {
     "agent-native-catalog": {
       "fires": 35,
@@ -128,6 +128,51 @@
       "last_updated": "2026-06-14",
       "status": "active",
       "note": "Declare test_convention: node:test before subagent dispatch. Prevented mixed imports during 6-track integration. All new tests use node:test imports."
+    },
+    "writeIndex-arg-validation": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Validated by D-grade fix session. writeIndex('.', '.well-known/agent-skills/index.json') corrupted index. Arg validation now prevents recurrence."
+    },
+    "quality-score-persist-check": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Validated by D-grade fix session. computeAllToolScores() returned correct values but didn't persist. Explicit writeQualityScores() call required."
+    },
+    "yaml-edit-use-tool-not-string": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Validated by D-grade fix session. Inline YAML string construction caused escape errors. Edit tool for YAML blocks prevents this."
+    },
+    "deep-research-before-design": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "4 community patterns (AI-DLC, copilot-orchestra, ABIvan-Tech, Agentic Dev Playbook) validated 5-phase workflow design before writing."
+    },
+    "stress-tested-plan-structure": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "7-section plan structure (CEO, Eng, Design, Risk, Tasks, AC, Decisions) produced comprehensive, low-risk plan."
     }
   },
   "harness": {
@@ -214,6 +259,20 @@
       "false_positive": 0,
       "quality_score": 1,
       "note": "node:test runner for 6 excluded files. 132 tests, 21 suites, all pass."
+    },
+    "state-machine-valid": {
+      "runs": 0,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "note": "Validates state.json state_machine has exactly 6 entries matching 5-phase model: scope, build, verify, ship, evolve, done."
+    },
+    "test-suite-always-run": {
+      "runs": 0,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "note": "Always run test suite on SHIP gate regardless of code vs docs changes. Prevents zero-regression assumption gaps."
     }
   },
   "proposed_rules": [
@@ -275,11 +334,11 @@
   },
   "proposed": [
     {
-      "id": "writeIndex-arg-validation",
+      "id": "independent-verify-agent",
       "status": "proposed",
-      "description": "writeIndex() must validate second arg is an object, not a string",
-      "rationale": "Prevents silent index.json corruption from wrong arg order",
-      "trigger": "on writeIndex call",
+      "description": "VERIFY phase must use separate agent invocation with /clear and fresh context",
+      "rationale": "Independent agent catches blind spots that build agent misses (community pattern from ShepAlderson/copilot-orchestra)",
+      "trigger": "at BUILD→VERIFY transition",
       "severity": "error",
       "proposed_date": "2026-06-14",
       "fires": 0,
@@ -287,24 +346,12 @@
       "false_positive": 0
     },
     {
-      "id": "quality-score-persist-check",
+      "id": "workflow-5-phase-gate",
       "status": "proposed",
-      "description": "After computeAllToolScores, always call writeQualityScores separately",
-      "rationale": "computeAllToolScores does not persist; callers must explicitly write",
-      "trigger": "after computeAllToolScores in any script or harness",
+      "description": "Harness check: state.json state_machine must be exactly [scope, build, verify, ship, evolve, done]",
+      "rationale": "Ensures new 5-phase workflow is enforced; prevents drift back to 11-phase",
+      "trigger": "on state.json write and at harness phase",
       "severity": "warning",
-      "proposed_date": "2026-06-14",
-      "fires": 0,
-      "helpful": 0,
-      "false_positive": 0
-    },
-    {
-      "id": "yaml-edit-use-tool-not-string",
-      "status": "proposed",
-      "description": "Use edit tool for YAML block replacements, never inline string construction",
-      "rationale": "Inline string construction causes escape sequence errors with YAML block style",
-      "trigger": "when editing tools.yaml",
-      "severity": "info",
       "proposed_date": "2026-06-14",
       "fires": 0,
       "helpful": 0,
