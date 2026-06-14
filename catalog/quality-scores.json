@@ -32,16 +32,16 @@
     ]
   },
   "summary": {
-    "mean": 61.26,
-    "median": 61,
-    "min": 44,
-    "max": 77,
-    "stddev": 7.03,
+    "mean": 63.66,
+    "median": 63,
+    "min": 52,
+    "max": 78,
+    "stddev": 6.62,
     "distribution": {
       "A": 0,
-      "B": 1,
-      "C": 31,
-      "D": 3
+      "B": 3,
+      "C": 32,
+      "D": 0
     }
   },
   "tools": [
@@ -989,7 +989,7 @@
       "name": "nit",
       "scores": {
         "maintenance": {
-          "score": 15,
+          "score": 30,
           "max": 30,
           "details": {
             "license": {
@@ -997,7 +997,7 @@
               "max": 10
             },
             "in_skills": {
-              "score": 0,
+              "score": 10,
               "max": 10
             },
             "description_quality": {
@@ -1005,34 +1005,34 @@
               "max": 5
             },
             "skill_path": {
-              "score": 0,
+              "score": 5,
               "max": 5
             }
           }
         },
         "docs": {
-          "score": 19,
+          "score": 25,
           "max": 25,
           "details": {
             "what_it_does": {
-              "score": 7,
+              "score": 10,
               "max": 10,
-              "length": 179
+              "length": 264
             },
             "how_agent_uses": {
-              "score": 7,
+              "score": 10,
               "max": 10,
-              "length": 162
+              "length": 231
             },
             "description": {
               "score": 5,
               "max": 5,
-              "length": 126
+              "length": 130
             }
           }
         },
         "community": {
-          "score": 0,
+          "score": 5,
           "max": 20,
           "details": {
             "star_count": {
@@ -1041,7 +1041,7 @@
               "stars": 0
             },
             "in_skills": {
-              "score": 0,
+              "score": 5,
               "max": 5
             }
           }
@@ -1058,25 +1058,25 @@
           "score": 10,
           "max": 10,
           "details": {
-            "days_since_verified": 13
+            "days_since_verified": 0
           }
         }
       },
-      "total_score": 49,
-      "grade": "D",
+      "total_score": 75,
+      "grade": "B",
       "date_computed": "2026-06-14",
       "evidence": {
-        "verified_by": "community (growing)",
-        "verified_date": "2026-06-01T00:00:00.000Z",
-        "days_since_verified": 13,
+        "verified_by": "community (new)",
+        "verified_date": "2026-06-14T00:00:00.000Z",
+        "days_since_verified": 0,
         "tier": 4,
         "star_count": null,
         "license": "MIT",
-        "in_skills": false,
-        "has_skill_path": false,
-        "what_it_does_length": 179,
-        "how_agent_uses_length": 162,
-        "description_length": 126
+        "in_skills": true,
+        "has_skill_path": true,
+        "what_it_does_length": 264,
+        "how_agent_uses_length": 231,
+        "description_length": 130
       }
     },
     {
@@ -1647,7 +1647,7 @@
       "name": "Railway",
       "scores": {
         "maintenance": {
-          "score": 10,
+          "score": 25,
           "max": 30,
           "details": {
             "license": {
@@ -1655,7 +1655,7 @@
               "max": 10
             },
             "in_skills": {
-              "score": 0,
+              "score": 10,
               "max": 10
             },
             "description_quality": {
@@ -1663,19 +1663,19 @@
               "max": 5
             },
             "skill_path": {
-              "score": 0,
+              "score": 5,
               "max": 5
             }
           }
         },
         "docs": {
-          "score": 19,
+          "score": 22,
           "max": 25,
           "details": {
             "what_it_does": {
-              "score": 7,
+              "score": 10,
               "max": 10,
-              "length": 171
+              "length": 256
             },
             "how_agent_uses": {
               "score": 7,
@@ -1690,49 +1690,49 @@
           }
         },
         "community": {
-          "score": 0,
+          "score": 8,
           "max": 20,
           "details": {
             "star_count": {
-              "score": 0,
+              "score": 3,
               "max": 15,
-              "stars": 0
+              "stars": 545
             },
             "in_skills": {
-              "score": 0,
+              "score": 5,
               "max": 5
             }
           }
         },
         "trustworthiness": {
-          "score": 5,
+          "score": 8,
           "max": 15,
           "details": {
-            "tier": 4,
-            "tier_score": 5
+            "tier": 3,
+            "tier_score": 8
           }
         },
         "freshness": {
           "score": 10,
           "max": 10,
           "details": {
-            "days_since_verified": 13
+            "days_since_verified": 0
           }
         }
       },
-      "total_score": 44,
-      "grade": "D",
+      "total_score": 73,
+      "grade": "C",
       "date_computed": "2026-06-14",
       "evidence": {
-        "verified_by": "community",
-        "verified_date": "2026-06-01T00:00:00.000Z",
-        "days_since_verified": 13,
-        "tier": 4,
-        "star_count": null,
+        "verified_by": "community (545+ stars)",
+        "verified_date": "2026-06-14T00:00:00.000Z",
+        "days_since_verified": 0,
+        "tier": 3,
+        "star_count": 545,
         "license": "Proprietary (free tier)",
-        "in_skills": false,
-        "has_skill_path": false,
-        "what_it_does_length": 171,
+        "in_skills": true,
+        "has_skill_path": true,
+        "what_it_does_length": 256,
         "how_agent_uses_length": 175,
         "description_length": 136
       }
@@ -2587,7 +2587,7 @@
       "name": "Nexus",
       "scores": {
         "maintenance": {
-          "score": 15,
+          "score": 30,
           "max": 30,
           "details": {
             "license": {
@@ -2595,7 +2595,7 @@
               "max": 10
             },
             "in_skills": {
-              "score": 0,
+              "score": 10,
               "max": 10
             },
             "description_quality": {
@@ -2603,19 +2603,19 @@
               "max": 5
             },
             "skill_path": {
-              "score": 0,
+              "score": 5,
               "max": 5
             }
           }
         },
         "docs": {
-          "score": 19,
+          "score": 22,
           "max": 25,
           "details": {
             "what_it_does": {
-              "score": 7,
+              "score": 10,
               "max": 10,
-              "length": 189
+              "length": 239
             },
             "how_agent_uses": {
               "score": 7,
@@ -2630,49 +2630,49 @@
           }
         },
         "community": {
-          "score": 0,
+          "score": 8,
           "max": 20,
           "details": {
             "star_count": {
-              "score": 0,
+              "score": 3,
               "max": 15,
-              "stars": 0
+              "stars": 4
             },
             "in_skills": {
-              "score": 0,
+              "score": 5,
               "max": 5
             }
           }
         },
         "trustworthiness": {
-          "score": 5,
+          "score": 8,
           "max": 15,
           "details": {
-            "tier": 4,
-            "tier_score": 5
+            "tier": 3,
+            "tier_score": 8
           }
         },
         "freshness": {
           "score": 10,
           "max": 10,
           "details": {
-            "days_since_verified": 13
+            "days_since_verified": 0
           }
         }
       },
-      "total_score": 49,
-      "grade": "D",
+      "total_score": 78,
+      "grade": "B",
       "date_computed": "2026-06-14",
       "evidence": {
-        "verified_by": "community",
-        "verified_date": "2026-06-01T00:00:00.000Z",
-        "days_since_verified": 13,
-        "tier": 4,
-        "star_count": null,
+        "verified_by": "community (4+ stars)",
+        "verified_date": "2026-06-14T00:00:00.000Z",
+        "days_since_verified": 0,
+        "tier": 3,
+        "star_count": 4,
         "license": "MIT",
-        "in_skills": false,
-        "has_skill_path": false,
-        "what_it_does_length": 189,
+        "in_skills": true,
+        "has_skill_path": true,
+        "what_it_does_length": 239,
         "how_agent_uses_length": 193,
         "description_length": 126
       }

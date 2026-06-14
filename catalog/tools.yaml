@@ -239,21 +239,24 @@ tools:
   - name: nit
     description: >
       AI quality agent that auto-detects your stack and generates tests.
-      Covers unit, integration, and E2E. Self-healing selectors.
+      Covers unit, integration, and E2E with self-healing selectors.
     repo_url: https://github.com/getnit-dev/nit
     category: testing-qa
     license: MIT
-    verified_by: community (growing)
-    verified_date: 2026-06-01
+    verified_by: community (new)
+    verified_date: 2026-06-14
     what_it_does: >
-      Looks at your project, figures out what stack you're using (React,
-      Python, Go, whatever), and writes tests automatically. If a button
-      selector changes, nit fixes the test itself.
+      nit analyzes your project structure to detect the tech stack, then
+      automatically generates unit, integration, and end-to-end tests. It
+      handles self-healing selectors that repair themselves when UI elements
+      change, and reports coverage gaps for untested functions.
     how_agent_uses: >
-      Run nit on the project. It auto-detects the stack and generates tests.
-      Report: "nit found 3 untested functions and wrote tests for them.
-      100% coverage achieved."
-    in_skills: false
+      Run nit on the project directory. It auto-detects the stack (React,
+      Python, Go, etc.), generates a comprehensive test suite, and reports
+      coverage metrics. The self-healing selectors ensure tests stay valid
+      across frontend changes.
+    in_skills: true
+    skill_path: skills/testing-qa/nit/
 
   - name: vibe-testing
     description: >
@@ -373,17 +376,19 @@ tools:
     repo_url: https://railway.com
     category: deployment
     license: Proprietary (free tier)
-    verified_by: community
-    verified_date: 2026-06-01
+    verified_by: community (545+ stars)
+    verified_date: 2026-06-14
     what_it_does: >
       Takes your code and puts it on the internet with a real URL in under
       60 seconds. Handles databases, domains, SSL. Pay only for what you use.
-      Free tier for hobby projects.
+      Free tier for hobby projects. The Railway CLI has 545+ GitHub stars and
+      is actively maintained with 320+ releases.
     how_agent_uses: >
       Install Railway CLI, deploy the project. Return: "Your app is live at
       https://your-project.railway.app. Postgres is connected. I also set up
       a custom domain if you have one."
-    in_skills: false
+    in_skills: true
+    skill_path: skills/deployment/railway/
 
   - name: Coolify
     description: >
@@ -564,17 +569,19 @@ tools:
     repo_url: https://github.com/sontianye/nexus
     category: orchestration
     license: MIT
-    verified_by: community
-    verified_date: 2026-06-01
+    verified_by: community (4+ stars)
+    verified_date: 2026-06-14
     what_it_does: >
       Lets you orchestrate multiple AI agents in different ways: a fixed
       step-by-step graph, a dynamic router that picks the right agent, or
-      adaptive matching. Supports MCP tools out of the box.
+      adaptive matching. Supports MCP tools out of the box. Built on LiteLLM
+      for 100+ provider compatibility.
     how_agent_uses: >
       Install nexus, define agent roles and orchestration mode. For vibe
       coders: "I need a research agent that finds information, then a
       writing agent that creates content" — Nexus coordinates them.
-    in_skills: false
+    in_skills: true
+    skill_path: skills/orchestration/nexus/
 
   - name: Mastra
     description: >

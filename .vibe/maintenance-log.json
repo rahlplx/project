@@ -1212,8 +1212,446 @@
           "reason": "Escape dots in Jest testPathIgnorePatterns and modulePathIgnorePatterns — they use regex, not glob. Bug hid 2 test files (10 tests)."
         }
       ]
+    },
+    {
+      "date": "2026-06-14T01:32:07.046Z",
+      "run_number": 15,
+      "harness": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 7268
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": false,
+          "error": "Command failed: npm test 2>&1"
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 50,
+            "worst": 19.3,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 50,
+            "clean": 44,
+            "issues": 6
+          }
+        },
+        {
+          "check": "index-json-integrity",
+          "pass": false,
+          "data": {
+            "existing": 47,
+            "onDisk": 50,
+            "missing": [
+              "nexus",
+              "nit",
+              "railway"
+            ],
+            "extra": []
+          }
+        },
+        {
+          "check": "quality-scores",
+          "pass": false,
+          "data": {
+            "toolCount": 35,
+            "dCount": 3,
+            "summary": {
+              "mean": 61.26,
+              "median": 61,
+              "min": 44,
+              "max": 77,
+              "stddev": 7.03,
+              "distribution": {
+                "A": 0,
+                "B": 1,
+                "C": 31,
+                "D": 3
+              }
+            }
+          }
+        },
+        {
+          "check": "security-scan",
+          "pass": true,
+          "data": {
+            "critical": 0,
+            "skillsScanned": 50,
+            "totalFindings": 8
+          }
+        },
+        {
+          "check": "spec-gates",
+          "pass": true,
+          "data": {
+            "gates": 14
+          }
+        },
+        {
+          "check": "node-test-suite",
+          "pass": false,
+          "error": "Command failed: node --test lib/security-scan.test.js lib/security-scan.report.test.js lib/phase-timing.test.js lib/error-trends.test.js lib/stuck-detector.test.js lib/install-ide.test.js"
+        }
+      ],
+      "retro": {
+        "timestamp": "2026-06-14T01:32:07.043Z",
+        "assessment": "degraded",
+        "harness_summary": {
+          "total": 12,
+          "passed": 8,
+          "failed": 4
+        },
+        "telemetry": {
+          "commits_since_last": 10,
+          "total_sessions": 0
+        },
+        "notes": "Harness failed: test-suite, index-json-integrity, quality-scores, node-test-suite"
+      },
+      "learn": {
+        "timestamp": "2026-06-14T01:32:07.045Z",
+        "anti_pattern_count": 6,
+        "pattern_count": 11,
+        "low_quality_rules": []
+      },
+      "evolve_proposals": [
+        {
+          "action": "pending-proposal",
+          "rule": "use-handoff-at-transitions",
+          "reason": "Every phase transition must produce a handoff.md using docs/handoffs/ templates. Prevents context loss between layers."
+        }
+      ]
+    },
+    {
+      "date": "2026-06-14T01:33:20.705Z",
+      "run_number": 16,
+      "harness": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 7268
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": false,
+          "error": "Command failed: npm test 2>&1"
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 50,
+            "worst": 19.3,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 50,
+            "clean": 44,
+            "issues": 6
+          }
+        },
+        {
+          "check": "index-json-integrity",
+          "pass": false,
+          "error": "Cannot read properties of undefined (reading 'map')"
+        },
+        {
+          "check": "quality-scores",
+          "pass": true,
+          "data": {
+            "toolCount": 35,
+            "dCount": 0,
+            "summary": {
+              "mean": 63.66,
+              "median": 63,
+              "min": 52,
+              "max": 78,
+              "stddev": 6.62,
+              "distribution": {
+                "A": 0,
+                "B": 3,
+                "C": 32,
+                "D": 0
+              }
+            }
+          }
+        },
+        {
+          "check": "security-scan",
+          "pass": true,
+          "data": {
+            "critical": 0,
+            "skillsScanned": 50,
+            "totalFindings": 8
+          }
+        },
+        {
+          "check": "spec-gates",
+          "pass": true,
+          "data": {
+            "gates": 14
+          }
+        },
+        {
+          "check": "node-test-suite",
+          "pass": false,
+          "error": "Command failed: node --test lib/security-scan.test.js lib/security-scan.report.test.js lib/phase-timing.test.js lib/error-trends.test.js lib/stuck-detector.test.js lib/install-ide.test.js"
+        }
+      ],
+      "retro": {
+        "timestamp": "2026-06-14T01:33:20.702Z",
+        "assessment": "degraded",
+        "harness_summary": {
+          "total": 12,
+          "passed": 9,
+          "failed": 3
+        },
+        "telemetry": {
+          "commits_since_last": 10,
+          "total_sessions": 0
+        },
+        "notes": "Harness failed: test-suite, index-json-integrity, node-test-suite"
+      },
+      "learn": {
+        "timestamp": "2026-06-14T01:33:20.704Z",
+        "anti_pattern_count": 6,
+        "pattern_count": 11,
+        "low_quality_rules": []
+      },
+      "evolve_proposals": [
+        {
+          "action": "pending-proposal",
+          "rule": "use-handoff-at-transitions",
+          "reason": "Every phase transition must produce a handoff.md using docs/handoffs/ templates. Prevents context loss between layers."
+        }
+      ]
+    },
+    {
+      "date": "2026-06-14T01:34:54.149Z",
+      "run_number": 17,
+      "harness": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 7268
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 638,
+            "failCount": 0,
+            "suiteCount": 57
+          }
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 50,
+            "worst": 19.3,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 50,
+            "clean": 44,
+            "issues": 6
+          }
+        },
+        {
+          "check": "index-json-integrity",
+          "pass": true,
+          "data": {
+            "existing": 50,
+            "onDisk": 50,
+            "missing": [],
+            "extra": []
+          }
+        },
+        {
+          "check": "quality-scores",
+          "pass": true,
+          "data": {
+            "toolCount": 35,
+            "dCount": 0,
+            "summary": {
+              "mean": 63.66,
+              "median": 63,
+              "min": 52,
+              "max": 78,
+              "stddev": 6.62,
+              "distribution": {
+                "A": 0,
+                "B": 3,
+                "C": 32,
+                "D": 0
+              }
+            }
+          }
+        },
+        {
+          "check": "security-scan",
+          "pass": true,
+          "data": {
+            "critical": 0,
+            "skillsScanned": 50,
+            "totalFindings": 8
+          }
+        },
+        {
+          "check": "spec-gates",
+          "pass": true,
+          "data": {
+            "gates": 14
+          }
+        },
+        {
+          "check": "node-test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 132,
+            "failCount": 0
+          }
+        }
+      ],
+      "retro": {
+        "timestamp": "2026-06-14T01:34:54.147Z",
+        "assessment": "healthy",
+        "harness_summary": {
+          "total": 12,
+          "passed": 12,
+          "failed": 0
+        },
+        "telemetry": {
+          "commits_since_last": 10,
+          "total_sessions": 0
+        },
+        "notes": "All checks passed."
+      },
+      "learn": {
+        "timestamp": "2026-06-14T01:34:54.148Z",
+        "anti_pattern_count": 6,
+        "pattern_count": 11,
+        "low_quality_rules": []
+      },
+      "evolve_proposals": [
+        {
+          "action": "pending-proposal",
+          "rule": "use-handoff-at-transitions",
+          "reason": "Every phase transition must produce a handoff.md using docs/handoffs/ templates. Prevents context loss between layers."
+        }
+      ]
     }
   ],
   "created": "2026-06-13",
-  "updated": "2026-06-14T00:57:58.887Z"
+  "updated": "2026-06-14T01:34:54.150Z"
 }

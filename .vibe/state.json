@@ -88,10 +88,17 @@
     "commit-shipped",
     "retro-six-track-captured",
     "learnings-saved-six-track",
-    "evolution-2.5.0"
+    "evolution-2.5.0",
+    "d-grade-fixes-nit-railway-nexus",
+    "quality-scores-regen-B3-C32-D0",
+    "index-json-rebuild-50-entries",
+    "harness-12-checks-passing",
+    "retro-d-grade-fixes-captured",
+    "learnings-saved-d-grade-fixes",
+    "evolution-v2.5.1"
   ],
   "skills": {
-    "total": 47,
+    "total": 50,
     "categories": {
       "deploy": [
         "git-free-deploy",
@@ -164,16 +171,16 @@
     "mcpServer": true,
     "skillLoader": true,
     "toolsDiscovered": 243,
-    "testsPassing": 765,
+    "testsPassing": 770,
     "testSuites": 78
   },
   "lifecycle": {
-    "last_maintenance": "2026-06-14T05:20:00.000Z",
-    "maintenance_count": 15,
+    "last_maintenance": "2026-06-14T01:34:54.149Z",
+    "maintenance_count": 17,
     "interaction_count": 0
   },
   "created": "2026-06-13T12:00:00Z",
-  "updated": "2026-06-14T05:20:00.000Z",
+  "updated": "2026-06-14T10:00:00.000Z",
   "auto_pipeline": {
     "started": "2026-06-14T02:30:00Z",
     "goal": "Agency-agents merge Phase 3 — skill linter",

@@ -272,5 +272,44 @@
       "retired_at": "2026-06-14",
       "reason": "Never implemented. 0 fires. Replaced by test-for-every-skill + regex-in-jest-config."
     }
-  }
+  },
+  "proposed": [
+    {
+      "id": "writeIndex-arg-validation",
+      "status": "proposed",
+      "description": "writeIndex() must validate second arg is an object, not a string",
+      "rationale": "Prevents silent index.json corruption from wrong arg order",
+      "trigger": "on writeIndex call",
+      "severity": "error",
+      "proposed_date": "2026-06-14",
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0
+    },
+    {
+      "id": "quality-score-persist-check",
+      "status": "proposed",
+      "description": "After computeAllToolScores, always call writeQualityScores separately",
+      "rationale": "computeAllToolScores does not persist; callers must explicitly write",
+      "trigger": "after computeAllToolScores in any script or harness",
+      "severity": "warning",
+      "proposed_date": "2026-06-14",
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0
+    },
+    {
+      "id": "yaml-edit-use-tool-not-string",
+      "status": "proposed",
+      "description": "Use edit tool for YAML block replacements, never inline string construction",
+      "rationale": "Inline string construction causes escape sequence errors with YAML block style",
+      "trigger": "when editing tools.yaml",
+      "severity": "info",
+      "proposed_date": "2026-06-14",
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0
+    }
+  ],
+  "updated": "2026-06-14"
 }
