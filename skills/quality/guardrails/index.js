@@ -5,6 +5,7 @@ class Guardrails {
     this.name = 'guardrails';
     this.version = '1.0.0';
     this.description = 'Safety confirmations for destructive actions — prevents accidents';
+    this.config = config;
   }
 
   check(action, context = {}) {
@@ -86,6 +87,42 @@ class Guardrails {
         pattern: /overwrite|replace/i,
         title: 'Overwrite Confirmation',
         message: 'This will overwrite existing files or data.'
+      },
+      {
+        id: 'G09', autoBlock: false, required: true,
+        pattern: /spec\s+file/i,
+        title: 'Spec File Operation',
+        message: 'This operates on a spec file. Confirm the spec is backed up and changes are intentional.'
+      },
+      {
+        id: 'G10', autoBlock: false, required: true,
+        pattern: /acceptance.criteri/i,
+        title: 'Acceptance Criteria Check',
+        message: 'This affects acceptance criteria. Verify criteria still reflect stakeholder intent.'
+      },
+      {
+        id: 'G11', autoBlock: true, required: true,
+        pattern: /decompos|break.?down/i,
+        title: 'Decomposition Gate',
+        message: 'Decomposition changes task structure. This is auto-blocked; review the plan first.'
+      },
+      {
+        id: 'G12', autoBlock: false, required: false,
+        pattern: /drift|mismatch/i,
+        title: 'Spec Drift Detection',
+        message: 'Spec drift detected between versions. Review diffs before proceeding.'
+      },
+      {
+        id: 'G13', autoBlock: true, required: true,
+        pattern: /override.?spec|spec.?override/i,
+        title: 'Spec Override',
+        message: 'Overriding spec definitions is auto-blocked. This can break traceability.'
+      },
+      {
+        id: 'G14', autoBlock: false, required: true,
+        pattern: /milestone.?spec|check.?milestone|milestone.?check/i,
+        title: 'Milestone Spec Check',
+        message: 'This checks milestone against spec. Confirm milestone aligns with current spec.'
       }
     ];
   }

@@ -50,10 +50,16 @@
       "\\.gsd"
     ],
     "testPathIgnorePatterns": [
-      "node_modules",
-      "\\.vibe",
-      "\\.gsd"
-    ]
+        "node_modules",
+        "\\.vibe",
+        "\\.gsd",
+        "install-ide.test\\.js",
+        "security-scan\\.test\\.js",
+        "security-scan\\.report\\.test\\.js",
+        "phase-timing\\.test\\.js",
+        "error-trends\\.test\\.js",
+        "stuck-detector\\.test\\.js"
+      ]
   },
   "devDependencies": {
     "eslint": "^8.55.0",

@@ -1,9 +1,9 @@
 {
   "project": "Vibe-Stack Curated Collection",
   "version": "2.0.0",
-  "phase": "done",
-  "goal": "Agency-agents merge Phase 2 — originality check (Jaccard similarity)",
-  "step": 10,
+  "phase": "build",
+  "goal": "7-phase enhancement: all 6 tracks",
+  "step": 1,
   "mode": "auto",
   "agent": "opencode",
   "stack": {
@@ -152,14 +152,14 @@
     "testSuites": 50
   },
   "lifecycle": {
-    "last_maintenance": "2026-06-13T23:40:34.815Z",
-    "maintenance_count": 13,
+    "last_maintenance": "2026-06-14T00:57:58.885Z",
+    "maintenance_count": 14,
     "interaction_count": 0
   },
   "created": "2026-06-13T12:00:00Z",
-  "updated": "2026-06-13T23:40:34.817Z",
+  "updated": "2026-06-14T00:57:58.888Z",
   "auto_pipeline": {
-    "started": "2026-06-14T02:30:00.000Z",
+    "started": "2026-06-14T02:30:00Z",
     "goal": "Agency-agents merge Phase 3 — skill linter",
     "state_machine": [
       "think",

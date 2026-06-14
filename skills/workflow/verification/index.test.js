@@ -90,4 +90,48 @@ describe('Verification', () => {
     expect(r.missingItems[1].severity).toBe('critical');
     expect(r.verdict).toBe('FAIL');
   });
+
+  it('should verify acceptance criteria', () => {
+    const s = new Verification();
+    const spec = {
+      features: [
+        { name: 'login', acceptanceCriteria: ['email', 'token'] }
+      ]
+    };
+    const r = s.verifyAcceptanceCriteria(spec, 'function login() { return email + token; }');
+    expect(r.total).toBe(2);
+    expect(r.passed).toBe(2);
+  });
+
+  it('should verify against milestone', () => {
+    const s = new Verification();
+    const milestone = {
+      name: 'Sprint 1',
+      tasks: [
+        { featureId: 'FEAT-001', featureName: 'login', type: 'GREEN' },
+        { featureId: 'FEAT-002', featureName: 'logout', type: 'GREEN' }
+      ]
+    };
+    const r = s.verifyAgainstMilestone(milestone, 'function login() {}');
+    expect(r.milestone).toBe('Sprint 1');
+    expect(r.total).toBe(2);
+    expect(r.passed).toBeGreaterThanOrEqual(1);
+  });
+
+  it('should generate spec drift report', () => {
+    const s = new Verification();
+    const specA = { title: 'App', features: [{ name: 'login' }, { name: 'dashboard' }] };
+    const specB = { title: 'App', features: [{ name: 'login' }, { name: 'admin' }] };
+    const r = s.generateSpecDriftReport(specA, specB);
+    expect(r.drifted).toBe(true);
+    expect(r.added).toContain('admin');
+    expect(r.removed).toContain('dashboard');
+  });
+
+  it('should enforce strict mode', () => {
+    const s = new Verification({ strict: true });
+    const spec = { features: [{ name: 'login' }] };
+    const r = s.verify(spec, 'function login() {}');
+    expect(r.strict).toBe(true);
+  });
 });

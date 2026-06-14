@@ -49,8 +49,59 @@ describe('Guardrails', () => {
     expect(r.guardrailId).toBe('G01');
   });
 
-  it('should return 8 guardrails', () => {
+  it('should return 14 guardrails total', () => {
     const s = new Guardrails();
-    expect(s.toJSON().guardrails).toHaveLength(8);
+    expect(s.toJSON().guardrails).toHaveLength(14);
+  });
+
+  it('should trigger G09 spec file operation gate', () => {
+    const s = new Guardrails();
+    const r = s.check('open spec file for editing');
+    expect(r.confirmations.some(c => c.id === 'G09')).toBe(true);
+  });
+
+  it('should trigger G10 acceptance criteria gate', () => {
+    const s = new Guardrails();
+    const r = s.check('check acceptance criteria');
+    expect(r.confirmations.some(c => c.id === 'G10')).toBe(true);
+  });
+
+  it('should block on G11 decomposition gate', () => {
+    const s = new Guardrails();
+    const r = s.check('decompose the system architecture');
+    expect(r.blocked).toBe(true);
+    expect(r.confirmations.some(c => c.id === 'G11')).toBe(true);
+  });
+
+  it('should trigger G12 spec drift gate', () => {
+    const s = new Guardrails();
+    const r = s.check('detect spec drift');
+    expect(r.confirmations.some(c => c.id === 'G12')).toBe(true);
+  });
+
+  it('should block on G13 spec override gate', () => {
+    const s = new Guardrails();
+    const r = s.check('override spec settings');
+    expect(r.blocked).toBe(true);
+    expect(r.confirmations.some(c => c.id === 'G13')).toBe(true);
+  });
+
+  it('should trigger G14 milestone spec check gate', () => {
+    const s = new Guardrails();
+    const r = s.check('check milestone spec');
+    expect(r.confirmations.some(c => c.id === 'G14')).toBe(true);
+  });
+
+  it('should allow actions that match only confirmation gates', () => {
+    const s = new Guardrails();
+    const r = s.check('open spec file');
+    expect(r.allowed).toBe(true);
+    expect(r.confirmations.some(c => c.id === 'G09')).toBe(true);
+  });
+
+  it('should return correct count via check for spec actions', () => {
+    const s = new Guardrails();
+    const r = s.check('check milestone spec against decomposition');
+    expect(r.confirmations.length).toBe(2);
   });
 });
