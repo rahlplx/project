@@ -197,6 +197,7 @@
     "maintenance_count": 17,
     "interaction_count": 0
   },
+  "telemetry": true,
   "created": "2026-06-13T12:00:00Z",
   "updated": "2026-06-14T10:00:00.000Z",
   "auto_pipeline": {

@@ -64,7 +64,8 @@
       "schema-generator\\.test\\.js",
       "performance-optimizer\\.test\\.js",
       "token-optimizer\\.test\\.js",
-      "mcp-adapter\\.test\\.js"
+      "mcp-adapter\\.test\\.js",
+      "telemetry\\.test\\.js"
     ]
   },
   "devDependencies": {

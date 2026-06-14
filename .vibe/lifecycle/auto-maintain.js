@@ -281,6 +281,62 @@ function getRecentCommits() {
   }
 }
 
+// ── Phase 2b: Stuck Detection ──────────────────────────────────
+function detectStuckPhases(thresholdMs = 300000) {
+  console.log('  [telemetry] Detecting stuck phases...');
+
+  const timingPath = path.join(TELEMETRY_DIR, 'phase-timing.json');
+  const data = readJSON(timingPath);
+  if (!data || !data.records) return [];
+
+  const stuck = [];
+  for (const r of data.records) {
+    if (r.durationMs > thresholdMs) {
+      stuck.push({
+        phase: r.phase,
+        durationMs: r.durationMs,
+        durationMin: (r.durationMs / 60000).toFixed(1),
+        startTime: r.startTime
+      });
+    }
+  }
+
+  if (stuck.length > 0) {
+    console.log(`  [telemetry]  ⚠ ${stuck.length} stuck phases detected (>${thresholdMs/60000}min)`);
+    for (const s of stuck) {
+      console.log(`    - ${s.phase}: ${s.durationMin}min`);
+    }
+  } else {
+    console.log(`  [telemetry]  ✓ no stuck phases`);
+  }
+
+  return stuck;
+}
+
+// ── Phase 2c: Session Retention ─────────────────────────────────
+function enforceSessionRetention(keepLast = 30) {
+  console.log(`  [telemetry] Enforcing session retention (keep last ${keepLast})...`);
+
+  if (!fs.existsSync(TELEMETRY_SESSIONS)) return 0;
+
+  const files = fs.readdirSync(TELEMETRY_SESSIONS)
+    .filter(f => f.startsWith('session-') && f.endsWith('.json'))
+    .sort();
+
+  if (files.length <= keepLast) {
+    console.log(`  [telemetry]  ✓ ${files.length} sessions, no cleanup needed`);
+    return 0;
+  }
+
+  const toDelete = files.slice(0, files.length - keepLast);
+  for (const f of toDelete) {
+    fs.unlinkSync(path.join(TELEMETRY_SESSIONS, f));
+  }
+
+  console.log(`  [telemetry]  ✓ deleted ${toDelete.length} old sessions, kept ${keepLast}`);
+  return toDelete.length;
+}
+
 // ── Phase 3: Retro — Quick Assessment ──────────────────────────
 function runRetro(harnessResults, telemetry) {
   console.log('  [retro] Generating retro snapshot...');
@@ -439,6 +495,10 @@ async function main() {
   const harnessResults = runHarness();
   // Phase 2
   const telemetry = captureTelemetry();
+  // Phase 2b: Stuck detection
+  const stuckPhases = detectStuckPhases();
+  // Phase 2c: Session retention
+  const deletedCount = enforceSessionRetention(30);
   // Phase 3
   const retro = runRetro(harnessResults, telemetry);
   // Phase 4
@@ -457,9 +517,15 @@ async function main() {
   console.log(`  Health: ${allPassed ? '✓ ALL PASS' : '✗ HAS FAILURES'}`);
   console.log(`  Maintenance #${lifecycle.maintenance_count}`);
   console.log(`  Proposals: ${evolveResult ? evolveResult.length : 0}`);
+  if (stuckPhases.length > 0) {
+    console.log(`  Stuck: ${stuckPhases.length} phases (>${300000/60000}min)`);
+  }
+  if (deletedCount > 0) {
+    console.log(`  Cleaned: ${deletedCount} old sessions`);
+  }
   console.log(`═══════════════════════════════════════════\n`);
 
-  return { allPassed, maintenanceNumber: lifecycle.maintenance_count };
+  return { allPassed, maintenanceNumber: lifecycle.maintenance_count, stuckPhases, deletedCount };
 }
 
 if (require.main === module) {
@@ -469,4 +535,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { main, runHarness, runRetro, runLearn, runEvolve };
+module.exports = { main, runHarness, runRetro, runLearn, runEvolve, detectStuckPhases, enforceSessionRetention };
