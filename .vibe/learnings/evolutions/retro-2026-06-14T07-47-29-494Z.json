@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-06-14T07:47:29.494Z",
+  "assessment": "degraded",
+  "harness_summary": {
+    "total": 14,
+    "passed": 13,
+    "failed": 1
+  },
+  "telemetry": {
+    "commits_since_last": 10,
+    "total_sessions": 0
+  },
+  "notes": "Harness failed: test-suite"
+}

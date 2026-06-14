@@ -12,6 +12,7 @@ const MAINTENANCE_LOG_PATH = path.join(ROOT, 'maintenance-log.json');
 const LEARNINGS_DIR = path.join(ROOT, 'learnings');
 const SOLUTIONS_DIR = path.join(PROJECT_ROOT, 'docs', 'solutions');
 const TELEMETRY_SESSIONS = path.join(ROOT, 'telemetry', 'sessions');
+const TELEMETRY_DIR = path.join(ROOT, 'telemetry');
 
 // ── Helpers ────────────────────────────────────────────────────
 function readJSON(p) { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return null; } }
@@ -242,6 +243,33 @@ function runHarness(runTestSuite = true) {
   } catch (e) {
     results.push({ check: 'eslint-lint-pass', pass: false, error: e.message });
     console.log(`  [harness]  ✗ eslint-lint-pass: ${e.message}`);
+  }
+
+  // Check 14: toolsDiscovered count validation
+  try {
+    const state = readJSON(STATE_PATH);
+    const declaredCount = state?.infrastructure?.toolsDiscovered || 0;
+    
+    // Count actual skills on disk
+    const skillsDir = path.join(PROJECT_ROOT, 'skills');
+    let skillCount = 0;
+    if (fs.existsSync(skillsDir)) {
+      const categories = fs.readdirSync(skillsDir, { withFileTypes: true }).filter(d => d.isDirectory());
+      for (const cat of categories) {
+        const catDir = path.join(skillsDir, cat.name);
+        const skills = fs.readdirSync(catDir, { withFileTypes: true }).filter(d => d.isDirectory());
+        skillCount += skills.length;
+      }
+    }
+    
+    // Validate: toolsDiscovered should be > skillCount (each skill has multiple tools)
+    // and reasonable (< 1000)
+    const pass = declaredCount > skillCount && declaredCount < 1000;
+    results.push({ check: 'tools-discovered-count', pass, data: { declared: declaredCount, skillCount, ratio: (declaredCount / skillCount).toFixed(1) } });
+    console.log(`  [harness]  ${pass ? '✓' : '✗'} tools-discovered-count (${declaredCount} tools, ${skillCount} skills, ratio: ${(declaredCount / skillCount).toFixed(1)})`);
+  } catch (e) {
+    results.push({ check: 'tools-discovered-count', pass: false, error: e.message });
+    console.log(`  [harness]  ✗ tools-discovered-count: ${e.message}`);
   }
 
   return results;

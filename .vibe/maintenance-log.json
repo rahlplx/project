@@ -1650,8 +1650,682 @@
           "reason": "Every phase transition must produce a handoff.md using docs/handoffs/ templates. Prevents context loss between layers."
         }
       ]
+    },
+    {
+      "date": "2026-06-14T07:45:45.194Z",
+      "run_number": 18,
+      "harness": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 5271
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 762,
+            "failCount": 0,
+            "suiteCount": 77
+          }
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 49,
+            "worst": 19.3,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 49,
+            "clean": 43,
+            "issues": 6
+          }
+        },
+        {
+          "check": "index-json-integrity",
+          "pass": true,
+          "data": {
+            "existing": 49,
+            "onDisk": 49,
+            "missing": [],
+            "extra": []
+          }
+        },
+        {
+          "check": "quality-scores",
+          "pass": true,
+          "data": {
+            "toolCount": 35,
+            "dCount": 0,
+            "summary": {
+              "mean": 63.66,
+              "median": 63,
+              "min": 52,
+              "max": 78,
+              "stddev": 6.62,
+              "distribution": {
+                "A": 0,
+                "B": 3,
+                "C": 32,
+                "D": 0
+              }
+            }
+          }
+        },
+        {
+          "check": "security-scan",
+          "pass": true,
+          "data": {
+            "critical": 0,
+            "skillsScanned": 49,
+            "totalFindings": 8
+          }
+        },
+        {
+          "check": "spec-gates",
+          "pass": true,
+          "data": {
+            "gates": 14
+          }
+        },
+        {
+          "check": "node-test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 148,
+            "failCount": 0
+          }
+        },
+        {
+          "check": "eslint-lint-pass",
+          "pass": true,
+          "data": {
+            "errors": 0,
+            "warnings": 105
+          }
+        }
+      ],
+      "retro": {
+        "timestamp": "2026-06-14T07:45:45.189Z",
+        "assessment": "healthy",
+        "harness_summary": {
+          "total": 13,
+          "passed": 13,
+          "failed": 0
+        },
+        "telemetry": {
+          "commits_since_last": 10,
+          "total_sessions": 0
+        },
+        "notes": "All checks passed."
+      },
+      "learn": {
+        "timestamp": "2026-06-14T07:45:45.191Z",
+        "anti_pattern_count": 13,
+        "pattern_count": 17,
+        "low_quality_rules": []
+      },
+      "evolve_proposals": [
+        {
+          "action": "pending-proposal",
+          "rule": "state-json-sync-on-ship",
+          "reason": "Auto-update state.json phase to 'done' after git commit. Prevents out-of-sync state between phases."
+        },
+        {
+          "action": "pending-proposal",
+          "rule": "temp-file-gitignore",
+          "reason": "Add *.tmp.js or .vibe/tmp/ patterns to .gitignore. Prevents accidental commits of ad-hoc scripts."
+        }
+      ]
+    },
+    {
+      "date": "2026-06-14T07:46:32.542Z",
+      "run_number": 19,
+      "harness": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 5271
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": false,
+          "error": "Command failed: npm test 2>&1"
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 49,
+            "worst": 19.3,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 49,
+            "clean": 43,
+            "issues": 6
+          }
+        },
+        {
+          "check": "index-json-integrity",
+          "pass": true,
+          "data": {
+            "existing": 49,
+            "onDisk": 49,
+            "missing": [],
+            "extra": []
+          }
+        },
+        {
+          "check": "quality-scores",
+          "pass": true,
+          "data": {
+            "toolCount": 35,
+            "dCount": 0,
+            "summary": {
+              "mean": 63.66,
+              "median": 63,
+              "min": 52,
+              "max": 78,
+              "stddev": 6.62,
+              "distribution": {
+                "A": 0,
+                "B": 3,
+                "C": 32,
+                "D": 0
+              }
+            }
+          }
+        },
+        {
+          "check": "security-scan",
+          "pass": true,
+          "data": {
+            "critical": 0,
+            "skillsScanned": 49,
+            "totalFindings": 8
+          }
+        },
+        {
+          "check": "spec-gates",
+          "pass": true,
+          "data": {
+            "gates": 14
+          }
+        },
+        {
+          "check": "node-test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 148,
+            "failCount": 0
+          }
+        },
+        {
+          "check": "eslint-lint-pass",
+          "pass": true,
+          "data": {
+            "errors": 0,
+            "warnings": 105
+          }
+        },
+        {
+          "check": "tools-discovered-count",
+          "pass": false,
+          "data": {
+            "declared": 243,
+            "actual": 35
+          }
+        }
+      ],
+      "retro": {
+        "timestamp": "2026-06-14T07:46:32.535Z",
+        "assessment": "degraded",
+        "harness_summary": {
+          "total": 14,
+          "passed": 12,
+          "failed": 2
+        },
+        "telemetry": {
+          "commits_since_last": 10,
+          "total_sessions": 0
+        },
+        "notes": "Harness failed: test-suite, tools-discovered-count"
+      },
+      "learn": {
+        "timestamp": "2026-06-14T07:46:32.538Z",
+        "anti_pattern_count": 13,
+        "pattern_count": 17,
+        "low_quality_rules": []
+      },
+      "evolve_proposals": [
+        {
+          "action": "pending-proposal",
+          "rule": "state-json-sync-on-ship",
+          "reason": "Auto-update state.json phase to 'done' after git commit. Prevents out-of-sync state between phases."
+        },
+        {
+          "action": "pending-proposal",
+          "rule": "temp-file-gitignore",
+          "reason": "Add *.tmp.js or .vibe/tmp/ patterns to .gitignore. Prevents accidental commits of ad-hoc scripts."
+        }
+      ]
+    },
+    {
+      "date": "2026-06-14T07:47:29.498Z",
+      "run_number": 20,
+      "harness": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 5271
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": false,
+          "error": "Command failed: npm test 2>&1"
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 49,
+            "worst": 19.3,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 49,
+            "clean": 43,
+            "issues": 6
+          }
+        },
+        {
+          "check": "index-json-integrity",
+          "pass": true,
+          "data": {
+            "existing": 49,
+            "onDisk": 49,
+            "missing": [],
+            "extra": []
+          }
+        },
+        {
+          "check": "quality-scores",
+          "pass": true,
+          "data": {
+            "toolCount": 35,
+            "dCount": 0,
+            "summary": {
+              "mean": 63.66,
+              "median": 63,
+              "min": 52,
+              "max": 78,
+              "stddev": 6.62,
+              "distribution": {
+                "A": 0,
+                "B": 3,
+                "C": 32,
+                "D": 0
+              }
+            }
+          }
+        },
+        {
+          "check": "security-scan",
+          "pass": true,
+          "data": {
+            "critical": 0,
+            "skillsScanned": 49,
+            "totalFindings": 8
+          }
+        },
+        {
+          "check": "spec-gates",
+          "pass": true,
+          "data": {
+            "gates": 14
+          }
+        },
+        {
+          "check": "node-test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 148,
+            "failCount": 0
+          }
+        },
+        {
+          "check": "eslint-lint-pass",
+          "pass": true,
+          "data": {
+            "errors": 0,
+            "warnings": 105
+          }
+        },
+        {
+          "check": "tools-discovered-count",
+          "pass": true,
+          "data": {
+            "declared": 243,
+            "skillCount": 49,
+            "ratio": "5.0"
+          }
+        }
+      ],
+      "retro": {
+        "timestamp": "2026-06-14T07:47:29.494Z",
+        "assessment": "degraded",
+        "harness_summary": {
+          "total": 14,
+          "passed": 13,
+          "failed": 1
+        },
+        "telemetry": {
+          "commits_since_last": 10,
+          "total_sessions": 0
+        },
+        "notes": "Harness failed: test-suite"
+      },
+      "learn": {
+        "timestamp": "2026-06-14T07:47:29.496Z",
+        "anti_pattern_count": 13,
+        "pattern_count": 17,
+        "low_quality_rules": []
+      },
+      "evolve_proposals": [
+        {
+          "action": "pending-proposal",
+          "rule": "state-json-sync-on-ship",
+          "reason": "Auto-update state.json phase to 'done' after git commit. Prevents out-of-sync state between phases."
+        },
+        {
+          "action": "pending-proposal",
+          "rule": "temp-file-gitignore",
+          "reason": "Add *.tmp.js or .vibe/tmp/ patterns to .gitignore. Prevents accidental commits of ad-hoc scripts."
+        }
+      ]
+    },
+    {
+      "date": "2026-06-14T07:48:23.193Z",
+      "run_number": 21,
+      "harness": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 5271
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 762,
+            "failCount": 0,
+            "suiteCount": 77
+          }
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 49,
+            "worst": 19.3,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 49,
+            "clean": 43,
+            "issues": 6
+          }
+        },
+        {
+          "check": "index-json-integrity",
+          "pass": true,
+          "data": {
+            "existing": 49,
+            "onDisk": 49,
+            "missing": [],
+            "extra": []
+          }
+        },
+        {
+          "check": "quality-scores",
+          "pass": true,
+          "data": {
+            "toolCount": 35,
+            "dCount": 0,
+            "summary": {
+              "mean": 63.66,
+              "median": 63,
+              "min": 52,
+              "max": 78,
+              "stddev": 6.62,
+              "distribution": {
+                "A": 0,
+                "B": 3,
+                "C": 32,
+                "D": 0
+              }
+            }
+          }
+        },
+        {
+          "check": "security-scan",
+          "pass": true,
+          "data": {
+            "critical": 0,
+            "skillsScanned": 49,
+            "totalFindings": 8
+          }
+        },
+        {
+          "check": "spec-gates",
+          "pass": true,
+          "data": {
+            "gates": 14
+          }
+        },
+        {
+          "check": "node-test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 148,
+            "failCount": 0
+          }
+        },
+        {
+          "check": "eslint-lint-pass",
+          "pass": true,
+          "data": {
+            "errors": 0,
+            "warnings": 105
+          }
+        },
+        {
+          "check": "tools-discovered-count",
+          "pass": true,
+          "data": {
+            "declared": 243,
+            "skillCount": 49,
+            "ratio": "5.0"
+          }
+        }
+      ],
+      "retro": {
+        "timestamp": "2026-06-14T07:48:23.188Z",
+        "assessment": "healthy",
+        "harness_summary": {
+          "total": 14,
+          "passed": 14,
+          "failed": 0
+        },
+        "telemetry": {
+          "commits_since_last": 10,
+          "total_sessions": 0
+        },
+        "notes": "All checks passed."
+      },
+      "learn": {
+        "timestamp": "2026-06-14T07:48:23.190Z",
+        "anti_pattern_count": 13,
+        "pattern_count": 17,
+        "low_quality_rules": []
+      },
+      "evolve_proposals": [
+        {
+          "action": "pending-proposal",
+          "rule": "state-json-sync-on-ship",
+          "reason": "Auto-update state.json phase to 'done' after git commit. Prevents out-of-sync state between phases."
+        },
+        {
+          "action": "pending-proposal",
+          "rule": "temp-file-gitignore",
+          "reason": "Add *.tmp.js or .vibe/tmp/ patterns to .gitignore. Prevents accidental commits of ad-hoc scripts."
+        }
+      ]
     }
   ],
   "created": "2026-06-13",
-  "updated": "2026-06-14T01:34:54.150Z"
+  "updated": "2026-06-14T07:48:23.193Z"
 }

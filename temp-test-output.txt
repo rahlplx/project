@@ -1,0 +1,230 @@
+Γû╢ AGENTS.md per section
+  Γ£ö catalog/AGENTS.md exists with required sections (1.6278ms)
+  Γ£ö skills/AGENTS.md exists with required sections (0.8455ms)
+  Γ£ö references/AGENTS.md exists with required sections (0.6174ms)
+  Γ£ö .vibe/AGENTS.md exists with required sections (0.5465ms)
+Γ£ö AGENTS.md per section (5.4912ms)
+Γû╢ error-trends
+  Γ£ö creates file on first call (8.829ms)
+  Γ£ö appends errors (6.8561ms)
+  Γ£ö categorizes system errors (ENOENT) (5.0643ms)
+  Γ£ö categorizes system errors (EINVAL) (5.134ms)
+  Γ£ö categorizes harness errors (catalog-*) (4.5052ms)
+  Γ£ö categorizes timeout errors (4.0929ms)
+  Γ£ö categorizes syntax errors (4.6614ms)
+  Γ£ö categorizes test errors (4.2939ms)
+  Γ£ö categorizes unknown errors (4.5047ms)
+  Γ£ö handles Error objects and string messages (3.4585ms)
+  Γ£ö getErrorTrends returns all fields (3.8737ms)
+  Γ£ö getErrorTrends recentErrors is capped at 20 (33.612ms)
+  Γ£ö getErrorSummary returns correct structure (3.1416ms)
+  Γ£ö getErrorSummary categories have percentages (4.8307ms)
+  Γ£ö getErrorSummary tracks firstRecorded and lastRecorded (4.3902ms)
+Γ£ö error-trends (104.8179ms)
+Γû╢ detectIDE
+  Γ£ö detects Cursor via env vars (CURSOR_TRACE + CURSOR_MODE) (5.0696ms)
+  Γ£ö detects Cursor via .cursor directory + env var (3.381ms)
+  Γ£ö detects Cursor via --cursor flag + env var (1.5498ms)
+  Γ£ö detects Windsurf via env vars (WS_PROJECT + WS_SESSION_ID) (1.958ms)
+  Γ£ö detects Windsurf via .windsurf directory + env var (2.1946ms)
+  Γ£ö detects Windsurf via --windsurf flag + env var (1.6237ms)
+  Γ£ö detects Claude Code via --claude-code flag + .claude directory (2.3502ms)
+  Γ£ö returns null when no IDE signals detected (1.7011ms)
+  Γ£ö priority is cursor > windsurf > claude-code when multiple match (2.6796ms)
+  Γ£ö signals array includes all checked signals with matched status (2.0631ms)
+Γ£ö detectIDE (27.211ms)
+Γû╢ installForIDE
+  Γ£ö writes .mdc files for Cursor with YAML frontmatter (10.2397ms)
+  Γ£ö writes .md files for Windsurf with YAML frontmatter (7.7623ms)
+  Γ£ö generates correct number of rule files from CLAUDE.md sections (7.6398ms)
+  Γ£ö creates rules directory if missing (8.0939ms)
+  Γ£ö returns error for missing CLAUDE.md (1.3276ms)
+  Γ£ö written array contains prefixed slugified filenames (7.075ms)
+  Γ£ö rule file content includes section body preserved from source (7.2203ms)
+Γ£ö installForIDE (49.9815ms)
+Γû╢ syncToIDE
+  Γ£ö syncs all 45 skills from skills directory (301.4377ms)
+  Γ£ö creates category subdirectories (39.0612ms)
+  Γ£ö includes methods table in each skill markdown (39.5905ms)
+  Γ£ö skips existing skill files without force option (5.235ms)
+  Γ£ö overwrites existing skill files with force option (4.9467ms)
+  Γ£ö handles empty skills directory (1.0444ms)
+  Γ£ö handles invalid path with errors array (1.1886ms)
+Γ£ö syncToIDE (392.8098ms)
+Γû╢ ESLint config
+  Γ£ö exists (1.6068ms)
+  Γ£ö parses without error (1.3927ms)
+  Γ£ö has the expected rules (0.3122ms)
+  Γ£ö env includes node and es2021 (0.3516ms)
+Γ£ö ESLint config (5.6568ms)
+Γû╢ phase-timing
+  Γ£ö creates file on first call (6.9231ms)
+  Γ£ö appends records (6.9867ms)
+  Γ£ö computes durationMs (4.2181ms)
+  Γ£ö records ISO string timestamps (4.4212ms)
+  Γ£ö getPhaseStats returns correct shape (4.3646ms)
+  Γ£ö getPhaseStats computes min/max/avg/median (6.7985ms)
+  Γ£ö getPhaseStats returns zeroed stats for unknown phase (2.8418ms)
+  Γ£ö getAllTimingSummary includes all phases combined (5.5422ms)
+  Γ£ö handles empty file gracefully (2.7624ms)
+  Γ£ö handles corrupt JSON by backing up and starting fresh (5.4882ms)
+  Γ£ö invalid timestamp throws TIMING_PARSE_ERROR (2.3471ms)
+Γ£ö phase-timing (54.9105ms)
+Γû╢ formatTextReport
+  Γ£ö contains summary and findings (1.5318ms)
+  Γ£ö includes remediation text (0.3006ms)
+Γ£ö formatTextReport (3.2703ms)
+Γû╢ formatJsonReport
+  Γ£ö produces valid JSON with same structure (0.446ms)
+  Γ£ö includes all finding fields (0.3627ms)
+Γ£ö formatJsonReport (2.6561ms)
+Γû╢ formatMarkdownReport
+  Γ£ö produces markdown with tables (0.6882ms)
+  Γ£ö includes all findings as table rows (0.214ms)
+  Γ£ö includes category sections (0.2522ms)
+Γ£ö formatMarkdownReport (1.5107ms)
+Γû╢ severityToString
+  Γ£ö returns CRITICAL for 10 (1.3335ms)
+  Γ£ö returns HIGH for 7 (0.2269ms)
+  Γ£ö returns MEDIUM for 4 (0.2225ms)
+  Γ£ö returns LOW for 1 (0.1821ms)
+  Γ£ö returns INFO for 0 (0.219ms)
+  Γ£ö returns UNKNOWN for unknown (1.4015ms)
+Γ£ö severityToString (5.3675ms)
+Γû╢ ASI01 - Malicious Skills
+  Γ£ö detects instruction override (ASI01-001) (3.2861ms)
+  Γ£ö does not flag educational content (ASI01-001 FP guard) (1.7369ms)
+  Γ£ö detects DAN jailbreak (ASI01-002) (0.3689ms)
+  Γ£ö detects identity override (ASI01-003) (0.3655ms)
+  Γ£ö detects system message impersonation (ASI01-004) (0.2201ms)
+  Γ£ö detects escaped instruction override (ASI01-005) (0.26ms)
+  Γ£ö detects description with override (ASI01-006) (0.2256ms)
+  Γ£ö non-match on clean skill content (0.1873ms)
+Γ£ö ASI01 - Malicious Skills (7.2997ms)
+Γû╢ ASI02 - Supply Chain
+  Γ£ö detects exfiltration endpoint (ASI02-001) (0.3179ms)
+  Γ£ö detects fetch+credential concat (ASI02-002) (0.2366ms)
+  Γ£ö detects network+system module combo (ASI02-003) (0.2431ms)
+  Γ£ö detects credential file read (ASI02-004) (0.152ms)
+  Γ£ö detects env secret access (ASI02-005) (0.2432ms)
+  Γ£ö detects base64 encode sensitive data (ASI02-006) (0.2285ms)
+  Γ£ö detects XHR+credential URL (ASI02-007) (0.1681ms)
+  Γ£ö non-match on clean skill content (0.1431ms)
+Γ£ö ASI02 - Supply Chain (1.9899ms)
+Γû╢ ASI03 - Over-Privileged
+  Γ£ö detects execSync arbitrary (ASI03-001) (0.2511ms)
+  Γ£ö detects spawn shell (ASI03-002) (0.2014ms)
+  Γ£ö detects dangerous rm/dd (ASI03-003) (0.2132ms)
+  Γ£ö detects unsafe module loading (ASI03-004) (0.1531ms)
+  Γ£ö detects command injection (ASI03-005) (0.1735ms)
+  Γ£ö detects chmod 777 (ASI03-006) (0.1466ms)
+  Γ£ö detects arbitrary sudo (ASI03-007) (0.2815ms)
+  Γ£ö does not flag safe execFileSync (0.1622ms)
+Γ£ö ASI03 - Over-Privileged (1.8872ms)
+Γû╢ ASI05 - Unsafe Deserialization
+  Γ£ö detects JSON.parse user input (ASI05-001) (0.3968ms)
+  Γ£ö detects eval+JSON (ASI05-002) (0.2667ms)
+  Γ£ö detects unsafe YAML (ASI05-003) (0.2126ms)
+  Γ£ö detects Function constructor (ASI05-004) (0.1941ms)
+  Γ£ö detects deserialize/pickle (ASI05-005) (0.199ms)
+  Γ£ö does not flag safe YAML usage (0.1726ms)
+Γ£ö ASI05 - Unsafe Deserialization (1.8015ms)
+Γû╢ ASI06 - Memory Poisoning
+  Γ£ö detects context push with override (ASI06-001) (0.3478ms)
+  Γ£ö detects mass wipe (ASI06-002) (0.3372ms)
+  Γ£ö detects injection into context (ASI06-003) (0.2844ms)
+  Γ£ö detects history manipulation (ASI06-004) (0.2688ms)
+  Γ£ö does not flag benign context usage (0.2131ms)
+Γ£ö ASI06 - Memory Poisoning (1.762ms)
+Γû╢ ASI07 - Update Drift
+  Γ£ö detects version 0.x dependency (ASI07-001) (0.2849ms)
+  Γ£ö detects stale import (ASI07-002) (0.1888ms)
+  Γ£ö detects unresolved security TODO (ASI07-003) (0.2477ms)
+  Γ£ö detects stale reference (ASI07-004) (0.1663ms)
+Γ£ö ASI07 - Update Drift (1.142ms)
+Γû╢ ASI08 - Obfuscation
+  Γ£ö detects long base64 (ASI08-001) (0.3766ms)
+  Γ£ö detects scanner disable comment (ASI08-002) (0.1812ms)
+  Γ£ö detects hex encoded (ASI08-003) (0.1741ms)
+  Γ£ö detects character obfuscation (ASI08-004) (0.1616ms)
+  Γ£ö detects eval+decode (ASI08-005) (0.2294ms)
+  Γ£ö does not flag test fixture base64 (0.1669ms)
+Γ£ö ASI08 - Obfuscation (1.6248ms)
+Γû╢ classifySeverity
+  Γ£ö returns CRITICAL for ASI01 (0.3449ms)
+  Γ£ö returns HIGH for ASI05 (0.1518ms)
+  Γ£ö returns MEDIUM for ASI07 (0.1525ms)
+  Γ£ö context reduces severity for educational content (0.1724ms)
+Γ£ö classifySeverity (1.074ms)
+Γû╢ formatReport
+  Γ£ö text output contains findings (0.7437ms)
+  Γ£ö json output is valid JSON (0.2025ms)
+  Γ£ö markdown output has table structure (0.4077ms)
+Γ£ö formatReport (1.6946ms)
+Γû╢ checkHarness
+  Γ£ö passes with 0 CRITICAL findings on real skills (40.659ms)
+  Γ£ö fails with CRITICAL finding in malicious content (26.5958ms)
+  Γ£ö returns correct structure (23.7107ms)
+Γ£ö checkHarness (91.189ms)
+Γû╢ scanAllSkills integration
+  Γ£û discovers all 50 skills (24.3594ms)
+  Γ£ö no CRITICAL findings in existing skills (24.1082ms)
+  Γ£ö returns correct aggregate structure (23.525ms)
+  Γ£ö categories are correctly grouped (26.782ms)
+  Γ£ö finding counts are consistent across aggregate and categories (23.1009ms)
+Γ£û scanAllSkills integration (122.3914ms)
+Γû╢ stuck-detector
+  Γ£ö not stuck at 3 consecutive cycles (1.644ms)
+  Γ£ö stuck at 4 consecutive cycles (0.3117ms)
+  Γ£ö stuck at 5+ consecutive cycles (0.1689ms)
+  Γ£ö interleaved patterns are not stuck (0.2086ms)
+  Γ£ö explicit history param is used (1.0506ms)
+  Γ£ö checkStuck reads from file when no history given (6.7251ms)
+  Γ£ö alert message format is descriptive (0.2456ms)
+  Γ£ö getStuckAlerts returns empty when none stuck (4.3104ms)
+  Γ£ö getStuckAlerts detects multiple stuck phases (14.3135ms)
+Γ£ö stuck-detector (31.1338ms)
+Γû╢ ToolRegistry
+  Γ£ö register stores a tool and findAll returns it (0.9934ms)
+  Γ£ö findUsable returns only tools where isUsable is true (0.2871ms)
+  Γ£ö findAll returns all registered tools regardless of usability (0.1939ms)
+  Γ£ö getUnusable returns unusable tools with reasons (0.3348ms)
+  Γ£ö register with same name overwrites (last wins) (0.2577ms)
+  Γ£ö isUsable that throws causes tool to be treated as unusable (1.2043ms)
+  Γ£ö findUsable with no matching category returns empty array (0.9429ms)
+  Γ£ö findUsable with empty registry returns empty array (0.5384ms)
+Γ£ö ToolRegistry (6.1741ms)
+Γä╣ tests 148
+Γä╣ suites 24
+Γä╣ pass 147
+Γä╣ fail 1
+Γä╣ cancelled 0
+Γä╣ skipped 0
+Γä╣ todo 0
+Γä╣ duration_ms 608.2495
+
+Γ£û failing tests:
+
+test at lib\security-scan.test.js:349:3
+Γ£û discovers all 50 skills (24.3594ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  49 !== 50
+  
+      at TestContext.<anonymous> (C:\Vibe-Stack The AI Agent Skills Repository for Vibe Coders\lib\security-scan.test.js:351:12)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.start (node:internal/test_runner/test:1015:17)
+      at node:internal/test_runner/test:1531:71
+      at node:internal/per_context/primordials:466:82
+      at new Promise (<anonymous>)
+      at new SafePromise (node:internal/per_context/primordials:435:3)
+      at node:internal/per_context/primordials:466:9
+      at Array.map (<anonymous>) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 49,
+    expected: 50,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
