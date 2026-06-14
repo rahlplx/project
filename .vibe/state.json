@@ -1,8 +1,8 @@
 {
   "project": "Vibe-Stack Curated Collection",
-  "version": "2.1.0",
-  "phase": "ship",
-  "goal": "Implement design doc enhancement: AGENTS.md + Tool Registry + CI Gates",
+  "version": "2.2.0",
+  "phase": "break",
+  "goal": "Implement unified AI engineering orchestrator (intent capture → market research → doc generation → implementation)",
   "step": 0,
   "mode": "auto",
   "agent": "opencode",
