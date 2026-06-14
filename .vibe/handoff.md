@@ -1,59 +1,43 @@
-# Handoff: Build Phase — Unified AI Engineering Orchestrator
+# Handoff: MCP SDK Integration — Complete
 
 ## Current State
 
-**Phase**: build (ALL SLICES COMPLETE ✅)
-**Goal**: Implement unified AI engineering orchestrator
-**Tests**: 762 passing (77 suites)
-**Status**: Ready for harness check
+**Phase**: done ✅
+**Goal**: MCP SDK integration with auto-schema, token optimization, and performance caching
+**Tests**: 825 passing (762 Jest + 63 node:test)
+**Status**: Shipped and evolved
 
 ## What Was Done
 
-1. **Ran `/vibe:break`** — Decomposed into 5 milestones, 5 slices, 23 tasks
-2. **Created break document** — `plans/break-unified-orchestrator.md`
-3. **Updated state.json** — Phase: build, Step: 1
-4. **Slice 1 COMPLETE** — Intent Capture (T1.1-T1.5)
-5. **Slice 2 COMPLETE** — Market Research (T2.1-T2.4)
-6. **Slice 3 COMPLETE** — Doc Generation (T3.1-T3.4)
-7. **Slice 4 COMPLETE** — Knowledge Base (T4.1-T4.4)
-8. **Slice 5 COMPLETE** — Integration (T5.1-T5.4)
+1. **WAVE 1 Foundation** — Installed @modelcontextprotocol/sdk@1.29.0, removed dead deps (chalk, ora), unified .eslintrc.js, removed duplicate skills/deployment/railway, regenerated index.json
+2. **WAVE 2 Libraries** — Created schema-generator.js, token-optimizer.js, performance-optimizer.js, mcp-adapter.js (+ 63 node:test tests)
+3. **WAVE 3 Integration** — Rewrote mcp-server.js, augmented skill-loader.js, fixed project-wizard inquirer
+4. **WAVE 4 Verify** — All 12 harness checks pass, 77 Jest suites + 11 node:test suites all passing
+5. **Retro** — Captured what went well, what didn't, action items
+6. **Learn** — Extracted 3 new anti-patterns (eslint-no-control-regex, static-vs-instance-methods, temp-file-cleanup)
+7. **Evolve** — Updated evolution.json to v2.7.0 with 6 new rules, promoted 1 proposed rule
 
-## Milestones
+## Shipped
 
-| M | Milestone | Slices | Tasks | Tests | Status |
-|---|-----------|--------|-------|-------|--------|
-| M1 | Intent Capture | Slice 1 | 5 | 42 | ✅ Complete |
-| M2 | Market Research | Slice 2 | 4 | 31 | ✅ Complete |
-| M3 | Doc Generation | Slice 3 | 4 | 22 | ✅ Complete |
-| M4 | Knowledge Base | Slice 4 | 4 | 23 | ✅ Complete |
-| M5 | Integration | Slice 5 | 4 | 22 | ✅ Complete |
+- **Commit**: `c5ac6b3` — feat(mcp): add MCP SDK integration with auto-schema, token optimization, and performance caching
+- **Branch**: main (ahead of origin/main by 22 commits)
+- **Files**: 38 changed, 2984 insertions, 832 deletions
 
-## All Tasks Complete
+## Metrics
 
-| # | Task | Status |
-|---|------|--------|
-| T1.1 | Project Template | ✅ |
-| T1.2 | PRD Template | ✅ |
-| T1.3 | Intent Capture | ✅ |
-| T1.4 | Input Validation | ✅ |
-| T1.5 | Reference File | ✅ |
-| T2.1 | Research Template | ✅ |
-| T2.2 | Researcher Core | ✅ |
-| T2.3 | Utility Catalog | ✅ |
-| T2.4 | Reference File | ✅ |
-| T3.1 | Doc Generator | ✅ |
-| T3.2 | Template Engine | ✅ |
-| T3.3 | File Writer | ✅ |
-| T3.4 | Reference File | ✅ |
-| T4.1 | Knowledge Base | ✅ |
-| T4.2 | Pattern Validator | ✅ |
-| T4.3 | Feedback Loop | ✅ |
-| T4.4 | Reference File | ✅ |
-| T5.1 | Orchestrator Core | ✅ |
-| T5.2 | CLI Commands | ✅ |
-| T5.3 | MCP Tools | ✅ |
-| T5.4 | Reference File | ✅ |
+| Metric | Value |
+|--------|-------|
+| New lib modules | 4 |
+| New tests | 63 (node:test) |
+| Jest suites | 77 (762 tests) |
+| node:test suites | 11 (63 tests) |
+| Harness checks | 12/12 pass |
+| Skills on disk | 49 |
+| Skills in index.json | 49 |
+| Evolution rules | 24 active |
+| Anti-patterns | 13 |
 
-## Next Action
+## Next Session
 
-**Run harness check** to verify production readiness
+- Push remaining commits to origin if needed
+- Start new work cycle with `/vibe:think`

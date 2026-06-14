@@ -1,7 +1,7 @@
 {
   "project": "Vibe-Stack Curated Collection",
   "version": "2.3.0",
-  "phase": "build",
+  "phase": "done",
   "goal": "Implement unified AI engineering orchestrator (intent capture → market research → doc generation → implementation)",
   "step": 1,
   "mode": "auto",
@@ -109,7 +109,11 @@
     "3-proposed-rules-promoted-to-active",
     "2-new-proposed-rules-added",
     "evolution-v2.6.0",
-    "index-md-rebuilt-15-patterns-8-anti-9-retros"
+    "index-md-rebuilt-15-patterns-8-anti-9-retros",
+    "mcp-sdk-integration-shipped",
+    "retro-mcp-sdk-captured",
+    "learn-extracted-3-new-anti-patterns",
+    "evolution-v2.7.0"
   ],
   "skills": {
     "total": 50,

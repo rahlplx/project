@@ -1,6 +1,6 @@
 # Learnings Index
 
-Last updated: 2026-06-14T06:13:40.102Z
+Last updated: 2026-06-14T12:00:00.000Z
 
 ## Patterns
 
@@ -26,10 +26,13 @@ Last updated: 2026-06-14T06:13:40.102Z
 
 - [Combining Regex by Slicing `.source`](anti-patterns/combined-regex-slices.md)
 - [Dead Dependency Accumulation](anti-patterns/dead-dependency-accumulation.md)
+- [ESLint no-control-regex for ANSI Patterns](anti-patterns/eslint-no-control-regex.md)
 - [Incremental Catalog Expansion (3 Runs Instead of 1)](anti-patterns/incremental-catalog-runs.md)
 - [Inserting Tools Mid-File in YAML](anti-patterns/mid-file-yaml-edits.md)
 - [Mixed Test Conventions](anti-patterns/mixed-test-conventions.md)
 - [redundant-harness-check.md](anti-patterns/redundant-harness-check.md)
+- [Static vs Instance Method Confusion](anti-patterns/static-vs-instance-methods.md)
+- [Temp File Cleanup Forgotten](anti-patterns/temp-file-cleanup.md)
 - [Unescaped Dot in Jest Ignore Patterns](anti-patterns/regex-in-jest-config.md)
 - [Skip Test Verification on Docs-Only Changes](anti-patterns/skip-test-verification-on-docs-only.md)
 - [Writing Descriptions Before Verifying Tool Metadata](anti-patterns/verify-before-describe.md)

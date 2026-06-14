@@ -1,7 +1,7 @@
 {
-  "version": "2.6.0",
+  "version": "2.7.0",
   "last_evolution": "2026-06-14",
-  "evolution_count": 8,
+  "evolution_count": 9,
   "rules": {
     "agent-native-catalog": {
       "fires": 35,
@@ -236,6 +236,51 @@
       "last_updated": "2026-06-14",
       "status": "active",
       "note": "Unified .eslintrc.js enforces prefer-const, no-var, eqeqeq, curly, quotes: single, semi. Eliminated .eslintrc.json duplication."
+    },
+    "eslint-no-control-regex": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "ANSI regex \\x1b triggers no-control-regex. Use String.fromCharCode(27) in IIFE or add rule exception."
+    },
+    "static-vs-instance-methods": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Methods designed as static must be called as ClassName.method(), not this.method(). Consistency prevents runtime errors."
+    },
+    "temp-file-cleanup": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Ad-hoc scripts (regen-index.js) left in root. Ship phase must delete temp files or use .vibe/tmp/."
+    },
+    "use-handoff-at-transitions": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Every phase transition must produce a handoff.md. Prevents context loss between layers. Promoted from proposed."
+    },
+    "mcp-sdk-schema-method-literal": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "MCP SDK setRequestHandler expects request schemas with method literals (ListToolsRequestSchema), not Result schemas."
     }
   },
   "harness": {
@@ -340,8 +385,14 @@
   },
   "proposed_rules": [
     {
-      "name": "use-handoff-at-transitions",
-      "reason": "Every phase transition must produce a handoff.md using docs/handoffs/ templates. Prevents context loss between layers.",
+      "name": "state-json-sync-on-ship",
+      "reason": "Auto-update state.json phase to 'done' after git commit. Prevents out-of-sync state between phases.",
+      "status": "pending",
+      "quality_score": null
+    },
+    {
+      "name": "temp-file-gitignore",
+      "reason": "Add *.tmp.js or .vibe/tmp/ patterns to .gitignore. Prevents accidental commits of ad-hoc scripts.",
       "status": "pending",
       "quality_score": null
     }
@@ -403,14 +454,15 @@
     },
     {
       "id": "workflow-5-phase-gate",
-      "status": "proposed",
+      "status": "promoted",
       "description": "Harness check: state.json state_machine must be exactly [scope, build, verify, ship, evolve, done]",
       "rationale": "Ensures new 5-phase workflow is enforced; prevents drift back to 11-phase",
       "trigger": "on state.json write and at harness phase",
       "severity": "warning",
       "proposed_date": "2026-06-14",
-      "fires": 0,
-      "helpful": 0,
+      "promoted_date": "2026-06-14",
+      "fires": 1,
+      "helpful": 1,
       "false_positive": 0
     }
   ],
