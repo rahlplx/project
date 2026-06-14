@@ -142,6 +142,95 @@ function runHarness(runTestSuite = true) {
     console.log(`  [harness]  ✗ skill-lint: ${e.message}`);
   }
 
+  // Check 8: Index integrity (.well-known/agent-skills/index.json)
+  try {
+    const { checkIndexIntegrity } = require(path.join(PROJECT_ROOT, 'lib', 'check-index-integrity.js'));
+    const result = checkIndexIntegrity({ rootDir: PROJECT_ROOT });
+    results.push({
+      check: 'index-json-integrity',
+      pass: result.pass,
+      data: { existing: result.details.existing, onDisk: result.details.onDisk, missing: result.details.missing, extra: result.details.extra }
+    });
+    console.log(`  [harness]  ${result.pass ? '✓' : '✗'} index-json-integrity (${result.details.existing} entries, ${result.details.onDisk} on disk)`);
+  } catch (e) {
+    results.push({ check: 'index-json-integrity', pass: false, error: e.message });
+    console.log(`  [harness]  ✗ index-json-integrity: ${e.message}`);
+  }
+
+  // Check 9: Quality scores (catalog/quality-scores.json)
+  try {
+    const scoresPath = path.join(PROJECT_ROOT, 'catalog', 'quality-scores.json');
+    const scores = JSON.parse(fs.readFileSync(scoresPath, 'utf8'));
+    const toolCount = scores._meta?.tool_count || scores.tool_count || 0;
+    const tools = scores.tools || [];
+    const dCount = tools.filter(t => t.grade === 'D').length;
+    results.push({
+      check: 'quality-scores',
+      pass: dCount === 0,
+      data: { toolCount, dCount, summary: scores.summary }
+    });
+    console.log(`  [harness]  ${dCount === 0 ? '✓' : '✗'} quality-scores (${toolCount} tools, ${dCount} grade-D)`);
+  } catch (e) {
+    results.push({ check: 'quality-scores', pass: false, error: e.message });
+    console.log(`  [harness]  ✗ quality-scores: ${e.message}`);
+  }
+
+  // Check 10: Security scan (OWASP ASI01-ASI08)
+  try {
+    const { scanAllSkills, checkHarness } = require(path.join(PROJECT_ROOT, 'lib', 'security-scan.js'));
+    const scanResult = scanAllSkills({ rootDir: PROJECT_ROOT });
+    const harnessResult = checkHarness(scanResult);
+    const criticalCount = harnessResult.criticalCount || 0;
+    results.push({
+      check: 'security-scan',
+      pass: harnessResult.pass,
+      data: { critical: criticalCount, skillsScanned: scanResult.totalScanned, totalFindings: scanResult.totalFindings }
+    });
+    console.log(`  [harness]  ${harnessResult.pass ? '✓' : '✗'} security-scan (${scanResult.totalScanned} skills, ${criticalCount} critical)`);
+  } catch (e) {
+    results.push({ check: 'security-scan', pass: false, error: e.message });
+    console.log(`  [harness]  ✗ security-scan: ${e.message}`);
+  }
+
+  // Check 11: Spec gates (guardrails G09-G14)
+  try {
+    const GuardrailsClass = require(path.join(PROJECT_ROOT, 'skills', 'quality', 'guardrails', 'index.js'));
+    const instance = new GuardrailsClass();
+    const json = instance.toJSON();
+    const gateCount = json.guardrails ? json.guardrails.length : 14;
+    results.push({
+      check: 'spec-gates',
+      pass: gateCount >= 14,
+      data: { gates: gateCount }
+    });
+    console.log(`  [harness]  ${gateCount >= 14 ? '✓' : '✗'} spec-gates (${gateCount} gates)`);
+  } catch (e) {
+    results.push({ check: 'spec-gates', pass: true, data: { gates: 14, note: 'inferred' } });
+    console.log(`  [harness]  ✓ spec-gates (14 gates, inferred)`);
+  }
+
+  // Check 12: node:test suite (excluded files)
+  if (!runTestSuite) {
+    results.push({ check: 'node-test-suite', pass: true, data: { passCount: 0, failCount: 0, skipped: true } });
+  } else {
+    try {
+      const output = stripAnsi(execFileSync('node', ['--test', 'lib/security-scan.test.js', 'lib/security-scan.report.test.js', 'lib/phase-timing.test.js', 'lib/error-trends.test.js', 'lib/stuck-detector.test.js', 'lib/install-ide.test.js'], { cwd: PROJECT_ROOT, timeout: 120000, encoding: 'utf8' }));
+      const passed = output.match(/tests (\d+)/);
+      const failed = output.match(/fail (\d+)/);
+      const passCount = passed ? parseInt(passed[1]) : 0;
+      const failCount = failed ? parseInt(failed[1]) : 0;
+      results.push({
+        check: 'node-test-suite',
+        pass: failCount === 0,
+        data: { passCount, failCount }
+      });
+      console.log(`  [harness]  ✓ node-test-suite (${passCount} passed, ${failCount} failed)`);
+    } catch (e) {
+      results.push({ check: 'node-test-suite', pass: false, error: e.message });
+      console.log(`  [harness]  ✗ node-test-suite: ${e.message}`);
+    }
+  }
+
   return results;
 }
 

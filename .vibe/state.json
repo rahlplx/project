@@ -1,9 +1,9 @@
 {
   "project": "Vibe-Stack Curated Collection",
   "version": "2.0.0",
-  "phase": "build",
-  "goal": "7-phase enhancement: all 6 tracks",
-  "step": 1,
+  "phase": "done",
+  "goal": "6-track parallel enhancement completed",
+  "step": 0,
   "mode": "auto",
   "agent": "opencode",
   "stack": {
@@ -72,10 +72,26 @@
     "all-critical-fixes-applied",
     "all-high-fixes-applied",
     "493-tests-passing",
-    "harness-13-clean"
+    "harness-13-clean",
+    "6-track-parallel-research-complete",
+    "6-track-parallel-design-complete",
+    "6-track-parallel-build-tracks-a-f",
+    "track-a-mcp-discovery",
+    "track-b-quality-scoring",
+    "track-c-security-scanning",
+    "track-d-spec-workflow",
+    "track-e-multi-ide",
+    "track-f-telemetry",
+    "jest-vs-nodtest-fix",
+    "765-tests-passing",
+    "harness-14-clean",
+    "commit-shipped",
+    "retro-six-track-captured",
+    "learnings-saved-six-track",
+    "evolution-2.5.0"
   ],
   "skills": {
-    "total": 45,
+    "total": 47,
     "categories": {
       "deploy": [
         "git-free-deploy",
@@ -148,16 +164,16 @@
     "mcpServer": true,
     "skillLoader": true,
     "toolsDiscovered": 243,
-    "testsPassing": 493,
-    "testSuites": 50
+    "testsPassing": 765,
+    "testSuites": 78
   },
   "lifecycle": {
-    "last_maintenance": "2026-06-14T00:57:58.885Z",
-    "maintenance_count": 14,
+    "last_maintenance": "2026-06-14T05:20:00.000Z",
+    "maintenance_count": 15,
     "interaction_count": 0
   },
   "created": "2026-06-13T12:00:00Z",
-  "updated": "2026-06-14T00:57:58.888Z",
+  "updated": "2026-06-14T05:20:00.000Z",
   "auto_pipeline": {
     "started": "2026-06-14T02:30:00Z",
     "goal": "Agency-agents merge Phase 3 — skill linter",

@@ -2,7 +2,7 @@
   "_meta": {
     "schema_version": "1.0.0",
     "date_computed": "2026-06-14",
-    "tool_count": 0,
+    "tool_count": 35,
     "score_dimensions": [
       {
         "name": "maintenance",
@@ -32,17 +32,3308 @@
     ]
   },
   "summary": {
-    "mean": 0,
-    "median": 0,
-    "min": 0,
-    "max": 0,
-    "stddev": 0,
+    "mean": 61.26,
+    "median": 61,
+    "min": 44,
+    "max": 77,
+    "stddev": 7.03,
     "distribution": {
       "A": 0,
-      "B": 0,
-      "C": 0,
-      "D": 0
+      "B": 1,
+      "C": 31,
+      "D": 3
     }
   },
-  "tools": []
+  "tools": [
+    {
+      "name": "Impeccable",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 25,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 10,
+              "max": 10,
+              "length": 207
+            },
+            "how_agent_uses": {
+              "score": 10,
+              "max": 10,
+              "length": 270
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 124
+            }
+          }
+        },
+        "community": {
+          "score": 0,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 0,
+              "max": 15,
+              "stars": 0
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 12,
+          "max": 15,
+          "details": {
+            "tier": 2,
+            "tier_score": 12
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 62,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community-vibe-stack",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 2,
+        "star_count": null,
+        "license": "Apache 2.0",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 207,
+        "how_agent_uses_length": 270,
+        "description_length": 124
+      }
+    },
+    {
+      "name": "Stitch",
+      "scores": {
+        "maintenance": {
+          "score": 25,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 5,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 10,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 5,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 162
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 160
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 104
+            }
+          }
+        },
+        "community": {
+          "score": 5,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 0,
+              "max": 15,
+              "stars": 0
+            },
+            "in_skills": {
+              "score": 5,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 15,
+          "max": 15,
+          "details": {
+            "tier": 1,
+            "tier_score": 15
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 30
+          }
+        }
+      },
+      "total_score": 74,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "google-labs",
+        "verified_date": "2026-05-15T00:00:00.000Z",
+        "days_since_verified": 30,
+        "tier": 1,
+        "star_count": null,
+        "license": "Proprietary (free tier)",
+        "in_skills": true,
+        "has_skill_path": true,
+        "what_it_does_length": 162,
+        "how_agent_uses_length": 160,
+        "description_length": 104
+      }
+    },
+    {
+      "name": "shadcn/ui",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 17,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 139
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 143
+            },
+            "description": {
+              "score": 3,
+              "max": 5,
+              "length": 90
+            }
+          }
+        },
+        "community": {
+          "score": 13,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 13,
+              "max": 15,
+              "stars": 76000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 8,
+          "max": 10,
+          "details": {
+            "days_since_verified": 74
+          }
+        }
+      },
+      "total_score": 61,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (76k+ stars)",
+        "verified_date": "2026-04-01T00:00:00.000Z",
+        "days_since_verified": 74,
+        "tier": 3,
+        "star_count": 76000,
+        "license": "MIT",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 139,
+        "how_agent_uses_length": 143,
+        "description_length": 90
+      }
+    },
+    {
+      "name": "Penpot",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 181
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 194
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 140
+            }
+          }
+        },
+        "community": {
+          "score": 11,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 11,
+              "max": 15,
+              "stars": 49000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 63,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (49k+ stars)",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 3,
+        "star_count": 49000,
+        "license": "MPL-2.0",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 181,
+        "how_agent_uses_length": 194,
+        "description_length": 140
+      }
+    },
+    {
+      "name": "OpenPencil",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 184
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 176
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 116
+            }
+          }
+        },
+        "community": {
+          "score": 7,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 7,
+              "max": 15,
+              "stars": 5400
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 59,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (5.4k+ stars)",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 3,
+        "star_count": 5400,
+        "license": "MIT",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 184,
+        "how_agent_uses_length": 176,
+        "description_length": 116
+      }
+    },
+    {
+      "name": "Aider",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 136
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 140
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 114
+            }
+          }
+        },
+        "community": {
+          "score": 11,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 11,
+              "max": 15,
+              "stars": 25000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 8,
+          "max": 10,
+          "details": {
+            "days_since_verified": 44
+          }
+        }
+      },
+      "total_score": 61,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (25k+ stars)",
+        "verified_date": "2026-05-01T00:00:00.000Z",
+        "days_since_verified": 44,
+        "tier": 3,
+        "star_count": 25000,
+        "license": "Apache 2.0",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 136,
+        "how_agent_uses_length": 140,
+        "description_length": 114
+      }
+    },
+    {
+      "name": "Continue.dev",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 132
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 151
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 109
+            }
+          }
+        },
+        "community": {
+          "score": 9,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 9,
+              "max": 15,
+              "stars": 22000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 8,
+          "max": 10,
+          "details": {
+            "days_since_verified": 60
+          }
+        }
+      },
+      "total_score": 59,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (22k+ stars)",
+        "verified_date": "2026-04-15T00:00:00.000Z",
+        "days_since_verified": 60,
+        "tier": 3,
+        "star_count": 22000,
+        "license": "Apache 2.0",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 132,
+        "how_agent_uses_length": 151,
+        "description_length": 109
+      }
+    },
+    {
+      "name": "TabbyML",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 154
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 179
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 147
+            }
+          }
+        },
+        "community": {
+          "score": 11,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 11,
+              "max": 15,
+              "stars": 33000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 63,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (33k+ stars)",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 3,
+        "star_count": 33000,
+        "license": "Apache 2.0",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 154,
+        "how_agent_uses_length": 179,
+        "description_length": 147
+      }
+    },
+    {
+      "name": "Gemini CLI",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 157
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 190
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 118
+            }
+          }
+        },
+        "community": {
+          "score": 15,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 15,
+              "max": 15,
+              "stars": 250000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 67,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (250k+ installs)",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 3,
+        "star_count": 250000,
+        "license": "Apache 2.0",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 157,
+        "how_agent_uses_length": 190,
+        "description_length": 118
+      }
+    },
+    {
+      "name": "OpenCode",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 22,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 10,
+              "max": 10,
+              "length": 203
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 177
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 130
+            }
+          }
+        },
+        "community": {
+          "score": 15,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 15,
+              "max": 15,
+              "stars": 172000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 70,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (172k+ stars)",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 3,
+        "star_count": 172000,
+        "license": "MIT",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 203,
+        "how_agent_uses_length": 177,
+        "description_length": 130
+      }
+    },
+    {
+      "name": "nit",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 179
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 162
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 126
+            }
+          }
+        },
+        "community": {
+          "score": 0,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 0,
+              "max": 15,
+              "stars": 0
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 5,
+          "max": 15,
+          "details": {
+            "tier": 4,
+            "tier_score": 5
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 49,
+      "grade": "D",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (growing)",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 4,
+        "star_count": null,
+        "license": "MIT",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 179,
+        "how_agent_uses_length": 162,
+        "description_length": 126
+      }
+    },
+    {
+      "name": "vibe-testing",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 22,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 155
+            },
+            "how_agent_uses": {
+              "score": 10,
+              "max": 10,
+              "length": 202
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 128
+            }
+          }
+        },
+        "community": {
+          "score": 0,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 0,
+              "max": 15,
+              "stars": 0
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 5,
+          "max": 15,
+          "details": {
+            "tier": 4,
+            "tier_score": 5
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 52,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 4,
+        "star_count": null,
+        "license": "MIT",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 155,
+        "how_agent_uses_length": 202,
+        "description_length": 128
+      }
+    },
+    {
+      "name": "Playwright",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 17,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 114
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 128
+            },
+            "description": {
+              "score": 3,
+              "max": 5,
+              "length": 98
+            }
+          }
+        },
+        "community": {
+          "score": 0,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 0,
+              "max": 15,
+              "stars": 0
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 15,
+          "max": 15,
+          "details": {
+            "tier": 1,
+            "tier_score": 15
+          }
+        },
+        "freshness": {
+          "score": 6,
+          "max": 10,
+          "details": {
+            "days_since_verified": 105
+          }
+        }
+      },
+      "total_score": 53,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "microsoft",
+        "verified_date": "2026-03-01T00:00:00.000Z",
+        "days_since_verified": 105,
+        "tier": 1,
+        "star_count": null,
+        "license": "Apache 2.0",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 114,
+        "how_agent_uses_length": 128,
+        "description_length": 98
+      }
+    },
+    {
+      "name": "Vitest",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 112
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 101
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 101
+            }
+          }
+        },
+        "community": {
+          "score": 9,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 9,
+              "max": 15,
+              "stars": 13000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 6,
+          "max": 10,
+          "details": {
+            "days_since_verified": 133
+          }
+        }
+      },
+      "total_score": 57,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (13k+ stars)",
+        "verified_date": "2026-02-01T00:00:00.000Z",
+        "days_since_verified": 133,
+        "tier": 3,
+        "star_count": 13000,
+        "license": "MIT",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 112,
+        "how_agent_uses_length": 101,
+        "description_length": 101
+      }
+    },
+    {
+      "name": "Cypress",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 22,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 193
+            },
+            "how_agent_uses": {
+              "score": 10,
+              "max": 10,
+              "length": 241
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 125
+            }
+          }
+        },
+        "community": {
+          "score": 13,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 13,
+              "max": 15,
+              "stars": 50000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 68,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (50k+ stars)",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 3,
+        "star_count": 50000,
+        "license": "MIT",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 193,
+        "how_agent_uses_length": 241,
+        "description_length": 125
+      }
+    },
+    {
+      "name": "Vercel",
+      "scores": {
+        "maintenance": {
+          "score": 25,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 5,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 10,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 5,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 109
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 105
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 104
+            }
+          }
+        },
+        "community": {
+          "score": 5,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 0,
+              "max": 15,
+              "stars": 0
+            },
+            "in_skills": {
+              "score": 5,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 15,
+          "max": 15,
+          "details": {
+            "tier": 1,
+            "tier_score": 15
+          }
+        },
+        "freshness": {
+          "score": 6,
+          "max": 10,
+          "details": {
+            "days_since_verified": 164
+          }
+        }
+      },
+      "total_score": 70,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "vercel",
+        "verified_date": "2026-01-01T00:00:00.000Z",
+        "days_since_verified": 164,
+        "tier": 1,
+        "star_count": null,
+        "license": "Proprietary (free tier)",
+        "in_skills": true,
+        "has_skill_path": true,
+        "what_it_does_length": 109,
+        "how_agent_uses_length": 105,
+        "description_length": 104
+      }
+    },
+    {
+      "name": "Netlify",
+      "scores": {
+        "maintenance": {
+          "score": 23,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 5,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 10,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 3,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 5,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 14,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 137
+            },
+            "how_agent_uses": {
+              "score": 4,
+              "max": 10,
+              "length": 54
+            },
+            "description": {
+              "score": 3,
+              "max": 5,
+              "length": 90
+            }
+          }
+        },
+        "community": {
+          "score": 5,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 0,
+              "max": 15,
+              "stars": 0
+            },
+            "in_skills": {
+              "score": 5,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 15,
+          "max": 15,
+          "details": {
+            "tier": 1,
+            "tier_score": 15
+          }
+        },
+        "freshness": {
+          "score": 6,
+          "max": 10,
+          "details": {
+            "days_since_verified": 164
+          }
+        }
+      },
+      "total_score": 63,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "netlify",
+        "verified_date": "2026-01-01T00:00:00.000Z",
+        "days_since_verified": 164,
+        "tier": 1,
+        "star_count": null,
+        "license": "Proprietary (free tier)",
+        "in_skills": true,
+        "has_skill_path": true,
+        "what_it_does_length": 137,
+        "how_agent_uses_length": 54,
+        "description_length": 90
+      }
+    },
+    {
+      "name": "Railway",
+      "scores": {
+        "maintenance": {
+          "score": 10,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 5,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 171
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 175
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 136
+            }
+          }
+        },
+        "community": {
+          "score": 0,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 0,
+              "max": 15,
+              "stars": 0
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 5,
+          "max": 15,
+          "details": {
+            "tier": 4,
+            "tier_score": 5
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 44,
+      "grade": "D",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 4,
+        "star_count": null,
+        "license": "Proprietary (free tier)",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 171,
+        "how_agent_uses_length": 175,
+        "description_length": 136
+      }
+    },
+    {
+      "name": "Coolify",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 159
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 190
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 131
+            }
+          }
+        },
+        "community": {
+          "score": 11,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 11,
+              "max": 15,
+              "stars": 40000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 63,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (40k+ stars)",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 3,
+        "star_count": 40000,
+        "license": "Apache 2.0",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 159,
+        "how_agent_uses_length": 190,
+        "description_length": 131
+      }
+    },
+    {
+      "name": "Cloudflare Pages",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 174
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 170
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 112
+            }
+          }
+        },
+        "community": {
+          "score": 5,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 5,
+              "max": 15,
+              "stars": 2000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 57,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (2k+ stars, Cloudflare official)",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 3,
+        "star_count": 2000,
+        "license": "MIT",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 174,
+        "how_agent_uses_length": 170,
+        "description_length": 112
+      }
+    },
+    {
+      "name": "Qdrant",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 162
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 133
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 105
+            }
+          }
+        },
+        "community": {
+          "score": 0,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 0,
+              "max": 15,
+              "stars": 0
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 15,
+          "max": 15,
+          "details": {
+            "tier": 1,
+            "tier_score": 15
+          }
+        },
+        "freshness": {
+          "score": 8,
+          "max": 10,
+          "details": {
+            "days_since_verified": 74
+          }
+        }
+      },
+      "total_score": 57,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "qdrant",
+        "verified_date": "2026-04-01T00:00:00.000Z",
+        "days_since_verified": 74,
+        "tier": 1,
+        "star_count": null,
+        "license": "Apache 2.0",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 162,
+        "how_agent_uses_length": 133,
+        "description_length": 105
+      }
+    },
+    {
+      "name": "LangChain",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 17,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 119
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 167
+            },
+            "description": {
+              "score": 3,
+              "max": 5,
+              "length": 88
+            }
+          }
+        },
+        "community": {
+          "score": 15,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 15,
+              "max": 15,
+              "stars": 100000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 6,
+          "max": 10,
+          "details": {
+            "days_since_verified": 164
+          }
+        }
+      },
+      "total_score": 61,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (100k+ stars)",
+        "verified_date": "2026-01-01T00:00:00.000Z",
+        "days_since_verified": 164,
+        "tier": 3,
+        "star_count": 100000,
+        "license": "MIT",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 119,
+        "how_agent_uses_length": 167,
+        "description_length": 88
+      }
+    },
+    {
+      "name": "Mem0",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 188
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 193
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 125
+            }
+          }
+        },
+        "community": {
+          "score": 11,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 11,
+              "max": 15,
+              "stars": 28000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 8,
+          "max": 10,
+          "details": {
+            "days_since_verified": 44
+          }
+        }
+      },
+      "total_score": 61,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (28k+ stars)",
+        "verified_date": "2026-05-01T00:00:00.000Z",
+        "days_since_verified": 44,
+        "tier": 3,
+        "star_count": 28000,
+        "license": "Apache 2.0",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 188,
+        "how_agent_uses_length": 193,
+        "description_length": 125
+      }
+    },
+    {
+      "name": "Chroma",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 158
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 156
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 120
+            }
+          }
+        },
+        "community": {
+          "score": 9,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 9,
+              "max": 15,
+              "stars": 17000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 8,
+          "max": 10,
+          "details": {
+            "days_since_verified": 74
+          }
+        }
+      },
+      "total_score": 59,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (17k+ stars)",
+        "verified_date": "2026-04-01T00:00:00.000Z",
+        "days_since_verified": 74,
+        "tier": 3,
+        "star_count": 17000,
+        "license": "Apache 2.0",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 158,
+        "how_agent_uses_length": 156,
+        "description_length": 120
+      }
+    },
+    {
+      "name": "Weaviate",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 25,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 10,
+              "max": 10,
+              "length": 259
+            },
+            "how_agent_uses": {
+              "score": 10,
+              "max": 10,
+              "length": 249
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 141
+            }
+          }
+        },
+        "community": {
+          "score": 9,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 9,
+              "max": 15,
+              "stars": 13000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 67,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (13k+ stars)",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 3,
+        "star_count": 13000,
+        "license": "BSD-3-Clause",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 259,
+        "how_agent_uses_length": 249,
+        "description_length": 141
+      }
+    },
+    {
+      "name": "CrewAI",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 129
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 162
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 102
+            }
+          }
+        },
+        "community": {
+          "score": 11,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 11,
+              "max": 15,
+              "stars": 25000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 6,
+          "max": 10,
+          "details": {
+            "days_since_verified": 105
+          }
+        }
+      },
+      "total_score": 59,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (25k+ stars)",
+        "verified_date": "2026-03-01T00:00:00.000Z",
+        "days_since_verified": 105,
+        "tier": 3,
+        "star_count": 25000,
+        "license": "MIT",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 129,
+        "how_agent_uses_length": 162,
+        "description_length": 102
+      }
+    },
+    {
+      "name": "LangGraph",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 17,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 106
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 129
+            },
+            "description": {
+              "score": 3,
+              "max": 5,
+              "length": 95
+            }
+          }
+        },
+        "community": {
+          "score": 0,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 0,
+              "max": 15,
+              "stars": 0
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 15,
+          "max": 15,
+          "details": {
+            "tier": 1,
+            "tier_score": 15
+          }
+        },
+        "freshness": {
+          "score": 6,
+          "max": 10,
+          "details": {
+            "days_since_verified": 91
+          }
+        }
+      },
+      "total_score": 53,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "langchain",
+        "verified_date": "2026-03-15T00:00:00.000Z",
+        "days_since_verified": 91,
+        "tier": 1,
+        "star_count": null,
+        "license": "MIT",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 106,
+        "how_agent_uses_length": 129,
+        "description_length": 95
+      }
+    },
+    {
+      "name": "Nexus",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 189
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 193
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 126
+            }
+          }
+        },
+        "community": {
+          "score": 0,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 0,
+              "max": 15,
+              "stars": 0
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 5,
+          "max": 15,
+          "details": {
+            "tier": 4,
+            "tier_score": 5
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 49,
+      "grade": "D",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 4,
+        "star_count": null,
+        "license": "MIT",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 189,
+        "how_agent_uses_length": 193,
+        "description_length": 126
+      }
+    },
+    {
+      "name": "Mastra",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 25,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 10,
+              "max": 10,
+              "length": 209
+            },
+            "how_agent_uses": {
+              "score": 10,
+              "max": 10,
+              "length": 207
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 126
+            }
+          }
+        },
+        "community": {
+          "score": 7,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 7,
+              "max": 15,
+              "stars": 7000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 65,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (7k+ stars)",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 3,
+        "star_count": 7000,
+        "license": "MIT",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 209,
+        "how_agent_uses_length": 207,
+        "description_length": 126
+      }
+    },
+    {
+      "name": "Dify",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 22,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 187
+            },
+            "how_agent_uses": {
+              "score": 10,
+              "max": 10,
+              "length": 209
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 132
+            }
+          }
+        },
+        "community": {
+          "score": 13,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 13,
+              "max": 15,
+              "stars": 70000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 68,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (70k+ stars)",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 3,
+        "star_count": 70000,
+        "license": "Apache 2.0",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 187,
+        "how_agent_uses_length": 209,
+        "description_length": 132
+      }
+    },
+    {
+      "name": "Smolagents",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 105
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 158
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 133
+            }
+          }
+        },
+        "community": {
+          "score": 0,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 0,
+              "max": 15,
+              "stars": 0
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 15,
+          "max": 15,
+          "details": {
+            "tier": 1,
+            "tier_score": 15
+          }
+        },
+        "freshness": {
+          "score": 8,
+          "max": 10,
+          "details": {
+            "days_since_verified": 44
+          }
+        }
+      },
+      "total_score": 57,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "huggingface",
+        "verified_date": "2026-05-01T00:00:00.000Z",
+        "days_since_verified": 44,
+        "tier": 1,
+        "star_count": null,
+        "license": "Apache 2.0",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 105,
+        "how_agent_uses_length": 158,
+        "description_length": 133
+      }
+    },
+    {
+      "name": "FastMCP",
+      "scores": {
+        "maintenance": {
+          "score": 30,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 10,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 5,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 19,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 103
+            },
+            "how_agent_uses": {
+              "score": 7,
+              "max": 10,
+              "length": 139
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 116
+            }
+          }
+        },
+        "community": {
+          "score": 5,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 0,
+              "max": 15,
+              "stars": 0
+            },
+            "in_skills": {
+              "score": 5,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 15,
+          "max": 15,
+          "details": {
+            "tier": 1,
+            "tier_score": 15
+          }
+        },
+        "freshness": {
+          "score": 8,
+          "max": 10,
+          "details": {
+            "days_since_verified": 74
+          }
+        }
+      },
+      "total_score": 77,
+      "grade": "B",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "anthropic",
+        "verified_date": "2026-04-01T00:00:00.000Z",
+        "days_since_verified": 74,
+        "tier": 1,
+        "star_count": null,
+        "license": "MIT",
+        "in_skills": true,
+        "has_skill_path": true,
+        "what_it_does_length": 103,
+        "how_agent_uses_length": 139,
+        "description_length": 116
+      }
+    },
+    {
+      "name": "Agno",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 22,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 173
+            },
+            "how_agent_uses": {
+              "score": 10,
+              "max": 10,
+              "length": 248
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 117
+            }
+          }
+        },
+        "community": {
+          "score": 11,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 11,
+              "max": 15,
+              "stars": 40000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 66,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (40k+ stars)",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 3,
+        "star_count": 40000,
+        "license": "Apache 2.0",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 173,
+        "how_agent_uses_length": 248,
+        "description_length": 117
+      }
+    },
+    {
+      "name": "MCP Agent",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 22,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 188
+            },
+            "how_agent_uses": {
+              "score": 10,
+              "max": 10,
+              "length": 207
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 127
+            }
+          }
+        },
+        "community": {
+          "score": 7,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 7,
+              "max": 15,
+              "stars": 6000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 62,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (6k+ stars)",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 3,
+        "star_count": 6000,
+        "license": "MIT",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 188,
+        "how_agent_uses_length": 207,
+        "description_length": 127
+      }
+    },
+    {
+      "name": "Langflow",
+      "scores": {
+        "maintenance": {
+          "score": 15,
+          "max": 30,
+          "details": {
+            "license": {
+              "score": 10,
+              "max": 10
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 10
+            },
+            "description_quality": {
+              "score": 5,
+              "max": 5
+            },
+            "skill_path": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "docs": {
+          "score": 22,
+          "max": 25,
+          "details": {
+            "what_it_does": {
+              "score": 7,
+              "max": 10,
+              "length": 190
+            },
+            "how_agent_uses": {
+              "score": 10,
+              "max": 10,
+              "length": 201
+            },
+            "description": {
+              "score": 5,
+              "max": 5,
+              "length": 114
+            }
+          }
+        },
+        "community": {
+          "score": 13,
+          "max": 20,
+          "details": {
+            "star_count": {
+              "score": 13,
+              "max": 15,
+              "stars": 50000
+            },
+            "in_skills": {
+              "score": 0,
+              "max": 5
+            }
+          }
+        },
+        "trustworthiness": {
+          "score": 8,
+          "max": 15,
+          "details": {
+            "tier": 3,
+            "tier_score": 8
+          }
+        },
+        "freshness": {
+          "score": 10,
+          "max": 10,
+          "details": {
+            "days_since_verified": 13
+          }
+        }
+      },
+      "total_score": 68,
+      "grade": "C",
+      "date_computed": "2026-06-14",
+      "evidence": {
+        "verified_by": "community (50k+ stars)",
+        "verified_date": "2026-06-01T00:00:00.000Z",
+        "days_since_verified": 13,
+        "tier": 3,
+        "star_count": 50000,
+        "license": "MIT",
+        "in_skills": false,
+        "has_skill_path": false,
+        "what_it_does_length": 190,
+        "how_agent_uses_length": 201,
+        "description_length": 114
+      }
+    }
+  ]
 }

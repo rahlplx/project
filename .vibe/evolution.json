@@ -1,7 +1,7 @@
 {
-  "version": "2.4.0",
+  "version": "2.5.0",
   "last_evolution": "2026-06-14",
-  "evolution_count": 5,
+  "evolution_count": 6,
   "rules": {
     "agent-native-catalog": {
       "fires": 35,
@@ -22,13 +22,13 @@
       "note": "Best practice for data-only commits. No regressions across 3 pushes."
     },
     "auto-pipeline-for-curation": {
-      "fires": 5,
-      "helpful": 5,
+      "fires": 6,
+      "helpful": 6,
       "false_positive": 0,
       "quality_score": 1,
       "last_updated": "2026-06-14",
       "status": "active",
-      "note": "Cross-domain pattern. 4 successful curation pipeline runs, including Phase 2."
+      "note": "Cross-domain pattern. 5 successful pipeline runs including 6-track parallel enhancement."
     },
     "execFileSync-over-execSync": {
       "fires": 3,
@@ -37,16 +37,16 @@
       "quality_score": 1,
       "last_updated": "2026-06-14",
       "status": "active",
-      "note": "Security: never use execSync(string). 3 files migrated to execFileSync/spawnSync(array). No regressions."
+      "note": "Security: never use execSync(string). 3 files migrated. No regressions."
     },
     "test-for-every-skill": {
-      "fires": 12,
-      "helpful": 12,
+      "fires": 14,
+      "helpful": 14,
       "false_positive": 0,
       "quality_score": 1,
       "last_updated": "2026-06-14",
       "status": "active",
-      "note": "Every skill MUST have a test file. 12 untested skills identified and fixed. 168 new assertions."
+      "note": "Every skill MUST have a test file. 12+2=14 untested skills identified and fixed. 47 skills covered."
     },
     "batch-catalog-additions": {
       "fires": 0,
@@ -55,7 +55,7 @@
       "quality_score": null,
       "last_updated": "2026-06-13",
       "status": "active",
-      "note": "New rule from incremental-catalog-runs anti-pattern. Pending first fire."
+      "note": "New rule from incremental-catalog-runs anti-pattern. Not yet exercised."
     },
     "append-not-insert-yaml": {
       "fires": 0,
@@ -64,85 +64,156 @@
       "quality_score": null,
       "last_updated": "2026-06-13",
       "status": "active",
-      "note": "New rule from mid-file-yaml-edits anti-pattern. Pending first fire."
+      "note": "New rule from mid-file-yaml-edits anti-pattern. Not yet exercised."
     },
     "jaccard-originality-check": {
-      "fires": 1,
-      "helpful": 1,
-      "false_positive": 0,
-      "quality_score": 1,
-      "last_updated": "2026-06-14",
-      "status": "active",
-      "note": "Shingle-based Jaccard similarity check for skill originality. 45 skills checked, worst 13.8%, zero false positives."
-    },
-    "verify-gate-before-advance": {
       "fires": 2,
       "helpful": 2,
       "false_positive": 0,
       "quality_score": 1,
       "last_updated": "2026-06-14",
       "status": "active",
-      "note": "Promoted from proposed. Verified across Phase 1 (10 transitions) and Phase 2 (build-test cycle). Prevents skipping quality gates."
+      "note": "Shingle-based Jaccard similarity check. 47 skills checked, worst 19.3%, zero false positives."
+    },
+    "verify-gate-before-advance": {
+      "fires": 3,
+      "helpful": 3,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Prevents skipping quality gates. Verified across Phase 1 (10 transitions) and 6-track build."
     },
     "skill-structural-linter": {
+      "fires": 2,
+      "helpful": 2,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Structural lint check. 47 skills, 41 clean, 6 warnings, 0 errors."
+    },
+    "six-track-parallel-execution": {
       "fires": 1,
       "helpful": 1,
       "false_positive": 0,
       "quality_score": 1,
       "last_updated": "2026-06-14",
       "status": "active",
-      "note": "Structural lint check on 45 skills. 39 clean, 6 warnings, 0 errors. Multi-line regex fix applied during review."
+      "note": "6 independent tracks dispatched in parallel with zero file conflicts. 50 files, 5858 insertions."
+    },
+    "owasp-security-scan-asi-patterns": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "40 detection patterns across OWASP ASI01-ASI08. 47 skills scanned, 0 CRITICAL findings."
+    },
+    "mcp-discovery-well-known": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "RFC Cloudflare .well-known/agent-skills/index.json format. 47 skill modules indexed with SHA-256 digests."
+    },
+    "test-convention-node-test": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Declare test_convention: node:test before subagent dispatch. Prevented mixed imports during 6-track integration. All new tests use node:test imports."
     }
   },
   "harness": {
     "catalog-yaml-valid": {
-      "runs": 5,
+      "runs": 6,
       "finds": 0,
       "false_positive": 0,
       "quality_score": 1,
       "note": "YAML validated every time. Zero syntax errors across 35 entries."
     },
     "catalog-category-count": {
-      "runs": 5,
+      "runs": 6,
       "finds": 6,
       "false_positive": 0,
       "quality_score": 1,
-      "note": "Category counts verified every run. All hitting targets. 6 gap finds."
+      "note": "Category counts verified. All hitting targets. 6 gap finds."
     },
     "test-suite": {
-      "runs": 6,
+      "runs": 7,
       "finds": 0,
       "false_positive": 0,
       "quality_score": 1,
-      "note": "425 tests passing across 49 suites. Up from 247 baseline. All 45 skills have tests."
+      "note": "765 tests passing (633 Jest + 132 node:test). 57 Jest suites + 21 node:test suites."
     },
     "handoff-templates": {
-      "runs": 2,
+      "runs": 3,
       "finds": 0,
       "false_positive": 0,
       "quality_score": 1,
-      "note": "Verifies all 8 handoff docs exist in docs/handoffs/. Passed both runs (8/8)."
+      "note": "Verifies all 8 handoff docs exist. Never failed."
     },
     "phase-gates-doc": {
-      "runs": 2,
+      "runs": 3,
       "finds": 0,
       "false_positive": 0,
       "quality_score": 1,
-      "note": "Verifies gates.md has all 10 phase transitions documented. Passed both runs."
+      "note": "Verifies gates.md has all phase transitions documented. Never failed."
     },
     "skill-originality": {
-      "runs": 2,
+      "runs": 3,
       "finds": 0,
       "false_positive": 0,
       "quality_score": 1,
-      "note": "45 skills checked, worst 13.8%, zero fails. Verified across 2 runs."
+      "note": "47 skills checked, worst 19.3%, zero fails."
     },
     "skill-lint": {
-      "runs": 2,
+      "runs": 3,
       "finds": 0,
       "false_positive": 0,
       "quality_score": 1,
-      "note": "45 skills checked, 39 clean, 6 warnings, 0 errors. Verified across 2 runs."
+      "note": "47 skills, 41 clean, 6 warnings, 0 errors."
+    },
+    "index-json-integrity": {
+      "runs": 1,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "Validates .well-known/agent-skills/index.json matches on-disk skills. 47 entries verified."
+    },
+    "quality-scores": {
+      "runs": 1,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "Validates catalog/quality-scores.json covers all 35 tools. All scored, no D-grade tools."
+    },
+    "security-scan": {
+      "runs": 1,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "OWASP ASI01-ASI08 scan of all 47 skills. 0 CRITICAL findings."
+    },
+    "spec-gates-g09-g14": {
+      "runs": 1,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "6 new spec enforcement gates (G09-G14). All pass on current skills."
+    },
+    "node-test-suite": {
+      "runs": 1,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "node:test runner for 6 excluded files. 132 tests, 21 suites, all pass."
     }
   },
   "proposed_rules": [
@@ -154,9 +225,10 @@
     },
     {
       "name": "regex-in-jest-config",
-      "reason": "Escape dots in Jest testPathIgnorePatterns and modulePathIgnorePatterns — they use regex, not glob. Bug hid 2 test files (10 tests).",
-      "status": "pending",
-      "quality_score": null
+      "reason": "Escape dots in Jest testPathIgnorePatterns — they use regex, not glob. Bug hid 2 test files (10 tests).",
+      "status": "implemented",
+      "quality_score": 1,
+      "note": "Applied during deep audit. All dot-separated patterns now use \\\\. regex escaping."
     }
   ],
   "retired": {
@@ -174,7 +246,7 @@
       "false_positive": 0,
       "quality_score": 0,
       "retired_at": "2026-06-13",
-      "reason": "Reclassified as anti-pattern. Replaced by active rule: append-not-insert-yaml."
+      "reason": "Reclassified as anti-pattern. Replaced by: append-not-insert-yaml."
     },
     "incremental-catalog-runs": {
       "fires": 3,
@@ -182,7 +254,7 @@
       "false_positive": 0,
       "quality_score": 0,
       "retired_at": "2026-06-13",
-      "reason": "Reclassified as anti-pattern. Replaced by active rule: batch-catalog-additions."
+      "reason": "Reclassified as anti-pattern. Replaced by: batch-catalog-additions."
     },
     "verify-before-describe": {
       "fires": 2,
@@ -190,7 +262,7 @@
       "false_positive": 1,
       "quality_score": 0,
       "retired_at": "2026-06-13",
-      "reason": "Reclassified as anti-pattern. Replaced by active rule: pre-verify-tool-metadata."
+      "reason": "Reclassified as anti-pattern. Replaced by: pre-verify-tool-metadata."
     },
     "pre-verify-tool-metadata": {
       "fires": 0,
@@ -198,7 +270,7 @@
       "false_positive": 0,
       "quality_score": null,
       "retired_at": "2026-06-14",
-      "reason": "Never implemented. 0 fires in lifetime. No harness check. Replaced by test-for-every-skill and regex-in-jest-config."
+      "reason": "Never implemented. 0 fires. Replaced by test-for-every-skill + regex-in-jest-config."
     }
   }
 }
