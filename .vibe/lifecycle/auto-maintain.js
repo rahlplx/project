@@ -233,8 +233,14 @@ function runHarness(runTestSuite = true) {
   // Check 13: ESLint lint check (warnings allowed, errors block)
   try {
     const eslintBin = path.join(PROJECT_ROOT, 'node_modules', 'eslint', 'bin', 'eslint.js');
-    const eslintOutput = stripAnsi(execFileSync(process.execPath, [eslintBin, 'lib/', 'bin/', '--no-eslintrc', '-c', '.eslintrc.js', '--format', 'json'], { cwd: PROJECT_ROOT, timeout: 30000, encoding: 'utf8' }));
-    const results_json = JSON.parse(eslintOutput);
+    let eslintOutput;
+    try {
+      eslintOutput = execFileSync(process.execPath, [eslintBin, 'lib/', 'bin/', '--no-eslintrc', '-c', '.eslintrc.js', '--format', 'json'], { cwd: PROJECT_ROOT, timeout: 60000, encoding: 'utf8' });
+    } catch (execErr) {
+      eslintOutput = execErr.stdout || execErr.message;
+    }
+    const cleaned = stripAnsi(eslintOutput);
+    const results_json = JSON.parse(cleaned);
     const errorCount = results_json.reduce((sum, f) => sum + f.errorCount, 0);
     const warningCount = results_json.reduce((sum, f) => sum + f.warningCount, 0);
     const pass = errorCount === 0;
@@ -280,18 +286,104 @@ function captureTelemetry() {
   console.log('  [telemetry] Capturing session snapshot...');
 
   const lifecycle = readJSON(LIFECYCLE_PATH);
+  const state = readJSON(STATE_PATH);
+  const harnessResults = readJSON(path.join(TELEMETRY_DIR, 'harness-results.json')) || { lastResults: [] };
+  const phaseTiming = readJSON(path.join(TELEMETRY_DIR, 'phase-timing.json')) || { records: [] };
+  const errorData = readJSON(path.join(TELEMETRY_DIR, 'error-trends.json')) || { errors: [] };
+  const compactionData = readJSON(path.join(TELEMETRY_DIR, 'compaction.json')) || { events: [] };
+
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
   const sessionFile = path.join(TELEMETRY_SESSIONS, `session-${timestamp}.json`);
 
+  // Build phases object from phase-timing records
+  const phases = {};
+  for (const r of phaseTiming.records) {
+    phases[r.phase] = {
+      started_at: r.startTime || timestamp,
+      ended_at: r.endTime || timestamp,
+      duration_min: Math.round((r.durationMs || 0) / 60000 * 10) / 10,
+      commands_run: [],
+      errors: [],
+      tasks_completed: 0,
+      tasks_failed: 0
+    };
+  }
+
+  // Build error list from error-trends
+  const errors = errorData.errors.slice(-20).map(e => ({
+    phase: e.context || 'unknown',
+    type: e.category || 'unknown',
+    message: e.error || e.message || 'Unknown error',
+    resolution: e.resolution || ''
+  }));
+
+  // Build compaction events
+  const compactionEvents = compactionData.events.slice(-10).map(e => ({
+    phase: e.phase,
+    task: e.task,
+    detected_at: e.detected_at,
+    symptom: e.symptom,
+    recovery: e.recovery,
+    token_recovered: e.token_recovered !== false,
+    time_lost_min: e.time_lost_min || 0
+  }));
+
+  const recentCommits = getRecentCommits();
+
+  // Identify most common error pattern
+  const errorPatterns = {};
+  for (const e of errors) {
+    errorPatterns[e.type] = (errorPatterns[e.type] || 0) + 1;
+  }
+  const topErrors = Object.entries(errorPatterns)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, 3)
+    .map(([type, count]) => ({ type, count }));
+
   const snapshot = {
-    timestamp: new Date().toISOString(),
-    session_count: lifecycle.session_count,
-    interaction_count: lifecycle.interaction_count,
-    total_sessions: lifecycle.total_sessions,
-    total_interactions: lifecycle.total_interactions,
-    maintenance_count: lifecycle.maintenance_count,
-    pipeline_count: lifecycle.pipeline_count,
-    recent_commits: getRecentCommits()
+    session_id: timestamp,
+    project: state?.project || 'vibe-stack',
+    started_at: lifecycle?.last_maintenance ? new Date(lifecycle.last_maintenance).toISOString() : new Date().toISOString(),
+    ended_at: new Date().toISOString(),
+    mode: state?.mode || 'auto',
+    phases,
+    user_interactions: {
+      commands_used: {
+        'vibe:telemetry': 1
+      },
+      times_corrected_ai: 0,
+      times_asked_clarification: 0
+    },
+    errors: errors.slice(0, 10),
+    blockers: [],
+    compaction: {
+      compaction_events: compactionEvents,
+      compaction_warning_signals: [
+        'Agent asks for context it already had',
+        'Response quality suddenly drops',
+        'Agent repeats prior output',
+        'Agent asks "should I continue?" after receiving clear instructions'
+      ]
+    },
+    harness: {
+      checks_run: harnessResults.lastResults?.length || 0,
+      checks_passed: harnessResults.lastResults?.filter(r => r.pass).length || 0,
+      checks_failed: harnessResults.lastResults?.filter(r => !r.pass).length || 0,
+      failures: harnessResults.lastResults?.filter(r => !r.pass).map(r => r.check) || []
+    },
+    meta: {
+      total_sessions: lifecycle.total_sessions || 0,
+      total_interactions: lifecycle.total_interactions || 0,
+      maintenance_count: lifecycle.maintenance_count || 0,
+      pipeline_count: lifecycle.pipeline_count || 0,
+      interaction_count: lifecycle.interaction_count || 0,
+      session_count: lifecycle.session_count || 0,
+      tools_discovered: state?.infrastructure?.toolsDiscovered || 0,
+      skills_total: state?.skills?.total || 0,
+      tests_passing: state?.infrastructure?.testsPassing || 0,
+      recent_commits: recentCommits,
+      top_errors: topErrors
+    }
   };
 
   writeJSON(sessionFile, snapshot);
@@ -341,7 +433,118 @@ function detectStuckPhases(thresholdMs = 300000) {
   return stuck;
 }
 
-// ── Phase 2c: Session Retention ─────────────────────────────────
+// ── Phase 2c: Save Harness Results ──────────────────────────────
+function saveHarnessResults(harnessResults) {
+  const harnessPath = path.join(TELEMETRY_DIR, 'harness-results.json');
+  const data = {
+    lastUpdated: new Date().toISOString(),
+    lastResults: harnessResults,
+    history: (readJSON(harnessPath)?.history || []).concat({
+      timestamp: new Date().toISOString(),
+      results: harnessResults
+    }).slice(-50)
+  };
+  writeJSON(harnessPath, data);
+}
+
+// ── Phase 2d: Compaction Event Recording ────────────────────────
+function recordCompactionEvent(event) {
+  const compactionPath = path.join(TELEMETRY_DIR, 'compaction.json');
+  const data = readJSON(compactionPath) || { events: [] };
+  data.events.push({
+    ...event,
+    detected_at: new Date().toISOString()
+  });
+  // Keep last 100 events
+  if (data.events.length > 100) {
+    data.events = data.events.slice(-100);
+  }
+  writeJSON(compactionPath, data);
+  console.log(`  [telemetry]  ⚠ recorded compaction event: ${event.symptom}`);
+}
+
+// ── Phase 2e: Telemetry → Learn feed ────────────────────────────
+function feedTelemetryToLearn(telemetry) {
+  if (!telemetry || !telemetry.meta) return [];
+
+  const insights = [];
+  const topErrors = telemetry.meta.top_errors || [];
+  const harnessFailures = telemetry.harness?.failures || [];
+
+  // If harness failures exist, propose a learn pattern
+  if (harnessFailures.length > 0) {
+    insights.push({
+      source: 'telemetry',
+      type: 'harness_failure_pattern',
+      detail: `Harness check failures: ${harnessFailures.join(', ')}`,
+      suggestion: 'Consider adding guardrails or templates for failing checks'
+    });
+  }
+
+  // If top errors exist, flag them
+  if (topErrors.length > 0) {
+    for (const e of topErrors) {
+      if (e.count >= 2) {
+        insights.push({
+          source: 'telemetry',
+          type: 'recurring_error',
+          detail: `${e.type} occurred ${e.count} times`,
+          suggestion: `Add anti-pattern for '${e.type}' error type`
+        });
+      }
+    }
+  }
+
+  // Detect if maintenance cycles are running too frequently
+  if (telemetry.meta.maintenance_count > 20) {
+    insights.push({
+      source: 'telemetry',
+      type: 'high_maintenance_volume',
+      detail: `${telemetry.meta.maintenance_count} maintenance cycles run`,
+      suggestion: 'Check if auto-maintenance threshold should be increased'
+    });
+  }
+
+  return insights;
+}
+
+// ── Phase 2f: Detect Rapid Restarts (Compaction Signal) ────────
+function detectRapidRestarts() {
+  if (!fs.existsSync(TELEMETRY_SESSIONS)) return [];
+
+  const files = fs.readdirSync(TELEMETRY_SESSIONS)
+    .filter(f => f.startsWith('session-') && f.endsWith('.json'))
+    .sort()
+    .slice(-10);
+
+  if (files.length < 2) return [];
+
+  const signals = [];
+  for (let i = 1; i < files.length; i++) {
+    const prev = readJSON(path.join(TELEMETRY_SESSIONS, files[i - 1]));
+    const curr = readJSON(path.join(TELEMETRY_SESSIONS, files[i]));
+    if (!prev || !curr) continue;
+
+    const prevTime = prev.ended_at || prev.timestamp;
+    const currTime = curr.started_at || curr.timestamp;
+    if (!prevTime || !currTime) continue;
+
+    const gap = new Date(currTime) - new Date(prevTime);
+    if (gap > 0 && gap < 60000) {
+      signals.push({
+        phase: 'startup',
+        task: prev.meta?.maintenance_count || 'unknown',
+        detected_at: new Date().toISOString(),
+        symptom: 'Session restarted within 1 minute of previous',
+        recovery: 'Auto-maintenance handles state recovery',
+        token_recovered: true,
+        time_lost_min: 0.5
+      });
+    }
+  }
+
+  return signals;
+}
 function enforceSessionRetention(keepLast = 30) {
   console.log(`  [telemetry] Enforcing session retention (keep last ${keepLast})...`);
 
@@ -522,18 +725,24 @@ async function main() {
   // Phase 1
   const harnessResults = runHarness();
   // Phase 2
+  saveHarnessResults(harnessResults);
   const telemetry = captureTelemetry();
   // Phase 2b: Stuck detection
   const stuckPhases = detectStuckPhases();
   // Phase 2c: Session retention
   const deletedCount = enforceSessionRetention(30);
+  // Phase 2d: Compaction signal detection
+  const compactionSignals = detectRapidRestarts();
+  for (const sig of compactionSignals) {
+    recordCompactionEvent(sig);
+  }
   // Phase 3
   const retro = runRetro(harnessResults, telemetry);
   // Phase 4
   const learnResult = runLearn();
+  const telemetryInsights = feedTelemetryToLearn(telemetry);
   // Phase 5
   const evolveResult = runEvolve(learnResult);
-
   // Phase 6
   persist(lifecycle, harnessResults, telemetry, retro, learnResult, evolveResult);
 

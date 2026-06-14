@@ -13,7 +13,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { aggregateSessions, aggregatePhaseTiming, aggregateErrors, detectStuckPhases, detectTrends } = require(path.join(__dirname, '..', '..', 'lib', 'telemetry-aggregate'));
+const { aggregateSessions, aggregatePhaseTiming, aggregateErrors, detectStuckPhases, detectTrends, generateCrossProjectTrends } = require(path.join(__dirname, '..', '..', 'lib', 'telemetry-aggregate'));
 const { detectCompactionSignals, formatDuration, renderStatus } = require(path.join(__dirname, '..', '..', 'lib', 'telemetry-status'));
 const { getErrorTrends } = require(path.join(__dirname, '..', '..', 'lib', 'error-trends'));
 
@@ -102,13 +102,7 @@ function showErrors() {
 }
 
 function showStuck() {
-  const sessions = loadSessions();
-  if (sessions.length === 0) {
-    console.log('No telemetry sessions found.');
-    return;
-  }
-
-  const stuck = detectStuckPhases(sessions);
+  const stuck = detectStuckPhases();
 
   console.log('\n═══════════════════════════════════════════');
   console.log('  Stuck Phase Detection');
@@ -119,7 +113,7 @@ function showStuck() {
   } else {
     console.log(`  ⚠ ${stuck.length} stuck phase(s) detected:`);
     stuck.forEach(s => {
-      console.log(`    - ${s.phase}: stuck for ${formatDuration(s.stuckDuration)}`);
+      console.log(`    - ${s.phase}: stuck for ${formatDuration(s.durationMs)}`);
     });
   }
 
@@ -139,16 +133,56 @@ function exportData() {
   console.log(`Exported ${sessions.length} sessions to ${outputPath}`);
 }
 
+function showCrossProject() {
+  const trends = generateCrossProjectTrends();
+
+  console.log('\n═══════════════════════════════════════════');
+  console.log('  📈 vibe-stack Trends');
+  console.log('═══════════════════════════════════════════\n');
+
+  if (!trends) {
+    console.log('  No telemetry data available.');
+    console.log('\n═══════════════════════════════════════════\n');
+    return;
+  }
+
+  console.log(`  Total Sessions:     ${trends.totalSessions}`);
+  if (trends.avgBuildTimeMin) console.log(`  Avg Build Time:     ${trends.avgBuildTimeMin} min`);
+  if (trends.mostStuckPhase) console.log(`  Most Stuck Phase:   ${trends.mostStuckPhase.phase} (${trends.mostStuckPhase.avgMin}min avg)`);
+  if (trends.mostCommonError) console.log(`  Most Common Error:  ${trends.mostCommonError.type} (${trends.mostCommonError.pct}%)`);
+  if (trends.harnessPassRate) console.log(`  Harness Pass Rate:  ${trends.harnessPassRate}`);
+
+  if (trends.topFailurePatterns && trends.topFailurePatterns.length > 0) {
+    console.log('\n  Top Failure Patterns:');
+    for (const f of trends.topFailurePatterns) {
+      console.log(`    ${f.check}: ${f.count} occurrence(s)`);
+    }
+  }
+
+  if (trends.suggestions && trends.suggestions.length > 0) {
+    console.log('\n  💡 Suggestions:');
+    for (const s of trends.suggestions) {
+      console.log(`    • ${s}`);
+    }
+  }
+
+  console.log('\n═══════════════════════════════════════════\n');
+}
+
 // Main
 const args = process.argv.slice(2);
 const command = args[0] || 'status';
 
 switch (command) {
   case 'status':
+  case 'dashboard':
     showDashboard();
     break;
   case 'trends':
     showTrends();
+    break;
+  case 'cross-project':
+    showCrossProject();
     break;
   case 'errors':
     showErrors();
@@ -160,6 +194,6 @@ switch (command) {
     exportData();
     break;
   default:
-    console.log('Usage: vibe:telemetry [status|trends|errors|stuck|export]');
+    console.log('Usage: vibe:telemetry [status|trends|cross-project|errors|stuck|export]');
     process.exit(1);
 }

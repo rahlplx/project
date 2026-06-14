@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-06-14T08:30:05.213Z",
+  "assessment": "degraded",
+  "harness_summary": {
+    "total": 14,
+    "passed": 13,
+    "failed": 1
+  },
+  "telemetry": {
+    "commits_since_last": 0
+  },
+  "notes": "Harness failed: eslint-lint-pass"
+}

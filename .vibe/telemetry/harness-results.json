@@ -1,0 +1,556 @@
+{
+  "lastUpdated": "2026-06-14T08:31:57.451Z",
+  "lastResults": [
+    {
+      "check": "catalog-yaml-valid",
+      "pass": true,
+      "data": {
+        "toolCount": 35
+      }
+    },
+    {
+      "check": "catalog-category-count",
+      "pass": true,
+      "data": {
+        "design-ui": 5,
+        "code-generation": 5,
+        "testing-qa": 5,
+        "deployment": 5,
+        "knowledge-memory": 5,
+        "orchestration": 5,
+        "agent-frameworks": 5
+      }
+    },
+    {
+      "check": "handoff-templates",
+      "pass": true,
+      "data": {
+        "total": 8,
+        "missing": []
+      }
+    },
+    {
+      "check": "phase-gates-doc",
+      "pass": true,
+      "data": {
+        "size": 5385
+      }
+    },
+    {
+      "check": "test-suite",
+      "pass": true,
+      "data": {
+        "passCount": 762,
+        "failCount": 0,
+        "suiteCount": 77
+      }
+    },
+    {
+      "check": "skill-originality",
+      "pass": true,
+      "data": {
+        "files": 49,
+        "worst": 19.3,
+        "fails": 0,
+        "warns": 0
+      }
+    },
+    {
+      "check": "skill-lint",
+      "pass": true,
+      "data": {
+        "files": 49,
+        "clean": 43,
+        "issues": 6
+      }
+    },
+    {
+      "check": "index-json-integrity",
+      "pass": true,
+      "data": {
+        "existing": 49,
+        "onDisk": 49,
+        "missing": [],
+        "extra": []
+      }
+    },
+    {
+      "check": "quality-scores",
+      "pass": true,
+      "data": {
+        "toolCount": 35,
+        "dCount": 0,
+        "summary": {
+          "mean": 63.66,
+          "median": 63,
+          "min": 52,
+          "max": 78,
+          "stddev": 6.62,
+          "distribution": {
+            "A": 0,
+            "B": 3,
+            "C": 32,
+            "D": 0
+          }
+        }
+      }
+    },
+    {
+      "check": "security-scan",
+      "pass": true,
+      "data": {
+        "critical": 0,
+        "skillsScanned": 49,
+        "totalFindings": 8
+      }
+    },
+    {
+      "check": "spec-gates",
+      "pass": true,
+      "data": {
+        "gates": 14
+      }
+    },
+    {
+      "check": "node-test-suite",
+      "pass": true,
+      "data": {
+        "passCount": 148,
+        "failCount": 0
+      }
+    },
+    {
+      "check": "eslint-lint-pass",
+      "pass": true,
+      "data": {
+        "errors": 0,
+        "warnings": 106
+      }
+    },
+    {
+      "check": "tools-discovered-count",
+      "pass": true,
+      "data": {
+        "declared": 243,
+        "skillCount": 49,
+        "ratio": "5.0"
+      }
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-06-14T08:28:52.811Z",
+      "results": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 5385
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 762,
+            "failCount": 0,
+            "suiteCount": 77
+          }
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 49,
+            "worst": 19.3,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 49,
+            "clean": 43,
+            "issues": 6
+          }
+        },
+        {
+          "check": "index-json-integrity",
+          "pass": false,
+          "data": {
+            "existing": 49,
+            "onDisk": 49,
+            "missing": [],
+            "extra": []
+          }
+        },
+        {
+          "check": "quality-scores",
+          "pass": true,
+          "data": {
+            "toolCount": 35,
+            "dCount": 0,
+            "summary": {
+              "mean": 63.66,
+              "median": 63,
+              "min": 52,
+              "max": 78,
+              "stddev": 6.62,
+              "distribution": {
+                "A": 0,
+                "B": 3,
+                "C": 32,
+                "D": 0
+              }
+            }
+          }
+        },
+        {
+          "check": "security-scan",
+          "pass": true,
+          "data": {
+            "critical": 0,
+            "skillsScanned": 49,
+            "totalFindings": 8
+          }
+        },
+        {
+          "check": "spec-gates",
+          "pass": true,
+          "data": {
+            "gates": 14
+          }
+        },
+        {
+          "check": "node-test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 148,
+            "failCount": 0
+          }
+        },
+        {
+          "check": "eslint-lint-pass",
+          "pass": false,
+          "error": "Command failed: C:\\Program Files\\nodejs\\node.exe C:\\Vibe-Stack The AI Agent Skills Repository for Vibe Coders\\node_modules\\eslint\\bin\\eslint.js lib/ bin/ --no-eslintrc -c .eslintrc.js --format json"
+        },
+        {
+          "check": "tools-discovered-count",
+          "pass": true,
+          "data": {
+            "declared": 243,
+            "skillCount": 49,
+            "ratio": "5.0"
+          }
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-06-14T08:30:05.104Z",
+      "results": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 5385
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 762,
+            "failCount": 0,
+            "suiteCount": 77
+          }
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 49,
+            "worst": 19.3,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 49,
+            "clean": 43,
+            "issues": 6
+          }
+        },
+        {
+          "check": "index-json-integrity",
+          "pass": true,
+          "data": {
+            "existing": 49,
+            "onDisk": 49,
+            "missing": [],
+            "extra": []
+          }
+        },
+        {
+          "check": "quality-scores",
+          "pass": true,
+          "data": {
+            "toolCount": 35,
+            "dCount": 0,
+            "summary": {
+              "mean": 63.66,
+              "median": 63,
+              "min": 52,
+              "max": 78,
+              "stddev": 6.62,
+              "distribution": {
+                "A": 0,
+                "B": 3,
+                "C": 32,
+                "D": 0
+              }
+            }
+          }
+        },
+        {
+          "check": "security-scan",
+          "pass": true,
+          "data": {
+            "critical": 0,
+            "skillsScanned": 49,
+            "totalFindings": 8
+          }
+        },
+        {
+          "check": "spec-gates",
+          "pass": true,
+          "data": {
+            "gates": 14
+          }
+        },
+        {
+          "check": "node-test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 148,
+            "failCount": 0
+          }
+        },
+        {
+          "check": "eslint-lint-pass",
+          "pass": false,
+          "error": "Command failed: C:\\Program Files\\nodejs\\node.exe C:\\Vibe-Stack The AI Agent Skills Repository for Vibe Coders\\node_modules\\eslint\\bin\\eslint.js lib/ bin/ --no-eslintrc -c .eslintrc.js --format json"
+        },
+        {
+          "check": "tools-discovered-count",
+          "pass": true,
+          "data": {
+            "declared": 243,
+            "skillCount": 49,
+            "ratio": "5.0"
+          }
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-06-14T08:31:57.463Z",
+      "results": [
+        {
+          "check": "catalog-yaml-valid",
+          "pass": true,
+          "data": {
+            "toolCount": 35
+          }
+        },
+        {
+          "check": "catalog-category-count",
+          "pass": true,
+          "data": {
+            "design-ui": 5,
+            "code-generation": 5,
+            "testing-qa": 5,
+            "deployment": 5,
+            "knowledge-memory": 5,
+            "orchestration": 5,
+            "agent-frameworks": 5
+          }
+        },
+        {
+          "check": "handoff-templates",
+          "pass": true,
+          "data": {
+            "total": 8,
+            "missing": []
+          }
+        },
+        {
+          "check": "phase-gates-doc",
+          "pass": true,
+          "data": {
+            "size": 5385
+          }
+        },
+        {
+          "check": "test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 762,
+            "failCount": 0,
+            "suiteCount": 77
+          }
+        },
+        {
+          "check": "skill-originality",
+          "pass": true,
+          "data": {
+            "files": 49,
+            "worst": 19.3,
+            "fails": 0,
+            "warns": 0
+          }
+        },
+        {
+          "check": "skill-lint",
+          "pass": true,
+          "data": {
+            "files": 49,
+            "clean": 43,
+            "issues": 6
+          }
+        },
+        {
+          "check": "index-json-integrity",
+          "pass": true,
+          "data": {
+            "existing": 49,
+            "onDisk": 49,
+            "missing": [],
+            "extra": []
+          }
+        },
+        {
+          "check": "quality-scores",
+          "pass": true,
+          "data": {
+            "toolCount": 35,
+            "dCount": 0,
+            "summary": {
+              "mean": 63.66,
+              "median": 63,
+              "min": 52,
+              "max": 78,
+              "stddev": 6.62,
+              "distribution": {
+                "A": 0,
+                "B": 3,
+                "C": 32,
+                "D": 0
+              }
+            }
+          }
+        },
+        {
+          "check": "security-scan",
+          "pass": true,
+          "data": {
+            "critical": 0,
+            "skillsScanned": 49,
+            "totalFindings": 8
+          }
+        },
+        {
+          "check": "spec-gates",
+          "pass": true,
+          "data": {
+            "gates": 14
+          }
+        },
+        {
+          "check": "node-test-suite",
+          "pass": true,
+          "data": {
+            "passCount": 148,
+            "failCount": 0
+          }
+        },
+        {
+          "check": "eslint-lint-pass",
+          "pass": true,
+          "data": {
+            "errors": 0,
+            "warnings": 106
+          }
+        },
+        {
+          "check": "tools-discovered-count",
+          "pass": true,
+          "data": {
+            "declared": 243,
+            "skillCount": 49,
+            "ratio": "5.0"
+          }
+        }
+      ]
+    }
+  ]
+}
