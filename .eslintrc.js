@@ -1,14 +1,23 @@
 module.exports = {
-  env: { node: true, es2021: true },
-  parserOptions: { ecmaVersion: 'latest' },
+  env: {
+    es2022: true,
+    node: true,
+    jest: true,
+  },
+  extends: ['eslint:recommended'],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'commonjs',
+  },
   rules: {
-    'no-unused-vars': ['warn', { args: 'none' }],
-    semi: ['error', 'always'],
     quotes: ['error', 'single', { avoidEscape: true }],
+    semi: ['error', 'always'],
     eqeqeq: ['error', 'always'],
+    'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    'no-var': 'error',
+    'prefer-const': 'warn',
     'no-console': 'warn',
     curly: ['error', 'multi-line'],
-    'no-var': 'error',
-    'prefer-const': 'error',
   },
+  ignorePatterns: ['node_modules/', '.vibe/', '.gsd/', 'scripts/', 'coverage/'],
 };

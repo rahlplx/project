@@ -269,8 +269,8 @@ async function cloneRepo(template, projectDir, options) {
 
   log(`\n${colors.yellow}Note: For ${name}, please run these commands manually:${colors.reset}`);
   log(`  cd ${projectDir}`);
-  log(`  npm install`);
-  log(`  npm run dev\n`);
+  log('  npm install');
+  log('  npm run dev\n');
 }
 
 async function scaffold(options) {
@@ -325,13 +325,13 @@ async function scaffold(options) {
         execFileSync('git', ['clone', '--depth', '1', '--branch', template.branch, safeRepo, projectDir], {
           stdio: 'pipe',
         });
-      log(`  Cloned successfully`, 'green');
+      log('  Cloned successfully', 'green');
 
       // Remove .git folder for clean start
       fs.rmSync(path.join(projectDir, '.git'), { recursive: true, force: true });
     } catch (error) {
-      log(`  Warning: Could not clone repository`, 'yellow');
-      log(`  Creating minimal project structure instead...`, 'yellow');
+      log('  Warning: Could not clone repository', 'yellow');
+      log('  Creating minimal project structure instead...', 'yellow');
       fs.writeFileSync(path.join(projectDir, 'package.json'), JSON.stringify({
         name: projectName,
         version: '1.0.0',
@@ -388,8 +388,8 @@ async function scaffold(options) {
 
       log('  Dependencies installed', 'green');
     } catch (error) {
-      log(`  Warning: Could not install dependencies automatically`, 'yellow');
-      log(`  Please run "npm install" manually in the project directory`, 'yellow');
+      log('  Warning: Could not install dependencies automatically', 'yellow');
+      log('  Please run "npm install" manually in the project directory', 'yellow');
     }
   }
 

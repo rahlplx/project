@@ -462,9 +462,9 @@ class ThemeFactory {
        * Convert hex to HSL
        */
       hexToHsl(hex) {
-        let r = parseInt(hex.slice(1, 3), 16) / 255;
-        let g = parseInt(hex.slice(3, 5), 16) / 255;
-        let b = parseInt(hex.slice(5, 7), 16) / 255;
+        const r = parseInt(hex.slice(1, 3), 16) / 255;
+        const g = parseInt(hex.slice(3, 5), 16) / 255;
+        const b = parseInt(hex.slice(5, 7), 16) / 255;
 
         const max = Math.max(r, g, b);
         const min = Math.min(r, g, b);
@@ -521,7 +521,7 @@ class ThemeFactory {
        */
       getLuminance(hex) {
         const rgb = hex.replace('#', '').match(/.{2}/g).map(x => {
-          let val = parseInt(x, 16) / 255;
+          const val = parseInt(x, 16) / 255;
           return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
         });
         return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];

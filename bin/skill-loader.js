@@ -2,6 +2,7 @@
 const path = require('path');
 const fs = require('fs');
 const { registry } = require('../lib/tool-registry');
+const { SchemaGenerator } = require('../lib/schema-generator');
 
 function loadAllSkills() {
   const skillsDir = path.join(__dirname, '..', 'skills');
@@ -43,6 +44,12 @@ function loadAllSkills() {
   return skills;
 }
 
+function extractJSDoc(fn) {
+  const fnStr = fn.toString();
+  const match = fnStr.match(/\/\*\*[\s\S]*?\*\//);
+  return match ? match[0] : '';
+}
+
 function discoverTools(skills) {
   const tools = [];
   for (const [key, { instance }] of Object.entries(skills)) {
@@ -55,15 +62,14 @@ function discoverTools(skills) {
     );
     for (const method of methods) {
       const toolName = `${key}:${method}`.replace(/\//g, '_');
+      const fn = instance[method];
+      const jsdoc = extractJSDoc(fn);
+      const inputSchema = SchemaGenerator.fromMethod(fn, jsdoc);
+
       tools.push({
         name: toolName,
-        description: `${instance.description} — ${method}`,
-        inputSchema: {
-          type: 'object',
-          properties: {
-            _args: { type: 'array', items: { type: 'string' }, description: 'Positional arguments' }
-          }
-        }
+        description: `${instance.description || key} — ${method}`,
+        inputSchema,
       });
     }
   }

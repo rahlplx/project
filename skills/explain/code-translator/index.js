@@ -16,7 +16,7 @@ class CodeTranslator {
 
     const lines = code.split('\n');
     const translated = lines.map(line => {
-      let result = this._translateLine(line, mapping, sourceLang, targetLang);
+      const result = this._translateLine(line, mapping, sourceLang, targetLang);
       return result;
     }).join('\n');
 

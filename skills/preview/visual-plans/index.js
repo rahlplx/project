@@ -156,7 +156,7 @@ class VisualPlansSkill {
   generateMockupCode(components) {
     let code = '// Generated UI Mockup\n\n';
     
-    code += `const UI = () => (\n  <div class="app-container">\n`;
+    code += 'const UI = () => (\n  <div class="app-container">\n';
     
     for (const component of components) {
       code += this.generateComponentCode(component, 2);

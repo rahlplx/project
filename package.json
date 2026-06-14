@@ -40,9 +40,8 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "chalk": "^5.3.0",
-    "inquirer": "^8.2.6",
-    "ora": "^7.0.1"
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "inquirer": "^8.2.6"
   },
   "jest": {
     "modulePathIgnorePatterns": [
@@ -50,19 +49,23 @@
       "\\.gsd"
     ],
     "testPathIgnorePatterns": [
-        "node_modules",
-        "\\.vibe",
-        "\\.gsd",
-        "install-ide.test\\.js",
-        "security-scan\\.test\\.js",
-        "security-scan\\.report\\.test\\.js",
-        "phase-timing\\.test\\.js",
-        "error-trends\\.test\\.js",
-        "stuck-detector\\.test\\.js",
-        "agents-md\\.test\\.js",
-        "tool-registry\\.test\\.js",
-        "lint-config\\.test\\.js"
-      ]
+      "node_modules",
+      "\\.vibe",
+      "\\.gsd",
+      "install-ide.test\\.js",
+      "security-scan\\.test\\.js",
+      "security-scan\\.report\\.test\\.js",
+      "phase-timing\\.test\\.js",
+      "error-trends\\.test\\.js",
+      "stuck-detector\\.test\\.js",
+      "agents-md\\.test\\.js",
+      "tool-registry\\.test\\.js",
+      "lint-config\\.test\\.js",
+      "schema-generator\\.test\\.js",
+      "performance-optimizer\\.test\\.js",
+      "token-optimizer\\.test\\.js",
+      "mcp-adapter\\.test\\.js"
+    ]
   },
   "devDependencies": {
     "eslint": "^8.55.0",

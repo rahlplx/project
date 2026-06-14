@@ -575,9 +575,9 @@ class TypographyRules {
       fontFamily,
       suggestions: [
         `Use font-display: swap for ${fontName}`,
-        `Preload critical fonts with <link rel="preload">`,
-        `Subset fonts to used character sets`,
-        `Consider variable fonts for better performance`
+        'Preload critical fonts with <link rel="preload">',
+        'Subset fonts to used character sets',
+        'Consider variable fonts for better performance'
       ]
     };
   }

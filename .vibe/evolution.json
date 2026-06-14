@@ -1,7 +1,7 @@
 {
   "version": "2.6.0",
   "last_evolution": "2026-06-14",
-  "evolution_count": 7,
+  "evolution_count": 8,
   "rules": {
     "agent-native-catalog": {
       "fires": 35,
@@ -173,6 +173,69 @@
       "last_updated": "2026-06-14",
       "status": "active",
       "note": "7-section plan structure (CEO, Eng, Design, Risk, Tasks, AC, Decisions) produced comprehensive, low-risk plan."
+    },
+    "fn-tostring-schema-generation": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "fn.toString() + regex parses method signatures into JSON Schema for MCP tools. 49 skills auto-schema'd without modification. JSDoc ~10% coverage so name-based fallback critical."
+    },
+    "isError-structured-err": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "MCP tool errors must include isError:true + structured content with 'suggestion' field. Agents infer next steps from suggestions."
+    },
+    "token-budget-truncation": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "TokenOptimizer caps responses at 4000 tokens. Strategy: first 50% + last 20% with summary preserves context. ANSI strip before truncation."
+    },
+    "dead-dep-audit": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Periodic check for ESM-only deps (chalk v5, ora v7) that cannot be require()'d from CJS. Removed chalk+ora, installed @modelcontextprotocol/sdk."
+    },
+    "mcp-server-tested": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "MCP adapter integration tests: listTools, callTool, token optimization, error handling, batch calls. All 11 node:test suites pass."
+    },
+    "named-param-schema": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "SchemaGenerator extracts named params from fn.toString(). Agents no longer guess positional _args. Default values included in schema."
+    },
+    "eslint-prefer-const": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Unified .eslintrc.js enforces prefer-const, no-var, eqeqeq, curly, quotes: single, semi. Eliminated .eslintrc.json duplication."
     }
   },
   "harness": {
@@ -191,11 +254,11 @@
       "note": "Category counts verified. All hitting targets. 6 gap finds."
     },
     "test-suite": {
-      "runs": 7,
+      "runs": 8,
       "finds": 0,
       "false_positive": 0,
       "quality_score": 1,
-      "note": "765 tests passing (633 Jest + 132 node:test). 57 Jest suites + 21 node:test suites."
+      "note": "762 Jest tests + 63 node:test = 825 total. 77 Jest suites + 11 node:test suites. All pass after MCP adapter integration."
     },
     "handoff-templates": {
       "runs": 3,
@@ -226,11 +289,11 @@
       "note": "47 skills, 41 clean, 6 warnings, 0 errors."
     },
     "index-json-integrity": {
-      "runs": 1,
+      "runs": 2,
       "finds": 0,
       "false_positive": 0,
       "quality_score": 1,
-      "note": "Validates .well-known/agent-skills/index.json matches on-disk skills. 47 entries verified."
+      "note": "Validates .well-known/agent-skills/index.json matches on-disk skills. 49 entries verified (removed deployment/railway duplicate)."
     },
     "quality-scores": {
       "runs": 1,
@@ -254,11 +317,11 @@
       "note": "6 new spec enforcement gates (G09-G14). All pass on current skills."
     },
     "node-test-suite": {
-      "runs": 1,
+      "runs": 2,
       "finds": 0,
       "false_positive": 0,
       "quality_score": 1,
-      "note": "node:test runner for 6 excluded files. 132 tests, 21 suites, all pass."
+      "note": "node:test runner for excluded files. 63 tests across 11 suites. SchemaGenerator, TokenOptimizer, PerformanceOptimizer, MCPAdapter all covered."
     },
     "state-machine-valid": {
       "runs": 0,
@@ -281,13 +344,6 @@
       "reason": "Every phase transition must produce a handoff.md using docs/handoffs/ templates. Prevents context loss between layers.",
       "status": "pending",
       "quality_score": null
-    },
-    {
-      "name": "regex-in-jest-config",
-      "reason": "Escape dots in Jest testPathIgnorePatterns — they use regex, not glob. Bug hid 2 test files (10 tests).",
-      "status": "implemented",
-      "quality_score": 1,
-      "note": "Applied during deep audit. All dot-separated patterns now use \\\\. regex escaping."
     }
   ],
   "retired": {

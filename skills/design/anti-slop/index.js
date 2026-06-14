@@ -777,7 +777,7 @@ class AntiSlopSkill {
   calculateContrastRatio(color1, color2) {
     const getLuminance = (hex) => {
       const rgb = hex.replace('#', '').match(/.{2}/g).map(x => {
-        let val = parseInt(x, 16) / 255;
+        const val = parseInt(x, 16) / 255;
         return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
       });
       return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];

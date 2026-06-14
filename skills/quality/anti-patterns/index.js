@@ -42,7 +42,7 @@ class AntiPatterns {
   _getPatterns() {
     return [
       { id: 'AP01', category: 'code', severity: 'warning', name: 'Magic Numbers', message: 'Using raw numbers instead of named constants', suggestion: 'Assign numbers to descriptive constants (const MAX_USERS = 100)', check: (c) => (c.match(/\b\d{4,}\b/g) || []).length > 3 },
-      { id: 'AP02', category: 'code', severity: 'warning', name: 'Long Functions', message: 'Functions that try to do too much', suggestion: 'Break into smaller single-purpose functions', check: (c) => { const fns = c.match(/function\s+\w+\s*\([^)]*\)\s*\{[^}]*\}/g); return (fns || []).filter(f => f.length > 500).length > 0 } },
+      { id: 'AP02', category: 'code', severity: 'warning', name: 'Long Functions', message: 'Functions that try to do too much', suggestion: 'Break into smaller single-purpose functions', check: (c) => { const fns = c.match(/function\s+\w+\s*\([^)]*\)\s*\{[^}]*\}/g); return (fns || []).filter(f => f.length > 500).length > 0; } },
       { id: 'AP03', category: 'code', severity: 'info', name: 'Deep Nesting', message: 'Code nested more than 3 levels deep', suggestion: 'Use early returns, guard clauses, or extract logic', check: (c) => (c.match(/\{/g) || []).length - (c.match(/\}/g) || []).length > 3 },
       { id: 'AP04', category: 'style', severity: 'warning', name: 'Inconsistent Naming', message: 'Mix of naming conventions (snake_case, camelCase, PascalCase)', suggestion: 'Pick one convention: camelCase for JS/TS, snake_case for Python', check: (c) => {
         const hasSnake = /[a-z]+_[a-z]+/.test(c);

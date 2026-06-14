@@ -379,25 +379,25 @@ class FlowchartGen {
         : node.label;
       
       if (node.type === 'start' || node.type === 'end') {
-        lines.push(`        ╭─────────────╮`);
+        lines.push('        ╭─────────────╮');
         lines.push(`        │  ${label.padEnd(11)}  │`);
-        lines.push(`        ╰─────────────╯`);
+        lines.push('        ╰─────────────╯');
       } else if (node.type === 'external') {
         lines.push(`      ◇ ${label} ◇`);
       } else {
-        lines.push(`      ┌─────────────┐`);
+        lines.push('      ┌─────────────┐');
         lines.push(`      │ ${label.padEnd(11)} │`);
-        lines.push(`      └─────────────┘`);
+        lines.push('      └─────────────┘');
       }
       
       // Draw edges
       const children = adj[current] || [];
       for (const child of children) {
-        lines.push(`            │`);
+        lines.push('            │');
         if (child.label) {
           lines.push(`            ↓ ${child.label}`);
         } else {
-          lines.push(`            ↓`);
+          lines.push('            ↓');
         }
         queue.push(child.to);
       }
