@@ -51,3 +51,22 @@ docs/                 → Design docs, gates, handoffs
 
 `.vibe/state.json` — tracks project phase. Phase `curation` means we're building
 the curated collection.
+
+## Vibe-Stack Slash Command Suite (`.claude/skills/`)
+
+The vibe-stack orchestrator is decomposed into 11 invokable skills for Claude Code.
+Each wraps the same underlying `skills/` JS modules with consistent anti-slop/OWASP/taste-skill rules.
+
+| Command | Wraps | Use when |
+|---------|-------|----------|
+| `/vibe` | Full pipeline | New project, "I want to build X" |
+| `/vibe-design` | anti-slop, color-gen, design-system, typography-rules | Reviewing/generating UI, design tokens, palettes |
+| `/vibe-review` | virtual-team, code-health, done-verifier | Pre-merge review, second opinion, "is this ready" |
+| `/vibe-security` | security-audit, security-defaults, guardrails | Before release, auth/payment/API code |
+| `/vibe-tdd` | tdd-vibe, verification-agent, checkpoints | New feature or bug fix — write the test first |
+| `/vibe-deploy` | one-click-vercel/netlify, git-free-deploy, done-verifier | Shipping to staging/production |
+| `/vibe-explain` | code-explainer, code-translator, intent-capture | Understanding, translating, or reverse-speccing code |
+| `/vibe-status` | tracker, dashboard, context-memory | Start of session, "where did we leave off" |
+| `/vibe-learnings` | context-memory, knowledge-base, git log | Retro, post-mortem, building institutional memory |
+| `/vibe-template` | template-gallery, prompt-templates, quick-start | Starting a component/page/endpoint/scaffold from scratch |
+| `/vibe-plan` | planning-agent, task-coordinator, tracker, parallel-exec | Breaking down a feature or sprint into tasks |
