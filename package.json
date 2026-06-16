@@ -16,9 +16,9 @@
     "vibe:maintenance": "node bin/vibe.js maintenance",
     "vibe:telemetry": "node bin/vibe.js telemetry",
     "wizard": "node skills/setup/project-wizard/index.js",
-    "test": "jest && node --test lib/orchestrator/state-machine.test.js lib/orchestrator/context-manager.test.js lib/orchestrator/role-loader.test.js lib/superpowers/tdd-workflow.test.js lib/superpowers/subagent-dispatch.test.js lib/gstack/strategy-engine.test.js lib/design/audit-system.test.js lib/orchestrator/trust-level.test.js lib/orchestrator/gap-detector.test.js lib/orchestrator/anti-rationalization.test.js lib/orchestrator/grill.test.js",
+    "test": "jest && node --test lib/orchestrator/state-machine.test.js lib/orchestrator/context-manager.test.js lib/orchestrator/role-loader.test.js lib/superpowers/tdd-workflow.test.js lib/superpowers/subagent-dispatch.test.js lib/gstack/strategy-engine.test.js lib/design/audit-system.test.js lib/orchestrator/trust-level.test.js lib/orchestrator/gap-detector.test.js lib/orchestrator/anti-rationalization.test.js lib/orchestrator/grill.test.js lib/orchestrator/skill-router.test.js lib/quality/complexity-scan.test.js lib/knowledge/git-learnings.test.js",
     "test:jest": "jest",
-    "test:node": "node --test lib/orchestrator/state-machine.test.js lib/orchestrator/context-manager.test.js lib/orchestrator/role-loader.test.js lib/superpowers/tdd-workflow.test.js lib/superpowers/subagent-dispatch.test.js lib/gstack/strategy-engine.test.js lib/design/audit-system.test.js lib/orchestrator/trust-level.test.js lib/orchestrator/gap-detector.test.js lib/orchestrator/anti-rationalization.test.js lib/orchestrator/grill.test.js",
+    "test:node": "node --test lib/orchestrator/state-machine.test.js lib/orchestrator/context-manager.test.js lib/orchestrator/role-loader.test.js lib/superpowers/tdd-workflow.test.js lib/superpowers/subagent-dispatch.test.js lib/gstack/strategy-engine.test.js lib/design/audit-system.test.js lib/orchestrator/trust-level.test.js lib/orchestrator/gap-detector.test.js lib/orchestrator/anti-rationalization.test.js lib/orchestrator/grill.test.js lib/orchestrator/skill-router.test.js lib/quality/complexity-scan.test.js lib/knowledge/git-learnings.test.js",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit --pretty",
     "format": "prettier --write .",
@@ -81,7 +81,14 @@
       "superpowers/tdd-workflow\\.test\\.js",
       "superpowers/subagent-dispatch\\.test\\.js",
       "gstack/strategy-engine\\.test\\.js",
-      "design/audit-system\\.test\\.js"
+      "design/audit-system\\.test\\.js",
+      "orchestrator/trust-level\\.test\\.js",
+      "orchestrator/gap-detector\\.test\\.js",
+      "orchestrator/anti-rationalization\\.test\\.js",
+      "orchestrator/grill\\.test\\.js",
+      "orchestrator/skill-router\\.test\\.js",
+      "quality/complexity-scan\\.test\\.js",
+      "knowledge/git-learnings\\.test\\.js"
     ]
   },
   "devDependencies": {
