@@ -131,4 +131,54 @@ describe('Graphify', () => {
     const s = new Graphify();
     expect(s.getCommands().some((c) => c.command.startsWith('graphify query'))).toBe(true);
   });
+
+  it('should compute blast radius transitively', () => {
+    const s = new Graphify();
+    const r = s.analyze([
+      { name: 'a.js', content: 'require("b.js");' },
+      { name: 'b.js', content: 'require("c.js");' }
+    ]);
+    const result = s.blastRadius(r, 'c.js');
+    expect(result.affected.sort()).toEqual(['a.js', 'b.js']);
+    expect(result.count).toBe(2);
+  });
+
+  it('should return no affected nodes for a leaf with nothing depending on it', () => {
+    const s = new Graphify();
+    const r = s.analyze([{ name: 'a.js', content: 'require("b.js");' }]);
+    const result = s.blastRadius(r, 'a.js');
+    expect(result.affected).toEqual([]);
+  });
+
+  it('should group nodes into architectural layers', () => {
+    const s = new Graphify();
+    const r = s.analyze([
+      { name: 'user.controller.js', content: '' },
+      { name: 'user.model.js', content: '' },
+      { name: 'misc-helper.js', content: '' }
+    ]);
+    const layers = s.layerize(r);
+    expect(layers.API).toContain('user.controller.js');
+    expect(layers.Data).toContain('user.model.js');
+    expect(layers.Utility).toContain('misc-helper.js');
+  });
+
+  it('should score a highly-connected untested node as high risk', () => {
+    const s = new Graphify();
+    const r = s.analyze([
+      { name: 'a.js', content: 'require("shared.js");' },
+      { name: 'b.js', content: 'require("shared.js");' },
+      { name: 'c.js', content: 'require("shared.js");' }
+    ]);
+    const score = s.riskScore(r, 'shared.js', {});
+    expect(score).toBeGreaterThan(50);
+  });
+
+  it('should score a fully-covered node lower than an untested one with the same degree', () => {
+    const s = new Graphify();
+    const r = s.analyze([{ name: 'a.js', content: 'require("shared.js");' }]);
+    const untested = s.riskScore(r, 'shared.js', {});
+    const covered = s.riskScore(r, 'shared.js', { 'shared.js': 1 });
+    expect(covered).toBeLessThan(untested);
+  });
 });

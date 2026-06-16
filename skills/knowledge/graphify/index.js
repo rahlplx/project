@@ -191,6 +191,71 @@ class Graphify {
     return { found: true, node, edges };
   }
 
+  /**
+   * Blast radius — every node transitively affected if `nodeId` changes, found by
+   * walking edges backward (Understand-Anything's diff-impact-analysis idea).
+   */
+  blastRadius(graph, nodeId) {
+    const reverseAdjacency = new Map();
+    for (const edge of graph.edges || []) {
+      if (!reverseAdjacency.has(edge.to)) reverseAdjacency.set(edge.to, []);
+      reverseAdjacency.get(edge.to).push(edge.from);
+    }
+
+    const visited = new Set([nodeId]);
+    const queue = [nodeId];
+    while (queue.length) {
+      const current = queue.shift();
+      for (const dependent of reverseAdjacency.get(current) || []) {
+        if (!visited.has(dependent)) {
+          visited.add(dependent);
+          queue.push(dependent);
+        }
+      }
+    }
+    visited.delete(nodeId);
+
+    return { nodeId, affected: [...visited], count: visited.size };
+  }
+
+  /**
+   * Groups nodes into architectural layers by id/path keyword heuristics
+   * (Understand-Anything's layer visualization).
+   */
+  layerize(graph) {
+    const LAYER_RULES = [
+      { layer: 'API', pattern: /\b(api|route|controller|endpoint)\b/i },
+      { layer: 'Service', pattern: /\b(service|logic|usecase|handler)\b/i },
+      { layer: 'Data', pattern: /\b(model|schema|db|database|repository|migration)\b/i },
+      { layer: 'UI', pattern: /\b(component|view|page|ui|screen)\b/i }
+    ];
+
+    const layers = { API: [], Service: [], Data: [], UI: [], Utility: [] };
+    for (const node of graph.nodes || []) {
+      const haystack = `${node.id} ${node.label || ''}`;
+      const match = LAYER_RULES.find((rule) => rule.pattern.test(haystack));
+      layers[match ? match.layer : 'Utility'].push(node.id);
+    }
+    return layers;
+  }
+
+  /**
+   * 0-100 risk score combining a node's degree with inverse test coverage —
+   * untested, highly-connected nodes score highest (wednesday-solutions/ai-agent-skills'
+   * risk-scoring idea). `testCoverage` maps node id -> coverage fraction (0-1, default 0).
+   */
+  riskScore(graph, nodeId, testCoverage = {}) {
+    const degrees = this.godNodes(graph, (graph.nodes || []).length);
+    const maxDegree = Math.max(1, ...degrees.map((d) => d.degree));
+    const nodeDegree = degrees.find((d) => d.id === nodeId);
+    const degreeScore = ((nodeDegree ? nodeDegree.degree : 0) / maxDegree) * 60;
+
+    const coverage = testCoverage[nodeId] || 0;
+    const coverageScore = (1 - Math.min(1, Math.max(0, coverage))) * 40;
+
+    return Math.round(degreeScore + coverageScore);
+  }
+
   getCommands() {
     return CLI_COMMANDS;
   }
