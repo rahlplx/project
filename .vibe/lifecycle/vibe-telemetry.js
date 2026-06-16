@@ -16,6 +16,7 @@ const path = require('path');
 const { aggregateSessions, aggregatePhaseTiming, aggregateErrors, detectStuckPhases, detectTrends, generateCrossProjectTrends } = require(path.join(__dirname, '..', '..', 'lib', 'telemetry-aggregate'));
 const { detectCompactionSignals, formatDuration, renderStatus } = require(path.join(__dirname, '..', '..', 'lib', 'telemetry-status'));
 const { getErrorTrends } = require(path.join(__dirname, '..', '..', 'lib', 'error-trends'));
+const { recordCommand } = require(path.join(__dirname, '..', '..', 'lib', 'telemetry-tracker'));
 
 const ROOT = path.join(__dirname, '..', '..');
 const TELEMETRY_DIR = path.join(ROOT, '.vibe', 'telemetry');
@@ -172,6 +173,9 @@ function showCrossProject() {
 // Main
 const args = process.argv.slice(2);
 const command = args[0] || 'status';
+
+// Record command usage
+recordCommand('vibe:telemetry ' + command);
 
 switch (command) {
   case 'status':

@@ -3,7 +3,7 @@
   "version": "2.3.0",
   "phase": "done",
   "goal": "Implement unified AI engineering orchestrator (intent capture → market research → doc generation → implementation)",
-  "step": 1,
+  "step": 26,
   "mode": "auto",
   "agent": "opencode",
   "stack": {
@@ -118,7 +118,33 @@
     "harness-14-checks-passing",
     "tools-discovered-validation-added",
     "vibe-telemetry-cli-implemented",
-    "open-source-release-v2.3.0"
+    "open-source-release-v2.3.0",
+    "telemetry-spec-session-schema-aligned",
+    "compaction-detection-implemented",
+    "vibe-telemetry-cli-6-subcommands",
+    "vibe-learn-capture-cli-built",
+    "index-md-cross-references-added",
+    "learn-evolve-wired-to-telemetry",
+    "retro-telemetry-session-captured",
+    "solution-telemetry-spec-saved",
+    "telemetry-gap-audit-complete",
+    "telemetry-tracker-module-created",
+    "telemetry-session-schema-per-spec",
+    "telemetry-gap-fix-tests-passing",
+    "telemetry-pattern-promoted",
+    "index-md-solutions-section-added",
+    "retro-telemetry-gapfix-captured",
+    "solution-telemetry-gapfix-saved",
+    "auto-build",
+    "auto-ship",
+    "auto-evolve",
+    "auto-think",
+    "auto-plan",
+    "auto-break",
+    "auto-harness",
+    "auto-review",
+    "auto-learn",
+    "auto-retro"
   ],
   "skills": {
     "total": 49,
@@ -149,6 +175,7 @@
       ],
       "orchestration": [
         "model-router",
+        "nexus",
         "parallel-exec",
         "task-coordinator",
         "virtual-team"
@@ -179,12 +206,17 @@
         "prompt-templates",
         "quick-start"
       ],
+      "testing-qa": [
+        "nit"
+      ],
       "workflow": [
+        "architect",
         "checkpoints",
         "git-ops",
         "planning-agent",
         "rollback",
         "spec-driven",
+        "spec-engine",
         "tdd-vibe",
         "verification"
       ]
@@ -194,27 +226,32 @@
     "mcpServer": true,
     "skillLoader": true,
     "toolsDiscovered": 243,
-    "testsPassing": 920,
+    "testsPassing": 910,
     "testSuites": 77,
-    "harnessChecks": 14,
+    "harnessChecks": 15,
     "nodeTestCount": 148
   },
   "lifecycle": {
-    "last_maintenance": "2026-06-14T08:31:57.581Z",
-    "maintenance_count": 24,
+    "last_maintenance": "2026-06-16T11:09:59.154Z",
+    "maintenance_count": 37,
     "interaction_count": 0
   },
   "telemetry": true,
   "created": "2026-06-13T12:00:00Z",
-  "updated": "2026-06-14T08:31:57.584Z",
+  "updated": "2026-06-16T11:09:59.160Z",
   "auto_pipeline": {
-    "started": "2026-06-14T10:00:00Z",
-    "goal": "Adopt 5-phase workflow: SCOPE→BUILD→VERIFY→SHIP→EVOLVE→done",
+    "started": "2026-06-16T10:55:17.128Z",
+    "goal": "Implement unified AI engineering orchestrator (intent capture → market research → doc generation → implementation)",
     "state_machine": [
-      "scope",
+      "think",
+      "plan",
+      "break",
       "build",
-      "verify",
+      "harness",
+      "review",
       "ship",
+      "retro",
+      "learn",
       "evolve",
       "done"
     ]

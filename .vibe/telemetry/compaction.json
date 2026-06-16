@@ -134,6 +134,438 @@
       "recovery": "Auto-maintenance handles state recovery",
       "token_recovered": true,
       "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T08:39:30.635Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T08:39:30.636Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T08:39:30.637Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T08:39:30.638Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 21,
+      "detected_at": "2026-06-14T08:39:30.638Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 22,
+      "detected_at": "2026-06-14T08:39:30.639Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 23,
+      "detected_at": "2026-06-14T08:39:30.640Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T09:04:35.878Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T09:04:35.879Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T09:04:35.880Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T09:04:35.880Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 21,
+      "detected_at": "2026-06-14T09:04:35.881Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 22,
+      "detected_at": "2026-06-14T09:04:35.882Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 23,
+      "detected_at": "2026-06-14T09:04:35.882Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 24,
+      "detected_at": "2026-06-14T09:04:35.883Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T14:49:28.274Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T14:49:28.275Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T14:49:28.277Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T14:49:28.278Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 21,
+      "detected_at": "2026-06-14T14:49:28.280Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 22,
+      "detected_at": "2026-06-14T14:49:28.282Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 23,
+      "detected_at": "2026-06-14T14:49:28.284Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 24,
+      "detected_at": "2026-06-14T14:49:28.285Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 25,
+      "detected_at": "2026-06-14T14:49:28.287Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T14:51:58.399Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T14:51:58.400Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T14:51:58.402Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 21,
+      "detected_at": "2026-06-14T14:51:58.403Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 22,
+      "detected_at": "2026-06-14T14:51:58.404Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 23,
+      "detected_at": "2026-06-14T14:51:58.406Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 24,
+      "detected_at": "2026-06-14T14:51:58.407Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 25,
+      "detected_at": "2026-06-14T14:51:58.408Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 26,
+      "detected_at": "2026-06-14T14:51:58.410Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T14:59:54.016Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T14:59:54.018Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 21,
+      "detected_at": "2026-06-14T14:59:54.019Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 22,
+      "detected_at": "2026-06-14T14:59:54.020Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 23,
+      "detected_at": "2026-06-14T14:59:54.021Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 24,
+      "detected_at": "2026-06-14T14:59:54.022Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 25,
+      "detected_at": "2026-06-14T14:59:54.023Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 26,
+      "detected_at": "2026-06-14T14:59:54.025Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 27,
+      "detected_at": "2026-06-14T14:59:54.026Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": "unknown",
+      "detected_at": "2026-06-14T15:12:39.765Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 21,
+      "detected_at": "2026-06-14T16:11:16.654Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 22,
+      "detected_at": "2026-06-15T08:57:53.329Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 23,
+      "detected_at": "2026-06-16T10:44:58.174Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 24,
+      "detected_at": "2026-06-16T10:52:32.664Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 26,
+      "detected_at": "2026-06-16T11:08:40.317Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
     }
   ]
 }

@@ -1,9 +1,47 @@
+# Dependencies
+node_modules/
+
+# Build/Coverage
+coverage/
+dist/
+build/
+
+# Environment/Secrets
+.env
+.env.local
+.env.*.local
 external/
 .claude/
-node_modules/
-*.log
+
+# OS files
 .DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Tool-specific
+.opencode/
+.gsd/
+.eslintcache
+
+# Temp files
+*.log
+jest_output.txt
+temp-test-output.txt
+
+# Vibe internal (sensitive)
 .vibe/repo-mining/
 .vibe/telemetry/sessions/
-coverage/
-jest_output.txt
+.vibe/telemetry/compaction-dedup.json
+.vibe/telemetry/tracker.json
+.vibe/learnings/evolutions/retro-*.json
+
+# Test artifacts
+test-screenshots/
+screenshots/

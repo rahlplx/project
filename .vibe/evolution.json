@@ -1,7 +1,7 @@
 {
-  "version": "2.7.0",
+  "version": "2.9.0",
   "last_evolution": "2026-06-14",
-  "evolution_count": 9,
+  "evolution_count": 11,
   "rules": {
     "agent-native-catalog": {
       "fires": 35,
@@ -53,18 +53,16 @@
       "helpful": 0,
       "false_positive": 0,
       "quality_score": null,
-      "last_updated": "2026-06-13",
-      "status": "active",
-      "note": "New rule from incremental-catalog-runs anti-pattern. Not yet exercised."
+      "retired_at": "2026-06-14",
+      "reason": "Retired: 0 fires, never exercised. The anti-pattern it replaced (incremental-catalog-runs) is sufficiently covered by auto-pipeline-for-curation pattern."
     },
     "append-not-insert-yaml": {
       "fires": 0,
       "helpful": 0,
       "false_positive": 0,
       "quality_score": null,
-      "last_updated": "2026-06-13",
-      "status": "active",
-      "note": "New rule from mid-file-yaml-edits anti-pattern. Not yet exercised."
+      "retired_at": "2026-06-14",
+      "reason": "Retired: 0 fires, never exercised. The anti-pattern it replaced (mid-file-yaml-edits) is covered by edit-tool-for-yaml-blocks pattern."
     },
     "jaccard-originality-check": {
       "fires": 2,
@@ -281,6 +279,60 @@
       "last_updated": "2026-06-14",
       "status": "active",
       "note": "MCP SDK setRequestHandler expects request schemas with method literals (ListToolsRequestSchema), not Result schemas."
+    },
+    "compaction-dedup-window": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "New rule from retro action item. Compaction events must dedupe within 5-min window per project. Prevents 7x spam on rapid session starts."
+    },
+    "eslint-cache-flag": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "New rule from retro action item. Harness eslint check must use --cache flag to speed up runs. Currently ~6s bottleneck."
+    },
+    "index-md-crossref-validation": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "New harness check from retro action item. Validates every pattern/anti-pattern appears in at least one cross-ref table in INDEX.md. Prevents orphaned learnings."
+    },
+    "unified-test-convention": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "New rule consolidating testing cluster (3 anti-patterns: mixed-test-conventions, regex-in-jest-config, skip-test-verification-on-docs-only). Single convention: node:test + always-run + no regex in jest config."
+    },
+    "state-json-sync-on-ship": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Promoted to active (v2.9.0). Auto-update state.json phase to 'done' after git commit. Prevents out-of-sync state between phases."
+    },
+    "temp-file-gitignore": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Promoted to active (v2.9.0). Add *.tmp.js or .vibe/tmp/ patterns to .gitignore. Prevents accidental commits of ad-hoc scripts."
     }
   },
   "harness": {
@@ -369,35 +421,24 @@
       "note": "node:test runner for excluded files. 63 tests across 11 suites. SchemaGenerator, TokenOptimizer, PerformanceOptimizer, MCPAdapter all covered."
     },
     "state-machine-valid": {
-      "runs": 0,
+      "runs": 1,
       "finds": 0,
       "false_positive": 0,
-      "quality_score": null,
-      "note": "Validates state.json state_machine has exactly 6 entries matching 5-phase model: scope, build, verify, ship, evolve, done."
-    },
-    "test-suite-always-run": {
-      "runs": 0,
-      "finds": 0,
-      "false_positive": 0,
-      "quality_score": null,
-      "note": "Always run test suite on SHIP gate regardless of code vs docs changes. Prevents zero-regression assumption gaps."
+      "quality_score": 1,
+      "note": "Validates state.json state_machine has exactly 6 entries matching 5-phase model: scope, build, verify, ship, evolve, done. Runs added as Check 15."
     }
   },
   "proposed_rules": [
-    {
-      "name": "state-json-sync-on-ship",
-      "reason": "Auto-update state.json phase to 'done' after git commit. Prevents out-of-sync state between phases.",
-      "status": "pending",
-      "quality_score": null
-    },
-    {
-      "name": "temp-file-gitignore",
-      "reason": "Add *.tmp.js or .vibe/tmp/ patterns to .gitignore. Prevents accidental commits of ad-hoc scripts.",
-      "status": "pending",
-      "quality_score": null
-    }
   ],
   "retired": {
+    "test-suite-always-run": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "retired_at": "2026-06-14",
+      "reason": "Retired v2.9.0: 0 runs, never exercised. Redundant with test-suite check which already runs every cycle."
+    },
     "tdd": {
       "fires": 0,
       "helpful": 0,
@@ -451,20 +492,7 @@
       "fires": 0,
       "helpful": 0,
       "false_positive": 0
-    },
-    {
-      "id": "workflow-5-phase-gate",
-      "status": "promoted",
-      "description": "Harness check: state.json state_machine must be exactly [scope, build, verify, ship, evolve, done]",
-      "rationale": "Ensures new 5-phase workflow is enforced; prevents drift back to 11-phase",
-      "trigger": "on state.json write and at harness phase",
-      "severity": "warning",
-      "proposed_date": "2026-06-14",
-      "promoted_date": "2026-06-14",
-      "fires": 1,
-      "helpful": 1,
-      "false_positive": 0
     }
   ],
-  "updated": "2026-06-14"
+  "updated": "2026-06-14T23:00:00Z"
 }

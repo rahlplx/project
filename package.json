@@ -2,15 +2,23 @@
   "name": "vibe-stack",
   "version": "1.1.0",
   "description": "45 AI agent skills for vibe coders — deploy, design, review, orchestrate. Works with Codex, OpenCode, Claude Code, Antigravity, and any MCP-compatible agent.",
-  "main": "bin/vibe-stack.js",
+  "main": "bin/vibe.js",
   "bin": {
-    "vibe-stack": "bin/vibe-stack.js"
+    "vibe-stack": "bin/vibe.js"
   },
   "scripts": {
-    "start": "node bin/vibe-stack.js",
-    "mcp": "node bin/vibe-stack.js mcp",
+    "start": "node bin/vibe.js",
+    "mcp": "node bin/vibe.js mcp",
+    "vibe": "node bin/vibe.js",
+    "vibe:help": "node bin/vibe.js help",
+    "vibe:status": "node bin/vibe.js status",
+    "vibe:harness": "node bin/vibe.js harness",
+    "vibe:maintenance": "node bin/vibe.js maintenance",
+    "vibe:telemetry": "node bin/vibe.js telemetry",
     "wizard": "node skills/setup/project-wizard/index.js",
-    "test": "jest",
+    "test": "jest && node --test lib/orchestrator/state-machine.test.js lib/orchestrator/context-manager.test.js lib/orchestrator/role-loader.test.js lib/superpowers/tdd-workflow.test.js lib/superpowers/subagent-dispatch.test.js lib/gstack/strategy-engine.test.js lib/design/audit-system.test.js",
+    "test:jest": "jest",
+    "test:node": "node --test lib/orchestrator/state-machine.test.js lib/orchestrator/context-manager.test.js lib/orchestrator/role-loader.test.js lib/superpowers/tdd-workflow.test.js lib/superpowers/subagent-dispatch.test.js lib/gstack/strategy-engine.test.js lib/design/audit-system.test.js",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit --pretty",
     "format": "prettier --write .",
@@ -65,7 +73,15 @@
       "performance-optimizer\\.test\\.js",
       "token-optimizer\\.test\\.js",
       "mcp-adapter\\.test\\.js",
-      "telemetry\\.test\\.js"
+      "telemetry\\.test\\.js",
+      "telemetry-tracker\\.test\\.js",
+      "orchestrator/state-machine\\.test\\.js",
+      "orchestrator/context-manager\\.test\\.js",
+      "orchestrator/role-loader\\.test\\.js",
+      "superpowers/tdd-workflow\\.test\\.js",
+      "superpowers/subagent-dispatch\\.test\\.js",
+      "gstack/strategy-engine\\.test\\.js",
+      "design/audit-system\\.test\\.js"
     ]
   },
   "devDependencies": {

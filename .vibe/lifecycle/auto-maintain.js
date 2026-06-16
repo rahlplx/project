@@ -14,6 +14,10 @@ const SOLUTIONS_DIR = path.join(PROJECT_ROOT, 'docs', 'solutions');
 const TELEMETRY_SESSIONS = path.join(ROOT, 'telemetry', 'sessions');
 const TELEMETRY_DIR = path.join(ROOT, 'telemetry');
 
+// ── Constants ──────────────────────────────────────────────────
+const COMPACTION_DEDUP_WINDOW_MS = 300000; // 5 min
+const COMPACTION_DEDUP_PATH = path.join(TELEMETRY_DIR, 'compaction-dedup.json');
+
 // ── Helpers ────────────────────────────────────────────────────
 function readJSON(p) { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return null; } }
 function writeJSON(p, d) { fs.writeFileSync(p, JSON.stringify(d, null, 2) + '\n', 'utf8'); }
@@ -233,9 +237,10 @@ function runHarness(runTestSuite = true) {
   // Check 13: ESLint lint check (warnings allowed, errors block)
   try {
     const eslintBin = path.join(PROJECT_ROOT, 'node_modules', 'eslint', 'bin', 'eslint.js');
+    const eslintCache = path.join(PROJECT_ROOT, '.eslintcache');
     let eslintOutput;
     try {
-      eslintOutput = execFileSync(process.execPath, [eslintBin, 'lib/', 'bin/', '--no-eslintrc', '-c', '.eslintrc.js', '--format', 'json'], { cwd: PROJECT_ROOT, timeout: 60000, encoding: 'utf8' });
+      eslintOutput = execFileSync(process.execPath, [eslintBin, 'lib/', 'bin/', '--no-eslintrc', '-c', '.eslintrc.js', '--format', 'json', '--cache', '--cache-location', eslintCache], { cwd: PROJECT_ROOT, timeout: 60000, encoding: 'utf8' });
     } catch (execErr) {
       eslintOutput = execErr.stdout || execErr.message;
     }
@@ -278,6 +283,19 @@ function runHarness(runTestSuite = true) {
     console.log(`  [harness]  ✗ tools-discovered-count: ${e.message}`);
   }
 
+  // Check 15: State machine validation
+  try {
+    const state = readJSON(STATE_PATH);
+    const actual = state?.auto_pipeline?.state_machine || [];
+    const expected = ['think', 'plan', 'break', 'build', 'harness', 'review', 'ship', 'retro', 'learn', 'evolve', 'done'];
+    const pass = actual.length === expected.length && actual.every((v, i) => v === expected[i]);
+    results.push({ check: 'state-machine-valid', pass, data: { actual, expected } });
+    console.log(`  [harness]  ${pass ? '✓' : '✗'} state-machine-valid (${actual.join(' → ')})`);
+  } catch (e) {
+    results.push({ check: 'state-machine-valid', pass: false, error: e.message });
+    console.log(`  [harness]  ✗ state-machine-valid: ${e.message}`);
+  }
+
   return results;
 }
 
@@ -287,25 +305,39 @@ function captureTelemetry() {
 
   const lifecycle = readJSON(LIFECYCLE_PATH);
   const state = readJSON(STATE_PATH);
-  const harnessResults = readJSON(path.join(TELEMETRY_DIR, 'harness-results.json')) || { lastResults: [] };
+  const harnessResults = readJSON(path.join(TELEMETRY_DIR, 'harness-results.json')) || { lastResults: [], history: [] };
   const phaseTiming = readJSON(path.join(TELEMETRY_DIR, 'phase-timing.json')) || { records: [] };
   const errorData = readJSON(path.join(TELEMETRY_DIR, 'error-trends.json')) || { errors: [] };
   const compactionData = readJSON(path.join(TELEMETRY_DIR, 'compaction.json')) || { events: [] };
 
+  const { consumeAndReset } = require(path.join(PROJECT_ROOT, 'lib', 'telemetry-tracker'));
+  const trackerSnapshot = consumeAndReset();
+
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
   const sessionFile = path.join(TELEMETRY_SESSIONS, `session-${timestamp}.json`);
+
+  // Derive per-phase task/review counts from harness history
+  const completedMilestones = state?.completed || [];
+  const harnessHistory = harnessResults.history || [];
+  const failedHarnessRuns = harnessHistory.filter(h => h.results && h.results.some(r => !r.pass));
+  const passedHarnessRuns = harnessHistory.filter(h => h.results && h.results.every(r => r.pass));
 
   // Build phases object from phase-timing records
   const phases = {};
   for (const r of phaseTiming.records) {
+    const isFailedPhase = failedHarnessRuns.some(h =>
+      h.results.some(r2 => r2.check === r.phase || r2.check.includes(r.phase))
+    );
     phases[r.phase] = {
       started_at: r.startTime || timestamp,
       ended_at: r.endTime || timestamp,
       duration_min: Math.round((r.durationMs || 0) / 60000 * 10) / 10,
-      commands_run: [],
+      commands_run: trackerSnapshot.commands_used ? Object.keys(trackerSnapshot.commands_used) : [],
       errors: [],
-      tasks_completed: 0,
-      tasks_failed: 0
+      tasks_completed: passedHarnessRuns.length || 0,
+      tasks_failed: isFailedPhase ? 1 : 0,
+      reviews_passed: passedHarnessRuns.length || 0,
+      reviews_failed: failedHarnessRuns.length || 0
     };
   }
 
@@ -340,6 +372,17 @@ function captureTelemetry() {
     .slice(0, 3)
     .map(([type, count]) => ({ type, count }));
 
+  // Aggregate commands_used from all phases and tracker
+  const allCommands = {};
+  for (const p of Object.values(phases)) {
+    for (const cmd of p.commands_run) {
+      allCommands[cmd] = (allCommands[cmd] || 0) + 1;
+    }
+  }
+  for (const [cmd, count] of Object.entries(trackerSnapshot.commands_used)) {
+    allCommands[cmd] = (allCommands[cmd] || 0) + count;
+  }
+
   const snapshot = {
     session_id: timestamp,
     project: state?.project || 'vibe-stack',
@@ -348,11 +391,9 @@ function captureTelemetry() {
     mode: state?.mode || 'auto',
     phases,
     user_interactions: {
-      commands_used: {
-        'vibe:telemetry': 1
-      },
-      times_corrected_ai: 0,
-      times_asked_clarification: 0
+      commands_used: allCommands,
+      times_corrected_ai: trackerSnapshot.times_corrected_ai,
+      times_asked_clarification: trackerSnapshot.times_asked_clarification
     },
     errors: errors.slice(0, 10),
     blockers: [],
@@ -449,6 +490,13 @@ function saveHarnessResults(harnessResults) {
 
 // ── Phase 2d: Compaction Event Recording ────────────────────────
 function recordCompactionEvent(event) {
+  // Dedup: skip if last event for same project was within dedup window
+  const dedup = readJSON(COMPACTION_DEDUP_PATH) || {};
+  const now = Date.now();
+  if (dedup.lastEvent && (now - dedup.lastEvent) < COMPACTION_DEDUP_WINDOW_MS) {
+    return; // silent skip
+  }
+
   const compactionPath = path.join(TELEMETRY_DIR, 'compaction.json');
   const data = readJSON(compactionPath) || { events: [] };
   data.events.push({
@@ -460,6 +508,7 @@ function recordCompactionEvent(event) {
     data.events = data.events.slice(-100);
   }
   writeJSON(compactionPath, data);
+  writeJSON(COMPACTION_DEDUP_PATH, { lastEvent: now });
   console.log(`  [telemetry]  ⚠ recorded compaction event: ${event.symptom}`);
 }
 
@@ -597,7 +646,7 @@ function runRetro(harnessResults, telemetry) {
 }
 
 // ── Phase 4: Learn ─────────────────────────────────────────────
-function runLearn() {
+function runLearn(telemetry, telemetryInsights) {
   console.log('  [learn] Extracting patterns...');
 
   // Scan recent anti-pattern docs for uncaptured lessons
@@ -623,14 +672,80 @@ function runLearn() {
     }
   }
 
+  // Step 2.1: Scan session telemetry for phase timing and blockers
+  const telemetryGaps = [];
+  if (telemetry && telemetry.phases) {
+    // Check for longest phases to identify productivity bottlenecks
+    const phaseDurations = [];
+    for (const [phaseName, phaseData] of Object.entries(telemetry.phases)) {
+      if (phaseData.duration_min > 0) {
+        phaseDurations.push({ phase: phaseName, duration: phaseData.duration_min });
+      }
+    }
+    phaseDurations.sort((a, b) => b.duration - a.duration);
+
+    // If build phase dominates, suggest breaking into smaller tasks
+    if (phaseDurations.length > 0) {
+      const longest = phaseDurations[0];
+      const total = phaseDurations.reduce((s, p) => s + p.duration, 0);
+      if (total > 0 && longest.duration / total > 0.5) {
+        telemetryGaps.push({
+          source: 'telemetry',
+          type: 'phase_imbalance',
+          detail: `${longest.phase} phase is ${Math.round(longest.duration / total * 100)}% of total time`,
+          suggestion: `Consider breaking ${longest.phase} tasks smaller`
+        });
+      }
+    }
+  }
+
+  // Step 2.2: Review blockers from session
+  if (telemetry && telemetry.blockers && telemetry.blockers.length > 0) {
+    for (const blocker of telemetry.blockers) {
+      if (blocker.resolution) {
+        telemetryGaps.push({
+          source: 'blocker',
+          type: 'framework_preventable',
+          detail: blocker.description,
+          suggestion: `Could the framework auto-detect or prevent: ${blocker.description}?`
+        });
+      }
+    }
+  }
+
+  // Step 2.3: Classify docs/solutions/ entries
+  const solutionsDir = path.join(PROJECT_ROOT, 'docs', 'solutions');
+  const uncapturedSolutions = [];
+  if (fs.existsSync(solutionsDir)) {
+    const solutionFiles = fs.readdirSync(solutionsDir).filter(f => f.endsWith('.md'));
+    for (const sf of solutionFiles) {
+      const nameNoExt = sf.replace(/\.md$/, '');
+      // Check if a corresponding pattern exists
+      const patternExists = fs.existsSync(path.join(patternDir, sf));
+      const antiExists = fs.existsSync(path.join(antiDir, sf));
+      if (!patternExists && !antiExists) {
+        uncapturedSolutions.push(nameNoExt);
+      }
+    }
+  }
+
   const result = {
     timestamp: new Date().toISOString(),
     anti_pattern_count: count,
     pattern_count: pcount,
-    low_quality_rules: lowQuality
+    low_quality_rules: lowQuality,
+    telemetry_gaps: telemetryGaps.length > 0 ? telemetryGaps : undefined,
+    uncaptured_solutions: uncapturedSolutions.length > 0 ? uncapturedSolutions : undefined,
+    telemetry_insights: telemetryInsights && telemetryInsights.length > 0 ? telemetryInsights : undefined
   };
 
   console.log(`  [learn]  ✓ ${count} anti-patterns, ${pcount} patterns, ${lowQuality.length} low-quality rules`);
+  if (telemetryGaps.length > 0) {
+    console.log(`  [learn]  ⚠ ${telemetryGaps.length} telemetry gaps detected`);
+  }
+  if (uncapturedSolutions.length > 0) {
+    console.log(`  [learn]  📄 ${uncapturedSolutions.length} uncaptured solutions from docs/solutions/`);
+  }
   return result;
 }
 
@@ -646,13 +761,58 @@ function runEvolve(learnResult) {
 
   const proposals = [];
 
-  // Flag low-quality rules for retirement
-  for (const name of learnResult.low_quality_rules) {
-    proposals.push({
-      action: 'retire',
-      rule: name,
-      reason: `Quality score < 0.6, eligible for retire/improve`
-    });
+  // Flag low-quality rules for retirement (Step 3.1)
+  const lowQualityRules = learnResult.low_quality_rules || [];
+  // Sort by quality score ascending
+  const sortedRules = Object.entries(evo.rules || {})
+    .sort(([, a], [, b]) => (a.quality_score || 1) - (b.quality_score || 1));
+  const lowest20Pct = sortedRules.slice(0, Math.max(1, Math.floor(sortedRules.length * 0.2)));
+
+  for (const [name, rule] of lowest20Pct) {
+    if (rule.quality_score < 0.6) {
+      proposals.push({
+        action: 'retire',
+        rule: name,
+        reason: `Quality score ${rule.quality_score} < 0.6, eligible for retire/improve`
+      });
+    }
+  }
+
+  // Step 3.3: Propose new rules for telemetry-detected gaps
+  if (learnResult.telemetry_gaps) {
+    for (const gap of learnResult.telemetry_gaps) {
+      proposals.push({
+        action: 'propose-new-rule',
+        source: gap.source,
+        type: gap.type,
+        detail: gap.detail,
+        reason: gap.suggestion
+      });
+    }
+  }
+
+  // Propose new rules for uncaptured solutions
+  if (learnResult.uncaptured_solutions) {
+    for (const solution of learnResult.uncaptured_solutions) {
+      proposals.push({
+        action: 'capture-solution',
+        detail: `Solution '${solution}' exists in docs/solutions/ but has no matching pattern or anti-pattern`,
+        reason: 'Should be classified and captured as a learning'
+      });
+    }
+  }
+
+  // Step 3.3: For recurring issues no rule caught → check telemetry insights
+  if (learnResult.telemetry_insights) {
+    for (const insight of learnResult.telemetry_insights) {
+      proposals.push({
+        action: 'propose-new-rule',
+        source: insight.source,
+        type: insight.type,
+        detail: insight.detail,
+        reason: insight.suggestion
+      });
+    }
   }
 
   // Check if any proposed_rules are still pending and should be activated
@@ -738,9 +898,10 @@ async function main() {
   }
   // Phase 3
   const retro = runRetro(harnessResults, telemetry);
-  // Phase 4
-  const learnResult = runLearn();
+  // Phase 3b: Generate telemetry insights for learn/evolve
   const telemetryInsights = feedTelemetryToLearn(telemetry);
+  // Phase 4
+  const learnResult = runLearn(telemetry, telemetryInsights);
   // Phase 5
   const evolveResult = runEvolve(learnResult);
   // Phase 6
