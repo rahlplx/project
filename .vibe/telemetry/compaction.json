@@ -566,6 +566,24 @@
       "recovery": "Auto-maintenance handles state recovery",
       "token_recovered": true,
       "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 28,
+      "detected_at": "2026-06-16T12:32:47.896Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
+    },
+    {
+      "phase": "startup",
+      "task": 30,
+      "detected_at": "2026-06-16T12:38:15.316Z",
+      "symptom": "Session restarted within 1 minute of previous",
+      "recovery": "Auto-maintenance handles state recovery",
+      "token_recovered": true,
+      "time_lost_min": 0.5
     }
   ]
 }

@@ -492,6 +492,18 @@
       "fires": 0,
       "helpful": 0,
       "false_positive": 0
+    },
+    {
+      "id": "workflow-5-phase-gate",
+      "status": "proposed",
+      "description": "Harness check: state.json state_machine must be exactly [scope, build, verify, ship, evolve, done]",
+      "rationale": "Ensures new 5-phase workflow is enforced; prevents drift back to 11-phase",
+      "trigger": "on state.json write and at harness phase",
+      "severity": "warning",
+      "proposed_date": "2026-06-14",
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0
     }
   ],
   "updated": "2026-06-14T23:00:00Z"

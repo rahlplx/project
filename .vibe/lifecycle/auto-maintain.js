@@ -283,11 +283,11 @@ function runHarness(runTestSuite = true) {
     console.log(`  [harness]  ✗ tools-discovered-count: ${e.message}`);
   }
 
-  // Check 15: State machine validation
+  // Check 15: State machine validation (5-phase model)
   try {
     const state = readJSON(STATE_PATH);
     const actual = state?.auto_pipeline?.state_machine || [];
-    const expected = ['think', 'plan', 'break', 'build', 'harness', 'review', 'ship', 'retro', 'learn', 'evolve', 'done'];
+    const expected = ['scope', 'build', 'verify', 'ship', 'evolve', 'done'];
     const pass = actual.length === expected.length && actual.every((v, i) => v === expected[i]);
     results.push({ check: 'state-machine-valid', pass, data: { actual, expected } });
     console.log(`  [harness]  ${pass ? '✓' : '✗'} state-machine-valid (${actual.join(' → ')})`);
