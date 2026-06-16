@@ -17,6 +17,7 @@ allowed-tools:
   - Bash(node skills/design/color-gen/index.js*)
   - Bash(node skills/design/design-system/index.js*)
   - Bash(node skills/design/impeccable-audit/index.js*)
+  - Bash(node skills/design/taste-skill/index.js*)
   - Bash(grep -r*)
   - AskUserQuestion
 ---
@@ -69,6 +70,11 @@ Three dials control all downstream design decisions. Infer from project brief/re
 | "luxury", "premium", "tasteful" | 4–6 | 4–5 | 2–4 |
 
 Apply dials to every decision below. High VARIANCE = allow bolder choices. Low VARIANCE = enforce safer defaults.
+
+This table is also the executable `skills/design/taste-skill` module — use
+`TasteSkill.inferDials(brief)` for the same inference and `TasteSkill.preflightCheck(design)`
+to run its hard rules (em-dash ban, no duplicate CTA intent, hero/eyebrow discipline,
+pure black/white ban, marquee max-one-per-page) before shipping generated copy.
 
 ---
 

@@ -45,5 +45,6 @@ Create `plans/plan-<topic>.md` with:
 - Design Lead (UX, accessibility)
 
 ## Reference
-- gstack `/plan-eng-review`
-- gstack `/plan-design-review`
+- gstack `/plan-eng-review`, `/plan-design-review`, `/plan-ceo-review` — implemented in
+  `lib/gstack/strategy-engine.js` (`StrategyEngine.engineerReview`/`designReview`/`ceoReview`),
+  wired into `lib/vibe-commands/plan.js`

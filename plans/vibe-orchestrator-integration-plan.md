@@ -4,6 +4,14 @@
 **Author:** OpenCode Agent
 **Status:** Plan Ready for Implementation
 
+**Implemented so far:** `lib/gstack/strategy-engine.js` (3.1, gstack CEO/Designer/Engineer
+review only — `role-evaluator.js`/`design-scorer.js` below are still unbuilt), wired into
+`lib/vibe-commands/plan.js`. `skills/orchestration/gsd-workflow/` (GSD Define→Build→Ship,
+not the orchestrator-directory rewrite this plan originally scoped). `skills/design/taste-skill/`
+(dials + hard rules, not the `lib/design/semantic-design.js` split below). `skills/knowledge/graphify/`
+extended with EXTRACTED/INFERRED/AMBIGUOUS tagging and reporting. QA workflow (3.2) and the
+`lib/design/*` file split (4.1/4.2) remain unimplemented.
+
 ## Executive Summary
 
 This plan outlines the systematic integration of characteristics from 5 repos into the vibe-stack project:
