@@ -1,8 +1,8 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-16T16:19:35.279Z",
-  "skill_count": 54,
+  "generated_at": "2026-06-16T17:05:23.137Z",
+  "skill_count": 55,
   "skills": [
     {
       "name": "anti-patterns",
@@ -171,6 +171,14 @@
       "description": "Semantic codebase understanding — builds a dependency graph from source files",
       "url": "/.well-known/agent-skills/graphify/SKILL.md",
       "digest": "sha256-dde3470da5b4c8fd4c820ba4a46764dbacac7d7d84c6a67dd4a8e95accae04fa"
+    },
+    {
+      "name": "gsd-workflow",
+      "type": "skill-md",
+      "category": "orchestration",
+      "description": "Define -> Build -> Ship milestone lifecycle with atomic-commit task tracking, ported from GSD.",
+      "url": "/.well-known/agent-skills/gsd-workflow/SKILL.md",
+      "digest": "sha256-22a63a8643790377e0d9bd665ad716a16ac7e4e49a4c50382e37d07ed57b028f"
     },
     {
       "name": "guardrails",
