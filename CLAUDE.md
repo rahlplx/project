@@ -143,6 +143,22 @@ the same underlying `skills/` JS modules with consistent anti-slop/OWASP/taste-s
 | `/vibe-template` | template-gallery, prompt-templates, quick-start | Starting a component/page/endpoint/scaffold from scratch |
 | `/vibe-plan` | planning-agent, task-coordinator, tracker, parallel-exec | Breaking down a feature or sprint into tasks |
 
+## Cross-Agent Plugin Packaging
+
+This project installs into 4 agent ecosystems without forking the skill library:
+
+| Agent | Entry point | Mechanism |
+|-------|-------------|-----------|
+| Claude Code | `plugin/.claude-plugin/plugin.json` | Plugin manifest; `plugin/skills` is a symlink to `.claude/skills/` (avoids colliding with the root `skills/` JS module library, which is a different thing); `plugin/.mcp.json` points at `bin/mcp-server.js` via `${CLAUDE_PLUGIN_ROOT}` |
+| Cursor | `.cursor/mcp.json` | MCP server config calling `node bin/mcp-server.js`; `node bin/vibe.js install --cursor` additionally generates `.cursor/rules/*.mdc` from `CLAUDE.md` |
+| OpenCode | `opencode.json` | `mcp` key, local stdio transport to `bin/mcp-server.js` |
+| Codex CLI | `.codex/config.toml` | `[mcp_servers.vibe-stack]` block (project-local auto-load varies by Codex CLI version — copy into `~/.codex/config.toml` if it isn't picked up) |
+
+`node bin/vibe.js install [--cursor|--windsurf|--claude-code|--all]` wraps `lib/install-ide.js`
+(`detectIDE`/`installForIDE`/`syncToIDE`) to generate IDE-native rule files and, for Claude
+Code, sync `skills/` JS modules into `.claude/skills/<category>/<name>.md` reference docs.
+With no flag it auto-detects the current IDE from env vars and existing config dirs.
+
 ## Code Conventions
 
 - CommonJS only (`require`/`module.exports`) — no ESM, per ESLint `sourceType: 'commonjs'`.

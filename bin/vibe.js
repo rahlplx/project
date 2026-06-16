@@ -37,6 +37,7 @@ const commandDefs = [
   { name: 'status',    phase: null,        desc: 'Read state.json, render status dashboard', category: 'utility' },
   { name: 'help',      phase: null,        desc: 'Show command reference and current status', category: 'utility', aliases: ['?'] },
   { name: 'detect',    phase: null,        desc: 'Auto-detect project stack (framework, build, test)', category: 'utility' },
+  { name: 'install',   phase: null,        desc: 'Install rules/skills into Cursor, Windsurf, or Claude Code (--cursor|--windsurf|--claude-code|--all)', category: 'utility' },
 
   // Orchestration commands
   { name: 'auto',      phase: null,        desc: 'Full pipeline state machine: think through done', category: 'orchestration' },
