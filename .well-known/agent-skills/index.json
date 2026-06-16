@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-16T17:10:48.077Z",
+  "generated_at": "2026-06-16T19:36:30.214Z",
   "skill_count": 56,
   "skills": [
     {
@@ -170,7 +170,7 @@
       "category": "knowledge",
       "description": "Semantic codebase understanding — builds a dependency graph from source files",
       "url": "/.well-known/agent-skills/graphify/SKILL.md",
-      "digest": "sha256-dde3470da5b4c8fd4c820ba4a46764dbacac7d7d84c6a67dd4a8e95accae04fa"
+      "digest": "sha256-57d91e8eda00aa07cf7f2074ec3a9b033e1ba3001b74020b064f33f6ce085d9d"
     },
     {
       "name": "gsd-workflow",
