@@ -1,8 +1,8 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-16T17:05:23.137Z",
-  "skill_count": 55,
+  "generated_at": "2026-06-16T17:10:48.077Z",
+  "skill_count": 56,
   "skills": [
     {
       "name": "anti-patterns",
@@ -355,6 +355,14 @@
       "description": "Orchestrate multi-step workflows with dependency management",
       "url": "/.well-known/agent-skills/task-coordinator/SKILL.md",
       "digest": "sha256-98e1444dff016b2a6a31796e9e0d6f44e59a15b5a8c13b969437a0ed5d7c690b"
+    },
+    {
+      "name": "taste-skill",
+      "type": "skill-md",
+      "category": "design",
+      "description": "Three-dial design taste enforcement with em-dash and duplicate-CTA-intent bans, ported from Leonxlnx/taste-skill.",
+      "url": "/.well-known/agent-skills/taste-skill/SKILL.md",
+      "digest": "sha256-68d706622a7c6e497ff0d9907e91c95a263f7e419e275eb7efaa386a6cae0396"
     },
     {
       "name": "tdd-vibe",
