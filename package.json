@@ -1,5 +1,5 @@
 {
-  "name": "vibe-stack",
+  "name": "@lablaunchpad/vibe-stack",
   "version": "1.1.0",
   "description": "45 AI agent skills for vibe coders — deploy, design, review, orchestrate. Works with Codex, OpenCode, Claude Code, Antigravity, and any MCP-compatible agent.",
   "main": "bin/vibe.js",
