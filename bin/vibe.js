@@ -6,6 +6,7 @@ const cmdDir = path.resolve(__dirname, '..', 'lib', 'vibe-commands');
 const { register, validatePhase } = require(path.join(cmdDir, 'index'));
 const { readState, writeState, recordTelemetry, advancePhase, writeHandoff, getProjectInfo } = require(path.join(cmdDir, 'state-helpers'));
 const { showHelp } = require(path.join(cmdDir, 'help'));
+const { RoleLoader } = require(path.join(__dirname, '..', 'lib', 'orchestrator'));
 
 // ── Helper: load a handler module ──────────────────────────────
 function loadHandler(name) {
@@ -101,6 +102,14 @@ if (cmd) {
 
   // Record telemetry
   recordTelemetry(`vibe:${mode}`);
+
+  // Show active virtual-team roles for this phase (from lib/orchestrator)
+  if (cmd.phase) {
+    const roles = new RoleLoader().getRolesForPhase(cmd.phase);
+    if (roles.length) {
+      console.log(`  Team: ${roles.join(', ')}`);
+    }
+  }
 
   // Execute handler
   if (cmd.handler) {
