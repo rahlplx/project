@@ -6,7 +6,7 @@ const cmdDir = path.resolve(__dirname, '..', 'lib', 'vibe-commands');
 const { register, validatePhase } = require(path.join(cmdDir, 'index'));
 const { readState, writeState, recordTelemetry, advancePhase, writeHandoff, getProjectInfo } = require(path.join(cmdDir, 'state-helpers'));
 const { showHelp } = require(path.join(cmdDir, 'help'));
-const { RoleLoader } = require(path.join(__dirname, '..', 'lib', 'orchestrator'));
+const { RoleLoader, ContextManager, StateMachine } = require(path.join(__dirname, '..', 'lib', 'orchestrator'));
 
 // ── Helper: load a handler module ──────────────────────────────
 function loadHandler(name) {
@@ -124,14 +124,26 @@ if (cmd) {
     // Write handoff on phase transition
     if (cmd.phase && state.phase !== cmd.phase) {
       const next = state.phase || 'done';
-      writeHandoff('vibe-cli', 'next-agent', next, {
-        state: `${cmd.phase} phase completed`,
-        phase: next,
-        goal: state.goal || '',
-        task: mode,
-        files: [],
-        need: `Proceed to ${next} phase`
-      });
+      const stateMachine = new StateMachine();
+
+      // Iron Law (lib/orchestrator/context-manager.js): write a full handoff
+      // between major layer transitions; a lightweight one otherwise.
+      if (stateMachine.needsHandoff(cmd.phase, next)) {
+        new ContextManager().writeHandoff(
+          cmd.phase,
+          next,
+          `${cmd.phase} phase completed via '${mode}'. Goal: ${state.goal || 'n/a'}`
+        );
+      } else {
+        writeHandoff('vibe-cli', 'next-agent', next, {
+          state: `${cmd.phase} phase completed`,
+          phase: next,
+          goal: state.goal || '',
+          task: mode,
+          files: [],
+          need: `Proceed to ${next} phase`
+        });
+      }
     }
 
     if (result && result.exitCode) process.exit(result.exitCode);
