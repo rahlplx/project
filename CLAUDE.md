@@ -142,6 +142,7 @@ the same underlying `skills/` JS modules with consistent anti-slop/OWASP/taste-s
 | `/vibe-learnings` | context-memory, knowledge-base, git log | Retro, post-mortem, building institutional memory |
 | `/vibe-template` | template-gallery, prompt-templates, quick-start | Starting a component/page/endpoint/scaffold from scratch |
 | `/vibe-plan` | planning-agent, task-coordinator, tracker, parallel-exec | Breaking down a feature or sprint into tasks |
+| `/vibe-caveman` | caveman-mode | Terse-output mode, compressed commit messages/PR comments, token-savings stats |
 
 ## Cross-Agent Plugin Packaging
 

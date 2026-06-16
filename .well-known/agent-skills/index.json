@@ -1,8 +1,8 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-16T14:47:05.673Z",
-  "skill_count": 52,
+  "generated_at": "2026-06-16T15:55:29.316Z",
+  "skill_count": 53,
   "skills": [
     {
       "name": "anti-patterns",
@@ -27,6 +27,14 @@
       "description": "Decompose specs into RED/GREEN/REFACTOR/VERIFY task units with dependency ordering",
       "url": "/.well-known/agent-skills/architect/SKILL.md",
       "digest": "sha256-26a2f68bd97c3fbc9c7954ee07730b13a217a8c3567e521839be0c7ac96ec6c3"
+    },
+    {
+      "name": "caveman-mode",
+      "type": "skill-md",
+      "category": "workflow",
+      "description": "Terse-output mode — strips filler/hedging to cut response tokens while preserving technical accuracy.",
+      "url": "/.well-known/agent-skills/caveman-mode/SKILL.md",
+      "digest": "sha256-031da1b76115442af6b528141b0e6741c496b074049f25b9027a009ef971ef1f"
     },
     {
       "name": "checkpoints",
