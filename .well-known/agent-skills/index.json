@@ -1,8 +1,8 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-16T15:55:29.316Z",
-  "skill_count": 53,
+  "generated_at": "2026-06-16T16:19:35.279Z",
+  "skill_count": 54,
   "skills": [
     {
       "name": "anti-patterns",
@@ -187,6 +187,14 @@
       "description": "Check if your project dependencies and environment are healthy",
       "url": "/.well-known/agent-skills/health-check/SKILL.md",
       "digest": "sha256-4d2d5f0cb74e67c9770753d1d1a0ee1ff3a3e65b6ca088672da684ecfe023a6e"
+    },
+    {
+      "name": "impeccable-audit",
+      "type": "skill-md",
+      "category": "design",
+      "description": "Design quality workflow (init/shape/critique/audit/polish + 18 targeted refinement commands) with deterministic anti-pattern detectors, ported from the community impeccable skill.",
+      "url": "/.well-known/agent-skills/impeccable-audit/SKILL.md",
+      "digest": "sha256-c8861285e7c1bdf841d2f11db0b5c2bbbb7be3bc4d4ffffcceff4d6d817e861b"
     },
     {
       "name": "intent-capture",

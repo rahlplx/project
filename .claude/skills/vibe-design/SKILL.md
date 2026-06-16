@@ -1,11 +1,13 @@
 ---
 name: vibe-design
-description: "Design audit + anti-slop enforcement + WCAG check + taste-skill dial configuration.
+description: "Design audit + anti-slop enforcement + WCAG check + taste-skill dial configuration
+  + impeccable design workflow (init/critique/polish + 18 refinement commands).
   Use when: reviewing UI code, generating design systems, checking color contrast, applying
   brand identity, or any time design quality is at stake. Auto-triggers on any UI/CSS/component
-  work. Injects 41 anti-slop rules + 3 taste-skill dials + WCAG AA contrast enforcement.
-  Wraps: anti-slop, color-gen, design-system, typography-rules, theme-factory skills."
-argument-hint: "[audit|palette|system|typography|dials] [--fix]"
+  work. Injects 41 anti-slop rules + 5 impeccable-specific detectors + 3 taste-skill dials +
+  WCAG AA contrast enforcement. Wraps: anti-slop, color-gen, design-system, typography-rules,
+  theme-factory, impeccable-audit skills."
+argument-hint: "[audit|palette|system|typography|dials|impeccable] [init|critique|polish|<command>] [--fix]"
 version: 1.0.0
 allowed-tools:
   - Read
@@ -14,6 +16,7 @@ allowed-tools:
   - Bash(node skills/design/anti-slop/index.js*)
   - Bash(node skills/design/color-gen/index.js*)
   - Bash(node skills/design/design-system/index.js*)
+  - Bash(node skills/design/impeccable-audit/index.js*)
   - Bash(grep -r*)
   - AskUserQuestion
 ---
@@ -34,6 +37,10 @@ Read `$ARGUMENTS`:
 - `system` → run Step 3 (design tokens) only, generate full token set
 - `typography` → run Step 4 (typography rules) only
 - `dials` → run Step 0 (configure taste-skill dials) interactively
+- `impeccable [command]` → run Step 5 (impeccable workflow): `init`, `critique`, `audit`,
+  `polish`, or any of the 18 targeted refinement commands (`bolder`, `quieter`, `distill`,
+  `harden`, `onboard`, `animate`, `colorize`, `typeset`, `layout`, `delight`, `overdrive`,
+  `clarify`, `adapt`, `optimize`, `live`, `craft`, `document`, `extract`, `shape`)
 - `--fix` appended to any command → apply fixes automatically after audit
 
 ---
@@ -186,6 +193,47 @@ One design system per project. Do not mix token systems (no Bootstrap + Tailwind
 - **Italic descenders**: If italic display type contains descenders (g, j, p, q, y), set `leading-[1.1]` minimum
 - **Responsive scale**: Scale down by one step at mobile (3xl → 2xl for headings)
 - **Line height**: Body = 1.5–1.7. Display = 1.0–1.2. Never 1.0 for body.
+
+---
+
+## Step 5 — Impeccable Workflow
+
+Ported from the community `impeccable` skill (`skills/design/impeccable-audit/index.js`).
+Distinct from Steps 1–4 (which are pure detector scans): this step is a structured
+project-lifecycle workflow.
+
+**`init`** — Ask the user (once per project, skip if `.vibe/projects/{slug}/DESIGN.md`
+already exists):
+1. Is this surface **brand** (marketing/landing/portfolio) or **product** (app UI/dashboard/tool)?
+2. Who's the audience?
+3. What's the voice (3 adjectives)?
+4. Any anti-references (designs/styles to explicitly avoid)?
+5. Palette / typography / component preferences, if known.
+
+Call `runInit(answers)` from `impeccable-audit`, write the returned `markdown` to
+`.vibe/projects/{slug}/DESIGN.md`.
+
+**`critique`** — Call `critique(design)`. This is qualitative, not detector-based: flags
+missing visual hierarchy, no clear focal point, voice/brand mismatch, and generic/
+template-like designs. Report findings by axis (`hierarchy` / `resonance`).
+
+**`audit`** — Call `audit(design)` from `impeccable-audit`. This runs all 41 anti-slop
+detectors (Step 1) **plus** 5 impeccable-specific detectors not already covered: nested
+cards, bounce/elastic easing, gray text on a colored background, side-tab border accents,
+dark glow shadows. Use this instead of a bare anti-slop scan when the user explicitly asks
+for an "impeccable audit."
+
+**`polish`** — Call `polish(checklist)`. Shipping-readiness gate: WCAG contrast, responsive
+breakpoints tested, interactive states (hover/focus/active/disabled) defined, empty/loading/
+error states designed, animations respect `prefers-reduced-motion`. Treat any `blockers`
+as ship-blocking, same as `vibe-security`'s CRITICAL/HIGH findings.
+
+**18 refinement commands** (`bolder`, `quieter`, `distill`, `harden`, `onboard`, `animate`,
+`colorize`, `typeset`, `layout`, `delight`, `overdrive`, `clarify`, `adapt`, `optimize`,
+`live`, `craft`, `document`, `extract`, `shape`) have no dedicated detector logic — call
+`getCommand(name)` for the one-line brief, then act on it directly using the taste dials
+from Step 0 and the rules from Steps 1–4 as your guardrails (e.g. `colorize` must still
+pass the Step 1 color rules; `animate` must still respect `polish`'s reduced-motion check).
 
 ---
 

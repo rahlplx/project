@@ -132,7 +132,7 @@ the same underlying `skills/` JS modules with consistent anti-slop/OWASP/taste-s
 | Command | Wraps | Use when |
 |---------|-------|----------|
 | `/vibe` | Full pipeline | New project, "I want to build X" |
-| `/vibe-design` | anti-slop, color-gen, design-system, typography-rules | Reviewing/generating UI, design tokens, palettes |
+| `/vibe-design` | anti-slop, color-gen, design-system, typography-rules, impeccable-audit | Reviewing/generating UI, design tokens, palettes |
 | `/vibe-review` | virtual-team, code-health, done-verifier | Pre-merge review, second opinion, "is this ready" |
 | `/vibe-security` | security-audit, security-defaults, guardrails | Before release, auth/payment/API code |
 | `/vibe-tdd` | tdd-vibe, verification-agent, checkpoints | New feature or bug fix — write the test first |
