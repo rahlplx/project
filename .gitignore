@@ -11,6 +11,8 @@ build/
 .env.local
 .env.*.local
 external/
+# .claude/ is intentionally force-tracked (settings.json + skills/ + hooks/ are part of the repo).
+# New files here need `git add -f` — this line prevents accidental commits of local-only Claude state.
 .claude/
 
 # OS files

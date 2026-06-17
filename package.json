@@ -18,6 +18,7 @@
     "wizard": "node skills/setup/project-wizard/index.js",
     "test": "jest && node scripts/run-node-tests.js",
     "test:jest": "jest",
+    "test:coverage": "jest --coverage --coverageThreshold='{\"global\":{\"lines\":75}}' && node scripts/run-node-tests.js",
     "test:node": "node scripts/run-node-tests.js",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit --pretty",

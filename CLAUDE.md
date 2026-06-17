@@ -152,6 +152,9 @@ the same underlying `skills/` JS modules with consistent anti-slop/OWASP/taste-s
 | `/vibe-template` | template-gallery, prompt-templates, quick-start | Starting a component/page/endpoint/scaffold from scratch |
 | `/vibe-plan` | planning-agent, task-coordinator, tracker, parallel-exec | Breaking down a feature or sprint into tasks |
 | `/vibe-caveman` | caveman-mode | Terse-output mode, compressed commit messages/PR comments, token-savings stats |
+| `/vibe-harness` | bin/vibe.js harness | Production readiness gate — 15 checks, fix table, pre-ship gate |
+| `/vibe-evolve` | bin/vibe.js evolve + lifecycle | Rule promotion/demotion/creation from telemetry + learnings |
+| `/vibe-retro` | bin/vibe.js retro + vibe-learnings | Sprint retrospective — what worked/didn't, action items, save to context-memory |
 
 ## Cross-Agent Plugin Packaging
 
