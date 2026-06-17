@@ -43,6 +43,10 @@ You see: "Done. Your font is now readable, contrast is WCAG-compliant, and the l
 | Remember context | Save preferences, search by meaning |
 | Do complex workflows | Plan, build, test, ship — orchestrated |
 
+## Documentation Audit
+
+Detailed analysis of our documentation strategy can be found in `docs/audit/DOCUMENTATION_STRATEGY.md`.
+
 ## What's Inside
 
 ```

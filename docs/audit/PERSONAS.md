@@ -21,3 +21,18 @@ To perform a deep analysis of the `vibe-stack` documentation, we utilize a colla
 - **Domain**: Workflow and System Flow Documentation.
 - **Focus**: 5-phase pipeline docs, state machine transitions, handoff formats (`docs/handoffs`), and dependency mapping.
 - **Goal**: Provide a crystal-clear map of how data and context move through the "vibe" pipeline.
+
+## 5. The Catalog Curator 📚 (External Tools)
+- **Domain**: Third-party Tooling & Curation.
+- **Focus**: `catalog/tools.yaml`, verification logs, quality scoring methodology.
+- **Goal**: Ensure that external tool descriptions are agent-optimized and that the curation process is transparent and well-documented.
+
+## 6. The Workflow Orchestrator 🔄 (Phase Gates)
+- **Domain**: Pipeline Integrity & Lifecycle.
+- **Focus**: Phase-gate transitions, autonomous maintenance triggers, and handoff consistency.
+- **Goal**: Verify that the documented workflow accurately represents the complex interplay between gstack, GSD, and Superpowers.
+
+## 7. The Plugin Engineer 🔌 (Agent Ecosystems)
+- **Domain**: Cross-platform Integration.
+- **Focus**: Manifests for Cursor, Windsurf, Claude Code, and Codex.
+- **Goal**: Ensure that installation and configuration documentation for each agent ecosystem is accurate and follows the latest plugin standards.
