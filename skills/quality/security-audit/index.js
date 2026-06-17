@@ -25,6 +25,8 @@ const CODE_PATTERNS = [
 
 class SecurityAudit {
   constructor(options = {}) {
+    this.name = 'security-audit';
+    this.description = 'OWASP Top 10 aligned security audit with code pattern scanning';
     this.options = options;
   }
 

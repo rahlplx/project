@@ -19,6 +19,8 @@ const DONE_CRITERIA = [
 
 class DoneVerifier {
   constructor(options = {}) {
+    this.name = 'done-verifier';
+    this.description = '14-point checklist verifying a feature is truly production-ready before shipping';
     this.options = options;
     this.sessions = [];
   }

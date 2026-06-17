@@ -6,6 +6,7 @@
 class DiffPreview {
   constructor(options = {}) {
     this.name = 'diff-preview';
+    this.description = 'Visual diff visualization for code changes';
     this.contextLines = options.contextLines || 3;
     this.showLineNumbers = options.showLineNumbers !== false;
     this.colorize = options.colorize !== false;

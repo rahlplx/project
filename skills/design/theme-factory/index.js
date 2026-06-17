@@ -7,6 +7,8 @@
 
 class ThemeFactory {
   constructor() {
+    this.name = 'theme-factory';
+    this.description = 'Generates custom theme configurations with colors, fonts, and design tokens';
     this.version = '1.0.0';
     this.presets = this.initializePresets();
     this.colorManipulation = this.getColorManipulation();

@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-17T03:06:50.539Z",
+  "generated_at": "2026-06-17T13:23:16.350Z",
   "skill_count": 56,
   "skills": [
     {
@@ -58,7 +58,7 @@
       "category": "quality",
       "description": "code-health",
       "url": "/.well-known/agent-skills/code-health/SKILL.md",
-      "digest": "sha256-8ae7fc5ed2bbbed4b65f00d72bb25668313ff4efe22b1450499f7cec4134cbaf"
+      "digest": "sha256-7a65c2e5d5253a8fa0ab0e07f23c1839e29be4c319c17676a08c4473fda8a022"
     },
     {
       "name": "code-review",
@@ -82,7 +82,7 @@
       "category": "design",
       "description": "color-gen",
       "url": "/.well-known/agent-skills/color-gen/SKILL.md",
-      "digest": "sha256-1d51b7bad9ba31a747695b41ab064260719df2b7829d4ddd308d46b66aa14b51"
+      "digest": "sha256-ba39dcca1e8facab6f25023a5e82b266b0f9c307f6ecf352a15c6e50b99b0051"
     },
     {
       "name": "context-memory",
@@ -106,7 +106,7 @@
       "category": "design",
       "description": "design-system",
       "url": "/.well-known/agent-skills/design-system/SKILL.md",
-      "digest": "sha256-de680a06bb94860c155d62879a9996f310d433ef263bd8bacf95622dd2031d95"
+      "digest": "sha256-35e8a659fad0a4945a2e13d99cde7975efe3b797babd72b73b80d2875d7f8dc1"
     },
     {
       "name": "diff-preview",
@@ -114,7 +114,7 @@
       "category": "preview",
       "description": "diff-preview",
       "url": "/.well-known/agent-skills/diff-preview/SKILL.md",
-      "digest": "sha256-b43907a135c403853aaf108227cd20da6f22f32326a14b5e5477f106e1edf7c0"
+      "digest": "sha256-5956f97e29d25717de7cd5d5d2459f63f6d9d20f58eca460dd462cb23e0c13e8"
     },
     {
       "name": "done-checklist",
@@ -130,7 +130,7 @@
       "category": "quality",
       "description": "done-verifier",
       "url": "/.well-known/agent-skills/done-verifier/SKILL.md",
-      "digest": "sha256-5f4731f21e1371e63fe8870907fab04b941a36cdb91c822f5a8a8302fb99fc01"
+      "digest": "sha256-65601682b850f4681dce43946e214764fe96f87c5581c4ce66e605aa3b0c7e76"
     },
     {
       "name": "error-translator",
@@ -298,7 +298,7 @@
       "category": "setup",
       "description": "quick-start",
       "url": "/.well-known/agent-skills/quick-start/SKILL.md",
-      "digest": "sha256-dbfc3fe05ed730d0a890edbfb2b14beb73a356c9faa4365ccd9a7705c9c386c4"
+      "digest": "sha256-a312a97d249b1cc66f1e89c55f14404d58bffdf0de78f0b72a88f5f81913dfff"
     },
     {
       "name": "rollback",
@@ -322,7 +322,7 @@
       "category": "quality",
       "description": "security-audit",
       "url": "/.well-known/agent-skills/security-audit/SKILL.md",
-      "digest": "sha256-d4932e537322c22f566f29a9f0bd05a600dea4aedb1f658a83cbf611ddf0f9a6"
+      "digest": "sha256-bb8a444de7bf85a59f359718e527e9319dc2085e51978b8db1af089d7e7db984"
     },
     {
       "name": "security-defaults",
@@ -338,7 +338,7 @@
       "category": "workflow",
       "description": "spec-driven",
       "url": "/.well-known/agent-skills/spec-driven/SKILL.md",
-      "digest": "sha256-93572a9a25ccfb3dfec27b53eb0c1f7629d29b31f9fc88183be2743986219b23"
+      "digest": "sha256-c6f317d777c8293d2fbebd8f1ab800189c4df53a1af53db39628fa4e7fe5c407"
     },
     {
       "name": "spec-engine",
@@ -394,7 +394,7 @@
       "category": "design",
       "description": "theme-factory",
       "url": "/.well-known/agent-skills/theme-factory/SKILL.md",
-      "digest": "sha256-9e43b6c1aa3ff3350b68b02166f1f382a21faa477b04593512b00aa8a25536c3"
+      "digest": "sha256-a7bf882964cd3f28152264dbc5d30c767687b819e11b10c2f62118a275d0140b"
     },
     {
       "name": "tracker",
@@ -402,7 +402,7 @@
       "category": "progress",
       "description": "tracker",
       "url": "/.well-known/agent-skills/tracker/SKILL.md",
-      "digest": "sha256-ed1567ac8c2610510b184308e43e987ac8963be02a68c0f3047f50b4c2e05391"
+      "digest": "sha256-df483fb55ae1185d6082be78de073694971705e1afbd798b8099179405fe01e7"
     },
     {
       "name": "typography-rules",
@@ -410,7 +410,7 @@
       "category": "design",
       "description": "typography-rules",
       "url": "/.well-known/agent-skills/typography-rules/SKILL.md",
-      "digest": "sha256-9135eafb56821506ec784c4c2740c789940e67015920b533fa49de16e5fcfb60"
+      "digest": "sha256-1a70c40d2b4faa9fd9efe0284117cc424605dd44df6596e766fb16aef08dd343"
     },
     {
       "name": "verification",

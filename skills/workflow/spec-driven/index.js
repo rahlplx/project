@@ -161,7 +161,6 @@ class SpecDriven {
 
     const specFeatures = spec.features?.map(f => f.name.toLowerCase()) || [];
     const specReqs = spec.requirements?.map(r => r.description.toLowerCase()) || [];
-    const allSpec = [...specFeatures, ...specReqs].join(' ');
     const codeLower = code.toLowerCase();
 
     const matched = specFeatures.filter(f => codeLower.includes(f));

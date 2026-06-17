@@ -7,6 +7,8 @@
 
 class TypographyRules {
   constructor() {
+    this.name = 'typography-rules';
+    this.description = 'Typography best practices including font pairing, hierarchy, and type selection';
     this.version = '1.0.0';
     this.fontPairings = this.initializeFontPairings();
     this.typeScale = this.initializeTypeScale();

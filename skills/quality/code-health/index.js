@@ -18,6 +18,8 @@ const HEALTH_CHECKS = [
 
 class CodeHealth {
   constructor(options = {}) {
+    this.name = 'code-health';
+    this.description = 'Static code health checks: no eval, no innerHTML, no empty catch, line length';
     this.options = options;
     this.projectRoot = options.projectRoot || process.cwd();
   }

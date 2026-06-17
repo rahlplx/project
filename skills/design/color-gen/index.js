@@ -7,6 +7,8 @@
 
 class ColorGenerator {
   constructor() {
+    this.name = 'color-gen';
+    this.description = 'Generates WCAG-compliant color palettes with accessibility considerations';
     this.version = '1.0.0';
     this.wcagRequirements = {
       normalText: { ratio: 4.5, level: 'AA' },

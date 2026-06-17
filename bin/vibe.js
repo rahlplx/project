@@ -4,7 +4,7 @@ const path = require('path');
 // ── Bootstrap: load all vibe commands ──────────────────────────
 const cmdDir = path.resolve(__dirname, '..', 'lib', 'vibe-commands');
 const { register, validatePhase } = require(path.join(cmdDir, 'index'));
-const { readState, writeState, recordTelemetry, advancePhase, writeHandoff, getProjectInfo } = require(path.join(cmdDir, 'state-helpers'));
+const { readState, writeState, recordTelemetry, advancePhase, writeHandoff } = require(path.join(cmdDir, 'state-helpers'));
 const { showHelp } = require(path.join(cmdDir, 'help'));
 const { RoleLoader, ContextManager, StateMachine, QueryEnricher, announceSkills } = require(path.join(__dirname, '..', 'lib', 'orchestrator'));
 const { getTracer } = require(path.join(__dirname, '..', 'lib', 'telemetry', 'otel-tracer'));

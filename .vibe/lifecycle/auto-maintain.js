@@ -867,16 +867,40 @@ function persist(lifecycle, harnessResults, telemetry, retro, learnResult, evolv
   maintLog.updated = new Date().toISOString();
   writeJSON(MAINTENANCE_LOG_PATH, maintLog);
 
-  // Update state.json
+  // Update state.json — sync live metrics so state.json never reports stale counts
   const state = readJSON(STATE_PATH);
   if (state) {
     if (!state.lifecycle) state.lifecycle = {};
     state.lifecycle.last_maintenance = lifecycle.last_maintenance;
     state.lifecycle.maintenance_count = lifecycle.maintenance_count;
     state.lifecycle.interaction_count = lifecycle.interaction_count;
+    syncStateMetrics(state, harnessResults);
     state.updated = new Date().toISOString();
     writeJSON(STATE_PATH, state);
   }
+}
+
+function syncStateMetrics(state, harnessResults) {
+  try {
+    const { buildIndex } = require(path.join(PROJECT_ROOT, 'lib', 'discovery-index'));
+    const idx = buildIndex({ rootDir: PROJECT_ROOT });
+    if (!state.skills) state.skills = {};
+    state.skills.total = idx.skill_count;
+
+    if (!state.infrastructure) state.infrastructure = {};
+    state.infrastructure.harnessChecks = Array.isArray(harnessResults) ? harnessResults.length : (harnessResults?.lastResults?.length || 0);
+
+    // Count passing tests from latest harness node-test result
+    const nodeCheck = (Array.isArray(harnessResults) ? harnessResults : (harnessResults?.lastResults || []))
+      .find(r => r.check === 'node-test-suite');
+    const jestCheck = (Array.isArray(harnessResults) ? harnessResults : (harnessResults?.lastResults || []))
+      .find(r => r.check === 'test-suite');
+    const nodeCount = nodeCheck?.data?.passed || 0;
+    const jestCount = jestCheck?.data?.passed || 0;
+    if (nodeCount + jestCount > 0) {
+      state.infrastructure.testsPassing = nodeCount + jestCount;
+    }
+  } catch { /* degrade silently */ }
 }
 
 // ── Main ───────────────────────────────────────────────────────

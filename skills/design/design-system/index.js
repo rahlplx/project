@@ -7,6 +7,8 @@
 
 class DesignSystem {
   constructor(config = {}) {
+    this.name = 'design-system';
+    this.description = 'Industry-grade design rules for spacing, colors, typography, and components';
     this.version = '1.0.0';
     this.config = this.mergeConfig(config);
     this.tokens = {};

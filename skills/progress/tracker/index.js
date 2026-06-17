@@ -9,6 +9,8 @@ const crypto = require('crypto');
 
 class TaskTracker {
   constructor(options = {}) {
+    this.name = 'tracker';
+    this.description = 'Tracks tasks through a visual kanban board (todo → in-progress → review → done)';
     this.storageKey = options.storageKey || 'vibe-tracker';
     this.phases = options.phases || ['todo', 'in-progress', 'review', 'done'];
     this.tasks = [];

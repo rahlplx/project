@@ -260,19 +260,6 @@ async function createFromFiles(template, projectDir) {
   }
 }
 
-async function cloneRepo(template, projectDir, options) {
-  const { name } = template;
-
-  if (options.skipInstall) {
-    logStep(3, 'Skipping installation (--skip-install flag)');
-  }
-
-  log(`\n${colors.yellow}Note: For ${name}, please run these commands manually:${colors.reset}`);
-  log(`  cd ${projectDir}`);
-  log('  npm install');
-  log('  npm run dev\n');
-}
-
 async function scaffold(options) {
   const { templateKey, projectName, outputDir, skipInstall, list } = options;
 
