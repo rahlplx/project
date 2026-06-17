@@ -58,3 +58,14 @@ This policy covers the Vibe-Stack repository and its official packages. It does 
 - Third-party skills or plugins
 - Custom deployments
 - Forks or derivatives
+
+## Security Features
+
+Vibe-Stack includes built-in security tools to protect your codebase:
+
+- **Integrated Security Scanner**: `lib/security-scan.js` automatically scans for OWASP Top 10 vulnerabilities (Injection, hardcoded secrets, etc.) during the `ship` phase.
+- **Precision Auditing**: The scanner is context-aware, reducing false positives in template literals while maintaining 100% coverage for dangerous `exec`/`spawn` calls.
+- **Defense in Depth**: Core intent-capture modules implement strict length limits and character sanitization.
+- **Anti-Slop Rules**: 41 rules for high-quality, secure-by-default code generation.
+
+Run `/vibe-security` (Claude Code) or `node skills/quality/security-audit/index.js` for an automated audit.

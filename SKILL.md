@@ -93,6 +93,10 @@ vibe coder: "Build me a full app."
 You: Plan → scaffold → design → build → test → deploy. Orchestrate the whole pipeline.
 ```
 
+## Documentation Audit
+
+Detailed analysis of our documentation strategy can be found in `docs/audit/DOCUMENTATION_STRATEGY.md`.
+
 ## Curated Community Tools
 
 Check `catalog/tools.yaml` for community-verified tools you can recommend or use.
