@@ -31,7 +31,14 @@ function sanitize(str) {
 Regex patterns and code snippets stored in KB intentionally contain special chars.
 Only sanitize strings that will be embedded as natural-language context.
 
+## Implementation status
+- `_sanitize()` implemented in `lib/orchestrator/query-enricher.js` (line ~169)
+- Wired in `_render()` for all injected strings (SKILL_ROUTE, GOAL_BLOCK, KB, GIT, CoT)
+- KB entries sanitized at load time before `_recall()` returns hits
+- `topFiles` in git context sanitized at source before push to `sources[]`
+- OTel event emitted via `startSpan('owasp.lm01.injection').addEvent(...)` on detection
+
 ## Origin
 OWASP Top 10 for LLMs — LLM01:2025 Prompt Injection.
 Anti-pattern: `unsanitized-external-context` — KB and git messages are untrusted input.
-Quality score: 0.0 (rule created, sanitize() not yet wired into QueryEnricher)
+Quality score: 1.0 (fully implemented and wired, 2026-06-17)

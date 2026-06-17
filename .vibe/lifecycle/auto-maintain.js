@@ -92,7 +92,10 @@ function runHarness(runTestSuite = true) {
   // Check 5: Test suite
   if (runTestSuite) {
     try {
-      const output = stripAnsi(execSync('npm test 2>&1', { cwd: PROJECT_ROOT, timeout: 120000, encoding: 'utf8' }));
+      let jestBin;
+      try { jestBin = require.resolve('jest/bin/jest', { paths: [PROJECT_ROOT] }); }
+      catch { jestBin = path.join(PROJECT_ROOT, 'node_modules', '.bin', 'jest'); }
+      const output = stripAnsi(execFileSync(process.execPath, [jestBin, '--silent'], { cwd: PROJECT_ROOT, timeout: 120000, encoding: 'utf8' }));
       const suites = output.match(/Test Suites:\s+(\d+)\s+passed/);
       const passed = output.match(/Tests:\s+(\d+)\s+passed/);
       const failed = output.match(/Tests:\s+(\d+)\s+failed/);
@@ -283,11 +286,12 @@ function runHarness(runTestSuite = true) {
     console.log(`  [harness]  ✗ tools-discovered-count: ${e.message}`);
   }
 
-  // Check 15: State machine validation (5-phase model)
+  // Check 15: State machine validation (canonical PHASE_ORDER)
   try {
     const state = readJSON(STATE_PATH);
     const actual = state?.auto_pipeline?.state_machine || [];
-    const expected = ['scope', 'build', 'verify', 'ship', 'evolve', 'done'];
+    const { PHASE_ORDER: canonicalOrder } = require(path.join(PROJECT_ROOT, 'lib', 'orchestrator', 'state-machine'));
+    const expected = canonicalOrder;
     const pass = actual.length === expected.length && actual.every((v, i) => v === expected[i]);
     results.push({ check: 'state-machine-valid', pass, data: { actual, expected } });
     console.log(`  [harness]  ${pass ? '✓' : '✗'} state-machine-valid (${actual.join(' → ')})`);
@@ -446,7 +450,7 @@ function captureTelemetry() {
 
 function getRecentCommits() {
   try {
-    const output = execSync('git log --oneline -10', { cwd: PROJECT_ROOT, timeout: 5000, encoding: 'utf8' });
+    const output = execFileSync('git', ['log', '--oneline', '-10'], { cwd: PROJECT_ROOT, timeout: 5000, encoding: 'utf8' });
     return output.toString().trim().split('\n').map(l => l.trim());
   } catch (e) {
     console.warn('[telemetry] git log failed: ' + e.message);
@@ -773,10 +777,10 @@ function runEvolve(learnResult) {
 
   const proposals = [];
 
-  // Flag low-quality rules for retirement (Step 3.1)
-  const lowQualityRules = learnResult.low_quality_rules || [];
-  // Sort by quality score ascending
-  const sortedRules = Object.entries(evo.rules || {})
+  // Flag low-quality rules for retirement (Step 3.1) — skip already-retired entries
+  const activeRules = Object.entries(evo.rules || {})
+    .filter(([, r]) => r.status === 'active' && !r.retired_at && r.quality_score != null);
+  const sortedRules = activeRules
     .sort(([, a], [, b]) => (a.quality_score || 1) - (b.quality_score || 1));
   const lowest20Pct = sortedRules.slice(0, Math.max(1, Math.floor(sortedRules.length * 0.2)));
 

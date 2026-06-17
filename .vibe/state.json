@@ -243,10 +243,15 @@
     "started": "2026-06-16T10:55:17.128Z",
     "goal": "Implement unified AI engineering orchestrator (intent capture \u2192 market research \u2192 doc generation \u2192 implementation)",
     "state_machine": [
-      "scope",
+      "think",
+      "plan",
+      "break",
       "build",
-      "verify",
+      "harness",
+      "review",
       "ship",
+      "retro",
+      "learn",
       "evolve",
       "done"
     ]
