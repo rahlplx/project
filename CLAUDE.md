@@ -12,7 +12,7 @@ implements that interface.
 ## Commands
 
 ```bash
-npm test                    # Full suite: Jest + 14 node:test files (853+ tests total)
+npm test                    # Full suite: Jest + node:test files (572 Jest + 432 node:test = 1004 total)
 npm run test:jest           # Jest only
 npm run test:node           # node:test files only (orchestrator/superpowers/gstack/design)
 npx jest path/to/file.test.js                    # Run a single Jest test file
@@ -51,7 +51,7 @@ Each command maps to `lib/vibe-commands/<name>.js` and a reference doc at
 `references/vibe-<name>.md`; if no handler exists the CLI falls back to printing the reference.
 
 **Adding a new command requires two steps:**
-1. Create `lib/vibe-commands/<name>.js` exporting a `run(args, state)` function.
+1. Create `lib/vibe-commands/<name>.js` exporting `{ handler }` where `handler.handler(args, state)` is the entry point.
 2. Register it in `bin/vibe.js` with `register(name, { handler, phase, category, description })`.
 
 Commands have three categories: `phase` (pipeline steps), `utility` (status/telemetry/help),

@@ -286,6 +286,7 @@
       "false_positive": 0,
       "quality_score": null,
       "last_updated": "2026-06-14",
+      "review_by": "2026-07-14",
       "status": "active",
       "note": "New rule from retro action item. Compaction events must dedupe within 5-min window per project. Prevents 7x spam on rapid session starts."
     },
@@ -295,6 +296,7 @@
       "false_positive": 0,
       "quality_score": null,
       "last_updated": "2026-06-14",
+      "review_by": "2026-07-14",
       "status": "active",
       "note": "New rule from retro action item. Harness eslint check must use --cache flag to speed up runs. Currently ~6s bottleneck."
     },
@@ -304,6 +306,7 @@
       "false_positive": 0,
       "quality_score": null,
       "last_updated": "2026-06-14",
+      "review_by": "2026-07-14",
       "status": "active",
       "note": "New harness check from retro action item. Validates every pattern/anti-pattern appears in at least one cross-ref table in INDEX.md. Prevents orphaned learnings."
     },
@@ -313,6 +316,7 @@
       "false_positive": 0,
       "quality_score": null,
       "last_updated": "2026-06-14",
+      "review_by": "2026-07-14",
       "status": "active",
       "note": "New rule consolidating testing cluster (3 anti-patterns: mixed-test-conventions, regex-in-jest-config, skip-test-verification-on-docs-only). Single convention: node:test + always-run + no regex in jest config."
     },
@@ -322,6 +326,7 @@
       "false_positive": 0,
       "quality_score": null,
       "last_updated": "2026-06-14",
+      "review_by": "2026-07-14",
       "status": "active",
       "note": "Promoted to active (v2.9.0). Auto-update state.json phase to 'done' after git commit. Prevents out-of-sync state between phases."
     },
@@ -331,6 +336,7 @@
       "false_positive": 0,
       "quality_score": null,
       "last_updated": "2026-06-14",
+      "review_by": "2026-07-14",
       "status": "active",
       "note": "Promoted to active (v2.9.0). Add *.tmp.js or .vibe/tmp/ patterns to .gitignore. Prevents accidental commits of ad-hoc scripts."
     },

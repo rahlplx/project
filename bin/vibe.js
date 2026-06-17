@@ -94,8 +94,13 @@ const cmd = getCommand(mode);
 if (cmd) {
   const state = readState();
 
+  // Parse flags before args
+  const rawArgs = process.argv.slice(3);
+  const allowBacktrack = rawArgs.includes('--backtrack');
+  const args = rawArgs.filter(a => a !== '--backtrack');
+
   // Phase validation (warn, don't block)
-  const phaseCheck = validatePhase(mode, state);
+  const phaseCheck = validatePhase(mode, state, { allowBacktrack });
   if (phaseCheck.message) {
     console.log(phaseCheck.message);
   }
@@ -108,10 +113,9 @@ if (cmd) {
   const { getTracer } = require(path.join(__dirname, '..', 'lib', 'telemetry', 'otel-tracer'));
   const tracer = getTracer('vibe-cli', path.resolve(__dirname, '..'));
   const span = tracer.startSpan(`cmd.${mode}`, { phase: cmd.phase || 'utility' });
-  const args = process.argv.slice(3);
 
   if (cmd.category !== 'utility') {
-    const { RoleLoader, ContextManager, StateMachine, QueryEnricher, announceSkills } = require(path.join(__dirname, '..', 'lib', 'orchestrator'));
+    const { RoleLoader, ContextManager, QueryEnricher, announceSkills } = require(path.join(__dirname, '..', 'lib', 'orchestrator'));
 
     // Show active virtual-team roles for this phase
     if (cmd.phase) {
