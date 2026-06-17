@@ -225,11 +225,14 @@ if (cmd) {
   recordTelemetry(`vibe:${mode}`);
 
   // ⚡ Bolt: only load orchestrator + run enrichment for phase commands
-  // Utility commands (help, status, telemetry, detect, install) skip this entirely
   const { getTracer } = require(path.join(__dirname, '..', 'lib', 'telemetry', 'otel-tracer'));
-  const tracer = getTracer('vibe-cli', path.resolve(__dirname, '..'));
-  const span = tracer.startSpan(`cmd.${mode}`, { phase: cmd.phase || 'utility' });
+  const projectRoot = path.resolve(__dirname, '..');
+  const tracer = getTracer('vibe-cli', projectRoot);
+  // Root span — requestId scopes the full user request for trace correlation
+  const requestId = require('crypto').randomBytes(8).toString('hex');
+  const span = tracer.startSpan(`cmd.${mode}`, { phase: cmd.phase || 'utility', requestId, command: mode });
 
+  let enriched = null;
   if (cmd.category !== 'utility') {
     const { RoleLoader, ContextManager, QueryEnricher, announceSkills } = require(
       path.join(__dirname, '..', 'lib', 'orchestrator')
@@ -253,19 +256,52 @@ if (cmd) {
       /* degrade */
     }
 
-    const enriched = new QueryEnricher(path.resolve(__dirname, '..')).enrich(queryText);
+    // Pass root span so enricher child spans share traceId
+    enriched = new QueryEnricher(projectRoot).enrich(queryText, { parentSpan: span });
     if (enriched.skills.length) {
       const phrase = announceSkills(enriched.skills);
       if (phrase) console.log(`  \x1b[2m${phrase}\x1b[0m`);
     }
     span.setAttribute('skills', enriched.skills.join(','));
     span.setAttribute('confidence', enriched.confidence);
+    if (enriched.selectedTemplate) span.setAttribute('template', enriched.selectedTemplate);
+    // Make enriched context available to handlers (activates the dead-code pipeline)
+    state._enriched = enriched;
   }
 
   // Execute handler
   if (cmd.handler) {
     const result = cmd.handler.handler(args, state);
     span.setAttribute('status', (result && result.status) || 'ok').end();
+
+    // Check lifecycle threshold — spawn auto-maintain if due (detached, non-blocking)
+    try {
+      const fs = require('fs');
+      const lcPath = path.join(projectRoot, '.vibe', 'lifecycle.json');
+      const lc = JSON.parse(fs.readFileSync(lcPath, 'utf8'));
+      const threshold = lc.triggers?.interaction_threshold || 10;
+      const cooldownMs = 60000;
+      const lastTs = lc.last_maintenance_ts || 0;
+      const dayRuns = lc.today_maintenance_count || 0;
+      const today = new Date().toDateString();
+      const lastDay = lc.last_maintenance_day || '';
+      const runsToday = lastDay === today ? dayRuns : 0;
+      if (lc.interaction_count >= threshold && (Date.now() - lastTs) > cooldownMs && runsToday < 50) {
+        const { spawn } = require('child_process');
+        const child = spawn(process.execPath, [
+          path.join(projectRoot, '.vibe', 'lifecycle', 'auto-maintain.js')
+        ], { detached: true, stdio: 'ignore' });
+        child.unref();
+        // Reset counter + record timestamp
+        lc.interaction_count = 0;
+        lc.last_maintenance_ts = Date.now();
+        lc.last_maintenance_day = today;
+        lc.today_maintenance_count = runsToday + 1;
+        fs.writeFileSync(lcPath, JSON.stringify(lc, null, 2) + '\n', 'utf8');
+      }
+    } catch {
+      /* auto-maintain spawn is best-effort, never block CLI */
+    }
 
     // Advance phase if applicable
     if (phaseCheck.nextPhase) {

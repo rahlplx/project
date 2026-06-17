@@ -855,6 +855,14 @@ function persist(lifecycle, harnessResults, telemetry, retro, learnResult, evolv
   lifecycle.last_maintenance_phase = 'full';
   lifecycle.maintenance_count = (lifecycle.maintenance_count || 0) + 1;
   lifecycle.interaction_count = 0; // reset
+  lifecycle.last_maintenance_ts = Date.now();
+  const today = new Date().toDateString();
+  if (lifecycle.last_maintenance_day === today) {
+    lifecycle.today_maintenance_count = (lifecycle.today_maintenance_count || 0) + 1;
+  } else {
+    lifecycle.last_maintenance_day = today;
+    lifecycle.today_maintenance_count = 1;
+  }
   lifecycle.updated = new Date().toISOString();
   writeJSON(LIFECYCLE_PATH, lifecycle);
 
@@ -921,6 +929,14 @@ async function main() {
     total_sessions: 0, total_interactions: 0,
     maintenance_count: 0, pipeline_count: 0
   };
+
+  // Cooldown guard — bin/vibe.js sets last_maintenance_ts before spawning; skip if run too soon
+  const cooldownMs = 30000;
+  const lastTs = lifecycle.last_maintenance_ts || 0;
+  if (lastTs && (Date.now() - lastTs) < cooldownMs) {
+    console.log(`  [auto-maintain] Cooldown active (${Math.round((Date.now() - lastTs) / 1000)}s < 30s), skipping.`);
+    process.exit(0);
+  }
 
   // Phase 1
   const harnessResults = runHarness();
