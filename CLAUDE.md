@@ -12,7 +12,7 @@ implements that interface.
 ## Commands
 
 ```bash
-npm test                    # Full suite: Jest + 7 node:test files (see package.json "test" script)
+npm test                    # Full suite: Jest + 14 node:test files (853+ tests total)
 npm run test:jest           # Jest only
 npm run test:node           # node:test files only (orchestrator/superpowers/gstack/design)
 npx jest path/to/file.test.js                    # Run a single Jest test file
@@ -39,25 +39,38 @@ a `*.test.js` file runs under Jest.
   and `skills/`, covered by tests, following the conventions below.
 
 ### `bin/` — CLI entry points
-- `bin/vibe.js` is the CLI surface (`npm run vibe`, `node bin/vibe.js <cmd>`). It bootstraps
-  by requiring `lib/vibe-commands/index.js`, registers ~20 commands (phase commands like
-  `think`/`plan`/`build`/`ship`, utility commands like `status`/`telemetry`, orchestration
-  commands like `auto`/`quick`/`resume`/`maintenance`), then dispatches `process.argv[2]`.
-  Each command maps to a handler in `lib/vibe-commands/<name>.js` and a doc in
-  `references/vibe-<name>.md`; if no handler exists it falls back to printing the reference.
+- `bin/vibe.js` is the CLI surface (`npm run vibe`, `node bin/vibe.js <cmd>`). It calls
+  `lib/vibe-commands/index.js`'s `register()` for each command, passing a handler,
+  phase, category, and optional `conditional` flag, then dispatches `process.argv[2]`.
 - `bin/mcp-server.js` exposes the same functionality over MCP so non-Claude agents
   (Codex, OpenCode, etc.) can call it.
 - `bin/skill-loader.js` / `bin/vibe-stack.js` are supporting entry points.
 
+### `lib/vibe-commands/` — command handlers
+Each command maps to `lib/vibe-commands/<name>.js` and a reference doc at
+`references/vibe-<name>.md`; if no handler exists the CLI falls back to printing the reference.
+
+**Adding a new command requires two steps:**
+1. Create `lib/vibe-commands/<name>.js` exporting a `run(args, state)` function.
+2. Register it in `bin/vibe.js` with `register(name, { handler, phase, category, description })`.
+
+Commands have three categories: `phase` (pipeline steps), `utility` (status/telemetry/help),
+`orchestration` (auto/quick/resume/maintenance). Commands with `conditional: true` (design, qa)
+only run when `state.has_ui` is truthy.
+
 ### `lib/orchestrator/` — the 5-phase pipeline state machine
-- `state-machine.js` defines `PHASES` and `LAYERS` driving the think → plan → break → build →
-  harness → review → ship → retro → learn → evolve pipeline (see `bin/vibe.js` commandDefs for
-  the phase mapping).
+The pipeline follows a fixed sequence defined as `PHASE_ORDER` in `lib/vibe-commands/state-helpers.js`:
+
+```
+think → plan → break → build → harness → review → ship → retro → learn → evolve → done
+```
+
+- `state-machine.js` defines `PHASES` and `LAYERS` driving this pipeline.
 - `context-manager.js` and `role-loader.js` (with `ROLES`/`PHASE_ROLES`) manage per-phase
   context and which "virtual team" role (CTO, QA, Security, etc.) is active.
 - `lib/superpowers/` (TDD workflow, subagent dispatch) and `lib/gstack/` (strategy engine)
-  are sibling engines combined into the orchestrator — see `lib/orchestrator/index.js`'s header
-  comment ("combining gstack, GSD, and Superpowers").
+  are sibling engines combined into the orchestrator — see `lib/orchestrator/index.js`'s header.
+- Running a command out of phase order produces a warning; pass `--force` to override.
 
 ### `skills/<category>/<name>/` — agent skill modules
 Every skill is a pair: `index.js` (CommonJS, exports a `prompt` string the agent injects into
@@ -77,9 +90,10 @@ is generated/maintained by `lib/quality-score.js`.
 
 ### `.vibe/` — persistent state across sessions
 - `state.json` — current project phase (`curation` = building the curated collection).
-- `lifecycle.json` — autonomous maintenance counters/thresholds (see below).
+- `lifecycle.json` — autonomous maintenance counters/thresholds.
 - `telemetry/`, `learnings/`, `rules/`, `evolution.json`, `handoff.md` — written to by the
   lifecycle/maintenance scripts and read back in to drive self-improvement.
+- `docs/handoffs/` — handoff notes written after phase transitions by `state-helpers.js`.
 
 ### Cross-cutting `lib/` utilities worth knowing about
 - `lib/discovery-index.js`, `lib/check-index-integrity.js` — keep `.well-known/agent-skills/index.json` consistent with `skills/`.
@@ -97,17 +111,12 @@ This project self-improves via `.vibe/lifecycle/`. At the start of every session
 2. days since `last_maintenance` >= `day_threshold` (default 7)
 3. a pipeline just completed and `auto_after_pipeline` is true
 
-Run it with:
 ```bash
 node .vibe/lifecycle/auto-maintain.js
 ```
-This executes 5 phases — harness (validate YAML, count categories, run tests) → telemetry
-(snapshot commits/session stats to `.vibe/telemetry/sessions/`) → retro (health check) →
-learn (pattern/anti-pattern counts) → evolve (proposals for rule retirement/creation) —
-logging results to `.vibe/maintenance-log.json`. During a session, write
-`discovery-<name>.json` / `incident-<name>.json` / `decision-<name>.json` to
-`.vibe/telemetry/sessions/` as significant events happen; these feed the next cycle's
-learn phase. Full details in `SKILL.md` and `references/vibe-*.md`.
+
+During a session, write `discovery-<name>.json` / `incident-<name>.json` / `decision-<name>.json`
+to `.vibe/telemetry/sessions/` as significant events happen; these feed the next cycle's learn phase.
 
 ## How to Help the Vibe Coder (when acting as the in-repo agent)
 
