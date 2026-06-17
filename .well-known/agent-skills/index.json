@@ -1,14 +1,14 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-17T02:30:59.658Z",
+  "generated_at": "2026-06-17T03:06:50.539Z",
   "skill_count": 56,
   "skills": [
     {
       "name": "anti-patterns",
       "type": "skill-md",
       "category": "quality",
-      "description": "Detects common coding anti-patterns and suggests better alternatives",
+      "description": "anti-patterns",
       "url": "/.well-known/agent-skills/anti-patterns/SKILL.md",
       "digest": "sha256-273fbe98c3d0bed1d489b27ddd230afcc28b6bc2c68158c7ba2416af99b8be41"
     },
@@ -16,7 +16,7 @@
       "name": "anti-slop",
       "type": "skill-md",
       "category": "design",
-      "description": "Detects and prevents 41 common AI design anti-patterns",
+      "description": "anti-slop",
       "url": "/.well-known/agent-skills/anti-slop/SKILL.md",
       "digest": "sha256-78efad096cd546f7f7ebdd31e094961b44aa77c2609ab3a20b02d8c08a4dd7a3"
     },
@@ -24,7 +24,7 @@
       "name": "architect",
       "type": "skill-md",
       "category": "workflow",
-      "description": "Decompose specs into RED/GREEN/REFACTOR/VERIFY task units with dependency ordering",
+      "description": "architect",
       "url": "/.well-known/agent-skills/architect/SKILL.md",
       "digest": "sha256-26a2f68bd97c3fbc9c7954ee07730b13a217a8c3567e521839be0c7ac96ec6c3"
     },
@@ -32,7 +32,7 @@
       "name": "caveman-mode",
       "type": "skill-md",
       "category": "workflow",
-      "description": "Terse-output mode — strips filler/hedging to cut response tokens while preserving technical accuracy.",
+      "description": "caveman-mode",
       "url": "/.well-known/agent-skills/caveman-mode/SKILL.md",
       "digest": "sha256-031da1b76115442af6b528141b0e6741c496b074049f25b9027a009ef971ef1f"
     },
@@ -40,7 +40,7 @@
       "name": "checkpoints",
       "type": "skill-md",
       "category": "workflow",
-      "description": "Milestone-based progress tracking with checkpoints",
+      "description": "checkpoints",
       "url": "/.well-known/agent-skills/checkpoints/SKILL.md",
       "digest": "sha256-288bbc6aea7ca4a6b6ed38567bac588fc5b621603746d1b7e2a90bb3d348a36d"
     },
@@ -48,7 +48,7 @@
       "name": "code-explainer",
       "type": "skill-md",
       "category": "explain",
-      "description": "Explains code in plain English by analyzing structure and patterns",
+      "description": "code-explainer",
       "url": "/.well-known/agent-skills/code-explainer/SKILL.md",
       "digest": "sha256-7b3cda80663916b22ec49b2d20e6f0ab949e9ec09214ea79d6bcb226f58abac5"
     },
@@ -56,7 +56,7 @@
       "name": "code-health",
       "type": "skill-md",
       "category": "quality",
-      "description": "",
+      "description": "code-health",
       "url": "/.well-known/agent-skills/code-health/SKILL.md",
       "digest": "sha256-8ae7fc5ed2bbbed4b65f00d72bb25668313ff4efe22b1450499f7cec4134cbaf"
     },
@@ -64,7 +64,7 @@
       "name": "code-review",
       "type": "skill-md",
       "category": "quality",
-      "description": "Detailed code review with line-level feedback and suggestions",
+      "description": "code-review",
       "url": "/.well-known/agent-skills/code-review/SKILL.md",
       "digest": "sha256-bb6734e121fc9464e59a3bdea6be408996ad012619ff1bab67f1d157b44ea6c6"
     },
@@ -72,7 +72,7 @@
       "name": "code-translator",
       "type": "skill-md",
       "category": "explain",
-      "description": "Translate code between programming languages — maps common patterns",
+      "description": "code-translator",
       "url": "/.well-known/agent-skills/code-translator/SKILL.md",
       "digest": "sha256-0140400c5eaee5d0be654cf6a09117429620834ab6769b5aaf001b2f68d47fdf"
     },
@@ -80,7 +80,7 @@
       "name": "color-gen",
       "type": "skill-md",
       "category": "design",
-      "description": "",
+      "description": "color-gen",
       "url": "/.well-known/agent-skills/color-gen/SKILL.md",
       "digest": "sha256-1d51b7bad9ba31a747695b41ab064260719df2b7829d4ddd308d46b66aa14b51"
     },
@@ -88,7 +88,7 @@
       "name": "context-memory",
       "type": "skill-md",
       "category": "knowledge",
-      "description": "Persistent context across sessions — remembers preferences and decisions",
+      "description": "context-memory",
       "url": "/.well-known/agent-skills/context-memory/SKILL.md",
       "digest": "sha256-027a0c2983b535489271ca459db4765c5badc3a147c7e833fda51af6e968704c"
     },
@@ -96,7 +96,7 @@
       "name": "dashboard",
       "type": "skill-md",
       "category": "progress",
-      "description": "Visual project progress dashboard — reads tracker data and renders status",
+      "description": "dashboard",
       "url": "/.well-known/agent-skills/dashboard/SKILL.md",
       "digest": "sha256-3234185f29ba463f4855f3dcbe2e4dddc287dcd55343781a557fd27f7d8bc7e9"
     },
@@ -104,7 +104,7 @@
       "name": "design-system",
       "type": "skill-md",
       "category": "design",
-      "description": "",
+      "description": "design-system",
       "url": "/.well-known/agent-skills/design-system/SKILL.md",
       "digest": "sha256-de680a06bb94860c155d62879a9996f310d433ef263bd8bacf95622dd2031d95"
     },
@@ -120,7 +120,7 @@
       "name": "done-checklist",
       "type": "skill-md",
       "category": "progress",
-      "description": "Production-ready checklist — tells non-coders if their project is ready to ship",
+      "description": "done-checklist",
       "url": "/.well-known/agent-skills/done-checklist/SKILL.md",
       "digest": "sha256-fd9f8165048582cf49163ab2d3459b64ddf2845a3e4556ba65aa10182c1d8559"
     },
@@ -128,7 +128,7 @@
       "name": "done-verifier",
       "type": "skill-md",
       "category": "quality",
-      "description": "",
+      "description": "done-verifier",
       "url": "/.well-known/agent-skills/done-verifier/SKILL.md",
       "digest": "sha256-5f4731f21e1371e63fe8870907fab04b941a36cdb91c822f5a8a8302fb99fc01"
     },
@@ -136,7 +136,7 @@
       "name": "error-translator",
       "type": "skill-md",
       "category": "progress",
-      "description": "Convert technical error messages to plain English — references MDN and common patterns",
+      "description": "error-translator",
       "url": "/.well-known/agent-skills/error-translator/SKILL.md",
       "digest": "sha256-62504d803786c0b3c30bcf9f158a31e7bd4e100c703400b69bf386c6ba97411a"
     },
@@ -144,7 +144,7 @@
       "name": "flowchart-gen",
       "type": "skill-md",
       "category": "preview",
-      "description": "Generate architecture diagrams from code structure",
+      "description": "flowchart-gen",
       "url": "/.well-known/agent-skills/flowchart-gen/SKILL.md",
       "digest": "sha256-f31b0ad79462f68b1658e254e3eb70ee0c036e4e86ad5c57dd9ce3e484165753"
     },
@@ -152,7 +152,7 @@
       "name": "git-free-deploy",
       "type": "skill-md",
       "category": "deploy",
-      "description": "Deploy static sites without git — wraps surge.sh, npx serve, and Netlify Drop",
+      "description": "git-free-deploy",
       "url": "/.well-known/agent-skills/git-free-deploy/SKILL.md",
       "digest": "sha256-4030f60798dfad8edea29c8659070b29ce211c35207d808eea0f92d035f9f381"
     },
@@ -160,7 +160,7 @@
       "name": "git-ops",
       "type": "skill-md",
       "category": "workflow",
-      "description": "Git operations without CLI knowledge — wraps git CLI",
+      "description": "git-ops",
       "url": "/.well-known/agent-skills/git-ops/SKILL.md",
       "digest": "sha256-f7edd130dcd33c189f61613f338336281743d3289ee228696811d8638cb3d0b2"
     },
@@ -168,7 +168,7 @@
       "name": "graphify",
       "type": "skill-md",
       "category": "knowledge",
-      "description": "Semantic codebase understanding — builds a dependency graph from source files",
+      "description": "graphify",
       "url": "/.well-known/agent-skills/graphify/SKILL.md",
       "digest": "sha256-724792f82661195da39f43169ab768bec84f0cb23b516847feb3343009b2b438"
     },
@@ -176,7 +176,7 @@
       "name": "gsd-workflow",
       "type": "skill-md",
       "category": "orchestration",
-      "description": "Define -> Build -> Ship milestone lifecycle with atomic-commit task tracking, ported from GSD.",
+      "description": "gsd-workflow",
       "url": "/.well-known/agent-skills/gsd-workflow/SKILL.md",
       "digest": "sha256-22a63a8643790377e0d9bd665ad716a16ac7e4e49a4c50382e37d07ed57b028f"
     },
@@ -184,7 +184,7 @@
       "name": "guardrails",
       "type": "skill-md",
       "category": "quality",
-      "description": "Safety confirmations for destructive actions — prevents accidents",
+      "description": "guardrails",
       "url": "/.well-known/agent-skills/guardrails/SKILL.md",
       "digest": "sha256-02787406c770b0fb17df4a2b76a3b47ba04d8d0fdc08a04492b13e8d5215fb34"
     },
@@ -192,7 +192,7 @@
       "name": "health-check",
       "type": "skill-md",
       "category": "quality",
-      "description": "Check if your project dependencies and environment are healthy",
+      "description": "health-check",
       "url": "/.well-known/agent-skills/health-check/SKILL.md",
       "digest": "sha256-4d2d5f0cb74e67c9770753d1d1a0ee1ff3a3e65b6ca088672da684ecfe023a6e"
     },
@@ -200,7 +200,7 @@
       "name": "impeccable-audit",
       "type": "skill-md",
       "category": "design",
-      "description": "Design quality workflow (init/shape/critique/audit/polish + 18 targeted refinement commands) with deterministic anti-pattern detectors, ported from the community impeccable skill.",
+      "description": "impeccable-audit",
       "url": "/.well-known/agent-skills/impeccable-audit/SKILL.md",
       "digest": "sha256-c8861285e7c1bdf841d2f11db0b5c2bbbb7be3bc4d4ffffcceff4d6d817e861b"
     },
@@ -208,7 +208,7 @@
       "name": "intent-capture",
       "type": "skill-md",
       "category": "explain",
-      "description": "Extract structured project specs from natural language descriptions",
+      "description": "intent-capture",
       "url": "/.well-known/agent-skills/intent-capture/SKILL.md",
       "digest": "sha256-f6227c3e56eb613f33d1c12ea6ac5f2e4be4146273ae3728945e0af97ae4448a"
     },
@@ -216,7 +216,7 @@
       "name": "knowledge-base",
       "type": "skill-md",
       "category": "knowledge",
-      "description": "Project documentation generator — creates README, API docs, and guides",
+      "description": "knowledge-base",
       "url": "/.well-known/agent-skills/knowledge-base/SKILL.md",
       "digest": "sha256-89f7d5607a2ae84f88a2ba9b8190675aa3e7be26a69ef4fad9f9e3de71f782d8"
     },
@@ -224,7 +224,7 @@
       "name": "model-router",
       "type": "skill-md",
       "category": "orchestration",
-      "description": "Route tasks to optimal AI models based on capability and cost",
+      "description": "model-router",
       "url": "/.well-known/agent-skills/model-router/SKILL.md",
       "digest": "sha256-1035600c3c98bb13c4f09d63d2be718e26abc0d5ea6ad73f845d1a849d1619c4"
     },
@@ -232,7 +232,7 @@
       "name": "nexus",
       "type": "skill-md",
       "category": "orchestration",
-      "description": "Multi-agent orchestration with 3 modes — Graph, Router, Adaptive",
+      "description": "nexus",
       "url": "/.well-known/agent-skills/nexus/SKILL.md",
       "digest": "sha256-a6f61052f33cd810111979d79221f86603d2c853c1d8ed7a21d8f75764acde3b"
     },
@@ -240,7 +240,7 @@
       "name": "nit",
       "type": "skill-md",
       "category": "testing-qa",
-      "description": "AI quality agent that auto-detects your stack and generates tests",
+      "description": "nit",
       "url": "/.well-known/agent-skills/nit/SKILL.md",
       "digest": "sha256-33d406e53759f55aa8e8dbb056cb4fb3a8c2ae1ba57e05671ef578be59cb8549"
     },
@@ -248,7 +248,7 @@
       "name": "one-click-netlify",
       "type": "skill-md",
       "category": "deploy",
-      "description": "Deploy any project to Netlify — wraps the Netlify CLI",
+      "description": "one-click-netlify",
       "url": "/.well-known/agent-skills/one-click-netlify/SKILL.md",
       "digest": "sha256-0125caaf51e09a25573aa8df56a53eeb96dcc2a5acefd6a89f7fbdcb2a64dfa9"
     },
@@ -256,7 +256,7 @@
       "name": "one-click-vercel",
       "type": "skill-md",
       "category": "deploy",
-      "description": "Deploy any project to Vercel — wraps the Vercel CLI",
+      "description": "one-click-vercel",
       "url": "/.well-known/agent-skills/one-click-vercel/SKILL.md",
       "digest": "sha256-46a6ac70175ce945230aa50314dddd3479dc5045b1023677fcd19083ae36ced2"
     },
@@ -264,7 +264,7 @@
       "name": "parallel-exec",
       "type": "skill-md",
       "category": "orchestration",
-      "description": "Run tasks simultaneously — parallel execution coordination",
+      "description": "parallel-exec",
       "url": "/.well-known/agent-skills/parallel-exec/SKILL.md",
       "digest": "sha256-06313993926f7f239779d102c95419ae42437780f3998e8f6d2b1eba27046f1b"
     },
@@ -272,7 +272,7 @@
       "name": "planning-agent",
       "type": "skill-md",
       "category": "workflow",
-      "description": "Breaks project descriptions into actionable task plans",
+      "description": "planning-agent",
       "url": "/.well-known/agent-skills/planning-agent/SKILL.md",
       "digest": "sha256-9d2229dc8c8a5145dbe3f9f5906cbd8fc9ddd4017e8cc84e2bbc42847080c02a"
     },
@@ -280,7 +280,7 @@
       "name": "project-wizard",
       "type": "skill-md",
       "category": "setup",
-      "description": "",
+      "description": "project-wizard",
       "url": "/.well-known/agent-skills/project-wizard/SKILL.md",
       "digest": "sha256-09d5374b8796ee153bf8607f5e35a4eaa96436c5bf7a7f0fd9ed67f07d883eb8"
     },
@@ -288,7 +288,7 @@
       "name": "prompt-templates",
       "type": "skill-md",
       "category": "setup",
-      "description": "Pre-built copy-paste prompt templates for AI coding assistants",
+      "description": "prompt-templates",
       "url": "/.well-known/agent-skills/prompt-templates/SKILL.md",
       "digest": "sha256-d7023349fc8272f479297c8ecab126d1465131c1fd0f53b806bdbd0ac09e38b7"
     },
@@ -296,7 +296,7 @@
       "name": "quick-start",
       "type": "skill-md",
       "category": "setup",
-      "description": "",
+      "description": "quick-start",
       "url": "/.well-known/agent-skills/quick-start/SKILL.md",
       "digest": "sha256-dbfc3fe05ed730d0a890edbfb2b14beb73a356c9faa4365ccd9a7705c9c386c4"
     },
@@ -304,7 +304,7 @@
       "name": "rollback",
       "type": "skill-md",
       "category": "workflow",
-      "description": "One-click rollback — undo changes safely",
+      "description": "rollback",
       "url": "/.well-known/agent-skills/rollback/SKILL.md",
       "digest": "sha256-f41a06b1eb22c0c7b13209e8228aec484b57151a7c5328a99edb140ed06241d0"
     },
@@ -312,7 +312,7 @@
       "name": "screenshot-preview",
       "type": "skill-md",
       "category": "preview",
-      "description": "Capture screenshots and preview app state",
+      "description": "screenshot-preview",
       "url": "/.well-known/agent-skills/screenshot-preview/SKILL.md",
       "digest": "sha256-dba1593c2b5880b4a5cf7fb9fa2d8efc150299c7931f3fe36d27bed620b0e522"
     },
@@ -320,7 +320,7 @@
       "name": "security-audit",
       "type": "skill-md",
       "category": "quality",
-      "description": "",
+      "description": "security-audit",
       "url": "/.well-known/agent-skills/security-audit/SKILL.md",
       "digest": "sha256-d4932e537322c22f566f29a9f0bd05a600dea4aedb1f658a83cbf611ddf0f9a6"
     },
@@ -328,7 +328,7 @@
       "name": "security-defaults",
       "type": "skill-md",
       "category": "quality",
-      "description": "OWASP-aligned security checks for AI-generated code",
+      "description": "security-defaults",
       "url": "/.well-known/agent-skills/security-defaults/SKILL.md",
       "digest": "sha256-624caf82c60d6787c6a13eb765d4bc38fc09a84bacd8c00e87e77f06f0024037"
     },
@@ -336,7 +336,7 @@
       "name": "spec-driven",
       "type": "skill-md",
       "category": "workflow",
-      "description": "Keep AI aligned with project intent using spec-driven development",
+      "description": "spec-driven",
       "url": "/.well-known/agent-skills/spec-driven/SKILL.md",
       "digest": "sha256-93572a9a25ccfb3dfec27b53eb0c1f7629d29b31f9fc88183be2743986219b23"
     },
@@ -344,7 +344,7 @@
       "name": "spec-engine",
       "type": "skill-md",
       "category": "workflow",
-      "description": "Parse natural language intent into structured specs for spec-driven development",
+      "description": "spec-engine",
       "url": "/.well-known/agent-skills/spec-engine/SKILL.md",
       "digest": "sha256-6d5aa181efeea0fd173fa21423a24217853e96773a0d544993f573df652ce6d3"
     },
@@ -352,7 +352,7 @@
       "name": "task-coordinator",
       "type": "skill-md",
       "category": "orchestration",
-      "description": "Orchestrate multi-step workflows with dependency management",
+      "description": "task-coordinator",
       "url": "/.well-known/agent-skills/task-coordinator/SKILL.md",
       "digest": "sha256-98e1444dff016b2a6a31796e9e0d6f44e59a15b5a8c13b969437a0ed5d7c690b"
     },
@@ -360,7 +360,7 @@
       "name": "taste-skill",
       "type": "skill-md",
       "category": "design",
-      "description": "Three-dial design taste enforcement with em-dash and duplicate-CTA-intent bans, ported from Leonxlnx/taste-skill.",
+      "description": "taste-skill",
       "url": "/.well-known/agent-skills/taste-skill/SKILL.md",
       "digest": "sha256-68d706622a7c6e497ff0d9907e91c95a263f7e419e275eb7efaa386a6cae0396"
     },
@@ -368,7 +368,7 @@
       "name": "tdd-vibe",
       "type": "skill-md",
       "category": "workflow",
-      "description": "Simplified TDD workflow for vibe coders — test-first without the jargon",
+      "description": "tdd-vibe",
       "url": "/.well-known/agent-skills/tdd-vibe/SKILL.md",
       "digest": "sha256-6bbac3b2bfb0485b3d01739b684a6cb04fa9e8a149f6a8519b5b3a05f47d08b7"
     },
@@ -376,7 +376,7 @@
       "name": "template-gallery",
       "type": "skill-md",
       "category": "design",
-      "description": "Browse and select from starter templates for common project types",
+      "description": "template-gallery",
       "url": "/.well-known/agent-skills/template-gallery/SKILL.md",
       "digest": "sha256-5f00d6c4dd8fe296bde44067ab78de76bc4eccdd23b93c1b6809921208e51189"
     },
@@ -384,7 +384,7 @@
       "name": "testing-guide",
       "type": "skill-md",
       "category": "quality",
-      "description": "Generates test case suggestions for your code",
+      "description": "testing-guide",
       "url": "/.well-known/agent-skills/testing-guide/SKILL.md",
       "digest": "sha256-a965cf9994a1744b707b57748a184c25fdb5d1d5682f4cbe2b527ed6f6df54a5"
     },
@@ -392,7 +392,7 @@
       "name": "theme-factory",
       "type": "skill-md",
       "category": "design",
-      "description": "",
+      "description": "theme-factory",
       "url": "/.well-known/agent-skills/theme-factory/SKILL.md",
       "digest": "sha256-9e43b6c1aa3ff3350b68b02166f1f382a21faa477b04593512b00aa8a25536c3"
     },
@@ -400,7 +400,7 @@
       "name": "tracker",
       "type": "skill-md",
       "category": "progress",
-      "description": "",
+      "description": "tracker",
       "url": "/.well-known/agent-skills/tracker/SKILL.md",
       "digest": "sha256-ed1567ac8c2610510b184308e43e987ac8963be02a68c0f3047f50b4c2e05391"
     },
@@ -408,7 +408,7 @@
       "name": "typography-rules",
       "type": "skill-md",
       "category": "design",
-      "description": "",
+      "description": "typography-rules",
       "url": "/.well-known/agent-skills/typography-rules/SKILL.md",
       "digest": "sha256-9135eafb56821506ec784c4c2740c789940e67015920b533fa49de16e5fcfb60"
     },
@@ -416,7 +416,7 @@
       "name": "verification",
       "type": "skill-md",
       "category": "workflow",
-      "description": "Verifies that behavior matches the project spec and requirements",
+      "description": "verification",
       "url": "/.well-known/agent-skills/verification/SKILL.md",
       "digest": "sha256-4f8a0aa147fdbdb7aeffc8f4b894886c9a73b085d7ac57c41669304e79b6f42b"
     },
@@ -424,7 +424,7 @@
       "name": "vibe-review",
       "type": "skill-md",
       "category": "quality",
-      "description": "Non-technical code review — plain English feedback for vibe coders",
+      "description": "vibe-review",
       "url": "/.well-known/agent-skills/vibe-review/SKILL.md",
       "digest": "sha256-46d881bd63a7f9082d391bb0fecebb51481d2ab39bc0d48c515b02ab7daa4d92"
     },
@@ -432,7 +432,7 @@
       "name": "virtual-team",
       "type": "skill-md",
       "category": "orchestration",
-      "description": "Role-based specialist agents for different perspectives",
+      "description": "virtual-team",
       "url": "/.well-known/agent-skills/virtual-team/SKILL.md",
       "digest": "sha256-fc08823b16f1119e67f546b7117528185292a9125d7ce16d3cf9c02860767709"
     },
@@ -440,7 +440,7 @@
       "name": "visual-plans",
       "type": "skill-md",
       "category": "preview",
-      "description": "Generate UI mockups and pseudo-code from descriptions",
+      "description": "visual-plans",
       "url": "/.well-known/agent-skills/visual-plans/SKILL.md",
       "digest": "sha256-fc4f66d56b122ed5c943f1c56012835476a2054abd0aa010f4c75b0e5c708a7d"
     },
@@ -448,7 +448,7 @@
       "name": "wednesday-graph",
       "type": "skill-md",
       "category": "knowledge",
-      "description": "Dependency analysis — answers \"what breaks if I change this?\"",
+      "description": "wednesday-graph",
       "url": "/.well-known/agent-skills/wednesday-graph/SKILL.md",
       "digest": "sha256-2be875c52ae4e11a52af08730df20de304403f70ca87a6d7e5e9cc996821c9cd"
     }

@@ -296,6 +296,18 @@ function runHarness(runTestSuite = true) {
     console.log(`  [harness]  ✗ state-machine-valid: ${e.message}`);
   }
 
+  // Check 16: QueryEnricher integration smoke test
+  try {
+    const { QueryEnricher } = require(path.join(PROJECT_ROOT, 'lib', 'orchestrator', 'query-enricher'));
+    const enriched = new QueryEnricher(PROJECT_ROOT).enrich('security audit for auth module');
+    const pass = enriched && typeof enriched.confidence === 'number' && Array.isArray(enriched.skills);
+    results.push({ check: 'enricher-smoke', pass, data: { confidence: enriched.confidence, skills: enriched.skills.length } });
+    console.log(`  [harness]  ${pass ? '✓' : '✗'} enricher-smoke (conf: ${enriched.confidence.toFixed(2)}, skills: ${enriched.skills.length})`);
+  } catch (e) {
+    results.push({ check: 'enricher-smoke', pass: false, error: e.message });
+    console.log(`  [harness]  ✗ enricher-smoke: ${e.message}`);
+  }
+
   return results;
 }
 
