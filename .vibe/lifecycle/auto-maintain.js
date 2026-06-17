@@ -930,11 +930,11 @@ async function main() {
     maintenance_count: 0, pipeline_count: 0
   };
 
-  // Cooldown guard — bin/vibe.js sets last_maintenance_ts before spawning; skip if run too soon
-  const cooldownMs = 30000;
+  // Cooldown guard — matches bin/vibe.js 60s window; skip if run too soon after last trigger
+  const cooldownMs = 60000;
   const lastTs = lifecycle.last_maintenance_ts || 0;
   if (lastTs && (Date.now() - lastTs) < cooldownMs) {
-    console.log(`  [auto-maintain] Cooldown active (${Math.round((Date.now() - lastTs) / 1000)}s < 30s), skipping.`);
+    console.log(`  [auto-maintain] Cooldown active (${Math.round((Date.now() - lastTs) / 1000)}s < 60s), skipping.`);
     process.exit(0);
   }
 

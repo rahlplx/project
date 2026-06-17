@@ -264,7 +264,10 @@ if (cmd) {
     }
     span.setAttribute('skills', enriched.skills.join(','));
     span.setAttribute('confidence', enriched.confidence);
-    if (enriched.selectedTemplate) span.setAttribute('template', enriched.selectedTemplate);
+    if (enriched.selectedTemplate) {
+      const t = enriched.selectedTemplate;
+      span.setAttribute('template', `${t.category}/${t.id}`);
+    }
     // Make enriched context available to handlers (activates the dead-code pipeline)
     state._enriched = enriched;
   }

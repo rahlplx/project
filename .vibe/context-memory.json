@@ -110,7 +110,75 @@
       "avoid_when": null,
       "source": "vibe-learnings",
       "date": "2026-06-17"
+    },
+    {
+      "id": "2026-06-17T12:00:01Z",
+      "type": "anti-pattern",
+      "title": "skill-key-namespace-mismatch",
+      "description": "SKILL_TO_TEMPLATE was built with module-level names (tdd-vibe, security-audit, one-click-vercel) but SkillRouter.route() returns vibe-* CLI names (vibe-tdd, vibe-security, vibe-deploy). The entire adaptive template selection feature was a silent no-op — _selectTemplate() always returned null, no test failed, no warning was emitted. Root cause: the map was written by inspecting skills/ directory names rather than SkillRouter's ROUTING_TABLE output.",
+      "evidence": ["4646153", "vibe-review session 2026-06-17"],
+      "apply_when": null,
+      "avoid_when": "When building any map keyed on runtime output values — always trace the actual value from the source (SkillRouter, event system, API) rather than inferring from adjacent artifacts",
+      "fix": "Replace keys with the actual vibe-* names; add a test asserting all keys start with vibe- to catch future drift",
+      "source": "vibe-learnings",
+      "date": "2026-06-17"
+    },
+    {
+      "id": "2026-06-17T12:00:02Z",
+      "type": "anti-pattern",
+      "title": "object-as-span-attribute",
+      "description": "span.setAttribute('template', enriched.selectedTemplate) passed a raw {category, id, skill} object. The child enricher span formatted it as a string 'testing/full'. This creates an inconsistent OTel span schema — same attribute name, different types — breaking any consumer that queries spans.jsonl. OTel span attributes must be primitives (string, number, boolean).",
+      "evidence": ["4646153", "vibe-review catch 2026-06-17"],
+      "apply_when": null,
+      "avoid_when": "When calling setAttribute() with a value derived from an object — always coerce: `${obj.field}` or JSON.stringify(obj) or a dedicated primitive field",
+      "source": "vibe-learnings",
+      "date": "2026-06-17"
+    },
+    {
+      "id": "2026-06-17T12:00:03Z",
+      "type": "anti-pattern",
+      "title": "duplicated-cooldown-constant",
+      "description": "bin/vibe.js and .vibe/lifecycle/auto-maintain.js both hardcoded a cooldown value but used different numbers (60s vs 30s). A direct invocation of auto-maintain.js could fire within the 60s window that bin/vibe.js set as the guard. Root cause: no shared constant, no cross-file test. Fix: align to 60s in both files. Long-term: extract to lifecycle.json triggers config.",
+      "evidence": ["4646153 introduced mismatch", "vibe-review caught it"],
+      "apply_when": null,
+      "avoid_when": "When the same business rule (cooldown, threshold, timeout) is enforced in multiple files — define it once and import, or read from shared config",
+      "source": "vibe-learnings",
+      "date": "2026-06-17"
+    },
+    {
+      "id": "2026-06-17T12:00:04Z",
+      "type": "pattern",
+      "title": "vibe-review-catches-silent-bugs",
+      "description": "A quick 3-persona vibe-review (CEO+CTO+Security) on a 408-line diff caught 1 blocker (object span attribute corrupting spans.jsonl) and the SKILL_TO_TEMPLATE namespace mismatch that made template selection permanently invisible. Both bugs had passing tests and passing harness. Review personas surface cross-file semantic consistency that unit tests cannot.",
+      "evidence": ["vibe-review session 2026-06-17"],
+      "apply_when": "Before every commit touching orchestration or telemetry code — these have implicit cross-file contracts that tests don't cover",
+      "avoid_when": null,
+      "source": "vibe-learnings",
+      "date": "2026-06-17"
+    },
+    {
+      "id": "2026-06-17T12:00:05Z",
+      "type": "anti-pattern",
+      "title": "incomplete-unicode-sanitization",
+      "description": "_sanitize() filtered ASCII control chars (charCode < 32) but allowed all Unicode, including U+202E RIGHT-TO-LEFT OVERRIDE, U+200B ZERO WIDTH SPACE, and U+200F RIGHT-TO-LEFT MARK. These chars are ≥ 32 so passed the existing filter. They enable visual deception — injected text appears blank or reversed in logs but is injected into LLM context. Fix: explicitly reject U+200B–U+200F, U+202A–U+202E, U+FEFF.",
+      "evidence": ["lib/orchestrator/query-enricher.js _sanitize()", "vibe-review Security role 2026-06-17"],
+      "apply_when": null,
+      "avoid_when": "Any text sanitizer for LLM injection prevention — the charCode >= 32 heuristic is insufficient; Unicode BiDi and zero-width chars are vectors",
+      "fix": "Filter: if (cp >= 0x200B && cp <= 0x200F) return false; if (cp >= 0x202A && cp <= 0x202E) return false; if (cp === 0xFEFF) return false;",
+      "source": "vibe-learnings",
+      "date": "2026-06-17"
+    },
+    {
+      "id": "2026-06-17T12:00:06Z",
+      "type": "pattern",
+      "title": "test-keys-against-runtime-source",
+      "description": "When testing a lookup map, the test must use the same keys the runtime will use — not keys inferred from adjacent artifacts. A test checking SKILL_TO_TEMPLATE['tdd-vibe'] === 'testing' passes even when SkillRouter never produces 'tdd-vibe'. Add a structural test: assert all keys match the format of the actual source (e.g., all keys start with 'vibe-'). This would have caught the namespace mismatch at test-write time.",
+      "evidence": ["query-enricher.test.js 2026-06-17 update"],
+      "apply_when": "Any time you write tests for a map/enum keyed on external identifiers",
+      "avoid_when": null,
+      "source": "vibe-learnings",
+      "date": "2026-06-17"
     }
   ],
-  "updated": "2026-06-17T00:00:00Z"
+  "updated": "2026-06-17T12:00:00Z"
 }
