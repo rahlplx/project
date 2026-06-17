@@ -9,7 +9,7 @@
         "1f3d9d1"
       ],
       "apply_when": "Any bulk formatting pass on the codebase",
-      "avoid_when": "Never run eslint --fix before prettier \u2014 order matters",
+      "avoid_when": "Never run eslint --fix before prettier — order matters",
       "source": "vibe-learnings",
       "date": "2026-06-17"
     },
@@ -125,7 +125,7 @@
       "id": "2026-06-17T00:00:10Z",
       "type": "pattern",
       "title": "backlog-review-by-date",
-      "description": "Rules with 0 fires should not be deleted immediately \u2014 add review_by dates (30 days from creation). At review time: if still 0 fires, retire. If fires > 0, mark quality_score and keep. Prevents premature deletion of rules that haven't had a chance to fire.",
+      "description": "Rules with 0 fires should not be deleted immediately — add review_by dates (30 days from creation). At review time: if still 0 fires, retire. If fires > 0, mark quality_score and keep. Prevents premature deletion of rules that haven't had a chance to fire.",
       "evidence": [
         ".vibe/evolution.json v2.9.1"
       ],
@@ -138,13 +138,13 @@
       "id": "2026-06-17T12:00:01Z",
       "type": "anti-pattern",
       "title": "skill-key-namespace-mismatch",
-      "description": "SKILL_TO_TEMPLATE was built with module-level names (tdd-vibe, security-audit, one-click-vercel) but SkillRouter.route() returns vibe-* CLI names (vibe-tdd, vibe-security, vibe-deploy). The entire adaptive template selection feature was a silent no-op \u2014 _selectTemplate() always returned null, no test failed, no warning was emitted. Root cause: the map was written by inspecting skills/ directory names rather than SkillRouter's ROUTING_TABLE output.",
+      "description": "SKILL_TO_TEMPLATE was built with module-level names (tdd-vibe, security-audit, one-click-vercel) but SkillRouter.route() returns vibe-* CLI names (vibe-tdd, vibe-security, vibe-deploy). The entire adaptive template selection feature was a silent no-op — _selectTemplate() always returned null, no test failed, no warning was emitted. Root cause: the map was written by inspecting skills/ directory names rather than SkillRouter's ROUTING_TABLE output.",
       "evidence": [
         "4646153",
         "vibe-review session 2026-06-17"
       ],
       "apply_when": null,
-      "avoid_when": "When building any map keyed on runtime output values \u2014 always trace the actual value from the source (SkillRouter, event system, API) rather than inferring from adjacent artifacts",
+      "avoid_when": "When building any map keyed on runtime output values — always trace the actual value from the source (SkillRouter, event system, API) rather than inferring from adjacent artifacts",
       "fix": "Replace keys with the actual vibe-* names; add a test asserting all keys start with vibe- to catch future drift",
       "source": "vibe-learnings",
       "date": "2026-06-17"
@@ -153,13 +153,13 @@
       "id": "2026-06-17T12:00:02Z",
       "type": "anti-pattern",
       "title": "object-as-span-attribute",
-      "description": "span.setAttribute('template', enriched.selectedTemplate) passed a raw {category, id, skill} object. The child enricher span formatted it as a string 'testing/full'. This creates an inconsistent OTel span schema \u2014 same attribute name, different types \u2014 breaking any consumer that queries spans.jsonl. OTel span attributes must be primitives (string, number, boolean).",
+      "description": "span.setAttribute('template', enriched.selectedTemplate) passed a raw {category, id, skill} object. The child enricher span formatted it as a string 'testing/full'. This creates an inconsistent OTel span schema — same attribute name, different types — breaking any consumer that queries spans.jsonl. OTel span attributes must be primitives (string, number, boolean).",
       "evidence": [
         "4646153",
         "vibe-review catch 2026-06-17"
       ],
       "apply_when": null,
-      "avoid_when": "When calling setAttribute() with a value derived from an object \u2014 always coerce: `${obj.field}` or JSON.stringify(obj) or a dedicated primitive field",
+      "avoid_when": "When calling setAttribute() with a value derived from an object — always coerce: `${obj.field}` or JSON.stringify(obj) or a dedicated primitive field",
       "source": "vibe-learnings",
       "date": "2026-06-17"
     },
@@ -173,7 +173,7 @@
         "vibe-review caught it"
       ],
       "apply_when": null,
-      "avoid_when": "When the same business rule (cooldown, threshold, timeout) is enforced in multiple files \u2014 define it once and import, or read from shared config",
+      "avoid_when": "When the same business rule (cooldown, threshold, timeout) is enforced in multiple files — define it once and import, or read from shared config",
       "source": "vibe-learnings",
       "date": "2026-06-17"
     },
@@ -185,7 +185,7 @@
       "evidence": [
         "vibe-review session 2026-06-17"
       ],
-      "apply_when": "Before every commit touching orchestration or telemetry code \u2014 these have implicit cross-file contracts that tests don't cover",
+      "apply_when": "Before every commit touching orchestration or telemetry code — these have implicit cross-file contracts that tests don't cover",
       "avoid_when": null,
       "source": "vibe-learnings",
       "date": "2026-06-17"
@@ -194,13 +194,13 @@
       "id": "2026-06-17T12:00:05Z",
       "type": "anti-pattern",
       "title": "incomplete-unicode-sanitization",
-      "description": "_sanitize() filtered ASCII control chars (charCode < 32) but allowed all Unicode, including U+202E RIGHT-TO-LEFT OVERRIDE, U+200B ZERO WIDTH SPACE, and U+200F RIGHT-TO-LEFT MARK. These chars are \u2265 32 so passed the existing filter. They enable visual deception \u2014 injected text appears blank or reversed in logs but is injected into LLM context. Fix: explicitly reject U+200B\u2013U+200F, U+202A\u2013U+202E, U+FEFF.",
+      "description": "_sanitize() filtered ASCII control chars (charCode < 32) but allowed all Unicode, including U+202E RIGHT-TO-LEFT OVERRIDE, U+200B ZERO WIDTH SPACE, and U+200F RIGHT-TO-LEFT MARK. These chars are ≥ 32 so passed the existing filter. They enable visual deception — injected text appears blank or reversed in logs but is injected into LLM context. Fix: explicitly reject U+200B–U+200F, U+202A–U+202E, U+FEFF.",
       "evidence": [
         "lib/orchestrator/query-enricher.js _sanitize()",
         "vibe-review Security role 2026-06-17"
       ],
       "apply_when": null,
-      "avoid_when": "Any text sanitizer for LLM injection prevention \u2014 the charCode >= 32 heuristic is insufficient; Unicode BiDi and zero-width chars are vectors",
+      "avoid_when": "Any text sanitizer for LLM injection prevention — the charCode >= 32 heuristic is insufficient; Unicode BiDi and zero-width chars are vectors",
       "fix": "Filter: if (cp >= 0x200B && cp <= 0x200F) return false; if (cp >= 0x202A && cp <= 0x202E) return false; if (cp === 0xFEFF) return false;",
       "source": "vibe-learnings",
       "date": "2026-06-17"
@@ -209,7 +209,7 @@
       "id": "2026-06-17T12:00:06Z",
       "type": "pattern",
       "title": "test-keys-against-runtime-source",
-      "description": "When testing a lookup map, the test must use the same keys the runtime will use \u2014 not keys inferred from adjacent artifacts. A test checking SKILL_TO_TEMPLATE['tdd-vibe'] === 'testing' passes even when SkillRouter never produces 'tdd-vibe'. Add a structural test: assert all keys match the format of the actual source (e.g., all keys start with 'vibe-'). This would have caught the namespace mismatch at test-write time.",
+      "description": "When testing a lookup map, the test must use the same keys the runtime will use — not keys inferred from adjacent artifacts. A test checking SKILL_TO_TEMPLATE['tdd-vibe'] === 'testing' passes even when SkillRouter never produces 'tdd-vibe'. Add a structural test: assert all keys match the format of the actual source (e.g., all keys start with 'vibe-'). This would have caught the namespace mismatch at test-write time.",
       "evidence": [
         "query-enricher.test.js 2026-06-17 update"
       ],
@@ -228,7 +228,7 @@
         "7cdbe89"
       ],
       "apply_when": "2+ open PRs based on old main after a squash-merge has advanced the base",
-      "avoid_when": "PRs are independent and have no shared file conflicts \u2014 just merge sequentially",
+      "avoid_when": "PRs are independent and have no shared file conflicts — just merge sequentially",
       "source": "vibe-learnings",
       "date": "2026-06-17T22:30:25.693383Z"
     },
@@ -250,12 +250,12 @@
       "id": "2026-06-17T22:30:25.693383Z-L3",
       "type": "anti-pattern",
       "title": "Squash-merge history divergence",
-      "description": "After a squash-merge, the feature branch history is orphaned. Any subsequent commits to the feature branch cannot be fast-forward merged to main \u2014 they appear as conflicts even when the code changes are identical. Root cause: squash creates a new SHA with no parent linking to the feature branch commits.",
+      "description": "After a squash-merge, the feature branch history is orphaned. Any subsequent commits to the feature branch cannot be fast-forward merged to main — they appear as conflicts even when the code changes are identical. Root cause: squash creates a new SHA with no parent linking to the feature branch commits.",
       "evidence": [
         "4fac686",
         "ee9a7c5"
       ],
-      "apply_when": "N/A \u2014 this is an anti-pattern to avoid",
+      "apply_when": "N/A — this is an anti-pattern to avoid",
       "avoid_when": "Always: use rebase-merge or merge-commit instead of squash when the branch will receive follow-up commits",
       "source": "vibe-learnings",
       "date": "2026-06-17T22:30:25.693383Z"
@@ -269,7 +269,7 @@
         "82bbc73"
       ],
       "apply_when": "Writing regex patterns for security scanners that must match user-provided code",
-      "avoid_when": "Simple patterns without nested alternation \u2014 bounded quantifiers add complexity",
+      "avoid_when": "Simple patterns without nested alternation — bounded quantifiers add complexity",
       "source": "vibe-learnings",
       "date": "2026-06-17T22:30:25.693383Z"
     },
@@ -277,7 +277,7 @@
       "id": "2026-06-17T22:30:25.693383Z-L5",
       "type": "pattern",
       "title": "Control-char regex via eslint-disable-next-line",
-      "description": "When sanitizing text with a regex that intentionally uses \\x00-\\x1F control character ranges, ESLint no-control-regex will flag it. Add // eslint-disable-next-line no-control-regex on the line before. Never embed literal control chars in source files (node -e string interpolation can do this silently \u2014 use Python or raw file writes for byte-precise content).",
+      "description": "When sanitizing text with a regex that intentionally uses \\x00-\\x1F control character ranges, ESLint no-control-regex will flag it. Add // eslint-disable-next-line no-control-regex on the line before. Never embed literal control chars in source files (node -e string interpolation can do this silently — use Python or raw file writes for byte-precise content).",
       "evidence": [
         "ee9a7c5",
         "82bbc73"
@@ -296,9 +296,88 @@
         "82bbc73"
       ],
       "apply_when": "Any MCP adapter or dispatcher that stores method references",
-      "avoid_when": "Arrow functions or bound methods \u2014 those preserve context",
+      "avoid_when": "Arrow functions or bound methods — those preserve context",
       "source": "vibe-learnings",
       "date": "2026-06-17T22:30:25.693383Z"
+    },
+    {
+      "id": "2026-06-17T22:51:35.576Z-S1",
+      "type": "pattern",
+      "title": "falsePositivePathGuard for security scan rules",
+      "description": "Content-based falsePositiveGuard can be triggered by production files that mention words like \"example\" in comments, suppressing real detections. For rules detecting dangerous API usage (child_process exec), add falsePositivePathGuard tested against filePath: /(?:^|\\/)(?:test|example|fixture)s?\\//i and check it in scanSkill before the content guard.",
+      "evidence": [
+        "68086f5"
+      ],
+      "apply_when": "Security scan rule could match test/example files by path rather than content mention",
+      "avoid_when": "Rule detects patterns that genuinely appear in example docs that should be excluded",
+      "source": "vibe-learnings",
+      "date": "2026-06-17T22:51:35.576Z"
+    },
+    {
+      "id": "2026-06-17T22:51:35.576Z-S2",
+      "type": "pattern",
+      "title": "Defensive null guard on external input params",
+      "description": "Functions accepting an object from external callers should open with: const safeInput = input || {}. Prevents TypeError on null/undefined. Apply to any exported function that might be called by tests, CLI handlers, or MCP tools without upstream validation.",
+      "evidence": [
+        "68086f5"
+      ],
+      "apply_when": "Function takes object arg, accesses properties, is called by external callers or tests",
+      "avoid_when": "Input is already validated at system boundary before the call",
+      "source": "vibe-learnings",
+      "date": "2026-06-17T22:51:35.576Z"
+    },
+    {
+      "id": "2026-06-17T22:51:35.576Z-S3",
+      "type": "pattern",
+      "title": "Pre-slice before regex to bound work on user input",
+      "description": "Run .slice(0, maxLength * 2) BEFORE applying regex to user-supplied text. Regex then operates on bounded string instead of potentially multi-MB input. Follow with .trim().slice(0, maxLength) for the final output.",
+      "evidence": [
+        "68086f5"
+      ],
+      "apply_when": "Any sanitize function applying regex to user input with a maxLength cap",
+      "avoid_when": "Input is already bounded upstream",
+      "source": "vibe-learnings",
+      "date": "2026-06-17T22:51:35.576Z"
+    },
+    {
+      "id": "2026-06-17T22:51:35.576Z-S4",
+      "type": "anti-pattern",
+      "title": "Escaped backticks in SKILL.md code fences",
+      "description": "Writing escaped backticks in SKILL.md renders as literal backslash+backtick in Markdown renderers, breaking code blocks. Always use raw triple backticks in .md files. JS template literal escaping does not apply inside Markdown.",
+      "evidence": [
+        "68086f5"
+      ],
+      "apply_when": "Never",
+      "avoid_when": "Always - use raw triple backticks",
+      "source": "vibe-learnings",
+      "date": "2026-06-17T22:51:35.576Z"
+    },
+    {
+      "id": "2026-06-17T22:51:35.576Z-S5",
+      "type": "anti-pattern",
+      "title": "Raw fs.writeFileSync when writeJSON wrapper exists",
+      "description": "Using raw fs.writeFileSync instead of the writeJSON helper from state-helpers.js duplicates mkdirSync + JSON.stringify and risks ENOENT if .vibe/ is missing. Always use writeJSON for writes to .vibe/ files.",
+      "evidence": [
+        "68086f5"
+      ],
+      "apply_when": "Never for .vibe/ writes",
+      "avoid_when": "Always use writeJSON from state-helpers for .vibe/ directory",
+      "source": "vibe-learnings",
+      "date": "2026-06-17T22:51:35.576Z"
+    },
+    {
+      "id": "2026-06-17T22:51:35.576Z-S6",
+      "type": "pattern",
+      "title": "Batch review findings into one fix PR per review cycle",
+      "description": "When N >= 3 review findings arrive from the same review round (Gemini, CodeRabbit), collect all into one fix commit on a fresh branch. Keeps main history clean (one squash per cycle), reduces CI noise, and makes the diff easy to verify against the review thread.",
+      "evidence": [
+        "68086f5",
+        "7cdbe89"
+      ],
+      "apply_when": "Addressing 3+ findings from the same PR review round",
+      "avoid_when": "Findings span different risk tiers that should gate independently",
+      "source": "vibe-learnings",
+      "date": "2026-06-17T22:51:35.576Z"
     }
   ],
   "updated": "2026-06-17T12:00:00Z",
