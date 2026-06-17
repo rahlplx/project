@@ -7,18 +7,18 @@ describe('PromptTemplates', () => {
     expect(s.version).toBe('1.0.0');
   });
 
-  it('should return 7 categories', () => {
+  it('should return 10 categories', () => {
     const s = new PromptTemplates();
     const cats = s.getCategories();
-    expect(cats).toHaveLength(7);
+    expect(cats).toHaveLength(10);
     expect(cats[0]).toHaveProperty('count');
   });
 
-  it('should return 17 templates total', () => {
+  it('should return 26 templates total', () => {
     const s = new PromptTemplates();
     const all = s.getAllTemplates();
     const count = Object.values(all).flat().length;
-    expect(count).toBe(17);
+    expect(count).toBe(26);
   });
 
   it('should get template by category and id', () => {
@@ -58,8 +58,8 @@ describe('PromptTemplates', () => {
   it('should return metadata via toJSON', () => {
     const s = new PromptTemplates();
     const j = s.toJSON();
-    expect(j.totalTemplates).toBe(17);
-    expect(j.categories).toHaveLength(7);
+    expect(j.totalTemplates).toBe(26);
+    expect(j.categories).toHaveLength(10);
   });
 
   it('should have all backend templates', () => {
