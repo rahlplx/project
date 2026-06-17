@@ -122,7 +122,7 @@ class VibeReview {
       }
     }
 
-    if (/\btry\b/.test(codeStr) && !/\bcatch\b/.test(codeStr)) {
+    if (/\btry\s*\{/.test(codeStr) && !/\b(?:catch|finally)\b/.test(codeStr)) {
       findings.push({
         severity: 'warning',
         category: 'error',

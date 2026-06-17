@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-17T23:06:58.596Z",
+  "generated_at": "2026-06-17T23:11:12.166Z",
   "skill_count": 56,
   "skills": [
     {
@@ -314,7 +314,7 @@
       "category": "preview",
       "description": "screenshot-preview",
       "url": "/.well-known/agent-skills/screenshot-preview/SKILL.md",
-      "digest": "sha256-948c87fb6356343c02a1d22ce5e0e44151c69ede1a7738c1806a46fadabf42ea"
+      "digest": "sha256-14ad644915b4b9ab1c4c84dc59c48bdc2d265d7909352cad511f5906302bd116"
     },
     {
       "name": "security-audit",
@@ -330,7 +330,7 @@
       "category": "quality",
       "description": "security-defaults",
       "url": "/.well-known/agent-skills/security-defaults/SKILL.md",
-      "digest": "sha256-eff576b9e181e9c69df1b22289602568135acc9dd868c01364d9d67f54375ac9"
+      "digest": "sha256-7eb2c7070c33e1dda2db5af01c5dd7e780a7b89ecc448cda12f82f2aec0e63f8"
     },
     {
       "name": "spec-driven",
@@ -426,7 +426,7 @@
       "category": "quality",
       "description": "vibe-review",
       "url": "/.well-known/agent-skills/vibe-review/SKILL.md",
-      "digest": "sha256-7d49e86f12bb70fb83974c79de7761d3b1a0eb51fe4e394e31d89b2c680b7bd7"
+      "digest": "sha256-41afc8a02791ba01a5271e8f0ac076162b6f38107db86b44836bf02a2797bea4"
     },
     {
       "name": "virtual-team",
