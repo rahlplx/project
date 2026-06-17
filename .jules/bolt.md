@@ -5,3 +5,7 @@
 ## 2026-06-17 - [TTLCache for QueryEnricher]
 **Learning:** The QueryEnricher reads .vibe/ state, git log, and skill index on every call. Same query + same goal produces identical output within a session window.
 **Action:** Cache enrich() results with TTLCache(30000) keyed on query+goal. Eliminates redundant I/O on repeated invocations within 30s.
+
+## 2026-06-17 - [Consolidated Lifecycle I/O]
+**Learning:** Frequent small JSON reads (like lifecycle.json) in the CLI hot-path can add 5-10ms of "stealth tax" per command. Consolidating the telemetry write and maintenance-threshold check into a single file operation is more efficient than sequential read/writes.
+**Action:** Update `recordTelemetry` to return the modified state object, allowing subsequent logic to reuse the in-memory state rather than re-reading from disk.
