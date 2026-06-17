@@ -128,7 +128,7 @@ if (cmd) {
       const ctx = new ContextManager();
       const existing = ctx.readGoalBlock();
       if (!existing && state.goal) {
-        ctx.writeGoalBlock({ goal: state.goal, resumeWith: mode, phase: cmd.phase || 'utility' });
+        ctx.writeGoalBlock(cmd.phase || 'utility', state.goal);
       }
     } catch { /* degrade */ }
 
