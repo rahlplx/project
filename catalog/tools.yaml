@@ -48,7 +48,7 @@ tools:
     description: >
       Design critique engine. 23 commands for polish, audit, animate,
       typography, layout, color. Catches AI slop before it ships.
-    repo_url: https://github.com/rahlplx/impeccable
+    repo_url: https://github.com/pbakaus/impeccable
     category: design-ui
     license: Apache 2.0
     verified_by: community-vibe-stack
@@ -219,7 +219,7 @@ tools:
     description: >
       The most-starred open-source AI coding agent (172k+ stars). Terminal-native,
       works with any editor, supports 75+ model providers.
-    repo_url: https://github.com/anomalyco/opencode
+    repo_url: https://github.com/sst/opencode
     category: code-generation
     license: MIT
     verified_by: community (172k+ stars)
@@ -645,7 +645,7 @@ tools:
     description: >
       Build MCP servers in minutes. TypeScript SDK for the Model Context
       Protocol — connect AI agents to any tool or API.
-    repo_url: https://github.com/anthropics/fastmcp
+    repo_url: https://github.com/jlowin/fastmcp
     category: agent-frameworks
     license: MIT
     verified_by: anthropic

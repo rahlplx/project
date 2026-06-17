@@ -218,7 +218,7 @@ function runHarness(runTestSuite = true) {
   } else {
     try {
       const output = stripAnsi(execFileSync('node', ['--test', 'lib/security-scan.test.js', 'lib/security-scan.report.test.js', 'lib/phase-timing.test.js', 'lib/error-trends.test.js', 'lib/stuck-detector.test.js', 'lib/install-ide.test.js', 'lib/agents-md.test.js', 'lib/tool-registry.test.js', 'lib/lint-config.test.js'], { cwd: PROJECT_ROOT, timeout: 120000, encoding: 'utf8' }));
-      const passed = output.match(/tests (\d+)/);
+      const passed = output.match(/pass (\d+)/);
       const failed = output.match(/fail (\d+)/);
       const passCount = passed ? parseInt(passed[1]) : 0;
       const failCount = failed ? parseInt(failed[1]) : 0;

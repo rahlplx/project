@@ -1,6 +1,6 @@
 {
   "project": "Vibe-Stack Curated Collection",
-  "version": "2.3.0",
+  "version": "2.9.0",
   "phase": "done",
   "goal": "Implement unified AI engineering orchestrator (intent capture → market research → doc generation → implementation)",
   "step": 26,
