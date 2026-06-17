@@ -6,8 +6,7 @@ const cmdDir = path.resolve(__dirname, '..', 'lib', 'vibe-commands');
 const { register, validatePhase } = require(path.join(cmdDir, 'index'));
 const { readState, writeState, recordTelemetry, advancePhase, writeHandoff } = require(path.join(cmdDir, 'state-helpers'));
 const { showHelp } = require(path.join(cmdDir, 'help'));
-const { RoleLoader, ContextManager, StateMachine, QueryEnricher, announceSkills } = require(path.join(__dirname, '..', 'lib', 'orchestrator'));
-const { getTracer } = require(path.join(__dirname, '..', 'lib', 'telemetry', 'otel-tracer'));
+// ⚡ Bolt: orchestrator + tracer loaded lazily inside dispatch — not at startup
 
 // ── Helper: load a handler module ──────────────────────────────
 function loadHandler(name) {
@@ -49,9 +48,9 @@ const commandDefs = [
 ];
 
 for (const def of commandDefs) {
-  const handler = loadHandler(def.name);
   register(def.name, {
-    handler: handler || noopHandler(def.name),
+    // ⚡ Bolt: getter defers require() until the command is actually invoked
+    get handler() { return loadHandler(def.name) || noopHandler(def.name); },
     phase: def.phase,
     description: def.desc,
     ref: def.conditional ? null : `references/vibe-${def.name}.md` ,
@@ -104,36 +103,40 @@ if (cmd) {
   // Record telemetry
   recordTelemetry(`vibe:${mode}`);
 
-  // Show active virtual-team roles for this phase (from lib/orchestrator)
-  if (cmd.phase) {
-    const roles = new RoleLoader().getRolesForPhase(cmd.phase);
-    if (roles.length) {
-      console.log(`  Team: ${roles.join(', ')}`);
-    }
-  }
-
-  // Auto-prompt: enrich query with CoT + skill routing + session context
-  // Based on DSPy ChainOfThought + SWE-agent context injection patterns
+  // ⚡ Bolt: only load orchestrator + run enrichment for phase commands
+  // Utility commands (help, status, telemetry, detect, install) skip this entirely
+  const { getTracer } = require(path.join(__dirname, '..', 'lib', 'telemetry', 'otel-tracer'));
   const tracer = getTracer('vibe-cli', path.resolve(__dirname, '..'));
   const span = tracer.startSpan(`cmd.${mode}`, { phase: cmd.phase || 'utility' });
   const args = process.argv.slice(3);
-  const queryText = args.join(' ') || state.goal || mode;
 
-  // Seed GoalBlock so QueryEnricher GOAL_BLOCK source has data
-  try {
-    const ctx = new ContextManager();
-    const existing = ctx.readGoalBlock();
-    if (!existing && state.goal) {
-      ctx.writeGoalBlock({ goal: state.goal, resumeWith: mode, phase: cmd.phase || 'utility' });
+  if (cmd.category !== 'utility') {
+    const { RoleLoader, ContextManager, StateMachine, QueryEnricher, announceSkills } = require(path.join(__dirname, '..', 'lib', 'orchestrator'));
+
+    // Show active virtual-team roles for this phase
+    if (cmd.phase) {
+      const roles = new RoleLoader().getRolesForPhase(cmd.phase);
+      if (roles.length) console.log(`  Team: ${roles.join(', ')}`);
     }
-  } catch { /* degrade */ }
-  const enriched = new QueryEnricher(path.resolve(__dirname, '..')).enrich(queryText);
-  if (enriched.skills.length) {
-    const phrase = announceSkills(enriched.skills);
-    if (phrase) console.log(`  \x1b[2m${phrase}\x1b[0m`);
+
+    const queryText = args.join(' ') || state.goal || mode;
+
+    // Seed GoalBlock so QueryEnricher GOAL_BLOCK source has data
+    try {
+      const ctx = new ContextManager();
+      if (!ctx.readGoalBlock() && state.goal) {
+        ctx.writeGoalBlock({ goal: state.goal, resumeWith: mode, phase: cmd.phase || 'utility' });
+      }
+    } catch { /* degrade */ }
+
+    const enriched = new QueryEnricher(path.resolve(__dirname, '..')).enrich(queryText);
+    if (enriched.skills.length) {
+      const phrase = announceSkills(enriched.skills);
+      if (phrase) console.log(`  \x1b[2m${phrase}\x1b[0m`);
+    }
+    span.setAttribute('skills', enriched.skills.join(','));
+    span.setAttribute('confidence', enriched.confidence);
   }
-  span.setAttribute('skills', enriched.skills.join(','));
-  span.setAttribute('confidence', enriched.confidence);
 
   // Execute handler
   if (cmd.handler) {
@@ -148,13 +151,14 @@ if (cmd) {
 
     // Write handoff on phase transition
     if (cmd.phase && state.phase !== cmd.phase) {
+      const { StateMachine, ContextManager: CM } = require(path.join(__dirname, '..', 'lib', 'orchestrator'));
       const next = state.phase || 'done';
       const stateMachine = new StateMachine();
 
       // Iron Law (lib/orchestrator/context-manager.js): write a full handoff
       // between major layer transitions; a lightweight one otherwise.
       if (stateMachine.needsHandoff(cmd.phase, next)) {
-        new ContextManager().writeHandoff(
+        new CM().writeHandoff(
           cmd.phase,
           next,
           `${cmd.phase} phase completed via '${mode}'. Goal: ${state.goal || 'n/a'}`
