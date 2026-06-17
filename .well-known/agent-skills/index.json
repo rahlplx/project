@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-17T21:42:23.377Z",
+  "generated_at": "2026-06-17T23:06:58.596Z",
   "skill_count": 56,
   "skills": [
     {
@@ -90,7 +90,7 @@
       "category": "knowledge",
       "description": "context-memory",
       "url": "/.well-known/agent-skills/context-memory/SKILL.md",
-      "digest": "sha256-c82fe04629c847401053cd5c83ccffbd1cc3198fda2c697f5d484a91ad9b958f"
+      "digest": "sha256-2c8330a38a8a42626493723bd99fb0620b3b01c3415f4f3a295d1fa11cbb3270"
     },
     {
       "name": "dashboard",
@@ -266,7 +266,7 @@
       "category": "orchestration",
       "description": "parallel-exec",
       "url": "/.well-known/agent-skills/parallel-exec/SKILL.md",
-      "digest": "sha256-ad3d9e69deb3d1af9e403c54481668bae3f7704be0757b126a7f4b3871cab531"
+      "digest": "sha256-6ae473ed476ed9ed7aa39c1f4834d393afe98677103fecc7c40c7aa38989b2ae"
     },
     {
       "name": "planning-agent",
@@ -314,7 +314,7 @@
       "category": "preview",
       "description": "screenshot-preview",
       "url": "/.well-known/agent-skills/screenshot-preview/SKILL.md",
-      "digest": "sha256-e78033e3fe469172c9d392ef927eb4fb858d1e16f7da6f4b8869e48cfcd5cbc5"
+      "digest": "sha256-948c87fb6356343c02a1d22ce5e0e44151c69ede1a7738c1806a46fadabf42ea"
     },
     {
       "name": "security-audit",
@@ -330,7 +330,7 @@
       "category": "quality",
       "description": "security-defaults",
       "url": "/.well-known/agent-skills/security-defaults/SKILL.md",
-      "digest": "sha256-0f7ece64818acdb86a628e6c343fe64b8270c1787ccfd23d07dfec7433cc9f0a"
+      "digest": "sha256-eff576b9e181e9c69df1b22289602568135acc9dd868c01364d9d67f54375ac9"
     },
     {
       "name": "spec-driven",
@@ -354,7 +354,7 @@
       "category": "orchestration",
       "description": "task-coordinator",
       "url": "/.well-known/agent-skills/task-coordinator/SKILL.md",
-      "digest": "sha256-a931f152869a90629b0846624e299bc3beccc0cf62a0b23513c092f42da93d52"
+      "digest": "sha256-ce3ebd626f99646b4d1436b02838621f1da27a5dc7f9794dd8e0d004f554e6c1"
     },
     {
       "name": "taste-skill",
@@ -426,7 +426,7 @@
       "category": "quality",
       "description": "vibe-review",
       "url": "/.well-known/agent-skills/vibe-review/SKILL.md",
-      "digest": "sha256-e97aefaa7c749d92d5cc318a7616a76da6f42df7d18919ddf34f3146bafdc436"
+      "digest": "sha256-7d49e86f12bb70fb83974c79de7761d3b1a0eb51fe4e394e31d89b2c680b7bd7"
     },
     {
       "name": "virtual-team",
