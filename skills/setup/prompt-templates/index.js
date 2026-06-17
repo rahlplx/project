@@ -18,7 +18,7 @@ class PromptTemplates {
       { id: 'refactor', name: 'Refactoring', count: 3 },
       { id: 'ai-agent', name: 'AI Agent & Auto-Injection', count: 3 },
       { id: 'telemetry', name: 'Telemetry & Observability', count: 3 },
-      { id: 'security', name: 'Security Review', count: 3 }
+      { id: 'security', name: 'Security Review', count: 3 },
     ];
   }
 
@@ -43,7 +43,7 @@ class PromptTemplates {
 - Social proof section (testimonials/stats)
 - Footer with links: [LINKS]
 Design: [MINIMALIST/MODERN/CREATIVE], primary color: [HEX_CODE]
-Responsive, semantic HTML, CSS variables. Stack: [REACT/VUE/HTML+CSS]`
+Responsive, semantic HTML, CSS variables. Stack: [REACT/VUE/HTML+CSS]`,
         },
         {
           id: 'dashboard',
@@ -55,7 +55,7 @@ Responsive, semantic HTML, CSS variables. Stack: [REACT/VUE/HTML+CSS]`
 - Header with user avatar and notifications
 - Dark/light mode toggle
 Tech stack: [REACT/VUE/SVELTE]
-Use a CSS framework or Tailwind. Make it responsive.`
+Use a CSS framework or Tailwind. Make it responsive.`,
         },
         {
           id: 'form',
@@ -67,8 +67,8 @@ Use a CSS framework or Tailwind. Make it responsive.`
 - Back/Next navigation
 - Summary review before submit
 - Success state after submission
-Stack: [REACT/VUE]. Handle loading, error, and edge cases.`
-        }
+Stack: [REACT/VUE]. Handle loading, error, and edge cases.`,
+        },
       ],
       backend: [
         {
@@ -82,7 +82,7 @@ Stack: [REACT/VUE]. Handle loading, error, and edge cases.`
 - Error handling middleware
 - Environment config (.env)
 - Include: [AUTH/RATE_LIMIT/CORS/LOGGING]
-Return consistent JSON responses with proper HTTP status codes.`
+Return consistent JSON responses with proper HTTP status codes.`,
         },
         {
           id: 'graphql',
@@ -94,7 +94,7 @@ Return consistent JSON responses with proper HTTP status codes.`
 - Resolvers with data fetching
 - Input validation
 - Error handling
-Server: [APOLLO/EXPRESS-GRAPHQL]. Include auth middleware.`
+Server: [APOLLO/EXPRESS-GRAPHQL]. Include auth middleware.`,
         },
         {
           id: 'webhook',
@@ -107,8 +107,8 @@ Server: [APOLLO/EXPRESS-GRAPHQL]. Include auth middleware.`
 - Returns 200 OK quickly
 - Queues heavy processing
 - Logs all requests
-Stack: [NODE/PYTHON/GO]. Deployable as serverless function.`
-        }
+Stack: [NODE/PYTHON/GO]. Deployable as serverless function.`,
+        },
       ],
       database: [
         {
@@ -121,7 +121,7 @@ Stack: [NODE/PYTHON/GO]. Deployable as serverless function.`
 - Data types and constraints
 - Migration files
 - Seed data for development
-DB: [POSTGRES/MONGODB/MYSQL]. Include an ER diagram description.`
+DB: [POSTGRES/MONGODB/MYSQL]. Include an ER diagram description.`,
         },
         {
           id: 'queries',
@@ -133,8 +133,8 @@ DB: [POSTGRES/MONGODB/MYSQL]. Include an ER diagram description.`
 - Sorting: [SORT]
 - Aggregation: [AGGREGATION]
 - Optimize for performance
-DB: [POSTGRES/MONGODB]. Include indexes if needed.`
-        }
+DB: [POSTGRES/MONGODB]. Include indexes if needed.`,
+        },
       ],
       auth: [
         {
@@ -148,7 +148,7 @@ DB: [POSTGRES/MONGODB]. Include indexes if needed.`
 - Protected route middleware
 - Session management
 - "Remember me" option
-Stack: [NODE/PYTHON]. Include error messages for common failures.`
+Stack: [NODE/PYTHON]. Include error messages for common failures.`,
         },
         {
           id: 'oauth',
@@ -160,8 +160,8 @@ Stack: [NODE/PYTHON]. Include error messages for common failures.`
 - JWT generation after OAuth
 - Link/unlink social accounts
 - Handle expired tokens
-Stack: [NODE/PASSPORT/NEXT-AUTH]. Include redirect handling.`
-        }
+Stack: [NODE/PASSPORT/NEXT-AUTH]. Include redirect handling.`,
+        },
       ],
       devops: [
         {
@@ -175,7 +175,7 @@ Stack: [NODE/PASSPORT/NEXT-AUTH]. Include redirect handling.`
 - Environment variables
 - Health checks
 - .dockerignore
-Target: [DEV/PRODUCTION]. Optimize for small image size.`
+Target: [DEV/PRODUCTION]. Optimize for small image size.`,
         },
         {
           id: 'ci-cd',
@@ -188,8 +188,8 @@ Target: [DEV/PRODUCTION]. Optimize for small image size.`
 - Builds the project
 - Deploys to [VERCEL/NETLIFY/AWS]
 - Notifies on [SLACK/EMAIL] on failure
-Include caching for faster runs.`
-        }
+Include caching for faster runs.`,
+        },
       ],
       testing: [
         {
@@ -202,7 +202,7 @@ Include caching for faster runs.`
 - Test happy path
 - Test error handling
 - Aim for >80% coverage
-Follow AAA pattern (Arrange, Act, Assert). Tests should be independent.`
+Follow AAA pattern (Arrange, Act, Assert). Tests should be independent.`,
         },
         {
           id: 'e2e-tests',
@@ -214,8 +214,8 @@ Follow AAA pattern (Arrange, Act, Assert). Tests should be independent.`
 - Assert on page content
 - Test error scenarios
 - Use data-testid selectors
-Run headless. Include a test for the happy path and edge cases.`
-        }
+Run headless. Include a test for the happy path and edge cases.`,
+        },
       ],
       refactor: [
         {
@@ -229,7 +229,7 @@ Run headless. Include a test for the happy path and edge cases.`
 - Split large functions (>20 lines)
 - Use modern language features
 - Maintain existing behavior
-No breaking changes. Keep the same public API.`
+No breaking changes. Keep the same public API.`,
         },
         {
           id: 'performance',
@@ -241,7 +241,7 @@ No breaking changes. Keep the same public API.`
 - Optimize database queries
 - Lazy load where possible
 - Reduce bundle size
-Target metrics: [METRICS]. Measure before and after.`
+Target metrics: [METRICS]. Measure before and after.`,
         },
         {
           id: 'typescript',
@@ -254,8 +254,8 @@ Target metrics: [METRICS]. Measure before and after.`
 - Enable strict mode
 - Fix any type errors
 - Keep runtime behavior identical
-Migration should be incremental, file by file.`
-        }
+Migration should be incremental, file by file.`,
+        },
       ],
       'ai-agent': [
         {
@@ -268,7 +268,7 @@ Migration should be incremental, file by file.`
 4. Log enriched.skills and enriched.confidence as OTel span attributes
 5. Skip injection if context_usage_pct > 85 (check RoleLoader.checkContextBudget())
 Source tags: [SKILL], [GOAL], [KB], [GIT] — always prefix injected blocks.
-Sanitize all external strings through _sanitize() before injection (OWASP LLM01).`
+Sanitize all external strings through _sanitize() before injection (OWASP LLM01).`,
         },
         {
           id: 'skill-routing',
@@ -280,7 +280,7 @@ Sanitize all external strings through _sanitize() before injection (OWASP LLM01)
 4. If route.confidence < 0.4, fall back to default handler
 5. Log route.skills and route.reason for debugging
 ROUTING_TABLE covers: security, tdd, deploy, design, review, plan, explain, status, learnings.
-Add new entries to ROUTING_TABLE for any domain-specific skills in [PROJECT].`
+Add new entries to ROUTING_TABLE for any domain-specific skills in [PROJECT].`,
         },
         {
           id: 'memory-recall',
@@ -291,8 +291,8 @@ Add new entries to ROUTING_TABLE for any domain-specific skills in [PROJECT].`
 3. After each significant action, store: kb.store('[KEY]', { value, source, timestamp })
 4. Before each query, recall with Jaccard match: kb entries whose keys overlap query words
 5. On session end: kb.autoSave('[PROJECT_ROOT]/.vibe/knowledge-base.json')
-Keep entries under 80 chars. Evict entries older than 30 days.`
-        }
+Keep entries under 80 chars. Evict entries older than 30 days.`,
+        },
       ],
       telemetry: [
         {
@@ -305,7 +305,7 @@ Keep entries under 80 chars. Evict entries older than 30 days.`
 4. Add required attributes: span.setAttribute('status', ...).setAttribute('skills', ...)
 5. Always call span.end() in a finally block
 6. Spans export to .vibe/telemetry/otel/spans.jsonl (append-only)
-Never put PII or file paths with usernames in span attributes.`
+Never put PII or file paths with usernames in span attributes.`,
         },
         {
           id: 'telemetry-dashboard',
@@ -321,7 +321,7 @@ const recent = spans.filter(s => s.startTime > since);
 // Aggregate [METRIC]: error rate / p95 duration / skill distribution
 [AGGREGATION_LOGIC]
 
-Output: { total, [metric], window: '[N]d' }`
+Output: { total, [metric], window: '[N]d' }`,
         },
         {
           id: 'session-snapshot',
@@ -339,8 +339,8 @@ Output: { total, [metric], window: '[N]d' }`
   "errors": [],
   "confidence_avg": [0-1]
 }
-Call this from the session end hook or after each major phase transition.`
-        }
+Call this from the session end hook or after each major phase transition.`,
+        },
       ],
       security: [
         {
@@ -354,7 +354,7 @@ Call this from the session end hook or after each major phase transition.`
 - A06 Vulnerable Components: run npm audit; flag any CRITICAL/HIGH CVEs
 - A07 Auth Failures: session fixation, weak tokens, missing rate limiting
 - LLM01 Prompt Injection: external strings interpolated into prompts without sanitization
-For each finding: severity (CRITICAL/HIGH/MEDIUM/LOW), file:line, remediation step.`
+For each finding: severity (CRITICAL/HIGH/MEDIUM/LOW), file:line, remediation step.`,
         },
         {
           id: 'dependency-scan',
@@ -366,7 +366,7 @@ For each finding: severity (CRITICAL/HIGH/MEDIUM/LOW), file:line, remediation st
 4. Check for abandoned packages (last publish > 1 year)
 5. Flag packages with no license or non-permissive license (GPL in commercial project)
 6. Recommend: npm audit fix for auto-fixable, manual upgrade plan for breaking changes
-Output as structured list with remediation priority order.`
+Output as structured list with remediation priority order.`,
         },
         {
           id: 'secret-scan',
@@ -377,9 +377,9 @@ JWT secrets assigned to string literals, private keys (BEGIN RSA/EC PRIVATE KEY)
 connection strings with passwords (mongodb://user:pass@...).
 For each finding: file, line number, pattern matched, recommended fix.
 Recommended fixes: move to process.env.[VAR_NAME], add to .gitignore, rotate the credential.
-Check .env.example to confirm .env is gitignored.`
-        }
-      ]
+Check .env.example to confirm .env is gitignored.`,
+        },
+      ],
     };
   }
 
@@ -403,7 +403,7 @@ Check .env.example to confirm .env is gitignored.`
       version: this.version,
       description: this.description,
       totalTemplates: Object.values(this.getAllTemplates()).flat().length,
-      categories: this.getCategories().map(c => ({ id: c.id, name: c.name, count: c.count }))
+      categories: this.getCategories().map(c => ({ id: c.id, name: c.name, count: c.count })),
     };
   }
 }

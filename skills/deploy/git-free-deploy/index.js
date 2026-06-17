@@ -7,7 +7,8 @@ class GitFreeDeploy {
   constructor(config = {}) {
     this.name = 'git-free-deploy';
     this.version = '1.0.0';
-    this.description = 'Deploy static sites without git — wraps surge.sh, npx serve, and Netlify Drop';
+    this.description =
+      'Deploy static sites without git — wraps surge.sh, npx serve, and Netlify Drop';
   }
 
   buildServeCommand(projectPath = '.', port = 3000) {
@@ -38,8 +39,17 @@ class GitFreeDeploy {
         else if (e.isFile()) files[rp] = fs.readFileSync(fp, 'utf-8');
       }
     };
-    try { walk(resolvedSource); } catch (err) { return { success: false, error: err.message }; }
-    return { success: true, files, fileCount: Object.keys(files).length, sourceDir: resolvedSource };
+    try {
+      walk(resolvedSource);
+    } catch (err) {
+      return { success: false, error: err.message };
+    }
+    return {
+      success: true,
+      files,
+      fileCount: Object.keys(files).length,
+      sourceDir: resolvedSource,
+    };
   }
 
   generateDeployPackage(sourceDir = '.') {
@@ -51,9 +61,9 @@ class GitFreeDeploy {
       commands: [
         { label: 'Local preview', ...this.buildServeCommand(sourceDir) },
         { label: 'Deploy via Surge.sh', ...this.buildSurgeCommand(sourceDir) },
-        { label: 'Deploy via Netlify Drop', ...this.buildNetlifyDropCommand(sourceDir) }
+        { label: 'Deploy via Netlify Drop', ...this.buildNetlifyDropCommand(sourceDir) },
       ],
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
@@ -62,7 +72,7 @@ class GitFreeDeploy {
     if (!fs.existsSync(resolved)) return { valid: false, error: 'Directory not found' };
     const checks = {
       hasIndexHtml: fs.existsSync(path.join(resolved, 'index.html')),
-      hasAssets: fs.readdirSync(resolved).some(f => /\.(css|js|png|jpg|svg)$/i.test(f))
+      hasAssets: fs.readdirSync(resolved).some(f => /\.(css|js|png|jpg|svg)$/i.test(f)),
     };
     return { valid: checks.hasIndexHtml, checks };
   }
@@ -76,7 +86,11 @@ if (require.main === module) {
   const skill = new GitFreeDeploy();
   const dir = process.argv[2] || '.';
   const pkg = skill.generateDeployPackage(dir);
-  console.log(pkg.success ? pkg.commands.map(c => `${c.label}: ${c.cmd} ${c.args.join(' ')}`).join('\n') : JSON.stringify(pkg));
+  console.log(
+    pkg.success
+      ? pkg.commands.map(c => `${c.label}: ${c.cmd} ${c.args.join(' ')}`).join('\n')
+      : JSON.stringify(pkg)
+  );
 }
 
 module.exports = GitFreeDeploy;

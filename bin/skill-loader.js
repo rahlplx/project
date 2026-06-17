@@ -50,8 +50,12 @@ function discoverTools(skills) {
     const proto = Object.getPrototypeOf(instance);
     for (const name of Object.getOwnPropertyNames(proto)) allMethodNames.add(name);
     for (const name of Object.getOwnPropertyNames(instance)) allMethodNames.add(name);
-    const methods = [...allMethodNames].filter(m =>
-      typeof instance[m] === 'function' && m !== 'constructor' && m !== 'toJSON' && !m.startsWith('_')
+    const methods = [...allMethodNames].filter(
+      m =>
+        typeof instance[m] === 'function' &&
+        m !== 'constructor' &&
+        m !== 'toJSON' &&
+        !m.startsWith('_')
     );
     for (const method of methods) {
       const toolName = `${key}:${method}`.replace(/\//g, '_');
@@ -61,9 +65,13 @@ function discoverTools(skills) {
         inputSchema: {
           type: 'object',
           properties: {
-            _args: { type: 'array', items: { type: 'string' }, description: 'Positional arguments' }
-          }
-        }
+            _args: {
+              type: 'array',
+              items: { type: 'string' },
+              description: 'Positional arguments',
+            },
+          },
+        },
       });
     }
   }

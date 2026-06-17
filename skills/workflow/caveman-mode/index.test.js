@@ -19,7 +19,7 @@ describe('CavemanMode', () => {
   it('should list all four levels', () => {
     const c = new CavemanMode({ statsPath });
     const levels = c.listLevels();
-    expect(levels.map((l) => l.name)).toEqual(['lite', 'full', 'ultra', 'wenyan']);
+    expect(levels.map(l => l.name)).toEqual(['lite', 'full', 'ultra', 'wenyan']);
   });
 
   it('should return an error for an unknown level', () => {
@@ -50,14 +50,23 @@ describe('CavemanMode', () => {
 
   it('should format a conventional commit message under 50 chars', () => {
     const c = new CavemanMode({ statsPath });
-    const r = c.formatCommitMessage({ type: 'fix', scope: 'auth', subject: 'reject expired tokens' });
+    const r = c.formatCommitMessage({
+      type: 'fix',
+      scope: 'auth',
+      subject: 'reject expired tokens',
+    });
     expect(r.header).toBe('fix(auth): reject expired tokens');
     expect(r.header.length).toBeLessThanOrEqual(50);
   });
 
   it('should format a one-line review comment', () => {
     const c = new CavemanMode({ statsPath });
-    const r = c.formatReviewComment({ line: 42, severity: 'critical', category: 'bug', message: 'null deref' });
+    const r = c.formatReviewComment({
+      line: 42,
+      severity: 'critical',
+      category: 'bug',
+      message: 'null deref',
+    });
     expect(r.comment).toBe('L42: 🔴 bug: null deref');
   });
 

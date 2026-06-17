@@ -19,9 +19,9 @@ class SpecDriven {
       features: (options.features || []).map(f => ({
         name: f,
         status: 'planned',
-        tests: []
+        tests: [],
       })),
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
     return spec;
   }
@@ -79,8 +79,8 @@ class SpecDriven {
       changes.push(`Title changed: "${specA.title}" → "${specB.title}"`);
     }
 
-    const featuresA = (specA.features || []).map(f => typeof f === 'string' ? f : f.name);
-    const featuresB = (specB.features || []).map(f => typeof f === 'string' ? f : f.name);
+    const featuresA = (specA.features || []).map(f => (typeof f === 'string' ? f : f.name));
+    const featuresB = (specB.features || []).map(f => (typeof f === 'string' ? f : f.name));
 
     for (const f of featuresB) {
       if (!featuresA.includes(f)) {
@@ -103,13 +103,16 @@ class SpecDriven {
     const merged = {
       title: specs.length > 0 ? specs[0].title : 'Merged Spec',
       version: '1.0.0',
-      description: specs.map(s => s.description || '').filter(Boolean).join('; '),
+      description: specs
+        .map(s => s.description || '')
+        .filter(Boolean)
+        .join('; '),
       requirements: [],
       constraints: [],
       architecture: specs.map(s => s.architecture).filter(Boolean)[0] || 'Not specified',
       techStack: [],
       features: [],
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
     const seenFeatures = new Set();
@@ -152,7 +155,7 @@ class SpecDriven {
       id: `REQ-${String(i + 1).padStart(3, '0')}`,
       description: r,
       priority: i < 3 ? 'high' : 'medium',
-      status: 'open'
+      status: 'open',
     }));
   }
 
@@ -170,9 +173,10 @@ class SpecDriven {
       aligned: unmatched.length === 0,
       matchedFeatures: matched,
       unmatchedFeatures: unmatched,
-      coverage: specFeatures.length > 0 ? Math.round((matched.length / specFeatures.length) * 100) : 0,
+      coverage:
+        specFeatures.length > 0 ? Math.round((matched.length / specFeatures.length) * 100) : 0,
       suggestions: unmatched.map(f => `Consider implementing: ${f}`),
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 

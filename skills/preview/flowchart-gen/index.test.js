@@ -14,7 +14,7 @@ describe('FlowchartGen', () => {
       classes: [],
       exports: [],
       imports: [],
-      dependencies: []
+      dependencies: [],
     });
     expect(result.type).toBe('flowchart');
     expect(Array.isArray(result.nodes)).toBe(true);
@@ -27,12 +27,12 @@ describe('FlowchartGen', () => {
     const result = s.generateFlowchart({
       functions: [
         { name: 'foo', params: [], line: 1 },
-        { name: 'bar', params: [], line: 5 }
+        { name: 'bar', params: [], line: 5 },
       ],
       classes: [],
       exports: [],
       imports: [],
-      dependencies: []
+      dependencies: [],
     });
     const funcNodes = result.nodes.filter(n => n.id.startsWith('func_'));
     expect(funcNodes).toHaveLength(2);
@@ -40,7 +40,13 @@ describe('FlowchartGen', () => {
 
   it('should handle empty structure gracefully', () => {
     const s = new FlowchartGen();
-    const result = s.generateFlowchart({ functions: [], classes: [], exports: [], imports: [], dependencies: [] });
+    const result = s.generateFlowchart({
+      functions: [],
+      classes: [],
+      exports: [],
+      imports: [],
+      dependencies: [],
+    });
     expect(result.type).toBe('flowchart');
     expect(result.nodes.length).toBe(2);
     expect(result.edges.length).toBeGreaterThanOrEqual(1);
@@ -50,7 +56,7 @@ describe('FlowchartGen', () => {
     const s = new FlowchartGen();
     const nodes = [
       { id: 'entry', type: 'start', label: 'Start', shape: 'oval' },
-      { id: 'exit', type: 'end', label: 'End', shape: 'oval' }
+      { id: 'exit', type: 'end', label: 'End', shape: 'oval' },
     ];
     const edges = [{ from: 'entry', to: 'exit', label: '' }];
     const mermaid = s.toMermaid(nodes, edges);
@@ -61,7 +67,7 @@ describe('FlowchartGen', () => {
     const s = new FlowchartGen();
     const nodes = [
       { id: 'entry', type: 'start', label: 'Start', shape: 'oval' },
-      { id: 'exit', type: 'end', label: 'End', shape: 'oval' }
+      { id: 'exit', type: 'end', label: 'End', shape: 'oval' },
     ];
     const edges = [{ from: 'entry', to: 'exit', label: '' }];
     const ascii = s.toAscii(nodes, edges);
@@ -75,7 +81,7 @@ describe('FlowchartGen', () => {
       classes: [],
       exports: [],
       imports: [],
-      dependencies: []
+      dependencies: [],
     };
     const result = s.generateFlowchart(structure, { direction: 'LR' });
     expect(result.direction).toBe('LR');
@@ -89,7 +95,13 @@ describe('FlowchartGen', () => {
 
   it('should generate YAML output', () => {
     const s = new FlowchartGen();
-    const yaml = s.toYAML({ functions: [{ name: 'foo', params: [], line: 1 }], classes: [], exports: [], imports: [], dependencies: [] });
+    const yaml = s.toYAML({
+      functions: [{ name: 'foo', params: [], line: 1 }],
+      classes: [],
+      exports: [],
+      imports: [],
+      dependencies: [],
+    });
     expect(yaml).toContain('flowchart:');
     expect(yaml).toContain('nodes:');
     expect(yaml).toContain('edges:');
@@ -116,7 +128,7 @@ describe('FlowchartGen', () => {
     const s = new FlowchartGen();
     const nodes = [
       { id: 'entry', type: 'start', label: 'Start', shape: 'oval' },
-      { id: 'func_foo', type: 'process', label: 'foo', shape: 'rectangle' }
+      { id: 'func_foo', type: 'process', label: 'foo', shape: 'rectangle' },
     ];
     const edges = [{ from: 'entry', to: 'func_foo', label: '' }];
     const rf = s.toReactFlow(nodes, edges);
@@ -127,16 +139,20 @@ describe('FlowchartGen', () => {
 
   it('should generate SVG string', () => {
     const s = new FlowchartGen();
-    const svg = s.toSVG([
-      { id: 'entry', type: 'start', label: 'Start', shape: 'oval' }
-    ], []);
+    const svg = s.toSVG([{ id: 'entry', type: 'start', label: 'Start', shape: 'oval' }], []);
     expect(svg).toContain('<svg');
     expect(svg).toContain('</svg>');
   });
 
   it('should generate JSON string', () => {
     const s = new FlowchartGen();
-    const json = s.toJSON({ functions: [{ name: 'foo', params: [], line: 1 }], classes: [], exports: [], imports: [], dependencies: [] });
+    const json = s.toJSON({
+      functions: [{ name: 'foo', params: [], line: 1 }],
+      classes: [],
+      exports: [],
+      imports: [],
+      dependencies: [],
+    });
     expect(() => JSON.parse(json)).not.toThrow();
     const parsed = JSON.parse(json);
     expect(parsed.type).toBe('flowchart');

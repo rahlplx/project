@@ -19,11 +19,11 @@ already has — this skill does not re-implement those.
 
 ## The Three Dials
 
-| Dial | Range | 1–3 | 4–7 | 8–10 |
-|------|-------|-----|-----|------|
-| `DESIGN_VARIANCE` | 1–10 | Predictable: symmetrical grids, centered alignment | Offset: varied aspect ratios, left-aligned headers | Asymmetric: masonry, fractional grid units |
-| `MOTION_INTENSITY` | 1–10 | Static: hover/active only | Fluid CSS: transitions, cascading delays | Advanced Choreography: scroll-triggered, parallax |
-| `VISUAL_DENSITY` | 1–10 | Art Gallery: massive white space | Daily App: standard app spacing | Cockpit: tight padding, mono numerals |
+| Dial               | Range | 1–3                                                | 4–7                                                | 8–10                                              |
+| ------------------ | ----- | -------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------- |
+| `DESIGN_VARIANCE`  | 1–10  | Predictable: symmetrical grids, centered alignment | Offset: varied aspect ratios, left-aligned headers | Asymmetric: masonry, fractional grid units        |
+| `MOTION_INTENSITY` | 1–10  | Static: hover/active only                          | Fluid CSS: transitions, cascading delays           | Advanced Choreography: scroll-triggered, parallax |
+| `VISUAL_DENSITY`   | 1–10  | Art Gallery: massive white space                   | Daily App: standard app spacing                    | Cockpit: tight padding, mono numerals             |
 
 **Baseline:** `DESIGN_VARIANCE=8, MOTION_INTENSITY=6, VISUAL_DENSITY=4`, overridable per brief.
 
@@ -40,18 +40,18 @@ already has — this skill does not re-implement those.
 
 ## Methods
 
-| Method | Description |
-|--------|-------------|
-| `inferDials(brief)` | Infers dial values from `brief.vibeWords`, falling back to baseline when no signal matches. |
-| `describeBriefRead(brief)` | One-line "Reading this as: ..." design read. |
-| `bandFor(dial, value)` | Looks up the rubric band/label for a dial value. |
-| `checkEmDash(text)` | Detects em/en-dash characters. |
-| `checkDuplicateCTAIntent(ctas)` | Detects CTAs sharing the same intent group. |
-| `checkHeroDiscipline(hero)` | Checks headline/subtext/padding/stack/CTA-visibility rules. |
-| `checkEyebrowRestraint(count, sectionCount)` | Checks eyebrow count against `ceil(sections / 3)`. |
-| `checkPureBlackWhite(colors)` | Flags exact `#000000`/`#ffffff`. |
-| `checkMarqueeCount(count)` | Flags more than one marquee. |
-| `preflightCheck(design)` | Aggregates the above into a pass/fail findings report. |
+| Method                                       | Description                                                                                 |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `inferDials(brief)`                          | Infers dial values from `brief.vibeWords`, falling back to baseline when no signal matches. |
+| `describeBriefRead(brief)`                   | One-line "Reading this as: ..." design read.                                                |
+| `bandFor(dial, value)`                       | Looks up the rubric band/label for a dial value.                                            |
+| `checkEmDash(text)`                          | Detects em/en-dash characters.                                                              |
+| `checkDuplicateCTAIntent(ctas)`              | Detects CTAs sharing the same intent group.                                                 |
+| `checkHeroDiscipline(hero)`                  | Checks headline/subtext/padding/stack/CTA-visibility rules.                                 |
+| `checkEyebrowRestraint(count, sectionCount)` | Checks eyebrow count against `ceil(sections / 3)`.                                          |
+| `checkPureBlackWhite(colors)`                | Flags exact `#000000`/`#ffffff`.                                                            |
+| `checkMarqueeCount(count)`                   | Flags more than one marquee.                                                                |
+| `preflightCheck(design)`                     | Aggregates the above into a pass/fail findings report.                                      |
 
 ## Example
 
@@ -64,7 +64,7 @@ taste.inferDials({ vibeWords: ['minimalist'] });
 
 taste.preflightCheck({
   copyText: 'Build faster — ship sooner.',
-  ctas: ['Contact us', 'Get in touch']
+  ctas: ['Contact us', 'Get in touch'],
 });
 // { passed: false, findings: [{ rule: 'em-dash-ban', ... }, { rule: 'duplicate-cta-intent', ... }] }
 ```

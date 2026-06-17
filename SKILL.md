@@ -14,6 +14,7 @@ it happen.
 ## How to Help a Vibe Coder
 
 The person you're helping probably:
+
 - Has an idea but doesn't know where to start
 - Doesn't use the terminal or command line
 - Talks in plain language ("make my site look professional")
@@ -31,63 +32,81 @@ The person you're helping probably:
 ## What's Available
 
 ### 🎨 Design & UI
+
 Make things look good. Colors, typography, layouts, anti-slop detection.
+
 ```
 vibe coder: "My site looks generic. Make it pop."
 You: Load anti-slop, check current design, apply taste-design rules, return preview.
 ```
 
 ### 🔧 Setup & Scaffolding
+
 Start new projects without touching config files.
+
 ```
 vibe coder: "I want to build a blog."
 You: Load project-wizard, ask 3 questions, scaffold the whole thing.
 ```
 
 ### 👁️ Preview & Visualization
+
 See what things look like before shipping.
+
 ```
 vibe coder: "Show me how this looks on mobile."
 You: Run screenshot-preview, show the result.
 ```
 
 ### 💬 Explain & Translate
+
 Understand code and convert between languages.
+
 ```
 vibe coder: "What does this do? And can I have it in Python?"
 You: Load code-explainer, then code-translator.
 ```
 
 ### 🔄 Workflow & Planning
+
 Keep projects organized and on track.
+
 ```
 vibe coder: "I'm lost. What should I do next?"
 You: Load planning-agent, check progress, suggest next step.
 ```
 
 ### 🛡️ Quality & Safety
+
 Catch problems before they ship.
+
 ```
 vibe coder: "Is this ready to go live?"
 You: Run quality checks, security scan, health check. Report results in plain language.
 ```
 
 ### 🚀 Deploy
+
 Ship to the world with zero config.
+
 ```
 vibe coder: "Put it on the internet."
 You: Ask which platform, run deploy skill, return the URL.
 ```
 
 ### 🧠 Knowledge & Memory
+
 Remember context across sessions, understand codebases.
+
 ```
 vibe coder: "Remember my preferences for next time."
 You: Store context, load knowledge-base, graphify the codebase.
 ```
 
 ### 🎭 Orchestration
+
 Use multiple tools together, coordinate complex workflows.
+
 ```
 vibe coder: "Build me a full app."
 You: Plan → scaffold → design → build → test → deploy. Orchestrate the whole pipeline.
@@ -120,7 +139,9 @@ Each entry has: what it does, who verified it, how to use it with the vibe coder
 This project self-improves. At the start of every session, check whether maintenance is due:
 
 ### Trigger Check
+
 Read `.vibe/lifecycle.json`. Run the full auto-maintenance cycle if ANY of:
+
 1. `interaction_count >= interaction_threshold` (default: 10)
 2. `days since last_maintenance >= day_threshold` (default: 7)
 3. A pipeline just completed and `auto_after_pipeline` is true
@@ -128,17 +149,20 @@ Read `.vibe/lifecycle.json`. Run the full auto-maintenance cycle if ANY of:
 If none triggered, increment `session_count` by 1 and continue working.
 
 ### Tracking Interactions During the Session
+
 After each significant action (commit, catalog edit, tool discovery, architecture
 decision), increment `interaction_count` in `.vibe/lifecycle.json`. After
 incrementing, check if the threshold is hit — if so, queue maintenance
 to run after current work completes.
 
 ### How to Run Maintenance
+
 ```bash
 node .vibe/lifecycle/auto-maintain.js
 ```
 
 This runs 5 phases automatically:
+
 1. **harness** — validate YAML, count categories, run test suite
 2. **telemetry** — snapshot recent commits and session stats to `.vibe/telemetry/sessions/`
 3. **retro** — assess health, note failures
@@ -148,7 +172,9 @@ This runs 5 phases automatically:
 Results are logged to `.vibe/maintenance-log.json`. State is reset.
 
 ### What to Capture During the Session
+
 As you work, write these to `.vibe/telemetry/sessions/` as they happen:
+
 - **`discovery-<name>.json`** — when you find a useful tool or pattern
 - **`incident-<name>.json`** — when something breaks or blocks you
 - **`decision-<name>.json`** — when you make an architectural choice
@@ -156,6 +182,7 @@ As you work, write these to `.vibe/telemetry/sessions/` as they happen:
 These feed the next maintenance cycle's learn phase automatically.
 
 ### Manual Triggers
+
 - `/vibe:maintenance` — run the cycle now
 - `/vibe:harness` — run checks only
 - `/vibe:evolve` — manual evolution (for when proposals need user approval)

@@ -1,21 +1,24 @@
 #!/usr/bin/env node
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 let exitCode = 0;
 
-// Gate 1: ESLint
+// Gate 1: ESLint (errors only — warnings don't block commit)
 const eslintBin = path.join(ROOT, 'node_modules', '.bin', 'eslint');
 try {
-  execSync(`"${eslintBin}" lib/ bin/ --no-eslintrc -c .eslintrc.js --quiet`, {
-    cwd: ROOT, stdio: 'pipe', timeout: 30000, encoding: 'utf8',
+  execFileSync(eslintBin, ['lib/', 'bin/', '--no-eslintrc', '-c', '.eslintrc.js', '--quiet'], {
+    cwd: ROOT,
+    stdio: 'pipe',
+    timeout: 30000,
+    encoding: 'utf8',
   });
   console.log('[pre-commit] ✓ ESLint');
 } catch (e) {
   console.error('[pre-commit] ✗ ESLint: lint errors found');
-  console.error(e.stdout);
+  console.error(e.stdout || e.message);
   exitCode = 1;
 }
 
@@ -28,6 +31,22 @@ try {
 } catch (e) {
   console.error('[pre-commit] ✗ YAML: ' + e.message);
   exitCode = 1;
+}
+
+// Gate 3: index.json integrity (prevents skill drift from breaking harness)
+try {
+  const { checkIndexIntegrity } = require(path.join(ROOT, 'lib', 'check-index-integrity'));
+  const result = checkIndexIntegrity({ rootDir: ROOT });
+  if (result.pass) {
+    console.log('[pre-commit] ✓ Skill index integrity');
+  } else {
+    console.error(
+      '[pre-commit] ✗ Skill index out of sync — run: node -e "require(\'./lib/discovery-index\').writeIndex(process.cwd())"'
+    );
+    exitCode = 1;
+  }
+} catch (e) {
+  console.log('[pre-commit] ~ Skill index check skipped: ' + e.message);
 }
 
 process.exit(exitCode);

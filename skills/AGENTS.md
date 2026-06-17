@@ -7,6 +7,7 @@ The `skills/` directory contains 50 agent skill modules organized by category. E
 ## Structure
 
 Each skill directory follows this convention:
+
 ```
 skills/<category>/<skill-name>/
 ├── index.js       — Agent prompt instructions (required)
@@ -14,11 +15,13 @@ skills/<category>/<skill-name>/
 ```
 
 ### index.js
+
 - Exports a `prompt` string that the agent injects into its system prompt
 - May export `config` with metadata (name, description, version)
 - Must use CommonJS (`module.exports`)
 
 ### SKILL.md
+
 - Describes what the skill does, when to use it, and how it works
 - Includes examples and cross-references
 
@@ -31,6 +34,7 @@ skills/<category>/<skill-name>/
 ## Test Requirements
 
 Every skill must have a corresponding test file. Tests use either:
+
 - `node:test` — `const { describe, it } = require('node:test')`
 - Jest — global `describe`/`test`/`expect`
 

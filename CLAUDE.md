@@ -32,6 +32,7 @@ a `*.test.js` file runs under Jest.
 ## Architecture
 
 ### Two audiences, one repo
+
 - **End users ("vibe coders")**: never touch the terminal. They talk to an AI agent, which
   reads `SKILL.md` (repo root, agent entry point) and `CONTRIBUTING.md`-style guidance to
   decide which skill or catalog tool to use, then reports back in plain language.
@@ -39,6 +40,7 @@ a `*.test.js` file runs under Jest.
   and `skills/`, covered by tests, following the conventions below.
 
 ### `bin/` — CLI entry points
+
 - `bin/vibe.js` is the CLI surface (`npm run vibe`, `node bin/vibe.js <cmd>`). It calls
   `lib/vibe-commands/index.js`'s `register()` for each command, passing a handler,
   phase, category, and optional `conditional` flag, then dispatches `process.argv[2]`.
@@ -47,10 +49,12 @@ a `*.test.js` file runs under Jest.
 - `bin/skill-loader.js` / `bin/vibe-stack.js` are supporting entry points.
 
 ### `lib/vibe-commands/` — command handlers
+
 Each command maps to `lib/vibe-commands/<name>.js` and a reference doc at
 `references/vibe-<name>.md`; if no handler exists the CLI falls back to printing the reference.
 
 **Adding a new command requires two steps:**
+
 1. Create `lib/vibe-commands/<name>.js` exporting `{ handler }` where `handler.handler(args, state)` is the entry point.
 2. Register it in `bin/vibe.js` with `register(name, { handler, phase, category, description })`.
 
@@ -59,6 +63,7 @@ Commands have three categories: `phase` (pipeline steps), `utility` (status/tele
 only run when `state.has_ui` is truthy.
 
 ### `lib/orchestrator/` — the 5-phase pipeline state machine
+
 The pipeline follows a fixed sequence defined as `PHASE_ORDER` in `lib/vibe-commands/state-helpers.js`:
 
 ```
@@ -73,6 +78,7 @@ think → plan → break → build → harness → review → ship → retro →
 - Running a command out of phase order produces a warning; pass `--force` to override.
 
 ### `skills/<category>/<name>/` — agent skill modules
+
 Every skill is a pair: `index.js` (CommonJS, exports a `prompt` string the agent injects into
 its system prompt, optionally a `config` object) and `SKILL.md` (what/when/how, for the agent
 to read). Categories: `deploy/`, `design/`, `explain/`, `knowledge/`, `orchestration/`,
@@ -83,12 +89,14 @@ The canonical index of all skills lives in `.well-known/agent-skills/index.json`
 (SHA-256 digests — keep in sync via `lib/skill-files.js` when adding/removing skills).
 
 ### `catalog/tools.yaml` — curated external tool catalog
+
 Categorized list (design-ui, code-generation, testing-qa, deployment, knowledge-memory,
 orchestration, agent-frameworks, ...) of community-verified third-party tools the agent can
 recommend. `catalog/verified-by.md` tracks who verified each entry; `catalog/quality-scores.json`
 is generated/maintained by `lib/quality-score.js`.
 
 ### `.vibe/` — persistent state across sessions
+
 - `state.json` — current project phase (`curation` = building the curated collection).
 - `lifecycle.json` — autonomous maintenance counters/thresholds.
 - `telemetry/`, `learnings/`, `rules/`, `evolution.json`, `handoff.md` — written to by the
@@ -96,6 +104,7 @@ is generated/maintained by `lib/quality-score.js`.
 - `docs/handoffs/` — handoff notes written after phase transitions by `state-helpers.js`.
 
 ### Cross-cutting `lib/` utilities worth knowing about
+
 - `lib/discovery-index.js`, `lib/check-index-integrity.js` — keep `.well-known/agent-skills/index.json` consistent with `skills/`.
 - `lib/check-originality.js` — Jaccard similarity check to prevent near-duplicate skills.
 - `lib/lint-skills.js`, `lib/skill-frontmatter.js`, `lib/skill-files.js` — structural validation of skill directories.
@@ -107,6 +116,7 @@ is generated/maintained by `lib/quality-score.js`.
 
 This project self-improves via `.vibe/lifecycle/`. At the start of every session, read
 `.vibe/lifecycle.json` and run the full maintenance cycle if ANY of:
+
 1. `interaction_count >= interaction_threshold` (default 10)
 2. days since `last_maintenance` >= `day_threshold` (default 7)
 3. a pipeline just completed and `auto_after_pipeline` is true
@@ -138,34 +148,34 @@ to `.vibe/telemetry/sessions/` as significant events happen; these feed the next
 The vibe-stack orchestrator is decomposed into invokable skills for Claude Code. Each wraps
 the same underlying `skills/` JS modules with consistent anti-slop/OWASP/taste-skill rules.
 
-| Command | Wraps | Use when |
-|---------|-------|----------|
-| `/vibe` | Full pipeline | New project, "I want to build X" |
-| `/vibe-design` | anti-slop, color-gen, design-system, typography-rules, impeccable-audit | Reviewing/generating UI, design tokens, palettes |
-| `/vibe-review` | virtual-team, code-health, done-verifier | Pre-merge review, second opinion, "is this ready" |
-| `/vibe-security` | security-audit, security-defaults, guardrails | Before release, auth/payment/API code |
-| `/vibe-tdd` | tdd-vibe, verification-agent, checkpoints | New feature or bug fix — write the test first |
-| `/vibe-deploy` | one-click-vercel/netlify, git-free-deploy, done-verifier | Shipping to staging/production |
-| `/vibe-explain` | code-explainer, code-translator, intent-capture | Understanding, translating, or reverse-speccing code |
-| `/vibe-status` | tracker, dashboard, context-memory | Start of session, "where did we leave off" |
-| `/vibe-learnings` | context-memory, knowledge-base, git log | Retro, post-mortem, building institutional memory |
-| `/vibe-template` | template-gallery, prompt-templates, quick-start | Starting a component/page/endpoint/scaffold from scratch |
-| `/vibe-plan` | planning-agent, task-coordinator, tracker, parallel-exec | Breaking down a feature or sprint into tasks |
-| `/vibe-caveman` | caveman-mode | Terse-output mode, compressed commit messages/PR comments, token-savings stats |
-| `/vibe-harness` | bin/vibe.js harness | Production readiness gate — 15 checks, fix table, pre-ship gate |
-| `/vibe-evolve` | bin/vibe.js evolve + lifecycle | Rule promotion/demotion/creation from telemetry + learnings |
-| `/vibe-retro` | bin/vibe.js retro + vibe-learnings | Sprint retrospective — what worked/didn't, action items, save to context-memory |
+| Command           | Wraps                                                                   | Use when                                                                        |
+| ----------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `/vibe`           | Full pipeline                                                           | New project, "I want to build X"                                                |
+| `/vibe-design`    | anti-slop, color-gen, design-system, typography-rules, impeccable-audit | Reviewing/generating UI, design tokens, palettes                                |
+| `/vibe-review`    | virtual-team, code-health, done-verifier                                | Pre-merge review, second opinion, "is this ready"                               |
+| `/vibe-security`  | security-audit, security-defaults, guardrails                           | Before release, auth/payment/API code                                           |
+| `/vibe-tdd`       | tdd-vibe, verification-agent, checkpoints                               | New feature or bug fix — write the test first                                   |
+| `/vibe-deploy`    | one-click-vercel/netlify, git-free-deploy, done-verifier                | Shipping to staging/production                                                  |
+| `/vibe-explain`   | code-explainer, code-translator, intent-capture                         | Understanding, translating, or reverse-speccing code                            |
+| `/vibe-status`    | tracker, dashboard, context-memory                                      | Start of session, "where did we leave off"                                      |
+| `/vibe-learnings` | context-memory, knowledge-base, git log                                 | Retro, post-mortem, building institutional memory                               |
+| `/vibe-template`  | template-gallery, prompt-templates, quick-start                         | Starting a component/page/endpoint/scaffold from scratch                        |
+| `/vibe-plan`      | planning-agent, task-coordinator, tracker, parallel-exec                | Breaking down a feature or sprint into tasks                                    |
+| `/vibe-caveman`   | caveman-mode                                                            | Terse-output mode, compressed commit messages/PR comments, token-savings stats  |
+| `/vibe-harness`   | bin/vibe.js harness                                                     | Production readiness gate — 15 checks, fix table, pre-ship gate                 |
+| `/vibe-evolve`    | bin/vibe.js evolve + lifecycle                                          | Rule promotion/demotion/creation from telemetry + learnings                     |
+| `/vibe-retro`     | bin/vibe.js retro + vibe-learnings                                      | Sprint retrospective — what worked/didn't, action items, save to context-memory |
 
 ## Cross-Agent Plugin Packaging
 
 This project installs into 4 agent ecosystems without forking the skill library:
 
-| Agent | Entry point | Mechanism |
-|-------|-------------|-----------|
+| Agent       | Entry point                         | Mechanism                                                                                                                                                                                                                                 |
+| ----------- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Claude Code | `plugin/.claude-plugin/plugin.json` | Plugin manifest; `plugin/skills` is a symlink to `.claude/skills/` (avoids colliding with the root `skills/` JS module library, which is a different thing); `plugin/.mcp.json` points at `bin/mcp-server.js` via `${CLAUDE_PLUGIN_ROOT}` |
-| Cursor | `.cursor/mcp.json` | MCP server config calling `node bin/mcp-server.js`; `node bin/vibe.js install --cursor` additionally generates `.cursor/rules/*.mdc` from `CLAUDE.md` |
-| OpenCode | `opencode.json` | `mcp` key, local stdio transport to `bin/mcp-server.js` |
-| Codex CLI | `.codex/config.toml` | `[mcp_servers.vibe-stack]` block (project-local auto-load varies by Codex CLI version — copy into `~/.codex/config.toml` if it isn't picked up) |
+| Cursor      | `.cursor/mcp.json`                  | MCP server config calling `node bin/mcp-server.js`; `node bin/vibe.js install --cursor` additionally generates `.cursor/rules/*.mdc` from `CLAUDE.md`                                                                                     |
+| OpenCode    | `opencode.json`                     | `mcp` key, local stdio transport to `bin/mcp-server.js`                                                                                                                                                                                   |
+| Codex CLI   | `.codex/config.toml`                | `[mcp_servers.vibe-stack]` block (project-local auto-load varies by Codex CLI version — copy into `~/.codex/config.toml` if it isn't picked up)                                                                                           |
 
 `node bin/vibe.js install [--cursor|--windsurf|--claude-code|--all]` wraps `lib/install-ide.js`
 (`detectIDE`/`installForIDE`/`syncToIDE`) to generate IDE-native rule files and, for Claude

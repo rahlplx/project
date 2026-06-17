@@ -25,7 +25,7 @@ class IntentCapture {
       targetAudience: this._detectAudience(lower),
       summary: this._generateSummary(description, lower),
       raw: { wordCount: words.length, description: description.slice(0, 500) },
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
@@ -33,7 +33,7 @@ class IntentCapture {
     const patterns = [
       /(?:called\s+"([^"]+)"|named\s+"([^"]+)"|called\s+(\w+)|named\s+(\w+))/i,
       /an?\s+(\w+(?:\s+\w+){0,3})\s+(?:app|website|site|tool|dashboard|platform|api|bot|service)/i,
-      /(\w+(?:\s+\w+){0,2})\s+(?:builder|maker|tracker|finder|manager|generator)/i
+      /(\w+(?:\s+\w+){0,2})\s+(?:builder|maker|tracker|finder|manager|generator)/i,
     ];
     for (const pat of patterns) {
       const m = description.match(pat);
@@ -61,7 +61,7 @@ class IntentCapture {
     const patterns = [
       /(?:with|including|has|have|features?)\s+(.+?)(?:\.|$)/i,
       /users?\s+(?:can|should be able to)\s+(.+?)(?:\.|$)/i,
-      /allow\s+(?:users?\s+)?to\s+(.+?)(?:\.|$)/i
+      /allow\s+(?:users?\s+)?to\s+(.+?)(?:\.|$)/i,
     ];
     for (const pat of patterns) {
       const m = lower.match(pat);
@@ -78,15 +78,42 @@ class IntentCapture {
   _detectTechStack(lower) {
     const stack = [];
     const techMap = {
-      react: 'React', vue: 'Vue', angular: 'Angular', svelte: 'Svelte',
-      node: 'Node.js', express: 'Express', django: 'Django', flask: 'Flask', rails: 'Ruby on Rails',
-      python: 'Python', javascript: 'JavaScript', typescript: 'TypeScript', go: 'Go', rust: 'Rust',
-      postgres: 'PostgreSQL', postgresql: 'PostgreSQL', mysql: 'MySQL', mongodb: 'MongoDB', sqlite: 'SQLite',
-      tailwind: 'Tailwind CSS', bootstrap: 'Bootstrap', sass: 'Sass',
-      next: 'Next.js', nuxt: 'Nuxt.js', gatsby: 'Gatsby',
-      vercel: 'Vercel', netlify: 'Netlify', aws: 'AWS', docker: 'Docker',
-      graphql: 'GraphQL', rest: 'REST', websocket: 'WebSocket',
-      auth: 'Authentication', stripe: 'Stripe', supabase: 'Supabase', firebase: 'Firebase'
+      react: 'React',
+      vue: 'Vue',
+      angular: 'Angular',
+      svelte: 'Svelte',
+      node: 'Node.js',
+      express: 'Express',
+      django: 'Django',
+      flask: 'Flask',
+      rails: 'Ruby on Rails',
+      python: 'Python',
+      javascript: 'JavaScript',
+      typescript: 'TypeScript',
+      go: 'Go',
+      rust: 'Rust',
+      postgres: 'PostgreSQL',
+      postgresql: 'PostgreSQL',
+      mysql: 'MySQL',
+      mongodb: 'MongoDB',
+      sqlite: 'SQLite',
+      tailwind: 'Tailwind CSS',
+      bootstrap: 'Bootstrap',
+      sass: 'Sass',
+      next: 'Next.js',
+      nuxt: 'Nuxt.js',
+      gatsby: 'Gatsby',
+      vercel: 'Vercel',
+      netlify: 'Netlify',
+      aws: 'AWS',
+      docker: 'Docker',
+      graphql: 'GraphQL',
+      rest: 'REST',
+      websocket: 'WebSocket',
+      auth: 'Authentication',
+      stripe: 'Stripe',
+      supabase: 'Supabase',
+      firebase: 'Firebase',
     };
     for (const [key, name] of Object.entries(techMap)) {
       if (lower.includes(key)) stack.push(name);
@@ -95,7 +122,9 @@ class IntentCapture {
   }
 
   _detectUI(lower) {
-    return /website|app|dashboard|page|mobile|interface|ui|screen|form|table|list|view/i.test(lower);
+    return /website|app|dashboard|page|mobile|interface|ui|screen|form|table|list|view/i.test(
+      lower
+    );
   }
 
   _detectAudience(lower) {
@@ -122,14 +151,21 @@ class IntentCapture {
       name: this.name,
       version: this.version,
       description: this.description,
-      capabilities: ['project name extraction', 'type detection', 'feature extraction', 'tech stack detection', 'UI detection']
+      capabilities: [
+        'project name extraction',
+        'type detection',
+        'feature extraction',
+        'tech stack detection',
+        'UI detection',
+      ],
     };
   }
 }
 
 if (require.main === module) {
   const skill = new IntentCapture();
-  const input = process.argv.slice(2).join(' ') || 'Build a website for freelancers to send invoices';
+  const input =
+    process.argv.slice(2).join(' ') || 'Build a website for freelancers to send invoices';
   console.log(JSON.stringify(skill.capture(input), null, 2));
 }
 

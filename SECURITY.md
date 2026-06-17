@@ -3,7 +3,7 @@
 ## Supported Versions
 
 | Version | Supported |
-|---------|-----------|
+| ------- | --------- |
 | 2.9.x   | Yes       |
 | < 2.9   | No        |
 
@@ -16,6 +16,7 @@ If you discover a security vulnerability in Vibe-Stack, please report it respons
 Instead, please email: security@vibe-stack.dev
 
 Include:
+
 - Description of the vulnerability
 - Steps to reproduce
 - Potential impact
@@ -30,16 +31,19 @@ Include:
 ## Security Considerations
 
 ### MCP Server
+
 - The MCP server runs locally by default
 - No remote access without explicit configuration
 - API keys are stored in environment variables, never in code
 
 ### Skills
+
 - Skills execute in the agent's context
 - No sandboxing by default
 - Review skill code before enabling
 
 ### Dependencies
+
 - Minimal dependencies (2 production)
 - Regular audits via `npm audit`
 - No known vulnerabilities in current dependencies
@@ -55,6 +59,7 @@ Include:
 ## Scope
 
 This policy covers the Vibe-Stack repository and its official packages. It does not cover:
+
 - Third-party skills or plugins
 - Custom deployments
 - Forks or derivatives

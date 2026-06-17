@@ -18,7 +18,7 @@ Thank you for your interest in contributing to Vibe-Stack.
 - **CommonJS**: All modules use `require()` / `module.exports`
 - **No new dependencies**: Prefer built-in Node.js APIs
 - **0 ESLint errors**: Run `npm run lint` before committing
-- **All tests pass**: Run `npm test` and verify 853+ tests pass
+- **All tests pass**: Run `npm test` and verify 1004+ tests pass (572 Jest + 432 node:test)
 
 ## Skill Development
 
@@ -30,19 +30,19 @@ Skills live in `skills/<category>/<skill-name>/`. Each skill needs:
 
 ### Skill Categories
 
-| Category | Purpose |
-|----------|---------|
-| `deploy/` | Deployment automation |
-| `design/` | UI/UX design tools |
-| `explain/` | Code explanation/translation |
-| `knowledge/` | Knowledge management |
-| `orchestration/` | Task coordination |
-| `preview/` | Visual previews |
-| `progress/` | Progress tracking |
-| `quality/` | Code quality tools |
-| `setup/` | Project setup |
-| `testing-qa/` | Testing and QA |
-| `workflow/` | Development workflow |
+| Category         | Purpose                      |
+| ---------------- | ---------------------------- |
+| `deploy/`        | Deployment automation        |
+| `design/`        | UI/UX design tools           |
+| `explain/`       | Code explanation/translation |
+| `knowledge/`     | Knowledge management         |
+| `orchestration/` | Task coordination            |
+| `preview/`       | Visual previews              |
+| `progress/`      | Progress tracking            |
+| `quality/`       | Code quality tools           |
+| `setup/`         | Project setup                |
+| `testing-qa/`    | Testing and QA               |
+| `workflow/`      | Development workflow         |
 
 ## Pull Request Process
 

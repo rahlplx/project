@@ -38,7 +38,7 @@ describe('Graphify', () => {
     const s = new Graphify();
     const r = s.analyze([
       { name: 'a.js', content: 'const b = require("./b");' },
-      { name: 'b.js', content: 'const a = require("./a");' }
+      { name: 'b.js', content: 'const a = require("./a");' },
     ]);
     expect(r.success).toBe(true);
     expect(r.edges.length).toBe(2);
@@ -66,7 +66,7 @@ describe('Graphify', () => {
     const s = new Graphify();
     const tagged = s.classifyEdges([
       { from: 'a', to: 'b', type: 'related', confidence: 0.3 },
-      { from: 'a', to: 'c', type: 'related', confidence: 0.8 }
+      { from: 'a', to: 'c', type: 'related', confidence: 0.8 },
     ]);
     expect(tagged[0].tag).toBe('AMBIGUOUS');
     expect(tagged[1].tag).toBe('INFERRED');
@@ -77,7 +77,7 @@ describe('Graphify', () => {
     const r = s.analyze([
       { name: 'a.js', content: 'require("./shared");' },
       { name: 'b.js', content: 'require("./shared");' },
-      { name: 'c.js', content: 'require("./shared");' }
+      { name: 'c.js', content: 'require("./shared");' },
     ]);
     const gods = s.godNodes(r, 1);
     expect(gods[0].id).toBe('./shared');
@@ -98,14 +98,14 @@ describe('Graphify', () => {
     const s = new Graphify();
     const r = s.analyze([{ name: 'app.js', content: 'import React from "react";' }]);
     const matches = s.query(r, 'react');
-    expect(matches.some((n) => n.id === 'react')).toBe(true);
+    expect(matches.some(n => n.id === 'react')).toBe(true);
   });
 
   it('should trace the shortest path between two nodes', () => {
     const s = new Graphify();
     const r = s.analyze([
       { name: 'a.js', content: 'require("b.js");' },
-      { name: 'b.js', content: 'require("c.js");' }
+      { name: 'b.js', content: 'require("c.js");' },
     ]);
     const result = s.tracePath(r, 'a.js', 'c.js');
     expect(result.found).toBe(true);
@@ -129,14 +129,14 @@ describe('Graphify', () => {
 
   it('should list the CLI command surface', () => {
     const s = new Graphify();
-    expect(s.getCommands().some((c) => c.command.startsWith('graphify query'))).toBe(true);
+    expect(s.getCommands().some(c => c.command.startsWith('graphify query'))).toBe(true);
   });
 
   it('should compute blast radius transitively', () => {
     const s = new Graphify();
     const r = s.analyze([
       { name: 'a.js', content: 'require("b.js");' },
-      { name: 'b.js', content: 'require("c.js");' }
+      { name: 'b.js', content: 'require("c.js");' },
     ]);
     const result = s.blastRadius(r, 'c.js');
     expect(result.affected.sort()).toEqual(['a.js', 'b.js']);
@@ -155,7 +155,7 @@ describe('Graphify', () => {
     const r = s.analyze([
       { name: 'user.controller.js', content: '' },
       { name: 'user.model.js', content: '' },
-      { name: 'misc-helper.js', content: '' }
+      { name: 'misc-helper.js', content: '' },
     ]);
     const layers = s.layerize(r);
     expect(layers.API).toContain('user.controller.js');
@@ -168,7 +168,7 @@ describe('Graphify', () => {
     const r = s.analyze([
       { name: 'a.js', content: 'require("shared.js");' },
       { name: 'b.js', content: 'require("shared.js");' },
-      { name: 'c.js', content: 'require("shared.js");' }
+      { name: 'c.js', content: 'require("shared.js");' },
     ]);
     const score = s.riskScore(r, 'shared.js', {});
     expect(score).toBeGreaterThan(50);

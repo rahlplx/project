@@ -47,17 +47,21 @@ The wizard creates a `PROJECT.md` file containing:
 # My Awesome Project
 
 ## Overview
+
 A modern web application for task management.
 
 ## Project Type
+
 **react-web**
 
 ## Features
+
 - User Authentication (OAuth, JWT)
 - Database Integration
 - Real-time Updates (WebSocket)
 
 ## Design
+
 - Visual Style: Modern Minimalist
 - Color Scheme: Blue / Professional
 ```

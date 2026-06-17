@@ -44,7 +44,9 @@ describe('QuickStart', () => {
   it('should throw for unknown template', async () => {
     const origExit = process.exit;
     let exitCode = null;
-    process.exit = (code) => { exitCode = code; };
+    process.exit = code => {
+      exitCode = code;
+    };
     const origLog = console.log;
     console.log = () => {};
     try {

@@ -1,0 +1,13 @@
+node_modules/
+coverage/
+dist/
+build/
+.vibe/
+.gsd/
+.jules/
+.claude/
+docs/handoffs/
+references/
+catalog/quality-scores.json
+package-lock.json
+*.jsonl

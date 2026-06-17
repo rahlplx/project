@@ -5,12 +5,12 @@ and what "verified" means.
 
 ## Trust Levels
 
-| Level | Badge | Meaning |
-|-------|-------|---------|
-| Tier 1 | **official** | Maintained by the company that built it |
-| Tier 2 | **community-vibe-stack** | Reviewed by the Vibe-Stack curation team |
-| Tier 3 | **community (N stars)** | Widely adopted by the community (N+ GitHub stars) |
-| Tier 4 | **contributor** | Contributed and self-verified by a community member |
+| Level  | Badge                    | Meaning                                             |
+| ------ | ------------------------ | --------------------------------------------------- |
+| Tier 1 | **official**             | Maintained by the company that built it             |
+| Tier 2 | **community-vibe-stack** | Reviewed by the Vibe-Stack curation team            |
+| Tier 3 | **community (N stars)**  | Widely adopted by the community (N+ GitHub stars)   |
+| Tier 4 | **contributor**          | Contributed and self-verified by a community member |
 
 ## Verification Process (Tier 2)
 
@@ -24,18 +24,18 @@ To be `community-vibe-stack` verified:
 
 ## Verified Sources
 
-| Verifier | Type | Notes |
-|----------|------|-------|
-| `community-vibe-stack` | Curated team | Vibe-Stack maintainers review each tool manually |
-| `community (N+ stars)` | Market signal | N+ GitHub stars from real developers |
-| `microsoft` | Official | Maintained by Microsoft |
-| `google-labs` | Official | Maintained by Google Labs |
-| `anthropic` | Official | Maintained by Anthropic |
-| `vercel` | Official | Maintained by Vercel |
-| `netlify` | Official | Maintained by Netlify |
-| `qdrant` | Official | Maintained by Qdrant |
-| `langchain` | Official | Maintained by LangChain |
-| `huggingface` | Official | Maintained by Hugging Face |
+| Verifier               | Type          | Notes                                            |
+| ---------------------- | ------------- | ------------------------------------------------ |
+| `community-vibe-stack` | Curated team  | Vibe-Stack maintainers review each tool manually |
+| `community (N+ stars)` | Market signal | N+ GitHub stars from real developers             |
+| `microsoft`            | Official      | Maintained by Microsoft                          |
+| `google-labs`          | Official      | Maintained by Google Labs                        |
+| `anthropic`            | Official      | Maintained by Anthropic                          |
+| `vercel`               | Official      | Maintained by Vercel                             |
+| `netlify`              | Official      | Maintained by Netlify                            |
+| `qdrant`               | Official      | Maintained by Qdrant                             |
+| `langchain`            | Official      | Maintained by LangChain                          |
+| `huggingface`          | Official      | Maintained by Hugging Face                       |
 
 ## Adding a New Tool
 
@@ -47,6 +47,7 @@ To be `community-vibe-stack` verified:
 ## Removing a Tool
 
 Tools get removed if:
+
 - Repository is archived or abandoned for >1 year
 - License changes to incompatible
 - Security vulnerability found

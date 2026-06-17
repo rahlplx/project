@@ -10,18 +10,19 @@ const STAGES = {
   define: {
     name: 'define',
     commands: ['gsd-new-project', 'gsd-discuss-phase', 'gsd-ui-phase'],
-    description: 'Intake, requirements extraction, roadmap approval; lock implementation preferences before coding.'
+    description:
+      'Intake, requirements extraction, roadmap approval; lock implementation preferences before coding.',
   },
   build: {
     name: 'build',
     commands: ['gsd-plan-phase', 'gsd-execute-phase', 'gsd-verify-work'],
-    description: 'Atomic task plans, wave-grouped execution, structured manual UAT.'
+    description: 'Atomic task plans, wave-grouped execution, structured manual UAT.',
   },
   ship: {
     name: 'ship',
     commands: ['gsd-ship', 'gsd-audit-milestone', 'gsd-complete-milestone'],
-    description: 'PR creation, requirement-coverage audit, archive and tag release.'
-  }
+    description: 'PR creation, requirement-coverage audit, archive and tag release.',
+  },
 };
 
 const AUXILIARY_COMMANDS = ['gsd-quick', 'gsd-progress', 'gsd-spike', 'gsd-sketch'];
@@ -30,7 +31,8 @@ class GSDWorkflow {
   constructor() {
     this.name = 'gsd-workflow';
     this.version = '1.0.0';
-    this.description = 'Define -> Build -> Ship milestone lifecycle with atomic-commit task tracking, ported from GSD.';
+    this.description =
+      'Define -> Build -> Ship milestone lifecycle with atomic-commit task tracking, ported from GSD.';
     this.stages = STAGES;
   }
 
@@ -39,7 +41,8 @@ class GSDWorkflow {
    */
   nextCommand(stage, phaseState = {}) {
     const def = STAGES[stage];
-    if (!def) return { error: `Unknown stage: ${stage}. Valid stages: ${Object.keys(STAGES).join(', ')}` };
+    if (!def)
+      {return { error: `Unknown stage: ${stage}. Valid stages: ${Object.keys(STAGES).join(', ')}` };}
 
     if (stage === 'define') {
       if (!phaseState.requirementsLocked) return 'gsd-discuss-phase';
@@ -66,11 +69,19 @@ class GSDWorkflow {
   validateAtomicCommit(task = {}) {
     const checks = [
       { id: 'commit', label: 'One isolated git commit', passed: !!task.commitSha },
-      { id: 'summary', label: 'SUMMARY.md documenting decisions and outcomes', passed: !!task.summaryPath },
-      { id: 'verification', label: 'VERIFICATION.md cross-check against phase requirements', passed: !!task.verificationPath }
+      {
+        id: 'summary',
+        label: 'SUMMARY.md documenting decisions and outcomes',
+        passed: !!task.summaryPath,
+      },
+      {
+        id: 'verification',
+        label: 'VERIFICATION.md cross-check against phase requirements',
+        passed: !!task.verificationPath,
+      },
     ];
-    const failed = checks.filter((c) => !c.passed);
-    return { atomic: failed.length === 0, checks, missing: failed.map((c) => c.label) };
+    const failed = checks.filter(c => !c.passed);
+    return { atomic: failed.length === 0, checks, missing: failed.map(c => c.label) };
   }
 
   /**
@@ -79,12 +90,12 @@ class GSDWorkflow {
    */
   auditMilestone(requirements = [], shipped = []) {
     const shippedSet = new Set(shipped);
-    const missing = requirements.filter((r) => !shippedSet.has(r));
+    const missing = requirements.filter(r => !shippedSet.has(r));
     return {
       complete: missing.length === 0,
       total: requirements.length,
       shipped: requirements.length - missing.length,
-      missing
+      missing,
     };
   }
 
@@ -98,18 +109,20 @@ class GSDWorkflow {
     let failedTask = null;
 
     for (const wave of waves) {
-      const failures = (wave.tasks || []).filter((t) => t.status === 'failed');
+      const failures = (wave.tasks || []).filter(t => t.status === 'failed');
       if (failures.length) {
         failedTask = failures[0];
         break;
       }
-      completed.push(...(wave.tasks || []).map((t) => t.id));
+      completed.push(...(wave.tasks || []).map(t => t.id));
     }
 
     return {
       preservedTasks: completed,
       failedTask: failedTask ? failedTask.id : null,
-      action: failedTask ? `Re-plan and re-execute ${failedTask.id} independently.` : 'All waves completed.'
+      action: failedTask
+        ? `Re-plan and re-execute ${failedTask.id} independently.`
+        : 'All waves completed.',
     };
   }
 
@@ -126,7 +139,12 @@ class GSDWorkflow {
   }
 
   toJSON() {
-    return { name: this.name, version: this.version, description: this.description, stages: Object.keys(STAGES) };
+    return {
+      name: this.name,
+      version: this.version,
+      description: this.description,
+      stages: Object.keys(STAGES),
+    };
   }
 }
 

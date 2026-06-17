@@ -12,6 +12,7 @@ A skill for parsing natural language intent into structured specification docume
 ## Output
 
 The `generate` method produces a spec object with:
+
 - `title` — project name extracted from intent
 - `features[]` — parsed features with auto-assigned IDs (FEAT-001, etc.) and priorities
 - `requirements[]` — extracted from "must/should/need" statements

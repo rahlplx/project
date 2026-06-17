@@ -18,6 +18,7 @@ Add `vibe-stack` as an MCP tool server to **any AI agent** that supports the Mod
 ## Platform-Specific Setup
 
 ### OpenCode
+
 Add to `~/.config/opencode/opencode.json` or `.opencode/opencode.json` in your project:
 
 ```json
@@ -32,6 +33,7 @@ Add to `~/.config/opencode/opencode.json` or `.opencode/opencode.json` in your p
 ```
 
 ### Claude Code
+
 Add to your project's `.mcp.json` or Claude config:
 
 ```json
@@ -46,6 +48,7 @@ Add to your project's `.mcp.json` or Claude config:
 ```
 
 ### Codex (by GitHub)
+
 Add to your Codex agent configuration:
 
 ```json
@@ -60,6 +63,7 @@ Add to your Codex agent configuration:
 ```
 
 ### Antigravity
+
 Use the Antigravity MCP tools configuration:
 
 ```json
@@ -74,6 +78,7 @@ Use the Antigravity MCP tools configuration:
 ```
 
 ### Cursor
+
 Add to `.cursor/mcp.json`:
 
 ```json
@@ -88,6 +93,7 @@ Add to `.cursor/mcp.json`:
 ```
 
 ### Windsurf / Other MCP Agents
+
 Same pattern — add the stdio server config pointing to `npx vibe-stack mcp`.
 
 ## Available Tools
@@ -97,16 +103,17 @@ All tools follow the naming pattern: `{category}_{skillname}:{method}`
 
 ### Example Tools
 
-| Tool | What it does |
-|------|-------------|
-| `deploy_one-click-vercel:buildDeployCommand` | Generate Vercel deploy command |
-| `progress_error-translator:translate` | Translate error to plain English |
-| `quality_vibe-review:review` | Review code for issues |
-| `workflow_git-ops:run` | Execute git commands |
-| `explain_intent-capture:capture` | Extract project spec from description |
-| `design_template-gallery:list` | List starter templates |
+| Tool                                         | What it does                          |
+| -------------------------------------------- | ------------------------------------- |
+| `deploy_one-click-vercel:buildDeployCommand` | Generate Vercel deploy command        |
+| `progress_error-translator:translate`        | Translate error to plain English      |
+| `quality_vibe-review:review`                 | Review code for issues                |
+| `workflow_git-ops:run`                       | Execute git commands                  |
+| `explain_intent-capture:capture`             | Extract project spec from description |
+| `design_template-gallery:list`               | List starter templates                |
 
 ### Full list
+
 Run `npx vibe-stack list` to see all 45 skills.
 
 ## Manual Usage (Without MCP)

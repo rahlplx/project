@@ -1,6 +1,6 @@
 /**
  * Design System Skill
- * 
+ *
  * Industry-grade design rules for spacing, colors, typography, and components.
  * Provides a comprehensive foundation for consistent, professional design.
  */
@@ -8,7 +8,8 @@
 class DesignSystem {
   constructor(config = {}) {
     this.name = 'design-system';
-    this.description = 'Industry-grade design rules for spacing, colors, typography, and components';
+    this.description =
+      'Industry-grade design rules for spacing, colors, typography, and components';
     this.version = '1.0.0';
     this.config = this.mergeConfig(config);
     this.tokens = {};
@@ -23,7 +24,7 @@ class DesignSystem {
       shadows: config.shadows || this.getDefaultShadows(),
       breakpoints: config.breakpoints || this.getDefaultBreakpoints(),
       zIndex: config.zIndex || this.getDefaultZIndex(),
-      ...config
+      ...config,
     };
   }
 
@@ -44,14 +45,14 @@ class DesignSystem {
         64: '4xl',
         80: '5xl',
         96: '6xl',
-        128: '7xl'
+        128: '7xl',
       },
       semantic: {
         componentPadding: 16,
         sectionGap: 64,
         containerPadding: 24,
-        gridGap: 24
-      }
+        gridGap: 24,
+      },
     };
   }
 
@@ -74,12 +75,12 @@ class DesignSystem {
     const vars = {};
     const naming = this.config.spacing.naming;
     const scale = this.config.spacing.scale;
-    
+
     scale.forEach((value, index) => {
       const name = naming[value] || `space-${value}`;
       vars[`--space-${name}`] = `${value}px`;
     });
-    
+
     return vars;
   }
 
@@ -97,7 +98,7 @@ class DesignSystem {
         600: '#2563eb',
         700: '#1d4ed8',
         800: '#1e40af',
-        900: '#1e3a8a'
+        900: '#1e3a8a',
       },
       neutral: {
         0: '#ffffff',
@@ -111,14 +112,14 @@ class DesignSystem {
         700: '#334155',
         800: '#1e293b',
         900: '#0f172a',
-        950: '#020617'
+        950: '#020617',
       },
       semantic: {
         success: { light: '#dcfce7', main: '#22c55e', dark: '#166534' },
         warning: { light: '#fef9c3', main: '#eab308', dark: '#854d0e' },
         error: { light: '#fee2e2', main: '#ef4444', dark: '#991b1b' },
-        info: { light: '#e0f2fe', main: '#0ea5e9', dark: '#075985' }
-      }
+        info: { light: '#e0f2fe', main: '#0ea5e9', dark: '#075985' },
+      },
     };
   }
 
@@ -139,7 +140,7 @@ class DesignSystem {
   generateColorVariables() {
     const vars = {};
     const colors = this.config.colors;
-    
+
     Object.entries(colors).forEach(([category, shades]) => {
       if (typeof shades === 'object' && !shades.main) {
         Object.entries(shades).forEach(([shade, value]) => {
@@ -153,7 +154,7 @@ class DesignSystem {
         vars[`--color-${category}`] = shades;
       }
     });
-    
+
     return vars;
   }
 
@@ -165,7 +166,7 @@ class DesignSystem {
     const r = parseInt(hex.substr(0, 2), 16) / 255;
     const g = parseInt(hex.substr(2, 2), 16) / 255;
     const b = parseInt(hex.substr(4, 2), 16) / 255;
-    const toLinear = (c) => c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    const toLinear = c => (c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
     const luminance = 0.2126 * toLinear(r) + 0.7152 * toLinear(g) + 0.0722 * toLinear(b);
     return luminance > 0.179 ? '#000000' : '#ffffff';
   }
@@ -178,18 +179,18 @@ class DesignSystem {
         sans: {
           family: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
           weights: [400, 500, 600, 700],
-          weightsName: { 400: 'Regular', 500: 'Medium', 600: 'Semibold', 700: 'Bold' }
+          weightsName: { 400: 'Regular', 500: 'Medium', 600: 'Semibold', 700: 'Bold' },
         },
         serif: {
           family: 'Georgia, "Times New Roman", serif',
           weights: [400, 500, 600, 700],
-          weightsName: { 400: 'Regular', 500: 'Medium', 600: 'Semibold', 700: 'Bold' }
+          weightsName: { 400: 'Regular', 500: 'Medium', 600: 'Semibold', 700: 'Bold' },
         },
         mono: {
           family: '"Fira Code", "SF Mono", Monaco, monospace',
           weights: [400, 500],
-          weightsName: { 400: 'Regular', 500: 'Medium' }
-        }
+          weightsName: { 400: 'Regular', 500: 'Medium' },
+        },
       },
       scale: {
         xs: { size: 12, lineHeight: 1.5 },
@@ -202,7 +203,7 @@ class DesignSystem {
         '4xl': { size: 36, lineHeight: 1.2 },
         '5xl': { size: 48, lineHeight: 1.1 },
         '6xl': { size: 60, lineHeight: 1 },
-        '7xl': { size: 72, lineHeight: 1 }
+        '7xl': { size: 72, lineHeight: 1 },
       },
       semantic: {
         body: 'base',
@@ -212,8 +213,8 @@ class DesignSystem {
         h3: '2xl',
         h4: 'xl',
         h5: 'lg',
-        h6: 'base'
-      }
+        h6: 'base',
+      },
     };
   }
 
@@ -224,12 +225,12 @@ class DesignSystem {
     const typo = this.config.typography;
     const scaleName = typo.semantic[element] || element;
     const scale = typo.scale[scaleName];
-    
+
     if (!scale) return null;
-    
+
     return {
       fontSize: `${scale.size}px`,
-      lineHeight: scale.lineHeight
+      lineHeight: scale.lineHeight,
     };
   }
 
@@ -239,18 +240,18 @@ class DesignSystem {
   generateTypographyVariables() {
     const vars = {};
     const typo = this.config.typography;
-    
+
     // Font families
     Object.entries(typo.fonts).forEach(([name, font]) => {
       vars[`--font-${name}`] = font.family;
     });
-    
+
     // Type scale
     Object.entries(typo.scale).forEach(([name, scale]) => {
       vars[`--text-${name}-size`] = `${scale.size}px`;
       vars[`--text-${name}-line-height`] = scale.lineHeight;
     });
-    
+
     return vars;
   }
 
@@ -266,15 +267,15 @@ class DesignSystem {
         lg: 12,
         xl: 16,
         '2xl': 24,
-        full: 9999
+        full: 9999,
       },
       semantic: {
         button: 8,
         input: 8,
         card: 12,
         modal: 16,
-        badge: 4
-      }
+        badge: 4,
+      },
     };
   }
 
@@ -291,12 +292,12 @@ class DesignSystem {
   generateRadiusVariables() {
     const vars = {};
     const radius = this.config.borderRadius.scale;
-    
+
     Object.entries(radius).forEach(([name, value]) => {
       const varName = name === 'DEFAULT' ? 'radius' : `radius-${name}`;
       vars[`--${varName}`] = `${value}px`;
     });
-    
+
     return vars;
   }
 
@@ -312,14 +313,14 @@ class DesignSystem {
         lg: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
         xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
         '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
-        inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)'
+        inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
       },
       semantic: {
         card: 'md',
         dropdown: 'lg',
         modal: 'xl',
-        focus: '0 0 0 3px rgba(59, 130, 246, 0.5)'
-      }
+        focus: '0 0 0 3px rgba(59, 130, 246, 0.5)',
+      },
     };
   }
 
@@ -336,12 +337,12 @@ class DesignSystem {
   generateShadowVariables() {
     const vars = {};
     const shadows = this.config.shadows.scale;
-    
+
     Object.entries(shadows).forEach(([name, value]) => {
       const varName = name === 'DEFAULT' ? 'shadow' : `shadow-${name}`;
       vars[`--${varName}`] = value;
     });
-    
+
     return vars;
   }
 
@@ -359,8 +360,8 @@ class DesignSystem {
         md: 'tablet',
         lg: 'laptop',
         xl: 'desktop',
-        '2xl': 'wide'
-      }
+        '2xl': 'wide',
+      },
     };
   }
 
@@ -391,7 +392,7 @@ class DesignSystem {
         40: 40,
         50: 50,
         auto: 'auto',
-        full: 9999
+        full: 9999,
       },
       semantic: {
         base: 0,
@@ -402,8 +403,8 @@ class DesignSystem {
         modal: 500,
         popover: 600,
         tooltip: 700,
-        toast: 800
-      }
+        toast: 800,
+      },
     };
   }
 
@@ -426,45 +427,45 @@ class DesignSystem {
   button(variant = 'primary', size = 'md') {
     const colors = this.config.colors;
     const radius = this.config.borderRadius.semantic.button;
-    
+
     const variants = {
       primary: {
         bg: colors.primary[600],
         color: '#ffffff',
         hoverBg: colors.primary[700],
-        activeBg: colors.primary[800]
+        activeBg: colors.primary[800],
       },
       secondary: {
         bg: colors.neutral[200],
         color: colors.neutral[900],
         hoverBg: colors.neutral[300],
-        activeBg: colors.neutral[400]
+        activeBg: colors.neutral[400],
       },
       outline: {
         bg: 'transparent',
         color: colors.primary[600],
         border: colors.primary[600],
         hoverBg: colors.primary[50],
-        activeBg: colors.primary[100]
+        activeBg: colors.primary[100],
       },
       ghost: {
         bg: 'transparent',
         color: colors.neutral[700],
         hoverBg: colors.neutral[100],
-        activeBg: colors.neutral[200]
+        activeBg: colors.neutral[200],
       },
       danger: {
         bg: colors.semantic.error.main,
         color: '#ffffff',
         hoverBg: colors.semantic.error.dark,
-        activeBg: '#7f1d1d'
-      }
+        activeBg: '#7f1d1d',
+      },
     };
 
     const sizes = {
       sm: { padding: '6px 12px', fontSize: '14px', gap: '6px' },
       md: { padding: '10px 16px', fontSize: '16px', gap: '8px' },
-      lg: { padding: '14px 24px', fontSize: '18px', gap: '10px' }
+      lg: { padding: '14px 24px', fontSize: '18px', gap: '10px' },
     };
 
     return {
@@ -482,15 +483,15 @@ class DesignSystem {
       cursor: 'pointer',
       transition: 'all 150ms ease',
       '&:hover': {
-        backgroundColor: variants[variant].hoverBg
+        backgroundColor: variants[variant].hoverBg,
       },
       '&:active': {
-        backgroundColor: variants[variant].activeBg
+        backgroundColor: variants[variant].activeBg,
       },
       '&:disabled': {
         opacity: 0.5,
-        cursor: 'not-allowed'
-      }
+        cursor: 'not-allowed',
+      },
     };
   }
 
@@ -500,33 +501,33 @@ class DesignSystem {
   input(size = 'md', state = 'default') {
     const colors = this.config.colors;
     const radius = this.config.borderRadius.semantic.input;
-    
+
     const states = {
       default: {
         border: colors.neutral[300],
         bg: '#ffffff',
         color: colors.neutral[900],
-        placeholder: colors.neutral[400]
+        placeholder: colors.neutral[400],
       },
       focus: {
         border: colors.primary[500],
-        ring: '0 0 0 3px rgba(59, 130, 246, 0.3)'
+        ring: '0 0 0 3px rgba(59, 130, 246, 0.3)',
       },
       error: {
         border: colors.semantic.error.main,
-        ring: '0 0 0 3px rgba(239, 68, 68, 0.2)'
+        ring: '0 0 0 3px rgba(239, 68, 68, 0.2)',
       },
       disabled: {
         bg: colors.neutral[100],
         color: colors.neutral[400],
-        cursor: 'not-allowed'
-      }
+        cursor: 'not-allowed',
+      },
     };
 
     const sizes = {
       sm: { padding: '6px 10px', fontSize: '14px' },
       md: { padding: '10px 14px', fontSize: '16px' },
-      lg: { padding: '14px 18px', fontSize: '18px' }
+      lg: { padding: '14px 18px', fontSize: '18px' },
     };
 
     return {
@@ -542,17 +543,17 @@ class DesignSystem {
       outline: 'none',
       boxSizing: 'border-box',
       '&::placeholder': {
-        color: states.default.placeholder
+        color: states.default.placeholder,
       },
       '&:focus': {
         borderColor: states.focus.border,
-        boxShadow: states.focus.ring
+        boxShadow: states.focus.ring,
       },
       '&:disabled': {
         backgroundColor: states.disabled.bg,
         color: states.disabled.color,
-        cursor: states.disabled.cursor
-      }
+        cursor: states.disabled.cursor,
+      },
     };
   }
 
@@ -562,28 +563,28 @@ class DesignSystem {
   card(variant = 'default', padding = 'md') {
     const colors = this.config.colors;
     const radius = this.config.borderRadius.semantic.card;
-    
+
     const variants = {
       default: {
         bg: '#ffffff',
         border: colors.neutral[200],
-        shadow: 'DEFAULT'
+        shadow: 'DEFAULT',
       },
       elevated: {
         bg: '#ffffff',
         border: 'transparent',
-        shadow: 'lg'
+        shadow: 'lg',
       },
       outlined: {
         bg: 'transparent',
         border: colors.neutral[300],
-        shadow: 'none'
+        shadow: 'none',
       },
       ghost: {
         bg: colors.neutral[50],
         border: 'transparent',
-        shadow: 'none'
-      }
+        shadow: 'none',
+      },
     };
 
     const paddings = {
@@ -591,7 +592,7 @@ class DesignSystem {
       sm: 16,
       md: 24,
       lg: 32,
-      xl: 40
+      xl: 40,
     };
 
     return {
@@ -599,7 +600,7 @@ class DesignSystem {
       border: `1px solid ${variants[variant].border}`,
       borderRadius: `${radius}px`,
       boxShadow: this.shadow(variants[variant].shadow),
-      padding: `${paddings[padding]}px`
+      padding: `${paddings[padding]}px`,
     };
   }
 
@@ -614,7 +615,7 @@ class DesignSystem {
       ...this.generateColorVariables(),
       ...this.generateTypographyVariables(),
       ...this.generateRadiusVariables(),
-      ...this.generateShadowVariables()
+      ...this.generateShadowVariables(),
     };
   }
 
@@ -624,11 +625,11 @@ class DesignSystem {
   toCSS() {
     const vars = this.generateAllVariables();
     let css = ':root {\n';
-    
+
     Object.entries(vars).forEach(([name, value]) => {
       css += `  ${name}: ${value};\n`;
     });
-    
+
     css += '}\n';
     return css;
   }
@@ -645,14 +646,14 @@ class DesignSystem {
    */
   toTailwindConfig() {
     const vars = this.generateAllVariables();
-    
+
     const tailwind = {
       colors: {},
       spacing: {},
       borderRadius: {},
       fontFamily: {},
       fontSize: {},
-      boxShadow: {}
+      boxShadow: {},
     };
 
     Object.entries(vars).forEach(([name, value]) => {
@@ -696,13 +697,13 @@ class DesignSystem {
     const baseStyles = {
       button: () => this.button(),
       input: () => this.input(),
-      card: () => this.card()
+      card: () => this.card(),
     };
 
     if (baseStyles[componentType]) {
       return {
         ...baseStyles[componentType](),
-        ...component
+        ...component,
       };
     }
 
@@ -718,15 +719,15 @@ class DesignSystem {
       scopeName,
       config: this.config,
       tokens: this.tokens,
-      spacing: (n) => self.spacing(n),
+      spacing: n => self.spacing(n),
       color: (c, s) => self.color(c, s),
-      typography: (e) => self.typography(e),
-      radius: (n) => self.radius(n),
-      shadow: (n) => self.shadow(n),
-      zIndex: (n) => self.zIndex(n),
+      typography: e => self.typography(e),
+      radius: n => self.radius(n),
+      shadow: n => self.shadow(n),
+      zIndex: n => self.zIndex(n),
       button: (v, sz) => self.button(v, sz),
       input: (sz, st) => self.input(sz, st),
-      card: (v, p) => self.card(v, p)
+      card: (v, p) => self.card(v, p),
     };
   }
 }

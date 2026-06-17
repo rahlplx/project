@@ -5,24 +5,29 @@ const LEVELS = {
   lite: {
     name: 'lite',
     description: 'Drop filler and hedging, keep normal sentence structure.',
-    instructions: 'Remove filler phrases ("I would be happy to", "let me", "it looks like") and hedging ("I think", "perhaps", "it seems"). Keep full sentences and normal grammar.'
+    instructions:
+      'Remove filler phrases ("I would be happy to", "let me", "it looks like") and hedging ("I think", "perhaps", "it seems"). Keep full sentences and normal grammar.',
   },
   full: {
     name: 'full',
     description: 'Default caveman mode — terse, no filler, short sentences.',
-    instructions: 'Cut all filler, hedging, and scaffolding. Use short, direct sentences. State conclusions first. Preserve every technical fact, number, and code token exactly.'
+    instructions:
+      'Cut all filler, hedging, and scaffolding. Use short, direct sentences. State conclusions first. Preserve every technical fact, number, and code token exactly.',
   },
   ultra: {
     name: 'ultra',
     description: 'Telegraphic style — drop articles and conjunctions where meaning survives.',
-    instructions: 'Telegraphic style: drop articles (a/an/the) and conjunctions where meaning survives. Fragments over sentences. No pleasantries. Preserve all technical facts, numbers, and code tokens exactly.'
+    instructions:
+      'Telegraphic style: drop articles (a/an/the) and conjunctions where meaning survives. Fragments over sentences. No pleasantries. Preserve all technical facts, numbers, and code tokens exactly.',
   },
   wenyan: {
     name: 'wenyan',
-    description: 'Classical-Chinese-influenced maximal terseness (requires the agent’s own language ability — not a mechanical transform).',
-    instructions: 'Compress to the shortest form that still reads as natural language, in the spirit of classical Chinese terseness. This level cannot be produced by mechanical text-stripping; the agent must rewrite using its own language model.',
-    requiresModel: true
-  }
+    description:
+      'Classical-Chinese-influenced maximal terseness (requires the agent’s own language ability — not a mechanical transform).',
+    instructions:
+      'Compress to the shortest form that still reads as natural language, in the spirit of classical Chinese terseness. This level cannot be produced by mechanical text-stripping; the agent must rewrite using its own language model.',
+    requiresModel: true,
+  },
 };
 
 const FILLER_PHRASES = [
@@ -37,13 +42,10 @@ const FILLER_PHRASES = [
   /\bi(?:'m| am) going to\b/gi,
   /\bin order to\b/gi,
   /\bplease note that\b/gi,
-  /\bbasically\b/gi
+  /\bbasically\b/gi,
 ];
 
-const ARTICLES_CONJUNCTIONS = [
-  /\b(?:the|a|an)\b\s*/gi,
-  /\b(?:and|but|so)\b\s*/gi
-];
+const ARTICLES_CONJUNCTIONS = [/\b(?:the|a|an)\b\s*/gi, /\b(?:and|but|so)\b\s*/gi];
 
 const REVIEW_EMOJI = { critical: '🔴', warning: '🟡', info: '🟢' };
 
@@ -51,20 +53,29 @@ class CavemanMode {
   constructor(options = {}) {
     this.name = 'caveman-mode';
     this.version = '1.0.0';
-    this.description = 'Terse-output mode — strips filler/hedging to cut response tokens while preserving technical accuracy.';
-    this.statsPath = options.statsPath || path.resolve(process.cwd(), '.vibe', 'telemetry', 'caveman-stats.json');
+    this.description =
+      'Terse-output mode — strips filler/hedging to cut response tokens while preserving technical accuracy.';
+    this.statsPath =
+      options.statsPath || path.resolve(process.cwd(), '.vibe', 'telemetry', 'caveman-stats.json');
   }
 
   getLevel(level) {
     const found = LEVELS[level];
     if (!found) {
-      return { type: 'error', message: `Unknown caveman level: ${level}. Valid levels: ${Object.keys(LEVELS).join(', ')}` };
+      return {
+        type: 'error',
+        message: `Unknown caveman level: ${level}. Valid levels: ${Object.keys(LEVELS).join(', ')}`,
+      };
     }
     return found;
   }
 
   listLevels() {
-    return Object.values(LEVELS).map(({ name, description, requiresModel }) => ({ name, description, requiresModel: !!requiresModel }));
+    return Object.values(LEVELS).map(({ name, description, requiresModel }) => ({
+      name,
+      description,
+      requiresModel: !!requiresModel,
+    }));
   }
 
   compressText(text, level = 'full') {
@@ -80,7 +91,11 @@ class CavemanMode {
     if (level === 'ultra') {
       for (const re of ARTICLES_CONJUNCTIONS) out = out.replace(re, '');
     }
-    out = out.replace(/[ \t]+/g, ' ').replace(/\s+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+    out = out
+      .replace(/[ \t]+/g, ' ')
+      .replace(/\s+\n/g, '\n')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
 
     return {
       level,
@@ -88,7 +103,7 @@ class CavemanMode {
       text: out,
       beforeChars: text.length,
       afterChars: out.length,
-      reductionPct: text.length === 0 ? 0 : Math.round((1 - out.length / text.length) * 1000) / 10
+      reductionPct: text.length === 0 ? 0 : Math.round((1 - out.length / text.length) * 1000) / 10,
     };
   }
 
@@ -102,7 +117,7 @@ class CavemanMode {
       header: truncatedHeader,
       truncated: header.length > 50,
       body: body ? body.trim() : '',
-      full: body ? `${truncatedHeader}\n\n${body.trim()}` : truncatedHeader
+      full: body ? `${truncatedHeader}\n\n${body.trim()}` : truncatedHeader,
     };
   }
 
@@ -116,14 +131,17 @@ class CavemanMode {
 
   recordSavings({ beforeChars, afterChars, costPerKChars = 0 }) {
     if (typeof beforeChars !== 'number' || typeof afterChars !== 'number') {
-      return { type: 'error', message: 'recordSavings requires numeric { beforeChars, afterChars }' };
+      return {
+        type: 'error',
+        message: 'recordSavings requires numeric { beforeChars, afterChars }',
+      };
     }
     const stats = this._readStats();
     stats.records.push({
       beforeChars,
       afterChars,
       savedChars: beforeChars - afterChars,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
     stats.totalBeforeChars += beforeChars;
     stats.totalAfterChars += afterChars;
@@ -140,8 +158,11 @@ class CavemanMode {
       totalBeforeChars: stats.totalBeforeChars,
       totalAfterChars: stats.totalAfterChars,
       totalSavedChars: totalSaved,
-      reductionPct: stats.totalBeforeChars === 0 ? 0 : Math.round((totalSaved / stats.totalBeforeChars) * 1000) / 10,
-      totalCostSavedUsd: Math.round(stats.totalCostSavedUsd * 10000) / 10000
+      reductionPct:
+        stats.totalBeforeChars === 0
+          ? 0
+          : Math.round((totalSaved / stats.totalBeforeChars) * 1000) / 10,
+      totalCostSavedUsd: Math.round(stats.totalCostSavedUsd * 10000) / 10000,
     };
   }
 
@@ -170,7 +191,12 @@ class CavemanMode {
   }
 
   toJSON() {
-    return { name: this.name, version: this.version, description: this.description, levels: this.listLevels() };
+    return {
+      name: this.name,
+      version: this.version,
+      description: this.description,
+      levels: this.listLevels(),
+    };
   }
 }
 

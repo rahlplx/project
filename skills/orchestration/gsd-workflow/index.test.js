@@ -8,7 +8,7 @@ describe('GSDWorkflow', () => {
 
   it('should expose define/build/ship stages', () => {
     const g = new GSDWorkflow();
-    const stages = g.getStages().map((s) => s.name);
+    const stages = g.getStages().map(s => s.name);
     expect(stages).toEqual(['define', 'build', 'ship']);
   });
 
@@ -24,7 +24,9 @@ describe('GSDWorkflow', () => {
 
   it('should recommend gsd-plan-phase once define is complete', () => {
     const g = new GSDWorkflow();
-    expect(g.nextCommand('define', { requirementsLocked: true, hasUI: false })).toBe('gsd-plan-phase');
+    expect(g.nextCommand('define', { requirementsLocked: true, hasUI: false })).toBe(
+      'gsd-plan-phase'
+    );
   });
 
   it('should walk the build stage from plan to execute to verify', () => {
@@ -49,7 +51,11 @@ describe('GSDWorkflow', () => {
 
   it('should validate the atomic-commit guarantee for a complete task', () => {
     const g = new GSDWorkflow();
-    const r = g.validateAtomicCommit({ commitSha: 'abc123', summaryPath: 'T01-SUMMARY.md', verificationPath: 'VERIFICATION.md' });
+    const r = g.validateAtomicCommit({
+      commitSha: 'abc123',
+      summaryPath: 'T01-SUMMARY.md',
+      verificationPath: 'VERIFICATION.md',
+    });
     expect(r.atomic).toBe(true);
     expect(r.missing.length).toBe(0);
   });
@@ -77,8 +83,18 @@ describe('GSDWorkflow', () => {
   it('should preserve prior waves and isolate a failed task on resume', () => {
     const g = new GSDWorkflow();
     const r = g.resumeAfterFailure([
-      { tasks: [{ id: 'T01', status: 'completed' }, { id: 'T02', status: 'completed' }] },
-      { tasks: [{ id: 'T03', status: 'failed' }, { id: 'T04', status: 'completed' }] }
+      {
+        tasks: [
+          { id: 'T01', status: 'completed' },
+          { id: 'T02', status: 'completed' },
+        ],
+      },
+      {
+        tasks: [
+          { id: 'T03', status: 'failed' },
+          { id: 'T04', status: 'completed' },
+        ],
+      },
     ]);
     expect(r.preservedTasks).toEqual(['T01', 'T02']);
     expect(r.failedTask).toBe('T03');

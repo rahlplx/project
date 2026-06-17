@@ -8,7 +8,11 @@ describe('TasteSkill', () => {
 
   it('should expose the three dials', () => {
     const t = new TasteSkill();
-    expect(Object.keys(t.getDials())).toEqual(['DESIGN_VARIANCE', 'MOTION_INTENSITY', 'VISUAL_DENSITY']);
+    expect(Object.keys(t.getDials())).toEqual([
+      'DESIGN_VARIANCE',
+      'MOTION_INTENSITY',
+      'VISUAL_DENSITY',
+    ]);
   });
 
   it('should report the 8/6/4 baseline', () => {
@@ -39,7 +43,11 @@ describe('TasteSkill', () => {
 
   it('should produce a one-line brief read', () => {
     const t = new TasteSkill();
-    const read = t.describeBriefRead({ pageKind: 'landing page', audience: 'developers', vibeWords: ['minimalist'] });
+    const read = t.describeBriefRead({
+      pageKind: 'landing page',
+      audience: 'developers',
+      vibeWords: ['minimalist'],
+    });
     expect(read).toMatch(/^Reading this as: landing page for developers/);
   });
 
@@ -64,14 +72,26 @@ describe('TasteSkill', () => {
 
   it('should flag hero discipline violations', () => {
     const t = new TasteSkill();
-    const r = t.checkHeroDiscipline({ headlineLines: 3, subtextWords: 25, topPaddingRem: 8, stackElements: 5, ctaVisible: false });
+    const r = t.checkHeroDiscipline({
+      headlineLines: 3,
+      subtextWords: 25,
+      topPaddingRem: 8,
+      stackElements: 5,
+      ctaVisible: false,
+    });
     expect(r.passed).toBe(false);
     expect(r.issues.length).toBe(5);
   });
 
   it('should pass a disciplined hero', () => {
     const t = new TasteSkill();
-    const r = t.checkHeroDiscipline({ headlineLines: 2, subtextWords: 15, topPaddingRem: 4, stackElements: 3, ctaVisible: true });
+    const r = t.checkHeroDiscipline({
+      headlineLines: 2,
+      subtextWords: 15,
+      topPaddingRem: 4,
+      stackElements: 3,
+      ctaVisible: true,
+    });
     expect(r.passed).toBe(true);
   });
 
@@ -99,11 +119,17 @@ describe('TasteSkill', () => {
     const r = t.preflightCheck({
       copyText: 'Ship faster, with confidence.',
       ctas: ['Get started', 'Learn more'],
-      hero: { headlineLines: 2, subtextWords: 12, topPaddingRem: 4, stackElements: 3, ctaVisible: true },
+      hero: {
+        headlineLines: 2,
+        subtextWords: 12,
+        topPaddingRem: 4,
+        stackElements: 3,
+        ctaVisible: true,
+      },
       eyebrowCount: 1,
       sectionCount: 6,
       colors: ['#111827', '#fafafa'],
-      marqueeCount: 0
+      marqueeCount: 0,
     });
     expect(r.passed).toBe(true);
     expect(r.findings.length).toBe(0);
@@ -113,11 +139,11 @@ describe('TasteSkill', () => {
     const t = new TasteSkill();
     const r = t.preflightCheck({
       copyText: 'Build faster — ship sooner.',
-      ctas: ['Contact us', 'Get in touch']
+      ctas: ['Contact us', 'Get in touch'],
     });
     expect(r.passed).toBe(false);
-    expect(r.findings.some((f) => f.rule === 'em-dash-ban')).toBe(true);
-    expect(r.findings.some((f) => f.rule === 'duplicate-cta-intent')).toBe(true);
+    expect(r.findings.some(f => f.rule === 'em-dash-ban')).toBe(true);
+    expect(r.findings.some(f => f.rule === 'duplicate-cta-intent')).toBe(true);
   });
 
   it('should render toJSON', () => {

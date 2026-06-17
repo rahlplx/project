@@ -38,7 +38,7 @@ class OneClickNetlify {
     const cmd = parts[0];
     const commands = Object.entries(vars).map(([key, value]) => ({
       cmd,
-      args: [...parts.slice(1), 'env:set', key, value]
+      args: [...parts.slice(1), 'env:set', key, value],
     }));
     return { commands, count: commands.length };
   }
@@ -52,8 +52,8 @@ class OneClickNetlify {
       usage: {
         deploy: 'skill.buildDeployCommand("./dist", { production: true })',
         init: 'skill.buildInitCommand()',
-        env: 'skill.buildEnvCommand({ MY_KEY: "value" })'
-      }
+        env: 'skill.buildEnvCommand({ MY_KEY: "value" })',
+      },
     };
   }
 }

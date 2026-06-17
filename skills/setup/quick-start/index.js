@@ -2,7 +2,7 @@
 
 /**
  * Quick Start - One-command project scaffolding
- * 
+ *
  * Usage: node index.js [template-name]
  *   or node index.js to see interactive selection
  */
@@ -21,7 +21,7 @@ const TEMPLATES = {
     devDeps: ['eslint', 'prettier'],
     envVars: ['VITE_API_URL'],
   },
-  'nextjs': {
+  nextjs: {
     name: 'Next.js (App Router)',
     description: 'Full-stack React framework with App Router',
     repo: 'https://github.com/vercel/next.js',
@@ -53,7 +53,7 @@ const TEMPLATES = {
     devDeps: ['eslint', 'prettier'],
     envVars: ['API_URL'],
   },
-  'electron': {
+  electron: {
     name: 'Electron App',
     description: 'Cross-platform desktop apps with React',
     repo: 'https://github.com/NickGerleman/expo-template',
@@ -61,7 +61,7 @@ const TEMPLATES = {
     devDeps: ['electron', 'electron-builder'],
     envVars: ['VITE_API_URL'],
   },
-  'remix': {
+  remix: {
     name: 'Remix',
     description: 'Full-stack React framework',
     repo: 'https://github.com/remix-run/remix',
@@ -77,7 +77,7 @@ const TEMPLATES = {
     devDeps: ['eslint', 'prettier'],
     envVars: ['VITE_API_URL'],
   },
-  'svelte': {
+  svelte: {
     name: 'SvelteKit',
     description: 'Svelte with file-based routing',
     repo: 'https://github.com/sveltejs/kit',
@@ -85,7 +85,7 @@ const TEMPLATES = {
     devDeps: ['eslint', 'prettier'],
     envVars: ['PUBLIC_API_URL'],
   },
-  'astro': {
+  astro: {
     name: 'Astro',
     description: 'Content-focused static site builder',
     repo: 'https://github.com/withastro/astro',
@@ -98,15 +98,19 @@ const TEMPLATES = {
     description: 'Node.js CLI with commander.js',
     repo: '',
     files: {
-      'package.json': JSON.stringify({
-        name: 'my-cli-tool',
-        version: '1.0.0',
-        description: 'A CLI tool',
-        type: 'module',
-        bin: { 'my-cli': './bin/index.js' },
-        scripts: { start: 'node bin/index.js' },
-        dependencies: { commander: '^10.0.0', chalk: '^5.0.0' },
-      }, null, 2),
+      'package.json': JSON.stringify(
+        {
+          name: 'my-cli-tool',
+          version: '1.0.0',
+          description: 'A CLI tool',
+          type: 'module',
+          bin: { 'my-cli': './bin/index.js' },
+          scripts: { start: 'node bin/index.js' },
+          dependencies: { commander: '^10.0.0', chalk: '^5.0.0' },
+        },
+        null,
+        2
+      ),
       'bin/index.js': `#!/usr/bin/env node
 import { program } from 'commander';
 import chalk from 'chalk';
@@ -185,12 +189,15 @@ function generateEnvFile(template) {
     return header + '# No environment variables required\n';
   }
 
-  const vars = template.envVars.map(v => {
-    const example = v.startsWith('NEXT_PUBLIC_') || v.startsWith('VITE_') || v.startsWith('PUBLIC_')
-      ? 'your-value-here'
-      : 'REPLACE_WITH_REAL_VALUE';
-    return `${v}=${example}`;
-  }).join('\n');
+  const vars = template.envVars
+    .map(v => {
+      const example =
+        v.startsWith('NEXT_PUBLIC_') || v.startsWith('VITE_') || v.startsWith('PUBLIC_')
+          ? 'your-value-here'
+          : 'REPLACE_WITH_REAL_VALUE';
+      return `${v}=${example}`;
+    })
+    .join('\n');
 
   return header + vars;
 }
@@ -305,13 +312,17 @@ async function scaffold(options) {
 
   if (template.files) {
     await createFromFiles(template, projectDir);
-    } else if (template.repo) {
-      log(`  Cloning from ${template.repo}...`, 'blue');
-      try {
-        const safeRepo = template.repo.replace(/[^a-zA-Z0-9._:/@-]/g, '');
-        execFileSync('git', ['clone', '--depth', '1', '--branch', template.branch, safeRepo, projectDir], {
+  } else if (template.repo) {
+    log(`  Cloning from ${template.repo}...`, 'blue');
+    try {
+      const safeRepo = template.repo.replace(/[^a-zA-Z0-9._:/@-]/g, '');
+      execFileSync(
+        'git',
+        ['clone', '--depth', '1', '--branch', template.branch, safeRepo, projectDir],
+        {
           stdio: 'pipe',
-        });
+        }
+      );
       log('  Cloned successfully', 'green');
 
       // Remove .git folder for clean start
@@ -319,11 +330,19 @@ async function scaffold(options) {
     } catch (error) {
       log('  Warning: Could not clone repository', 'yellow');
       log('  Creating minimal project structure instead...', 'yellow');
-      fs.writeFileSync(path.join(projectDir, 'package.json'), JSON.stringify({
-        name: projectName,
-        version: '1.0.0',
-        private: true,
-      }, null, 2), 'utf8');
+      fs.writeFileSync(
+        path.join(projectDir, 'package.json'),
+        JSON.stringify(
+          {
+            name: projectName,
+            version: '1.0.0',
+            private: true,
+          },
+          null,
+          2
+        ),
+        'utf8'
+      );
     }
   }
 
@@ -331,11 +350,7 @@ async function scaffold(options) {
   logStep(3, 'Generating configuration files...');
 
   // Create .env.example
-  fs.writeFileSync(
-    path.join(projectDir, '.env.example'),
-    generateEnvFile(template),
-    'utf8'
-  );
+  fs.writeFileSync(path.join(projectDir, '.env.example'), generateEnvFile(template), 'utf8');
   log('  Created .env.example', 'green');
 
   // Create README.md
@@ -449,7 +464,9 @@ ${colors.cyan}Examples:${colors.reset}
   node index.js --list
 
 ${colors.cyan}Available Templates:${colors.reset}
-${Object.keys(TEMPLATES).map(t => `  - ${t}`).join('\n')}
+${Object.keys(TEMPLATES)
+  .map(t => `  - ${t}`)
+  .join('\n')}
 `);
 }
 

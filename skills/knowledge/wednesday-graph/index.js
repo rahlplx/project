@@ -10,7 +10,10 @@ class WednesdayGraph {
   analyze(nodes, edges, target) {
     if (!nodes || !edges) return { success: false, error: 'Nodes and edges required.' };
 
-    const allTargets = [target, ...(edges.filter(e => e.from === target || e.to === target).flatMap(e => [e.from, e.to]))];
+    const allTargets = [
+      target,
+      ...edges.filter(e => e.from === target || e.to === target).flatMap(e => [e.from, e.to]),
+    ];
     const unique = [...new Set(allTargets.filter(Boolean))];
 
     const direct = edges.filter(e => e.from === target || e.to === target);
@@ -24,16 +27,22 @@ class WednesdayGraph {
         affected: unique.length,
         directly: direct.length,
         downstream: downstream.length,
-        upstream: upstream.length
+        upstream: upstream.length,
       },
-      affected: [...new Set([...direct.map(e => e.from === target ? e.to : e.from), ...downstream, ...upstream])],
+      affected: [
+        ...new Set([
+          ...direct.map(e => (e.from === target ? e.to : e.from)),
+          ...downstream,
+          ...upstream,
+        ]),
+      ],
       walk: [
         ...direct.map(e => `${e.from} → ${e.to} (direct)`),
         ...downstream.map(n => `${target} → ${n} (transitive)`),
-        ...upstream.map(n => `${n} → ${target} (depends on)`)
+        ...upstream.map(n => `${n} → ${target} (depends on)`),
       ],
       summary: `Changing "${target}" affects ${unique.length} node(s) — ${direct.length} direct, ${downstream.length} transitive.`,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
@@ -43,10 +52,13 @@ class WednesdayGraph {
     while (queue.length > 0) {
       const current = queue.shift();
       const next = edges
-        .filter(e => dir === 'from' ? e.from === current : e.to === current)
-        .map(e => dir === 'from' ? e.to : e.from)
+        .filter(e => (dir === 'from' ? e.from === current : e.to === current))
+        .map(e => (dir === 'from' ? e.to : e.from))
         .filter(n => !visited.has(n) && n !== start);
-      next.forEach(n => { visited.add(n); queue.push(n); });
+      next.forEach(n => {
+        visited.add(n);
+        queue.push(n);
+      });
     }
     return [...visited];
   }

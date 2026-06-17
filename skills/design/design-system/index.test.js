@@ -179,8 +179,8 @@ describe('DesignSystem', () => {
   it('should accept custom config', () => {
     const s = new DesignSystem({
       colors: {
-        brand: { 500: '#ff0000' }
-      }
+        brand: { 500: '#ff0000' },
+      },
     });
     expect(s.color('brand', 500)).toBe('#ff0000');
   });

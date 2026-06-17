@@ -8,7 +8,7 @@ async function main() {
   await server.start();
 }
 
-main().catch((err) => {
+main().catch(err => {
   console.error('MCP Server failed to start:', err);
   process.exit(1);
 });

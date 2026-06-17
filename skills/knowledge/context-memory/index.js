@@ -18,7 +18,11 @@ class ContextMemory {
   }
 
   recallAll() {
-    return Object.entries(this._store).map(([k, v]) => ({ key: k, value: v.value, savedAt: v.savedAt }));
+    return Object.entries(this._store).map(([k, v]) => ({
+      key: k,
+      value: v.value,
+      savedAt: v.savedAt,
+    }));
   }
 
   forget(key) {
@@ -31,7 +35,7 @@ class ContextMemory {
     return {
       totalEntries: entries.length,
       recentEntries: entries.slice(-5).map(([k, v]) => ({ key: k, savedAt: v.savedAt })),
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 

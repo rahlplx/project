@@ -33,15 +33,15 @@ You see: "Done. Your font is now readable, contrast is WCAG-compliant, and the l
 
 ## What You Can Do
 
-| You want to... | Your agent handles it |
-|----------------|----------------------|
-| Start a new project | Scaffolding, config, folder structure |
-| Design something | Colors, fonts, layouts, anti-slop prevention |
-| Test your app | Unit tests, browser tests, security checks |
-| Deploy to the world | One-click Vercel/Netlify, custom domains |
-| Understand an error | Translate to plain English, suggest fixes |
-| Remember context | Save preferences, search by meaning |
-| Do complex workflows | Plan, build, test, ship — orchestrated |
+| You want to...       | Your agent handles it                        |
+| -------------------- | -------------------------------------------- |
+| Start a new project  | Scaffolding, config, folder structure        |
+| Design something     | Colors, fonts, layouts, anti-slop prevention |
+| Test your app        | Unit tests, browser tests, security checks   |
+| Deploy to the world  | One-click Vercel/Netlify, custom domains     |
+| Understand an error  | Translate to plain English, suggest fixes    |
+| Remember context     | Save preferences, search by meaning          |
+| Do complex workflows | Plan, build, test, ship — orchestrated       |
 
 ## What's Inside
 
@@ -69,7 +69,7 @@ git clone https://github.com/rahlplx/project.git my-vibe-stack
 
 Then open your AI agent and say:
 
-> *"I just cloned Vibe-Stack. Help me build a landing page for my startup."*
+> _"I just cloned Vibe-Stack. Help me build a landing page for my startup."_
 
 Your agent reads SKILL.md, finds the right skills, and makes it happen.
 
@@ -92,4 +92,4 @@ Your AI agent is your guide. Just ask:
 
 ---
 
-*Built for vibe coders, by vibe coders.*
+_Built for vibe coders, by vibe coders._

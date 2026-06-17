@@ -16,35 +16,72 @@ class HealthCheck {
     // Package check
     const pkgPath = path.join(resolved, 'package.json');
     const hasPkg = fs.existsSync(pkgPath);
-    checks.push({ check: 'package.json exists', passed: hasPkg, severity: hasPkg ? 'ok' : 'warning' });
+    checks.push({
+      check: 'package.json exists',
+      passed: hasPkg,
+      severity: hasPkg ? 'ok' : 'warning',
+    });
 
     // Node modules
     const hasNodeModules = fs.existsSync(path.join(resolved, 'node_modules'));
-    checks.push({ check: 'node_modules installed', passed: hasNodeModules, severity: hasNodeModules ? 'ok' : 'warning' });
+    checks.push({
+      check: 'node_modules installed',
+      passed: hasNodeModules,
+      severity: hasNodeModules ? 'ok' : 'warning',
+    });
 
     // Git
     const hasGit = fs.existsSync(path.join(resolved, '.git'));
-    checks.push({ check: 'Git repository initialized', passed: hasGit, severity: hasGit ? 'ok' : 'info' });
+    checks.push({
+      check: 'Git repository initialized',
+      passed: hasGit,
+      severity: hasGit ? 'ok' : 'info',
+    });
 
     // Entry points
-    const hasIndex = fs.existsSync(path.join(resolved, 'index.js')) || fs.existsSync(path.join(resolved, 'index.html')) || fs.existsSync(path.join(resolved, 'index.ts'));
-    checks.push({ check: 'Entry point exists (index.js/html/ts)', passed: hasIndex, severity: hasIndex ? 'ok' : 'info' });
+    const hasIndex =
+      fs.existsSync(path.join(resolved, 'index.js')) ||
+      fs.existsSync(path.join(resolved, 'index.html')) ||
+      fs.existsSync(path.join(resolved, 'index.ts'));
+    checks.push({
+      check: 'Entry point exists (index.js/html/ts)',
+      passed: hasIndex,
+      severity: hasIndex ? 'ok' : 'info',
+    });
 
     // Readme
     const hasReadme = fs.existsSync(path.join(resolved, 'README.md'));
-    checks.push({ check: 'README.md exists', passed: hasReadme, severity: hasReadme ? 'ok' : 'info' });
+    checks.push({
+      check: 'README.md exists',
+      passed: hasReadme,
+      severity: hasReadme ? 'ok' : 'info',
+    });
 
     // Gitignore
     const hasGitignore = fs.existsSync(path.join(resolved, '.gitignore'));
-    checks.push({ check: '.gitignore exists', passed: hasGitignore, severity: hasGitignore ? 'ok' : 'info' });
+    checks.push({
+      check: '.gitignore exists',
+      passed: hasGitignore,
+      severity: hasGitignore ? 'ok' : 'info',
+    });
 
     // Env file
-    const hasEnv = fs.existsSync(path.join(resolved, '.env')) || fs.existsSync(path.join(resolved, '.env.example'));
-    checks.push({ check: 'Environment config (.env / .env.example)', passed: hasEnv, severity: hasEnv ? 'ok' : 'info' });
+    const hasEnv =
+      fs.existsSync(path.join(resolved, '.env')) ||
+      fs.existsSync(path.join(resolved, '.env.example'));
+    checks.push({
+      check: 'Environment config (.env / .env.example)',
+      passed: hasEnv,
+      severity: hasEnv ? 'ok' : 'info',
+    });
 
     // License
     const hasLicense = fs.existsSync(path.join(resolved, 'LICENSE'));
-    checks.push({ check: 'LICENSE file exists', passed: hasLicense, severity: hasLicense ? 'ok' : 'info' });
+    checks.push({
+      check: 'LICENSE file exists',
+      passed: hasLicense,
+      severity: hasLicense ? 'ok' : 'info',
+    });
 
     // Disk space
     const diskCheck = this._checkDiskSpace(resolved);
@@ -61,7 +98,7 @@ class HealthCheck {
       checks,
       disk: diskCheck,
       recommendations: this._generateRecommendations(checks),
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
@@ -79,10 +116,20 @@ class HealthCheck {
 
   _generateRecommendations(checks) {
     const recs = [];
-    if (!checks.find(c => c.check.includes('node_modules'))?.passed) recs.push({ priority: 'high', message: 'Run "npm install" to install dependencies.' });
-    if (!checks.find(c => c.check.includes('.gitignore'))?.passed) recs.push({ priority: 'medium', message: 'Create a .gitignore file to avoid committing unnecessary files.' });
-    if (!checks.find(c => c.check.includes('README'))?.passed) recs.push({ priority: 'low', message: 'Add a README.md so others know what your project does.' });
-    if (!checks.find(c => c.check.includes('LICENSE'))?.passed) recs.push({ priority: 'low', message: 'Add a LICENSE file if you plan to share your code.' });
+    if (!checks.find(c => c.check.includes('node_modules'))?.passed)
+      {recs.push({ priority: 'high', message: 'Run "npm install" to install dependencies.' });}
+    if (!checks.find(c => c.check.includes('.gitignore'))?.passed)
+      {recs.push({
+        priority: 'medium',
+        message: 'Create a .gitignore file to avoid committing unnecessary files.',
+      });}
+    if (!checks.find(c => c.check.includes('README'))?.passed)
+      {recs.push({
+        priority: 'low',
+        message: 'Add a README.md so others know what your project does.',
+      });}
+    if (!checks.find(c => c.check.includes('LICENSE'))?.passed)
+      {recs.push({ priority: 'low', message: 'Add a LICENSE file if you plan to share your code.' });}
     return recs;
   }
 

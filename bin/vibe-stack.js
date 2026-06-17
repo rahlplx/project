@@ -91,8 +91,8 @@ if (!entry) {
 const { instance } = entry;
 if (!method) {
   const proto = Object.getPrototypeOf(instance);
-  const methods = Object.getOwnPropertyNames(proto).filter(m =>
-    typeof instance[m] === 'function' && m !== 'constructor' && m !== 'toJSON'
+  const methods = Object.getOwnPropertyNames(proto).filter(
+    m => typeof instance[m] === 'function' && m !== 'constructor' && m !== 'toJSON'
   );
   console.error('Available methods for ' + skillKey + ': ' + methods.join(', '));
   process.exit(1);

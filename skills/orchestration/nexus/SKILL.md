@@ -4,12 +4,12 @@
 
 ## Methods
 
-| Method | Description |
-|--------|-------------|
-| `createGraph(steps)` | Defines a static DAG workflow |
-| `createRouter(agents)` | Sets up dynamic LLM-based routing |
+| Method                         | Description                                    |
+| ------------------------------ | ---------------------------------------------- |
+| `createGraph(steps)`           | Defines a static DAG workflow                  |
+| `createRouter(agents)`         | Sets up dynamic LLM-based routing              |
 | `createAdaptive(capabilities)` | Configures embedding-based capability matching |
-| `run(task)` | Executes the orchestrated workflow |
+| `run(task)`                    | Executes the orchestrated workflow             |
 
 ## Example
 

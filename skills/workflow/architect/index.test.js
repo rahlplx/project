@@ -1,17 +1,17 @@
 const Architect = require('./index');
 
-const makeSpec = (features) => ({
+const makeSpec = features => ({
   title: 'Test Project',
   features: features.map((f, i) => ({
     id: `FEAT-${String(i + 1).padStart(3, '0')}`,
     name: f.name,
     priority: f.priority || 'medium',
-    dependencies: f.dependencies || []
+    dependencies: f.dependencies || [],
   })),
   requirements: [],
   constraints: [],
   actors: [],
-  dependencies: []
+  dependencies: [],
 });
 
 describe('Architect', () => {
@@ -30,11 +30,7 @@ describe('Architect', () => {
 
   it('should decompose multi-feature into 12 tasks', () => {
     const a = new Architect();
-    const spec = makeSpec([
-      { name: 'Login' },
-      { name: 'Dashboard' },
-      { name: 'Settings' }
-    ]);
+    const spec = makeSpec([{ name: 'Login' }, { name: 'Dashboard' }, { name: 'Settings' }]);
     const result = a.decompose(spec);
     expect(result.tasks).toHaveLength(12);
   });
@@ -43,7 +39,7 @@ describe('Architect', () => {
     const a = new Architect();
     const spec = makeSpec([
       { name: 'Dashboard', dependencies: [] },
-      { name: 'Login', dependencies: ['FEAT-001'] }
+      { name: 'Login', dependencies: ['FEAT-001'] },
     ]);
     const result = a.decompose(spec);
     const loginTasks = result.tasks.filter(t => t.featureId === 'FEAT-002');
@@ -56,8 +52,11 @@ describe('Architect', () => {
   it('should group tasks into milestones', () => {
     const a = new Architect();
     const spec = makeSpec([
-      { name: 'A' }, { name: 'B' }, { name: 'C' },
-      { name: 'D' }, { name: 'E' }
+      { name: 'A' },
+      { name: 'B' },
+      { name: 'C' },
+      { name: 'D' },
+      { name: 'E' },
     ]);
     const result = a.decompose(spec);
     expect(result.milestones.length).toBeGreaterThanOrEqual(1);
@@ -69,7 +68,7 @@ describe('Architect', () => {
     const tasks = [
       { id: 'T1', complexity: 'small' },
       { id: 'T2', complexity: 'medium' },
-      { id: 'T3', complexity: 'large' }
+      { id: 'T3', complexity: 'large' },
     ];
     const effort = a.estimateEffort(tasks);
     expect(effort.total).toBe(9);
@@ -83,7 +82,7 @@ describe('Architect', () => {
     const spec = makeSpec([
       { name: 'A', dependencies: [] },
       { name: 'B', dependencies: [] },
-      { name: 'C', dependencies: ['FEAT-001'] }
+      { name: 'C', dependencies: ['FEAT-001'] },
     ]);
     const result = a.decompose(spec);
     const parallel = a.detectParallelizable(result.milestones);
@@ -103,7 +102,7 @@ describe('Architect', () => {
     const spec = makeSpec([
       { name: 'A', dependencies: ['FEAT-003'] },
       { name: 'B', dependencies: ['FEAT-001'] },
-      { name: 'C', dependencies: ['FEAT-002'] }
+      { name: 'C', dependencies: ['FEAT-002'] },
     ]);
     const result = a.decompose(spec);
     expect(result.warnings).toBeDefined();
@@ -112,7 +111,14 @@ describe('Architect', () => {
 
   it('should handle spec with no features gracefully', () => {
     const a = new Architect();
-    const spec = { title: 'Empty', features: [], requirements: [], constraints: [], actors: [], dependencies: [] };
+    const spec = {
+      title: 'Empty',
+      features: [],
+      requirements: [],
+      constraints: [],
+      actors: [],
+      dependencies: [],
+    };
     const result = a.decompose(spec);
     expect(result.tasks).toEqual([]);
     expect(result.milestones).toEqual([]);
@@ -130,9 +136,14 @@ describe('Architect', () => {
   it('should have 3-7 milestones per project with many features', () => {
     const a = new Architect();
     const spec = makeSpec([
-      { name: 'Auth' }, { name: 'Profile' }, { name: 'Search' },
-      { name: 'Messaging' }, { name: 'Notifications' }, { name: 'Admin' },
-      { name: 'Settings' }, { name: 'Analytics' }
+      { name: 'Auth' },
+      { name: 'Profile' },
+      { name: 'Search' },
+      { name: 'Messaging' },
+      { name: 'Notifications' },
+      { name: 'Admin' },
+      { name: 'Settings' },
+      { name: 'Analytics' },
     ]);
     const result = a.decompose(spec);
     expect(result.milestones.length).toBeGreaterThanOrEqual(1);
@@ -154,7 +165,7 @@ describe('Architect', () => {
     const a = new Architect();
     const spec = makeSpec([
       { name: 'A', dependencies: [] },
-      { name: 'B', dependencies: [] }
+      { name: 'B', dependencies: [] },
     ]);
     const result = a.decompose(spec);
     expect(result.tasks).toHaveLength(8);
@@ -165,7 +176,7 @@ describe('Architect', () => {
     const spec = makeSpec([
       { name: 'A', dependencies: [] },
       { name: 'B', dependencies: ['FEAT-001'] },
-      { name: 'C', dependencies: ['FEAT-002'] }
+      { name: 'C', dependencies: ['FEAT-002'] },
     ]);
     const result = a.decompose(spec);
     const parallel = a.detectParallelizable(result.milestones);

@@ -12,6 +12,7 @@ Decomposes structured specs into executable task units following the RED/GREEN/R
 ## Output
 
 `decompose` produces:
+
 - `tasks[]` — Each feature → 4 tasks (RED/GREEN/REFACTOR/VERIFY)
 - `milestones[]` — Task groups of 3-7 items
 - `warnings[]` — Circular dependency and ordering warnings

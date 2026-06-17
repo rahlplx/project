@@ -73,12 +73,14 @@ describe('Verification', () => {
 
   it('should return mixed results correctly', () => {
     const s = new Verification();
-    const spec = { features: [
-      { name: 'auth', priority: 'high' },
-      { name: 'dashboard' },
-      { name: 'billing', priority: 'high' },
-      { name: 'profile', priority: 'low' }
-    ]};
+    const spec = {
+      features: [
+        { name: 'auth', priority: 'high' },
+        { name: 'dashboard' },
+        { name: 'billing', priority: 'high' },
+        { name: 'profile', priority: 'low' },
+      ],
+    };
     const r = s.verify(spec, 'function auth() {} function profile() {}');
     expect(r.results).toHaveLength(4);
     expect(r.results[0].passed).toBe(true);
@@ -94,9 +96,7 @@ describe('Verification', () => {
   it('should verify acceptance criteria', () => {
     const s = new Verification();
     const spec = {
-      features: [
-        { name: 'login', acceptanceCriteria: ['email', 'token'] }
-      ]
+      features: [{ name: 'login', acceptanceCriteria: ['email', 'token'] }],
     };
     const r = s.verifyAcceptanceCriteria(spec, 'function login() { return email + token; }');
     expect(r.total).toBe(2);
@@ -109,8 +109,8 @@ describe('Verification', () => {
       name: 'Sprint 1',
       tasks: [
         { featureId: 'FEAT-001', featureName: 'login', type: 'GREEN' },
-        { featureId: 'FEAT-002', featureName: 'logout', type: 'GREEN' }
-      ]
+        { featureId: 'FEAT-002', featureName: 'logout', type: 'GREEN' },
+      ],
     };
     const r = s.verifyAgainstMilestone(milestone, 'function login() {}');
     expect(r.milestone).toBe('Sprint 1');

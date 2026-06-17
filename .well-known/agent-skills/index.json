@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-17T13:23:16.350Z",
+  "generated_at": "2026-06-17T14:50:37.821Z",
   "skill_count": 56,
   "skills": [
     {
@@ -10,7 +10,7 @@
       "category": "quality",
       "description": "anti-patterns",
       "url": "/.well-known/agent-skills/anti-patterns/SKILL.md",
-      "digest": "sha256-273fbe98c3d0bed1d489b27ddd230afcc28b6bc2c68158c7ba2416af99b8be41"
+      "digest": "sha256-d1d6f3555733e6d9f1f334c8c41dcbb180ac63f1803207b7f970aa797e0499cb"
     },
     {
       "name": "anti-slop",
@@ -18,7 +18,7 @@
       "category": "design",
       "description": "anti-slop",
       "url": "/.well-known/agent-skills/anti-slop/SKILL.md",
-      "digest": "sha256-78efad096cd546f7f7ebdd31e094961b44aa77c2609ab3a20b02d8c08a4dd7a3"
+      "digest": "sha256-6b6edef3301d946c58c202dda65bcbbb128ccbaa37a1a0fa60d1020e7ddda387"
     },
     {
       "name": "architect",
@@ -26,7 +26,7 @@
       "category": "workflow",
       "description": "architect",
       "url": "/.well-known/agent-skills/architect/SKILL.md",
-      "digest": "sha256-26a2f68bd97c3fbc9c7954ee07730b13a217a8c3567e521839be0c7ac96ec6c3"
+      "digest": "sha256-030fb06ffd4f1e41417d90a4b9deff84f8a0c97a92a1f475523c18cddcd00032"
     },
     {
       "name": "caveman-mode",
@@ -34,7 +34,7 @@
       "category": "workflow",
       "description": "caveman-mode",
       "url": "/.well-known/agent-skills/caveman-mode/SKILL.md",
-      "digest": "sha256-031da1b76115442af6b528141b0e6741c496b074049f25b9027a009ef971ef1f"
+      "digest": "sha256-e4ad74da530a2fa1842fad185f8cb11138cd81b6ba19dd78c54617f72539a042"
     },
     {
       "name": "checkpoints",
@@ -42,7 +42,7 @@
       "category": "workflow",
       "description": "checkpoints",
       "url": "/.well-known/agent-skills/checkpoints/SKILL.md",
-      "digest": "sha256-288bbc6aea7ca4a6b6ed38567bac588fc5b621603746d1b7e2a90bb3d348a36d"
+      "digest": "sha256-21b0ff4730be474cfbb98466e90fe00ed9dc390c78bedeb79bd0535822e59def"
     },
     {
       "name": "code-explainer",
@@ -50,7 +50,7 @@
       "category": "explain",
       "description": "code-explainer",
       "url": "/.well-known/agent-skills/code-explainer/SKILL.md",
-      "digest": "sha256-7b3cda80663916b22ec49b2d20e6f0ab949e9ec09214ea79d6bcb226f58abac5"
+      "digest": "sha256-d54f10923cce75819286e6af4ac1ca7ef9d2714794ea31b77b43a606565a229d"
     },
     {
       "name": "code-health",
@@ -58,7 +58,7 @@
       "category": "quality",
       "description": "code-health",
       "url": "/.well-known/agent-skills/code-health/SKILL.md",
-      "digest": "sha256-7a65c2e5d5253a8fa0ab0e07f23c1839e29be4c319c17676a08c4473fda8a022"
+      "digest": "sha256-8eea344da12b157a70d3b83a0a0bc8660f783edcec58a0565d3aac5d73f48030"
     },
     {
       "name": "code-review",
@@ -66,7 +66,7 @@
       "category": "quality",
       "description": "code-review",
       "url": "/.well-known/agent-skills/code-review/SKILL.md",
-      "digest": "sha256-bb6734e121fc9464e59a3bdea6be408996ad012619ff1bab67f1d157b44ea6c6"
+      "digest": "sha256-9cab63b9bd07f11cbf342da97e5e937e02c53d753940f073ec1e17bfc9e26bdc"
     },
     {
       "name": "code-translator",
@@ -74,7 +74,7 @@
       "category": "explain",
       "description": "code-translator",
       "url": "/.well-known/agent-skills/code-translator/SKILL.md",
-      "digest": "sha256-0140400c5eaee5d0be654cf6a09117429620834ab6769b5aaf001b2f68d47fdf"
+      "digest": "sha256-451d305b6726d791f6622df29c996c1241884c2b092f18e40be6d2173367b70f"
     },
     {
       "name": "color-gen",
@@ -82,7 +82,7 @@
       "category": "design",
       "description": "color-gen",
       "url": "/.well-known/agent-skills/color-gen/SKILL.md",
-      "digest": "sha256-ba39dcca1e8facab6f25023a5e82b266b0f9c307f6ecf352a15c6e50b99b0051"
+      "digest": "sha256-5ab6e07c61dc607359281fbc075d2ca753aca2d9a6f078fedf8cb46dbdb47910"
     },
     {
       "name": "context-memory",
@@ -90,7 +90,7 @@
       "category": "knowledge",
       "description": "context-memory",
       "url": "/.well-known/agent-skills/context-memory/SKILL.md",
-      "digest": "sha256-027a0c2983b535489271ca459db4765c5badc3a147c7e833fda51af6e968704c"
+      "digest": "sha256-c82fe04629c847401053cd5c83ccffbd1cc3198fda2c697f5d484a91ad9b958f"
     },
     {
       "name": "dashboard",
@@ -98,7 +98,7 @@
       "category": "progress",
       "description": "dashboard",
       "url": "/.well-known/agent-skills/dashboard/SKILL.md",
-      "digest": "sha256-3234185f29ba463f4855f3dcbe2e4dddc287dcd55343781a557fd27f7d8bc7e9"
+      "digest": "sha256-c30c7d1a29f4568ad680b5a8e20cf453455f6c369330dfb92b284535ffd14240"
     },
     {
       "name": "design-system",
@@ -106,7 +106,7 @@
       "category": "design",
       "description": "design-system",
       "url": "/.well-known/agent-skills/design-system/SKILL.md",
-      "digest": "sha256-35e8a659fad0a4945a2e13d99cde7975efe3b797babd72b73b80d2875d7f8dc1"
+      "digest": "sha256-8d8192f9eb1cb43d4ae3212480347265d206a4b11f75057334b9c3242953f36b"
     },
     {
       "name": "diff-preview",
@@ -114,7 +114,7 @@
       "category": "preview",
       "description": "diff-preview",
       "url": "/.well-known/agent-skills/diff-preview/SKILL.md",
-      "digest": "sha256-5956f97e29d25717de7cd5d5d2459f63f6d9d20f58eca460dd462cb23e0c13e8"
+      "digest": "sha256-734b8c8377e16a2810ed3851e482c7fd4d0b3d8aebfd1753abb5d761ca7191cb"
     },
     {
       "name": "done-checklist",
@@ -122,7 +122,7 @@
       "category": "progress",
       "description": "done-checklist",
       "url": "/.well-known/agent-skills/done-checklist/SKILL.md",
-      "digest": "sha256-fd9f8165048582cf49163ab2d3459b64ddf2845a3e4556ba65aa10182c1d8559"
+      "digest": "sha256-ba092685c38a9ac34b4ff770a1370d967b46b048b259d32fc6e7d4af152bbbf6"
     },
     {
       "name": "done-verifier",
@@ -130,7 +130,7 @@
       "category": "quality",
       "description": "done-verifier",
       "url": "/.well-known/agent-skills/done-verifier/SKILL.md",
-      "digest": "sha256-65601682b850f4681dce43946e214764fe96f87c5581c4ce66e605aa3b0c7e76"
+      "digest": "sha256-4e791ae0f3b9bf711d13188f7addc4bc930a344cc70dc8562dccaaa0f2490e93"
     },
     {
       "name": "error-translator",
@@ -138,7 +138,7 @@
       "category": "progress",
       "description": "error-translator",
       "url": "/.well-known/agent-skills/error-translator/SKILL.md",
-      "digest": "sha256-62504d803786c0b3c30bcf9f158a31e7bd4e100c703400b69bf386c6ba97411a"
+      "digest": "sha256-96b6c5d3107f846bd01e014a71b103d22e5e6b9ecac50d273b1903de7c338ec0"
     },
     {
       "name": "flowchart-gen",
@@ -146,7 +146,7 @@
       "category": "preview",
       "description": "flowchart-gen",
       "url": "/.well-known/agent-skills/flowchart-gen/SKILL.md",
-      "digest": "sha256-f31b0ad79462f68b1658e254e3eb70ee0c036e4e86ad5c57dd9ce3e484165753"
+      "digest": "sha256-d1e3f3c009e692081345028ca542680bd84dc35e97c8e99e90a5b7e1d6e5f477"
     },
     {
       "name": "git-free-deploy",
@@ -154,7 +154,7 @@
       "category": "deploy",
       "description": "git-free-deploy",
       "url": "/.well-known/agent-skills/git-free-deploy/SKILL.md",
-      "digest": "sha256-4030f60798dfad8edea29c8659070b29ce211c35207d808eea0f92d035f9f381"
+      "digest": "sha256-a7108c6ff6af98352cfef072cc37e108f6a50e95769ae7a0534eeab1f6870d94"
     },
     {
       "name": "git-ops",
@@ -162,7 +162,7 @@
       "category": "workflow",
       "description": "git-ops",
       "url": "/.well-known/agent-skills/git-ops/SKILL.md",
-      "digest": "sha256-f7edd130dcd33c189f61613f338336281743d3289ee228696811d8638cb3d0b2"
+      "digest": "sha256-b8175935acb7b763bafcf089ca853ede645007233815294db645ea0a8de9a66b"
     },
     {
       "name": "graphify",
@@ -170,7 +170,7 @@
       "category": "knowledge",
       "description": "graphify",
       "url": "/.well-known/agent-skills/graphify/SKILL.md",
-      "digest": "sha256-724792f82661195da39f43169ab768bec84f0cb23b516847feb3343009b2b438"
+      "digest": "sha256-0543a6b045c5ef1bf20e5e1151a1c9e6d997a4cf92bff4bb4426fc8620fe61ef"
     },
     {
       "name": "gsd-workflow",
@@ -178,7 +178,7 @@
       "category": "orchestration",
       "description": "gsd-workflow",
       "url": "/.well-known/agent-skills/gsd-workflow/SKILL.md",
-      "digest": "sha256-22a63a8643790377e0d9bd665ad716a16ac7e4e49a4c50382e37d07ed57b028f"
+      "digest": "sha256-bc39412e63625b994aaf2f1e73064c00fce0fc45a74415efa24754487d63371d"
     },
     {
       "name": "guardrails",
@@ -186,7 +186,7 @@
       "category": "quality",
       "description": "guardrails",
       "url": "/.well-known/agent-skills/guardrails/SKILL.md",
-      "digest": "sha256-02787406c770b0fb17df4a2b76a3b47ba04d8d0fdc08a04492b13e8d5215fb34"
+      "digest": "sha256-2704cfbb0f343eda077808fd4aa1e7d6bddc48157adb3a583007a1e02ce03eda"
     },
     {
       "name": "health-check",
@@ -194,7 +194,7 @@
       "category": "quality",
       "description": "health-check",
       "url": "/.well-known/agent-skills/health-check/SKILL.md",
-      "digest": "sha256-4d2d5f0cb74e67c9770753d1d1a0ee1ff3a3e65b6ca088672da684ecfe023a6e"
+      "digest": "sha256-5c6884841fce17312625c32e3bce1af6eb05bdead12838a799f5a46d6863a232"
     },
     {
       "name": "impeccable-audit",
@@ -202,7 +202,7 @@
       "category": "design",
       "description": "impeccable-audit",
       "url": "/.well-known/agent-skills/impeccable-audit/SKILL.md",
-      "digest": "sha256-c8861285e7c1bdf841d2f11db0b5c2bbbb7be3bc4d4ffffcceff4d6d817e861b"
+      "digest": "sha256-5a7a26680cc9fddb0d753a4e9ea18ad6bb2da9fe8cf4aa063bf519d970366951"
     },
     {
       "name": "intent-capture",
@@ -210,7 +210,7 @@
       "category": "explain",
       "description": "intent-capture",
       "url": "/.well-known/agent-skills/intent-capture/SKILL.md",
-      "digest": "sha256-f6227c3e56eb613f33d1c12ea6ac5f2e4be4146273ae3728945e0af97ae4448a"
+      "digest": "sha256-494878f88d7ab1ed4ec861a9e1f20f860a0fe15c91f21a4bdcbb672c4d249862"
     },
     {
       "name": "knowledge-base",
@@ -218,7 +218,7 @@
       "category": "knowledge",
       "description": "knowledge-base",
       "url": "/.well-known/agent-skills/knowledge-base/SKILL.md",
-      "digest": "sha256-89f7d5607a2ae84f88a2ba9b8190675aa3e7be26a69ef4fad9f9e3de71f782d8"
+      "digest": "sha256-f4d9a9b3883fdb24c15c019d6bc8396a6be670da2367e04e0494d1e3250ff4d1"
     },
     {
       "name": "model-router",
@@ -226,7 +226,7 @@
       "category": "orchestration",
       "description": "model-router",
       "url": "/.well-known/agent-skills/model-router/SKILL.md",
-      "digest": "sha256-1035600c3c98bb13c4f09d63d2be718e26abc0d5ea6ad73f845d1a849d1619c4"
+      "digest": "sha256-288e5edb4fdcefe48a0fae700967967fccf0140eff982a30ece08179499880f6"
     },
     {
       "name": "nexus",
@@ -250,7 +250,7 @@
       "category": "deploy",
       "description": "one-click-netlify",
       "url": "/.well-known/agent-skills/one-click-netlify/SKILL.md",
-      "digest": "sha256-0125caaf51e09a25573aa8df56a53eeb96dcc2a5acefd6a89f7fbdcb2a64dfa9"
+      "digest": "sha256-8757a5912bb555074523baf20ed848811cb85cf69258779bed59d67ad43804cb"
     },
     {
       "name": "one-click-vercel",
@@ -258,7 +258,7 @@
       "category": "deploy",
       "description": "one-click-vercel",
       "url": "/.well-known/agent-skills/one-click-vercel/SKILL.md",
-      "digest": "sha256-46a6ac70175ce945230aa50314dddd3479dc5045b1023677fcd19083ae36ced2"
+      "digest": "sha256-7972838a00b2b1d0ae5d9283cd94cc932548d655739c3e5283c3702bab7afba0"
     },
     {
       "name": "parallel-exec",
@@ -266,7 +266,7 @@
       "category": "orchestration",
       "description": "parallel-exec",
       "url": "/.well-known/agent-skills/parallel-exec/SKILL.md",
-      "digest": "sha256-06313993926f7f239779d102c95419ae42437780f3998e8f6d2b1eba27046f1b"
+      "digest": "sha256-ad3d9e69deb3d1af9e403c54481668bae3f7704be0757b126a7f4b3871cab531"
     },
     {
       "name": "planning-agent",
@@ -274,7 +274,7 @@
       "category": "workflow",
       "description": "planning-agent",
       "url": "/.well-known/agent-skills/planning-agent/SKILL.md",
-      "digest": "sha256-9d2229dc8c8a5145dbe3f9f5906cbd8fc9ddd4017e8cc84e2bbc42847080c02a"
+      "digest": "sha256-77ad88ba1a282066e8ec15cfda5c23931064307580ec80a9e0e1314c28b9be36"
     },
     {
       "name": "project-wizard",
@@ -282,7 +282,7 @@
       "category": "setup",
       "description": "project-wizard",
       "url": "/.well-known/agent-skills/project-wizard/SKILL.md",
-      "digest": "sha256-09d5374b8796ee153bf8607f5e35a4eaa96436c5bf7a7f0fd9ed67f07d883eb8"
+      "digest": "sha256-8d4be306b8b0881070eef1453560e9c44930f57dc83e1e405cc6635a51a0004a"
     },
     {
       "name": "prompt-templates",
@@ -290,7 +290,7 @@
       "category": "setup",
       "description": "prompt-templates",
       "url": "/.well-known/agent-skills/prompt-templates/SKILL.md",
-      "digest": "sha256-d7023349fc8272f479297c8ecab126d1465131c1fd0f53b806bdbd0ac09e38b7"
+      "digest": "sha256-ce96bbe62091a92c1350dc4c0c3f7d62dde1c05a5736017c9970792ddc15a380"
     },
     {
       "name": "quick-start",
@@ -298,7 +298,7 @@
       "category": "setup",
       "description": "quick-start",
       "url": "/.well-known/agent-skills/quick-start/SKILL.md",
-      "digest": "sha256-a312a97d249b1cc66f1e89c55f14404d58bffdf0de78f0b72a88f5f81913dfff"
+      "digest": "sha256-d35f4d50137425afbe69fadf7c23e8aab854d2c9f5fcde109c54ab4e7a45328a"
     },
     {
       "name": "rollback",
@@ -306,7 +306,7 @@
       "category": "workflow",
       "description": "rollback",
       "url": "/.well-known/agent-skills/rollback/SKILL.md",
-      "digest": "sha256-f41a06b1eb22c0c7b13209e8228aec484b57151a7c5328a99edb140ed06241d0"
+      "digest": "sha256-c2abfedbf9ebed41f18febd415bd65819a4c0949f7858afb5c77e4a02cdc537c"
     },
     {
       "name": "screenshot-preview",
@@ -314,7 +314,7 @@
       "category": "preview",
       "description": "screenshot-preview",
       "url": "/.well-known/agent-skills/screenshot-preview/SKILL.md",
-      "digest": "sha256-dba1593c2b5880b4a5cf7fb9fa2d8efc150299c7931f3fe36d27bed620b0e522"
+      "digest": "sha256-e78033e3fe469172c9d392ef927eb4fb858d1e16f7da6f4b8869e48cfcd5cbc5"
     },
     {
       "name": "security-audit",
@@ -322,7 +322,7 @@
       "category": "quality",
       "description": "security-audit",
       "url": "/.well-known/agent-skills/security-audit/SKILL.md",
-      "digest": "sha256-bb8a444de7bf85a59f359718e527e9319dc2085e51978b8db1af089d7e7db984"
+      "digest": "sha256-8a23285e9a7479c8990ef56031dbeb62bebc2b98ef57ea8583443bb68a9e3f8c"
     },
     {
       "name": "security-defaults",
@@ -330,7 +330,7 @@
       "category": "quality",
       "description": "security-defaults",
       "url": "/.well-known/agent-skills/security-defaults/SKILL.md",
-      "digest": "sha256-624caf82c60d6787c6a13eb765d4bc38fc09a84bacd8c00e87e77f06f0024037"
+      "digest": "sha256-0f7ece64818acdb86a628e6c343fe64b8270c1787ccfd23d07dfec7433cc9f0a"
     },
     {
       "name": "spec-driven",
@@ -338,7 +338,7 @@
       "category": "workflow",
       "description": "spec-driven",
       "url": "/.well-known/agent-skills/spec-driven/SKILL.md",
-      "digest": "sha256-c6f317d777c8293d2fbebd8f1ab800189c4df53a1af53db39628fa4e7fe5c407"
+      "digest": "sha256-d6cd63b91081e63b9c1635fa9faf82dfa1449505de3fdec1393fdad3b6f4bb75"
     },
     {
       "name": "spec-engine",
@@ -346,7 +346,7 @@
       "category": "workflow",
       "description": "spec-engine",
       "url": "/.well-known/agent-skills/spec-engine/SKILL.md",
-      "digest": "sha256-6d5aa181efeea0fd173fa21423a24217853e96773a0d544993f573df652ce6d3"
+      "digest": "sha256-b1c7affb904cab828c20ea6caddca84d1037e4426a38da9aae68480e36edd402"
     },
     {
       "name": "task-coordinator",
@@ -354,7 +354,7 @@
       "category": "orchestration",
       "description": "task-coordinator",
       "url": "/.well-known/agent-skills/task-coordinator/SKILL.md",
-      "digest": "sha256-98e1444dff016b2a6a31796e9e0d6f44e59a15b5a8c13b969437a0ed5d7c690b"
+      "digest": "sha256-a931f152869a90629b0846624e299bc3beccc0cf62a0b23513c092f42da93d52"
     },
     {
       "name": "taste-skill",
@@ -362,7 +362,7 @@
       "category": "design",
       "description": "taste-skill",
       "url": "/.well-known/agent-skills/taste-skill/SKILL.md",
-      "digest": "sha256-68d706622a7c6e497ff0d9907e91c95a263f7e419e275eb7efaa386a6cae0396"
+      "digest": "sha256-68ae27686ba8121b064376180f612d4ed71eb7fbe8d21a91f6892746b4a3e37b"
     },
     {
       "name": "tdd-vibe",
@@ -370,7 +370,7 @@
       "category": "workflow",
       "description": "tdd-vibe",
       "url": "/.well-known/agent-skills/tdd-vibe/SKILL.md",
-      "digest": "sha256-6bbac3b2bfb0485b3d01739b684a6cb04fa9e8a149f6a8519b5b3a05f47d08b7"
+      "digest": "sha256-a8468a6021f45e9afc9b77aff9ba92639bcabd1f2bab7b034f2ba53b64d9acbb"
     },
     {
       "name": "template-gallery",
@@ -378,7 +378,7 @@
       "category": "design",
       "description": "template-gallery",
       "url": "/.well-known/agent-skills/template-gallery/SKILL.md",
-      "digest": "sha256-5f00d6c4dd8fe296bde44067ab78de76bc4eccdd23b93c1b6809921208e51189"
+      "digest": "sha256-43d2bff660bf40ef8934298a9c6859e36b57b454fa022c5b01d9aa1363e24ece"
     },
     {
       "name": "testing-guide",
@@ -386,7 +386,7 @@
       "category": "quality",
       "description": "testing-guide",
       "url": "/.well-known/agent-skills/testing-guide/SKILL.md",
-      "digest": "sha256-a965cf9994a1744b707b57748a184c25fdb5d1d5682f4cbe2b527ed6f6df54a5"
+      "digest": "sha256-ceb4d09e4bce89c0cab0ae17728ca126161e9f1b18cfe29c10114c470e324c0e"
     },
     {
       "name": "theme-factory",
@@ -394,7 +394,7 @@
       "category": "design",
       "description": "theme-factory",
       "url": "/.well-known/agent-skills/theme-factory/SKILL.md",
-      "digest": "sha256-a7bf882964cd3f28152264dbc5d30c767687b819e11b10c2f62118a275d0140b"
+      "digest": "sha256-d1f3a626cf59625cf015944e2d9d51c63c7f89a3ee99e1cf11b6bfd7383d8415"
     },
     {
       "name": "tracker",
@@ -402,7 +402,7 @@
       "category": "progress",
       "description": "tracker",
       "url": "/.well-known/agent-skills/tracker/SKILL.md",
-      "digest": "sha256-df483fb55ae1185d6082be78de073694971705e1afbd798b8099179405fe01e7"
+      "digest": "sha256-d6bad610b04057525e86b2edb38e3b4224532e5edfa1561a383b7f64a19984f2"
     },
     {
       "name": "typography-rules",
@@ -410,7 +410,7 @@
       "category": "design",
       "description": "typography-rules",
       "url": "/.well-known/agent-skills/typography-rules/SKILL.md",
-      "digest": "sha256-1a70c40d2b4faa9fd9efe0284117cc424605dd44df6596e766fb16aef08dd343"
+      "digest": "sha256-a91fd84b1eec266e2a5ce2975aabcdb68bd7973805cc17c13b94176e259c7ccc"
     },
     {
       "name": "verification",
@@ -418,7 +418,7 @@
       "category": "workflow",
       "description": "verification",
       "url": "/.well-known/agent-skills/verification/SKILL.md",
-      "digest": "sha256-4f8a0aa147fdbdb7aeffc8f4b894886c9a73b085d7ac57c41669304e79b6f42b"
+      "digest": "sha256-4fcc567ea6e91bb0a5ff410f5342cb6caa882652ca57d31d161763ceb6556db6"
     },
     {
       "name": "vibe-review",
@@ -426,7 +426,7 @@
       "category": "quality",
       "description": "vibe-review",
       "url": "/.well-known/agent-skills/vibe-review/SKILL.md",
-      "digest": "sha256-46d881bd63a7f9082d391bb0fecebb51481d2ab39bc0d48c515b02ab7daa4d92"
+      "digest": "sha256-716289871af5636c7cef40511f9f96c7b8fef5c9fbfb59ff70663a85c3268360"
     },
     {
       "name": "virtual-team",
@@ -434,7 +434,7 @@
       "category": "orchestration",
       "description": "virtual-team",
       "url": "/.well-known/agent-skills/virtual-team/SKILL.md",
-      "digest": "sha256-fc08823b16f1119e67f546b7117528185292a9125d7ce16d3cf9c02860767709"
+      "digest": "sha256-d2aaab2b7228420e728a92ceeb77ed2ef05dc1f203793b502dcdc514175907f2"
     },
     {
       "name": "visual-plans",
@@ -442,7 +442,7 @@
       "category": "preview",
       "description": "visual-plans",
       "url": "/.well-known/agent-skills/visual-plans/SKILL.md",
-      "digest": "sha256-fc4f66d56b122ed5c943f1c56012835476a2054abd0aa010f4c75b0e5c708a7d"
+      "digest": "sha256-9d9993d0efadd9a84bc2984ff851c90cf9dadcaec29d4114ddf4796d1a522b40"
     },
     {
       "name": "wednesday-graph",
@@ -450,7 +450,7 @@
       "category": "knowledge",
       "description": "wednesday-graph",
       "url": "/.well-known/agent-skills/wednesday-graph/SKILL.md",
-      "digest": "sha256-2be875c52ae4e11a52af08730df20de304403f70ca87a6d7e5e9cc996821c9cd"
+      "digest": "sha256-e267538f5eda2cbb9b6c33bc99b798397d54b1fb3be416da066a93a10bddd451"
     }
   ],
   "errors": []

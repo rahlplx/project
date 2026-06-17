@@ -28,7 +28,7 @@ class OneClickVercel {
     const cmd = parts[0];
     const commands = Object.entries(vars).map(([key, value]) => ({
       cmd,
-      args: [...parts.slice(1), 'env', 'add', key, value, '--cwd', projectPath, '--yes']
+      args: [...parts.slice(1), 'env', 'add', key, value, '--cwd', projectPath, '--yes'],
     }));
     return { commands, count: commands.length };
   }
@@ -47,8 +47,8 @@ class OneClickVercel {
       usage: {
         deploy: 'skill.deploy("./my-project", { production: true })',
         env: 'skill.buildEnvCommand({ MY_KEY: "value" })',
-        link: 'skill.buildLinkCommand()'
-      }
+        link: 'skill.buildLinkCommand()',
+      },
     };
   }
 }

@@ -4,12 +4,12 @@ Auto-detects your stack and generates tests. Covers unit, integration, and E2E w
 
 ## Methods
 
-| Method | Description |
-|--------|-------------|
-| `detectStack()` | Analyzes project structure to identify framework and language |
-| `generateTests(type)` | Writes tests for detected stack (unit/integration/e2e) |
-| `healSelectors()` | Self-heals broken CSS/XPath selectors in tests |
-| `runCoverage()` | Reports untested functions and coverage gaps |
+| Method                | Description                                                   |
+| --------------------- | ------------------------------------------------------------- |
+| `detectStack()`       | Analyzes project structure to identify framework and language |
+| `generateTests(type)` | Writes tests for detected stack (unit/integration/e2e)        |
+| `healSelectors()`     | Self-heals broken CSS/XPath selectors in tests                |
+| `runCoverage()`       | Reports untested functions and coverage gaps                  |
 
 ## Example
 

@@ -8,7 +8,11 @@ describe('SpecDriven', () => {
 
   it('should create spec from options', () => {
     const s = new SpecDriven();
-    const spec = s.createSpec({ title: 'Test App', features: ['login', 'dashboard'], techStack: ['React'] });
+    const spec = s.createSpec({
+      title: 'Test App',
+      features: ['login', 'dashboard'],
+      techStack: ['React'],
+    });
     expect(spec.title).toBe('Test App');
     expect(spec.features).toHaveLength(2);
   });

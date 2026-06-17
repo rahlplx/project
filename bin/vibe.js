@@ -4,7 +4,9 @@ const path = require('path');
 // ── Bootstrap: load all vibe commands ──────────────────────────
 const cmdDir = path.resolve(__dirname, '..', 'lib', 'vibe-commands');
 const { register, validatePhase } = require(path.join(cmdDir, 'index'));
-const { readState, writeState, recordTelemetry, advancePhase, writeHandoff } = require(path.join(cmdDir, 'state-helpers'));
+const { readState, writeState, recordTelemetry, advancePhase, writeHandoff } = require(
+  path.join(cmdDir, 'state-helpers')
+);
 const { showHelp } = require(path.join(cmdDir, 'help'));
 // ⚡ Bolt: orchestrator + tracer loaded lazily inside dispatch — not at startup
 
@@ -20,43 +22,155 @@ function loadHandler(name) {
 // ── Register all commands ──────────────────────────────────────
 const commandDefs = [
   // Phase commands (with 5-phase workflow aliases)
-  { name: 'think',     phase: 'think',     desc: 'Problem definition, user analysis, solution sketch, MVP, success metrics', category: 'phase', aliases: ['scope'] },
-  { name: 'plan',      phase: 'plan',      desc: 'Multi-perspective review, risk assessment, acceptance criteria', category: 'phase' },
-  { name: 'break',     phase: 'break',     desc: 'Milestone to task decomposition with sizing', category: 'phase' },
-  { name: 'design',    phase: 'break',     desc: 'UI generation and approval via Stitch MCP', category: 'phase', conditional: true },
-  { name: 'build',     phase: 'build',     desc: 'RED-GREEN-REFACTOR TDD implementation per task', category: 'phase' },
-  { name: 'harness',   phase: 'harness',   desc: 'Production readiness validation (15 checks)', category: 'phase', aliases: ['verify'] },
-  { name: 'review',    phase: 'review',    desc: 'Multi-perspective code review, security audit', category: 'phase' },
-  { name: 'qa',        phase: 'review',    desc: 'Browser-based UI testing with Chromium', category: 'phase', conditional: true },
-  { name: 'ship',      phase: 'ship',      desc: 'Release engineering: git, push, PR, deploy', category: 'phase' },
-  { name: 'retro',     phase: 'retro',     desc: 'What went well, what didnt, action items', category: 'phase' },
-  { name: 'learn',     phase: 'learn',     desc: 'Self-improvement: patterns, anti-patterns, quality scores', category: 'phase' },
-  { name: 'evolve',    phase: 'evolve',    desc: 'Auto-evolve rules, retire underperformers', category: 'phase' },
+  {
+    name: 'think',
+    phase: 'think',
+    desc: 'Problem definition, user analysis, solution sketch, MVP, success metrics',
+    category: 'phase',
+    aliases: ['scope'],
+  },
+  {
+    name: 'plan',
+    phase: 'plan',
+    desc: 'Multi-perspective review, risk assessment, acceptance criteria',
+    category: 'phase',
+  },
+  {
+    name: 'break',
+    phase: 'break',
+    desc: 'Milestone to task decomposition with sizing',
+    category: 'phase',
+  },
+  {
+    name: 'design',
+    phase: 'break',
+    desc: 'UI generation and approval via Stitch MCP',
+    category: 'phase',
+    conditional: true,
+  },
+  {
+    name: 'build',
+    phase: 'build',
+    desc: 'RED-GREEN-REFACTOR TDD implementation per task',
+    category: 'phase',
+  },
+  {
+    name: 'harness',
+    phase: 'harness',
+    desc: 'Production readiness validation (15 checks)',
+    category: 'phase',
+    aliases: ['verify'],
+  },
+  {
+    name: 'review',
+    phase: 'review',
+    desc: 'Multi-perspective code review, security audit',
+    category: 'phase',
+  },
+  {
+    name: 'qa',
+    phase: 'review',
+    desc: 'Browser-based UI testing with Chromium',
+    category: 'phase',
+    conditional: true,
+  },
+  {
+    name: 'ship',
+    phase: 'ship',
+    desc: 'Release engineering: git, push, PR, deploy',
+    category: 'phase',
+  },
+  {
+    name: 'retro',
+    phase: 'retro',
+    desc: 'What went well, what didnt, action items',
+    category: 'phase',
+  },
+  {
+    name: 'learn',
+    phase: 'learn',
+    desc: 'Self-improvement: patterns, anti-patterns, quality scores',
+    category: 'phase',
+  },
+  {
+    name: 'evolve',
+    phase: 'evolve',
+    desc: 'Auto-evolve rules, retire underperformers',
+    category: 'phase',
+  },
 
   // Utility commands
-  { name: 'telemetry', phase: null,        desc: 'Usage diagnostics: status, trends, errors, stuck, export', category: 'utility' },
-  { name: 'status',    phase: null,        desc: 'Read state.json, render status dashboard', category: 'utility' },
-  { name: 'help',      phase: null,        desc: 'Show command reference and current status', category: 'utility', aliases: ['?'] },
-  { name: 'detect',    phase: null,        desc: 'Auto-detect project stack (framework, build, test)', category: 'utility' },
-  { name: 'install',   phase: null,        desc: 'Install rules/skills into Cursor, Windsurf, or Claude Code (--cursor|--windsurf|--claude-code|--all)', category: 'utility' },
+  {
+    name: 'telemetry',
+    phase: null,
+    desc: 'Usage diagnostics: status, trends, errors, stuck, export',
+    category: 'utility',
+  },
+  {
+    name: 'status',
+    phase: null,
+    desc: 'Read state.json, render status dashboard',
+    category: 'utility',
+  },
+  {
+    name: 'help',
+    phase: null,
+    desc: 'Show command reference and current status',
+    category: 'utility',
+    aliases: ['?'],
+  },
+  {
+    name: 'detect',
+    phase: null,
+    desc: 'Auto-detect project stack (framework, build, test)',
+    category: 'utility',
+  },
+  {
+    name: 'install',
+    phase: null,
+    desc: 'Install rules/skills into Cursor, Windsurf, or Claude Code (--cursor|--windsurf|--claude-code|--all)',
+    category: 'utility',
+  },
 
   // Orchestration commands
-  { name: 'auto',      phase: null,        desc: 'Full pipeline state machine: think through done', category: 'orchestration' },
-  { name: 'quick',     phase: 'harness',   desc: 'Compressed workflow: harness, review, ship in sequence', category: 'orchestration' },
-  { name: 'resume',    phase: null,        desc: 'Session recovery from state.json and handoff', category: 'orchestration' },
-  { name: 'maintenance', phase: null,      desc: 'Run full auto-maintenance cycle (harness→evolve)', category: 'orchestration' },
+  {
+    name: 'auto',
+    phase: null,
+    desc: 'Full pipeline state machine: think through done',
+    category: 'orchestration',
+  },
+  {
+    name: 'quick',
+    phase: 'harness',
+    desc: 'Compressed workflow: harness, review, ship in sequence',
+    category: 'orchestration',
+  },
+  {
+    name: 'resume',
+    phase: null,
+    desc: 'Session recovery from state.json and handoff',
+    category: 'orchestration',
+  },
+  {
+    name: 'maintenance',
+    phase: null,
+    desc: 'Run full auto-maintenance cycle (harness→evolve)',
+    category: 'orchestration',
+  },
 ];
 
 for (const def of commandDefs) {
   register(def.name, {
     // ⚡ Bolt: getter defers require() until the command is actually invoked
-    get handler() { return loadHandler(def.name) || noopHandler(def.name); },
+    get handler() {
+      return loadHandler(def.name) || noopHandler(def.name);
+    },
     phase: def.phase,
     description: def.desc,
-    ref: def.conditional ? null : `references/vibe-${def.name}.md` ,
+    ref: def.conditional ? null : `references/vibe-${def.name}.md`,
     aliases: def.aliases || [],
     conditional: def.conditional || false,
-    category: def.category || 'phase'
+    category: def.category || 'phase',
   });
 }
 
@@ -64,9 +178,11 @@ function noopHandler(name) {
   return {
     handler: (args, state) => {
       console.log(`  [${name}] Reference: references/vibe-${name}.md`);
-      console.log(`  [${name}] Phase documentation is available. Run with an AI agent for full interactive flow.`);
+      console.log(
+        `  [${name}] Phase documentation is available. Run with an AI agent for full interactive flow.`
+      );
       return { status: 'reference-only' };
-    }
+    },
   };
 }
 
@@ -115,7 +231,9 @@ if (cmd) {
   const span = tracer.startSpan(`cmd.${mode}`, { phase: cmd.phase || 'utility' });
 
   if (cmd.category !== 'utility') {
-    const { RoleLoader, ContextManager, QueryEnricher, announceSkills } = require(path.join(__dirname, '..', 'lib', 'orchestrator'));
+    const { RoleLoader, ContextManager, QueryEnricher, announceSkills } = require(
+      path.join(__dirname, '..', 'lib', 'orchestrator')
+    );
 
     // Show active virtual-team roles for this phase
     if (cmd.phase) {
@@ -131,7 +249,9 @@ if (cmd) {
       if (!ctx.readGoalBlock() && state.goal) {
         ctx.writeGoalBlock({ goal: state.goal, resumeWith: mode, phase: cmd.phase || 'utility' });
       }
-    } catch { /* degrade */ }
+    } catch {
+      /* degrade */
+    }
 
     const enriched = new QueryEnricher(path.resolve(__dirname, '..')).enrich(queryText);
     if (enriched.skills.length) {
@@ -155,7 +275,9 @@ if (cmd) {
 
     // Write handoff on phase transition
     if (cmd.phase && state.phase !== cmd.phase) {
-      const { StateMachine, ContextManager: CM } = require(path.join(__dirname, '..', 'lib', 'orchestrator'));
+      const { StateMachine, ContextManager: CM } = require(
+        path.join(__dirname, '..', 'lib', 'orchestrator')
+      );
       const next = state.phase || 'done';
       const stateMachine = new StateMachine();
 
@@ -174,7 +296,7 @@ if (cmd) {
           goal: state.goal || '',
           task: mode,
           files: [],
-          need: `Proceed to ${next} phase`
+          need: `Proceed to ${next} phase`,
         });
       }
     }

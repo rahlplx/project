@@ -27,7 +27,9 @@ describe('VisualPlansSkill', () => {
 
   it('parseDescription breaks description into components', () => {
     const s = new VisualPlansSkill();
-    const components = s.parseDescription('header with title, button for submit, footer with copyright');
+    const components = s.parseDescription(
+      'header with title, button for submit, footer with copyright'
+    );
     expect(components.length).toBe(3);
     expect(components[0].type).toBe('header');
     expect(components[1].type).toBe('button');
@@ -72,7 +74,7 @@ describe('VisualPlansSkill', () => {
   it('determineLayout returns sidebar-layout when sidebar present', () => {
     const s = new VisualPlansSkill();
     const layout = s.determineLayout([
-      { type: 'sidebar', label: 'Sidebar', position: 'left', styles: {} }
+      { type: 'sidebar', label: 'Sidebar', position: 'left', styles: {} },
     ]);
     expect(layout).toBe('single-page');
   });
@@ -81,7 +83,7 @@ describe('VisualPlansSkill', () => {
     const s = new VisualPlansSkill();
     const layout = s.determineLayout([
       { type: 'header', label: 'Header', position: 'top', styles: {} },
-      { type: 'navigation', label: 'Nav', position: 'top', styles: {} }
+      { type: 'navigation', label: 'Nav', position: 'top', styles: {} },
     ]);
     expect(layout).toBe('app-layout');
   });
@@ -90,7 +92,7 @@ describe('VisualPlansSkill', () => {
     const s = new VisualPlansSkill();
     const code = s.generateMockupCode([
       { type: 'button', label: 'Submit', position: 'auto', styles: { variant: 'primary' } },
-      { type: 'header', label: 'Welcome', position: 'top', styles: {} }
+      { type: 'header', label: 'Welcome', position: 'top', styles: {} },
     ]);
     expect(code).toContain('<button');
     expect(code).toContain('<h1');
@@ -100,7 +102,7 @@ describe('VisualPlansSkill', () => {
   it('generateAsciiMockup returns ASCII representation', () => {
     const s = new VisualPlansSkill();
     const ascii = s.generateAsciiMockup([
-      { type: 'button', label: 'Submit', position: 'auto', styles: {} }
+      { type: 'button', label: 'Submit', position: 'auto', styles: {} },
     ]);
     expect(ascii).toContain('UI Mockup');
     expect(ascii).toContain('[BUTTON]');

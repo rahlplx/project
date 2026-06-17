@@ -9,19 +9,20 @@ class Verification {
   }
 
   verify(spec, implementation) {
-    if (!spec || !implementation) return { success: false, error: 'Both spec and implementation required.' };
+    if (!spec || !implementation)
+      {return { success: false, error: 'Both spec and implementation required.' };}
 
     const results = [];
     const features = spec.features || spec.requirements || [];
 
     for (const item of features) {
-      const name = typeof item === 'string' ? item : (item.name || item.description || '');
+      const name = typeof item === 'string' ? item : item.name || item.description || '';
       const found = implementation.toLowerCase().includes(name.toLowerCase());
       results.push({
         requirement: name,
         passed: found,
         status: found ? 'implemented' : 'missing',
-        severity: found ? 'ok' : (item.priority === 'high' ? 'critical' : 'warning')
+        severity: found ? 'ok' : item.priority === 'high' ? 'critical' : 'warning',
       });
     }
 
@@ -34,9 +35,13 @@ class Verification {
       score: results.length > 0 ? Math.round((passed / results.length) * 100) : 100,
       results,
       missingItems: missing.map(r => ({ requirement: r.requirement, severity: r.severity })),
-      verdict: missing.some(r => r.severity === 'critical') ? 'FAIL' : missing.length === 0 ? 'PASS' : 'INCOMPLETE',
+      verdict: missing.some(r => r.severity === 'critical')
+        ? 'FAIL'
+        : missing.length === 0
+          ? 'PASS'
+          : 'INCOMPLETE',
       strict: this.strict,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
@@ -54,7 +59,7 @@ class Verification {
         items.push({
           feature: feature.name,
           criterion,
-          passed: isMet
+          passed: isMet,
         });
         if (isMet) passed++;
         else failed++;
@@ -79,7 +84,7 @@ class Verification {
           taskId: task.id,
           featureName,
           type: task.type,
-          passed: found
+          passed: found,
         });
         if (found) passed++;
         else failed++;
@@ -92,12 +97,13 @@ class Verification {
       passed,
       failed,
       items,
-      verdict: failed === 0 ? 'PASS' : 'INCOMPLETE'
+      verdict: failed === 0 ? 'PASS' : 'INCOMPLETE',
     };
   }
 
   generateSpecDriftReport(specA, specB) {
-    const getFeatureNames = (spec) => (spec.features || []).map(f => typeof f === 'string' ? f : f.name);
+    const getFeatureNames = spec =>
+      (spec.features || []).map(f => (typeof f === 'string' ? f : f.name));
     const featuresA = getFeatureNames(specA);
     const featuresB = getFeatureNames(specB);
 
@@ -110,7 +116,7 @@ class Verification {
       added,
       removed,
       common,
-      summary: `+${added.length}/-${removed.length}/${common.length} common`
+      summary: `+${added.length}/-${removed.length}/${common.length} common`,
     };
   }
 

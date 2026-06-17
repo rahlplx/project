@@ -10,7 +10,8 @@ const crypto = require('crypto');
 class TaskTracker {
   constructor(options = {}) {
     this.name = 'tracker';
-    this.description = 'Tracks tasks through a visual kanban board (todo → in-progress → review → done)';
+    this.description =
+      'Tracks tasks through a visual kanban board (todo → in-progress → review → done)';
     this.storageKey = options.storageKey || 'vibe-tracker';
     this.phases = options.phases || ['todo', 'in-progress', 'review', 'done'];
     this.tasks = [];
@@ -20,9 +21,10 @@ class TaskTracker {
 
   _uuid() {
     if (crypto.randomUUID) return crypto.randomUUID();
-    return crypto.randomBytes(16).toString('hex').replace(
-      /^(.{8})(.{4})(.{4})(.{4})(.{12})$/, '$1-$2-$3-$4-$5'
-    );
+    return crypto
+      .randomBytes(16)
+      .toString('hex')
+      .replace(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/, '$1-$2-$3-$4-$5');
   }
 
   _now() {
@@ -70,7 +72,7 @@ class TaskTracker {
       updatedAt: now,
       completedAt: null,
       tags: Array.isArray(options.tags) ? options.tags : [],
-      checkItems: []
+      checkItems: [],
     };
     this.tasks.push(task);
     return { type: 'task', timestamp: now, ...task };
@@ -149,8 +151,8 @@ class TaskTracker {
     if (filters.tag) result = result.filter(t => t.tags.includes(filters.tag));
     if (filters.search) {
       const q = filters.search.toLowerCase();
-      result = result.filter(t =>
-        t.name.toLowerCase().includes(q) || t.description.toLowerCase().includes(q)
+      result = result.filter(
+        t => t.name.toLowerCase().includes(q) || t.description.toLowerCase().includes(q)
       );
     }
     return result;
@@ -169,7 +171,9 @@ class TaskTracker {
     const now = this._now();
     const total = this.tasks.length;
     const byPhase = {};
-    this.phases.forEach(p => { byPhase[p] = 0; });
+    this.phases.forEach(p => {
+      byPhase[p] = 0;
+    });
     this.tasks.forEach(t => {
       if (byPhase[t.phase] !== undefined) byPhase[t.phase]++;
     });
@@ -182,7 +186,7 @@ class TaskTracker {
       total,
       byPhase,
       completionRate,
-      tasks: this.tasks.map(t => ({ ...t }))
+      tasks: this.tasks.map(t => ({ ...t })),
     };
   }
 
@@ -210,7 +214,7 @@ class TaskTracker {
       inProgress,
       todo,
       overdue: 0,
-      byPriority
+      byPriority,
     };
   }
 
@@ -218,7 +222,9 @@ class TaskTracker {
 
   toAscii() {
     const phaseMap = {};
-    this.phases.forEach(p => { phaseMap[p] = []; });
+    this.phases.forEach(p => {
+      phaseMap[p] = [];
+    });
     this.tasks.forEach(t => {
       if (phaseMap[t.phase]) phaseMap[t.phase].push(t);
     });
@@ -246,14 +252,15 @@ class TaskTracker {
       return ' ' + s + ' '.repeat(width - s.length - 1);
     };
 
-    const headerRow = '│' + this.phases.map((p, i) => padCell(headers[i], colWidths[i])).join('│') + '│';
+    const headerRow =
+      '│' + this.phases.map((p, i) => padCell(headers[i], colWidths[i])).join('│') + '│';
 
     const dataRows = [];
     for (let r = 0; r < maxRows; r++) {
       const cells = this.phases.map((p, i) => {
         const task = phaseMap[p][r];
         if (!task) return ' '.repeat(colWidths[i]);
-        const prefix = p === lastPhase ? '✓ ' : (p.includes('progress') ? '► ' : '• ');
+        const prefix = p === lastPhase ? '✓ ' : p.includes('progress') ? '► ' : '• ';
         return padCell(prefix + task.name, colWidths[i]);
       });
       dataRows.push('│' + cells.join('│') + '│');
@@ -270,11 +277,15 @@ class TaskTracker {
   }
 
   toJSON() {
-    return JSON.stringify({
-      storageKey: this.storageKey,
-      phases: this.phases,
-      tasks: this.tasks
-    }, null, 2);
+    return JSON.stringify(
+      {
+        storageKey: this.storageKey,
+        phases: this.phases,
+        tasks: this.tasks,
+      },
+      null,
+      2
+    );
   }
 
   toMarkdown() {

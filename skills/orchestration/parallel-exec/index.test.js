@@ -8,9 +8,7 @@ describe('ParallelExec', () => {
 
   it('should group independent tasks', () => {
     const s = new ParallelExec();
-    const tasks = [
-      { id: 'A' }, { id: 'B', dependsOn: ['A'] }, { id: 'C' }
-    ];
+    const tasks = [{ id: 'A' }, { id: 'B', dependsOn: ['A'] }, { id: 'C' }];
     const r = s.plan(tasks);
     expect(r.success).toBe(true);
     expect(r.groups.length).toBeGreaterThan(0);

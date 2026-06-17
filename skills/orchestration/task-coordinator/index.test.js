@@ -8,7 +8,11 @@ describe('TaskCoordinator', () => {
 
   it('should define workflows', () => {
     const s = new TaskCoordinator();
-    const wf = s.define('Deploy', [{ name: 'Build' }, { name: 'Test', dependsOn: ['S01'] }, { name: 'Deploy', dependsOn: ['S02'] }]);
+    const wf = s.define('Deploy', [
+      { name: 'Build' },
+      { name: 'Test', dependsOn: ['S01'] },
+      { name: 'Deploy', dependsOn: ['S02'] },
+    ]);
     expect(wf.steps).toHaveLength(3);
   });
 

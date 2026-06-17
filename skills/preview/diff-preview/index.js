@@ -23,18 +23,18 @@ class DiffPreview {
   generateDiff(oldCode, newCode, options = {}) {
     const oldLines = oldCode.split('\n');
     const newLines = newCode.split('\n');
-    
+
     const diff = this.computeDiff(oldLines, newLines);
     const stats = this.computeStats(diff);
     const visual = this.renderVisualDiff(diff, options);
-    
+
     return {
       type: 'diff',
       timestamp: new Date().toISOString(),
       stats,
       hunks: this.groupIntoHunks(diff),
       visual,
-      summary: this.generateSummary(diff)
+      summary: this.generateSummary(diff),
     };
   }
 
@@ -44,10 +44,12 @@ class DiffPreview {
   computeDiff(oldLines, newLines) {
     const m = oldLines.length;
     const n = newLines.length;
-    
+
     // Build LCS matrix
-    const lcs = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
-    
+    const lcs = Array(m + 1)
+      .fill(null)
+      .map(() => Array(n + 1).fill(0));
+
     for (let i = 1; i <= m; i++) {
       for (let j = 1; j <= n; j++) {
         if (oldLines[i - 1] === newLines[j - 1]) {
@@ -57,11 +59,12 @@ class DiffPreview {
         }
       }
     }
-    
+
     // Backtrack to find diff
     const changes = [];
-    let i = m, j = n;
-    
+    let i = m,
+      j = n;
+
     while (i > 0 || j > 0) {
       if (i > 0 && j > 0 && oldLines[i - 1] === newLines[j - 1]) {
         changes.unshift({ type: 'unchanged', oldLine: i, newLine: j, content: oldLines[i - 1] });
@@ -75,7 +78,7 @@ class DiffPreview {
         i--;
       }
     }
-    
+
     return changes;
   }
 
@@ -86,12 +89,12 @@ class DiffPreview {
     const additions = diff.filter(d => d.type === 'added').length;
     const deletions = diff.filter(d => d.type === 'removed').length;
     const unchanged = diff.filter(d => d.type === 'unchanged').length;
-    
+
     return {
       additions,
       deletions,
       unchanged,
-      totalChanges: additions + deletions
+      totalChanges: additions + deletions,
     };
   }
 
@@ -102,10 +105,10 @@ class DiffPreview {
     const hunks = [];
     let currentHunk = null;
     const hunkStart = 0;
-    
+
     for (let i = 0; i < diff.length; i++) {
       const change = diff[i];
-      
+
       if (change.type !== 'unchanged') {
         if (!currentHunk) {
           currentHunk = { changes: [], startIndex: i };
@@ -121,12 +124,12 @@ class DiffPreview {
         }
       }
     }
-    
+
     if (currentHunk) {
       currentHunk.endIndex = diff.length;
       hunks.push(currentHunk);
     }
-    
+
     return hunks;
   }
 
@@ -148,14 +151,14 @@ class DiffPreview {
     const lines = [];
     const showNumbers = options.showLineNumbers !== false;
     const useColor = options.colorize !== false && this.colorize;
-    
+
     let oldLine = 1;
     let newLine = 1;
-    
+
     for (const change of diff) {
       let prefix = ' ';
       let content = change.content;
-      
+
       if (change.type === 'added') {
         prefix = useColor ? '\x1b[32m+\x1b[0m' : '+';
         content = change.content;
@@ -165,7 +168,7 @@ class DiffPreview {
       } else {
         content = ' ' + content;
       }
-      
+
       if (showNumbers) {
         const oldNum = change.type === 'added' ? '' : String(oldLine).padStart(4, ' ');
         const newNum = change.type === 'removed' ? '' : String(newLine).padStart(4, ' ');
@@ -173,11 +176,11 @@ class DiffPreview {
       } else {
         lines.push(`${prefix} ${content}`);
       }
-      
+
       if (change.type !== 'added') oldLine++;
       if (change.type !== 'removed') newLine++;
     }
-    
+
     return lines.join('\n');
   }
 
@@ -186,11 +189,11 @@ class DiffPreview {
    */
   generateSummary(diff) {
     const stats = this.computeStats(diff);
-    
+
     if (stats.totalChanges === 0) {
       return 'No changes detected.';
     }
-    
+
     const parts = [];
     if (stats.additions > 0) {
       parts.push(`${stats.additions} addition${stats.additions > 1 ? 's' : ''}`);
@@ -198,7 +201,7 @@ class DiffPreview {
     if (stats.deletions > 0) {
       parts.push(`${stats.deletions} deletion${stats.deletions > 1 ? 's' : ''}`);
     }
-    
+
     return `${parts.join(', ')} in ${diff.length} lines`;
   }
 
@@ -209,13 +212,13 @@ class DiffPreview {
     const oldLines = oldCode.split('\n');
     const newLines = newCode.split('\n');
     const maxWidth = options.maxWidth || 40;
-    
+
     const diff = this.computeDiff(oldLines, newLines);
     const lines = [];
-    
+
     let oldIdx = 0;
     let newIdx = 0;
-    
+
     for (const change of diff) {
       if (change.type === 'unchanged') {
         const oldLine = oldLines[oldIdx]?.substring(0, maxWidth) || '';
@@ -223,7 +226,7 @@ class DiffPreview {
         lines.push({
           type: 'unchanged',
           left: oldLine.padEnd(maxWidth),
-          right: newLine.padEnd(maxWidth)
+          right: newLine.padEnd(maxWidth),
         });
         oldIdx++;
         newIdx++;
@@ -232,7 +235,7 @@ class DiffPreview {
         lines.push({
           type: 'removed',
           left: oldLine.padEnd(maxWidth),
-          right: ''.padEnd(maxWidth)
+          right: ''.padEnd(maxWidth),
         });
         oldIdx++;
       } else {
@@ -240,12 +243,12 @@ class DiffPreview {
         lines.push({
           type: 'added',
           left: ''.padEnd(maxWidth),
-          right: newLine.padEnd(maxWidth)
+          right: newLine.padEnd(maxWidth),
         });
         newIdx++;
       }
     }
-    
+
     return lines;
   }
 
@@ -255,17 +258,21 @@ class DiffPreview {
   generateUnifiedDiff(oldCode, newCode, filename = 'file.js') {
     const diff = this.computeDiff(oldCode.split('\n'), newCode.split('\n'));
     const hunks = this.groupIntoHunks(diff);
-    
+
     let output = `--- a/${filename}\n+++ b/${filename}\n`;
-    
+
     for (const hunk of hunks) {
       const startOld = hunk.changes.find(c => c.type !== 'added')?.oldLine || 1;
-      const endOld = hunk.changes.filter(c => c.type !== 'removed').reduce((max, c) => Math.max(max, c.oldLine || 0), 0);
+      const endOld = hunk.changes
+        .filter(c => c.type !== 'removed')
+        .reduce((max, c) => Math.max(max, c.oldLine || 0), 0);
       const startNew = hunk.changes.find(c => c.type !== 'removed')?.newLine || 1;
-      const endNew = hunk.changes.filter(c => c.type === 'added').reduce((max, c) => Math.max(max, c.newLine || 0), 0);
-      
+      const endNew = hunk.changes
+        .filter(c => c.type === 'added')
+        .reduce((max, c) => Math.max(max, c.newLine || 0), 0);
+
       output += `@@ -${startOld},${endOld - startOld + 1} +${startNew},${endNew - startNew + 1} @@\n`;
-      
+
       for (const change of hunk.changes) {
         if (change.type === 'removed') {
           output += `-${change.content}\n`;
@@ -276,7 +283,7 @@ class DiffPreview {
         }
       }
     }
-    
+
     return output;
   }
 
@@ -287,17 +294,17 @@ class DiffPreview {
     if (!this.wordDiff) {
       return this.generateDiff(oldCode, newCode);
     }
-    
+
     const diff = this.computeDiff(oldCode.split('\n'), newCode.split('\n'));
     const result = { ...diff };
-    
+
     // For word-level diff, process each line
     for (let i = 0; i < result.length; i++) {
       if (result[i].type === 'unchanged') {
         result[i].words = this.splitIntoWords(result[i].content);
       }
     }
-    
+
     return result;
   }
 
@@ -322,7 +329,7 @@ class DiffPreview {
   toHTML(oldCode, newCode, options = {}) {
     const diff = this.computeDiff(oldCode.split('\n'), newCode.split('\n'));
     const title = options.title || 'Code Diff';
-    
+
     let html = `<!DOCTYPE html>
 <html>
 <head>
@@ -347,18 +354,18 @@ class DiffPreview {
       <span class="deletions">-${diff.filter(d => d.type === 'removed').length} deletions</span>
     </div>
     <pre>`;
-    
+
     for (const change of diff) {
       const cls = change.type !== 'unchanged' ? change.type : '';
       const prefix = change.type === 'added' ? '+' : change.type === 'removed' ? '-' : ' ';
       html += `<div class="line ${cls}">${prefix} ${this.escapeHTML(change.content)}</div>`;
     }
-    
+
     html += `</pre>
   </div>
 </body>
 </html>`;
-    
+
     return html;
   }
 

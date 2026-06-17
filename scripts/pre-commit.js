@@ -35,9 +35,11 @@ if (changedFiles.some(f => f === 'catalog/tools.yaml' || f.startsWith('catalog/'
 // Check 2: File naming convention (kebab-case)
 const namingViolations = changedFiles.filter(f => {
   const base = path.basename(f);
-  return (f.startsWith('skills/') || f.startsWith('catalog/')) &&
+  return (
+    (f.startsWith('skills/') || f.startsWith('catalog/')) &&
     /[A-Z_]/.test(base) &&
-    !base.startsWith('AGENTS');
+    !base.startsWith('AGENTS')
+  );
 });
 
 if (namingViolations.length > 0) {

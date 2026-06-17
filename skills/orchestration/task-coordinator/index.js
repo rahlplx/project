@@ -17,10 +17,10 @@ class TaskCoordinator {
         name: s.name || `Step ${i + 1}`,
         action: s.action || '',
         dependsOn: s.dependsOn || [],
-        status: 'pending'
+        status: 'pending',
       })),
       status: 'defined',
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     };
     this.workflows.push(wf);
     return wf;
@@ -48,14 +48,14 @@ class TaskCoordinator {
       stepsCompleted: wf.steps.length,
       executionOrder: order.map(s => s.id),
       status: 'completed',
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
   _resolveOrder(steps) {
     const resolved = [];
     const visited = new Set();
-    const visit = (step) => {
+    const visit = step => {
       if (visited.has(step.id)) return;
       step.dependsOn.forEach(depId => {
         const dep = steps.find(s => s.id === depId);
@@ -76,7 +76,7 @@ class TaskCoordinator {
       name: wf.name,
       status: wf.status,
       steps: wf.steps.map(s => ({ id: s.id, name: s.name, status: s.status })),
-      progress: `${wf.steps.filter(s => s.status === 'completed').length}/${wf.steps.length}`
+      progress: `${wf.steps.filter(s => s.status === 'completed').length}/${wf.steps.length}`,
     };
   }
 

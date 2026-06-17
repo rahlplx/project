@@ -14,8 +14,8 @@ describe('Dashboard', () => {
       tasks: [
         { id: '1', status: 'done' },
         { id: '2', status: 'in-progress' },
-        { id: '3', status: 'todo' }
-      ]
+        { id: '3', status: 'todo' },
+      ],
     };
     const r = s.generateReport(data);
     expect(r.project).toBe('Test');
@@ -48,8 +48,8 @@ describe('Dashboard', () => {
     const r = s.generateReport({
       tasks: [
         { id: '1', status: 'in-progress', blocker: true },
-        { id: '2', status: 'done', blocker: false }
-      ]
+        { id: '2', status: 'done', blocker: false },
+      ],
     });
     expect(r.summary.blockers).toBe(1);
   });

@@ -98,20 +98,32 @@ ${answers.techPreferences || 'To be determined based on project requirements'}
 ### Core Functionality
 ${answers.features.map(f => `- ${f}`).join('\n')}
 
-${answers.features.includes('auth') ? `### Authentication
+${
+  answers.features.includes('auth')
+    ? `### Authentication
 - Method: ${answers.authMethod || 'JWT'}
 - Providers: ${answers.authProviders || 'Email/Password, Social login'}
-` : ''}
+`
+    : ''
+}
 
-${answers.features.includes('database') ? `### Database
+${
+  answers.features.includes('database')
+    ? `### Database
 - Type: ${answers.databaseType || 'PostgreSQL'}
 - ORM: ${answers.orm || 'Prisma / TypeORM'}
-` : ''}
+`
+    : ''
+}
 
-${answers.features.includes('realtime') ? `### Real-time Features
+${
+  answers.features.includes('realtime')
+    ? `### Real-time Features
 - Technology: WebSocket / Server-Sent Events
 - Use cases: ${answers.realtimeUseCases || 'Live updates, notifications'}
-` : ''}
+`
+    : ''
+}
 
 ---
 
@@ -123,9 +135,13 @@ ${answers.features.includes('realtime') ? `### Real-time Features
 ### Color Scheme
 **${answers.colorScheme}**
 
-${answers.fonts ? `### Typography
+${
+  answers.fonts
+    ? `### Typography
 - Primary Font: ${answers.fonts}
-` : ''}
+`
+    : ''
+}
 
 ### Responsive Design
 ${answers.responsiveDesign ? 'Yes - Mobile-first approach' : 'Standard responsive (desktop-primary)'}
@@ -174,74 +190,74 @@ async function main() {
         type: 'input',
         name: 'projectName',
         message: '📝 Project name:',
-        validate: input => input.trim() ? true : 'Project name is required'
+        validate: input => (input.trim() ? true : 'Project name is required'),
       },
       {
         type: 'input',
         name: 'description',
         message: '📋 Brief description (1-2 sentences):',
-        validate: input => input.trim() ? true : 'Description is required'
+        validate: input => (input.trim() ? true : 'Description is required'),
       },
       {
         type: 'list',
         name: 'projectType',
         message: '🎨 What type of project are you building?',
-        choices: PROJECT_TYPES
+        choices: PROJECT_TYPES,
       },
       {
         type: 'checkbox',
         name: 'features',
         message: '⚡ Select features you need (space to select, enter to confirm):',
-        choices: FEATURES
+        choices: FEATURES,
       },
       {
         type: 'list',
         name: 'designPreference',
         message: '🎨 Design style preference:',
-        choices: DESIGN_PREFERENCES
+        choices: DESIGN_PREFERENCES,
       },
       {
         type: 'list',
         name: 'colorScheme',
         message: '🌈 Color scheme preference:',
-        choices: COLOR_SCHEMES
+        choices: COLOR_SCHEMES,
       },
       {
         type: 'checkbox',
         name: 'deploymentTargets',
         message: '🚀 Deployment targets (select all that apply):',
-        choices: DEPLOYMENT_TARGETS
+        choices: DEPLOYMENT_TARGETS,
       },
       {
         type: 'input',
         name: 'techPreferences',
         message: '💻 Any specific tech stack preferences? (press Enter to skip):',
-        default: ''
+        default: '',
       },
       {
         type: 'confirm',
         name: 'responsiveDesign',
         message: '📱 Is mobile-first responsive design important?',
-        default: true
+        default: true,
       },
       {
         type: 'input',
         name: 'timeline',
         message: '⏰ Expected timeline (press Enter to skip):',
-        default: 'TBD'
+        default: 'TBD',
       },
       {
         type: 'input',
         name: 'budget',
         message: '💰 Budget range (press Enter to skip):',
-        default: 'Not specified'
+        default: 'Not specified',
       },
       {
         type: 'input',
         name: 'notes',
         message: '📌 Additional notes or requirements (press Enter to skip):',
-        default: ''
-      }
+        default: '',
+      },
     ]);
 
     // Handle conditional questions based on selected features
@@ -257,7 +273,7 @@ async function main() {
             { name: 'OAuth 2.0', value: 'oauth2' },
             { name: 'Passwordless / Magic link', value: 'passwordless' },
           ],
-          default: 'JWT'
+          default: 'JWT',
         },
         {
           type: 'checkbox',
@@ -269,12 +285,12 @@ async function main() {
             { name: 'Facebook', value: 'Facebook' },
             { name: 'Twitter/X', value: 'Twitter' },
             { name: 'Apple', value: 'Apple' },
-          ]
-        }
+          ],
+        },
       ]);
       answers.authMethod = authAnswers.authMethod;
-      answers.authProviders = authAnswers.authProviders.length 
-        ? authAnswers.authProviders.join(', ') 
+      answers.authProviders = authAnswers.authProviders.length
+        ? authAnswers.authProviders.join(', ')
         : 'Email/Password only';
     }
 
@@ -291,7 +307,7 @@ async function main() {
             { name: 'SQLite (for small projects)', value: 'SQLite' },
             { name: 'Firebase / Supabase (BaaS)', value: 'baas' },
           ],
-          default: 'PostgreSQL'
+          default: 'PostgreSQL',
         },
         {
           type: 'list',
@@ -304,8 +320,8 @@ async function main() {
             { name: 'Drizzle', value: 'Drizzle' },
             { name: 'None / Raw SQL', value: 'none' },
           ],
-          default: 'Prisma'
-        }
+          default: 'Prisma',
+        },
       ]);
       answers.databaseType = dbAnswers.databaseType;
       answers.orm = dbAnswers.orm;
@@ -317,8 +333,8 @@ async function main() {
           type: 'input',
           name: 'realtimeUseCases',
           message: '📡 Real-time use cases (e.g., chat, notifications, live updates):',
-          default: 'Live notifications, real-time data sync'
-        }
+          default: 'Live notifications, real-time data sync',
+        },
       ]);
       answers.realtimeUseCases = realtimeAnswer.realtimeUseCases;
     }
@@ -336,7 +352,6 @@ async function main() {
     console.log('  1. Review PROJECT.md');
     console.log('  2. Share it with your AI coding assistant');
     console.log('  3. Start building!\n');
-
   } catch (error) {
     if (error.isTtyError) {
       console.error('\n❌ Terminal does not support interactive prompts.');
@@ -350,4 +365,11 @@ async function main() {
 
 if (require.main === module) main();
 const scaffold = generateProjectSpec;
-module.exports = { main, generateProjectSpec, scaffold, PROJECT_TYPES, DEPLOYMENT_TARGETS, FEATURES };
+module.exports = {
+  main,
+  generateProjectSpec,
+  scaffold,
+  PROJECT_TYPES,
+  DEPLOYMENT_TARGETS,
+  FEATURES,
+};

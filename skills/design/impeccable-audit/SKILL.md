@@ -27,7 +27,7 @@ sit on either side of the detector-based `audit`.
   reference descriptions for the agent to act on directly (see the `vibe-design`
   wrapper for how each command is actually used).
 - `runInit(answers)` — validates `{ surfaceType: 'brand'|'product', audience, voice,
-  antiReferences?, palette?, typography?, components? }` and renders a `DESIGN.md`.
+antiReferences?, palette?, typography?, components? }` and renders a `DESIGN.md`.
 - `audit(design)` — runs the existing `anti-slop` skill's 41 detectors **plus** 5
   supplemental detectors not covered by anti-slop (nested cards, bounce/elastic
   easing, gray text on a colored background, side-tab border accents, dark glow

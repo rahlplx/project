@@ -23,7 +23,7 @@ class PlanningAgent {
       tasks,
       totalTasks: tasks.length,
       estimatedEffort: this._estimateEffort(tasks),
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
@@ -54,17 +54,27 @@ class PlanningAgent {
       { id: 'T13', phase: 'quality', title: 'Code review and refactor', effort: 'medium' },
       { id: 'T14', phase: 'quality', title: 'Security audit', effort: 'medium' },
       { id: 'T15', phase: 'deploy', title: 'Set up CI/CD pipeline', effort: 'medium' },
-      { id: 'T16', phase: 'deploy', title: 'Deploy to production', effort: 'small' }
+      { id: 'T16', phase: 'deploy', title: 'Deploy to production', effort: 'small' },
     ];
 
     if (/auth|login|signup|user/i.test(desc)) {
       common.push({ id: 'T17', phase: 'core', title: 'Implement authentication', effort: 'large' });
     }
     if (/payment|stripe|checkout/i.test(desc)) {
-      common.push({ id: 'T18', phase: 'core', title: 'Implement payment processing', effort: 'large' });
+      common.push({
+        id: 'T18',
+        phase: 'core',
+        title: 'Implement payment processing',
+        effort: 'large',
+      });
     }
     if (/email|notif/i.test(desc)) {
-      common.push({ id: 'T19', phase: 'core', title: 'Set up email notifications', effort: 'medium' });
+      common.push({
+        id: 'T19',
+        phase: 'core',
+        title: 'Set up email notifications',
+        effort: 'medium',
+      });
     }
     if (/api|integration|third.?party/i.test(desc)) {
       common.push({ id: 'T20', phase: 'core', title: 'Integrate external APIs', effort: 'medium' });
@@ -82,7 +92,7 @@ class PlanningAgent {
     return Object.entries(phaseMap).map(([name, taskIds]) => ({
       name,
       taskCount: taskIds.length,
-      tasks: taskIds
+      tasks: taskIds,
     }));
   }
 

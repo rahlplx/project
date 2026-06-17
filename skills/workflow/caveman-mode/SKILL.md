@@ -17,11 +17,11 @@ JS-module + tests convention.
 
 `CavemanMode` (in `index.js`) provides four levels:
 
-| Level | Effect |
-|-------|--------|
-| `lite` | Drop filler/hedging, keep normal sentences |
-| `full` | Default — terse, short sentences, conclusions first |
-| `ultra` | Telegraphic — drop articles/conjunctions where meaning survives |
+| Level    | Effect                                                                                                                                                                                                           |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `lite`   | Drop filler/hedging, keep normal sentences                                                                                                                                                                       |
+| `full`   | Default — terse, short sentences, conclusions first                                                                                                                                                              |
+| `ultra`  | Telegraphic — drop articles/conjunctions where meaning survives                                                                                                                                                  |
 | `wenyan` | Maximal terseness; `requiresModel: true` — this is NOT a mechanical transform. The agent must rewrite the response itself in this style; `compressText()` only returns the instructions for the agent to follow. |
 
 `lite`/`full`/`ultra` are implemented as deterministic regex-based text transforms
@@ -29,6 +29,7 @@ JS-module + tests convention.
 rewriting static memory files (e.g. `CLAUDE.md`) or batch-processing text.
 
 Other methods:
+
 - `formatCommitMessage({ type, scope, subject, body })` — conventional commit, ≤50 char header.
 - `formatReviewComment({ line, severity, category, message })` — `L42: 🔴 bug: description` format.
 - `recordSavings(...)` / `getStats()` — persist before/after character counts to

@@ -58,7 +58,7 @@ describe('ProjectWizard', () => {
       timeline: '1 month',
       budget: '1000',
       constraints: 'None',
-      notes: 'Test notes'
+      notes: 'Test notes',
     };
     const spec = await mod.generateProjectSpec(answers);
     expect(spec).toContain('# Project Specification');

@@ -14,7 +14,7 @@ class Checkpoints {
       name,
       tasks: tasks.map(t => ({ description: t, done: false })),
       status: 'pending',
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     };
     this.checkpoints.push(cp);
     return cp;
@@ -36,9 +36,13 @@ class Checkpoints {
 
     return {
       summary: { total, completed: done, pct: total > 0 ? Math.round((done / total) * 100) : 0 },
-      tasks: { total: taskTotal, completed: taskDone, pct: taskTotal > 0 ? Math.round((taskDone / taskTotal) * 100) : 0 },
+      tasks: {
+        total: taskTotal,
+        completed: taskDone,
+        pct: taskTotal > 0 ? Math.round((taskDone / taskTotal) * 100) : 0,
+      },
       checkpoints: this.checkpoints,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 

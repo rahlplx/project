@@ -9,7 +9,10 @@ describe('WednesdayGraph', () => {
   it('should analyze impact', () => {
     const s = new WednesdayGraph();
     const nodes = ['a', 'b', 'c'];
-    const edges = [{ from: 'a', to: 'b' }, { from: 'b', to: 'c' }];
+    const edges = [
+      { from: 'a', to: 'b' },
+      { from: 'b', to: 'c' },
+    ];
     const r = s.analyze(nodes, edges, 'a');
     expect(r.success).toBe(true);
     expect(r.impact.directly).toBe(1);
@@ -17,7 +20,10 @@ describe('WednesdayGraph', () => {
 
   it('should detect transitive dependencies', () => {
     const s = new WednesdayGraph();
-    const edges = [{ from: 'a', to: 'b' }, { from: 'b', to: 'c' }];
+    const edges = [
+      { from: 'a', to: 'b' },
+      { from: 'b', to: 'c' },
+    ];
     const r = s.analyze([], edges, 'a');
     expect(r.impact.downstream).toBeGreaterThan(0);
   });
@@ -42,7 +48,10 @@ describe('WednesdayGraph', () => {
 
   it('should ignore disconnected subgraphs', () => {
     const s = new WednesdayGraph();
-    const edges = [{ from: 'a', to: 'b' }, { from: 'c', to: 'd' }];
+    const edges = [
+      { from: 'a', to: 'b' },
+      { from: 'c', to: 'd' },
+    ];
     const r = s.analyze(['a', 'b', 'c', 'd'], edges, 'a');
     expect(r.success).toBe(true);
     expect(r.impact.affected).toBe(2);

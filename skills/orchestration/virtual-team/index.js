@@ -9,15 +9,36 @@ class VirtualTeam {
 
   assign(role, task) {
     const roles = {
-      ceo: { title: 'CEO', focus: 'Strategy, market fit, business value', style: 'Big picture. Asks: "Does this solve a real problem?"' },
-      designer: { title: 'Designer', focus: 'UX, visual quality, consistency', style: 'Visual and user-focused. Asks: "How does this feel?"' },
-      engineer: { title: 'Engineer', focus: 'Architecture, performance, maintainability', style: 'Technical and pragmatic. Asks: "Will this scale?"' },
-      qa: { title: 'QA Engineer', focus: 'Edge cases, error handling, test coverage', style: 'Detail-oriented. Asks: "What could break?"' },
-      security: { title: 'Security Engineer', focus: 'Vulnerabilities, auth, data protection', style: 'Cautious. Asks: "Is this safe?"' }
+      ceo: {
+        title: 'CEO',
+        focus: 'Strategy, market fit, business value',
+        style: 'Big picture. Asks: "Does this solve a real problem?"',
+      },
+      designer: {
+        title: 'Designer',
+        focus: 'UX, visual quality, consistency',
+        style: 'Visual and user-focused. Asks: "How does this feel?"',
+      },
+      engineer: {
+        title: 'Engineer',
+        focus: 'Architecture, performance, maintainability',
+        style: 'Technical and pragmatic. Asks: "Will this scale?"',
+      },
+      qa: {
+        title: 'QA Engineer',
+        focus: 'Edge cases, error handling, test coverage',
+        style: 'Detail-oriented. Asks: "What could break?"',
+      },
+      security: {
+        title: 'Security Engineer',
+        focus: 'Vulnerabilities, auth, data protection',
+        style: 'Cautious. Asks: "Is this safe?"',
+      },
     };
 
     const roleInfo = roles[role];
-    if (!roleInfo) return { error: `Unknown role: ${role}. Available: ${Object.keys(roles).join(', ')}` };
+    if (!roleInfo)
+      {return { error: `Unknown role: ${role}. Available: ${Object.keys(roles).join(', ')}` };}
 
     return {
       assigned: true,
@@ -26,7 +47,7 @@ class VirtualTeam {
       style: roleInfo.style,
       task,
       response: this._generateResponse(role, task),
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
@@ -36,13 +57,15 @@ class VirtualTeam {
       designer: `Design review for "${task}": Check consistency, spacing, color harmony, and user flow.`,
       engineer: `Tech review for "${task}": Consider architecture, dependencies, and performance implications.`,
       qa: `QA review for "${task}": Test happy path, error states, edge cases, and boundary conditions.`,
-      security: `Security review for "${task}": Audit for OWASP Top 10, hardcoded secrets, and input validation.`
+      security: `Security review for "${task}": Audit for OWASP Top 10, hardcoded secrets, and input validation.`,
     };
     return responses[role] || `Reviewing "${task}" from ${role} perspective.`;
   }
 
   brainstorm(task) {
-    return Object.keys({ ceo: 1, designer: 1, engineer: 1, qa: 1, security: 1 }).map(role => this.assign(role, task));
+    return Object.keys({ ceo: 1, designer: 1, engineer: 1, qa: 1, security: 1 }).map(role =>
+      this.assign(role, task)
+    );
   }
 
   toJSON() {

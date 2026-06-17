@@ -20,7 +20,11 @@ describe('ImpeccableAudit', () => {
 
   it('should run init and render a DESIGN.md', () => {
     const i = new ImpeccableAudit();
-    const r = i.runInit({ surfaceType: 'product', audience: 'developers', voice: 'direct and technical' });
+    const r = i.runInit({
+      surfaceType: 'product',
+      audience: 'developers',
+      voice: 'direct and technical',
+    });
     expect(r.context.surfaceType).toBe('product');
     expect(r.markdown).toContain('DESIGN.md');
   });
@@ -40,13 +44,13 @@ describe('ImpeccableAudit', () => {
   it('should detect nested cards via the supplemental detector', () => {
     const i = new ImpeccableAudit();
     const r = i.audit({ cards: [{ cards: [{ id: 1 }] }] });
-    expect(r.warnings.some((w) => w.name === 'Nested Cards')).toBe(true);
+    expect(r.warnings.some(w => w.name === 'Nested Cards')).toBe(true);
   });
 
   it('should detect bounce easing via the supplemental detector', () => {
     const i = new ImpeccableAudit();
     const r = i.audit({ style: 'transition: all 0.3s bounce' });
-    expect(r.warnings.some((w) => w.name === 'Bounce/Elastic Easing')).toBe(true);
+    expect(r.warnings.some(w => w.name === 'Bounce/Elastic Easing')).toBe(true);
   });
 
   it('should combine anti-slop detectors with supplemental detectors', () => {
@@ -62,7 +66,7 @@ describe('ImpeccableAudit', () => {
       textColor: '#1a1a1a',
       backgroundColor: '#ffffff',
       colors: ['#1a1a1a', '#ffffff', '#3366cc'],
-      fontSizes: [14, 16, 20, 32]
+      fontSizes: [14, 16, 20, 32],
     });
     expect(r.passed).toBe(true);
   });
@@ -71,12 +75,16 @@ describe('ImpeccableAudit', () => {
     const i = new ImpeccableAudit();
     const r = i.critique({});
     expect(r.passed).toBe(false);
-    expect(r.findings.some((f) => f.axis === 'hierarchy')).toBe(true);
+    expect(r.findings.some(f => f.axis === 'hierarchy')).toBe(true);
   });
 
   it('should pass critique when hierarchy and voice are present', () => {
     const i = new ImpeccableAudit();
-    const r = i.critique({ hierarchy: { levels: 3 }, voice: { matchesBrand: true }, focalPoint: true });
+    const r = i.critique({
+      hierarchy: { levels: 3 },
+      voice: { matchesBrand: true },
+      focalPoint: true,
+    });
     expect(r.passed).toBe(true);
   });
 
@@ -89,7 +97,13 @@ describe('ImpeccableAudit', () => {
 
   it('should be ready to ship when the full polish checklist passes', () => {
     const i = new ImpeccableAudit();
-    const r = i.polish({ contrast: true, responsive: true, states: true, emptyStates: true, reducedMotion: true });
+    const r = i.polish({
+      contrast: true,
+      responsive: true,
+      states: true,
+      emptyStates: true,
+      reducedMotion: true,
+    });
     expect(r.readyToShip).toBe(true);
   });
 

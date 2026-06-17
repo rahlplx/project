@@ -19,13 +19,17 @@ describe('SpecEngine', () => {
 
   it('should extract multiple features from intent', () => {
     const s = new SpecEngine();
-    const spec = s.generate('Build a login system with email authentication, password recovery, and user profile management');
+    const spec = s.generate(
+      'Build a login system with email authentication, password recovery, and user profile management'
+    );
     expect(spec.features.length).toBeGreaterThanOrEqual(3);
   });
 
   it('should extract requirements from intent', () => {
     const s = new SpecEngine();
-    const spec = s.generate('Build a dashboard. Must have real-time updates. Must support dark mode.');
+    const spec = s.generate(
+      'Build a dashboard. Must have real-time updates. Must support dark mode.'
+    );
     expect(spec.requirements.length).toBeGreaterThanOrEqual(1);
   });
 
@@ -126,12 +130,12 @@ describe('SpecEngine', () => {
       title: 'Test',
       features: [
         { id: 'FEAT-001', name: 'A', priority: 'high' },
-        { id: 'FEAT-001', name: 'B', priority: 'medium' }
+        { id: 'FEAT-001', name: 'B', priority: 'medium' },
       ],
       requirements: [],
       constraints: [],
       actors: [],
-      dependencies: []
+      dependencies: [],
     };
     const result = s.validate(spec);
     expect(result.valid).toBe(false);

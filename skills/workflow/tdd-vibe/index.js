@@ -16,23 +16,26 @@ class TDDVibe {
           step: 1,
           name: 'RED — Write a test for what you want',
           description: `Write a test that describes what "${feature}" should do. The test will fail because the code doesn't exist yet.`,
-          example: `test('${feature}', () => {\n  // Describe expected behavior\n  expect(/* your code */).toBe(/* expected result */);\n});`
+          example: `test('${feature}', () => {\n  // Describe expected behavior\n  expect(/* your code */).toBe(/* expected result */);\n});`,
         },
         {
           step: 2,
           name: 'GREEN — Write the minimum code to pass',
-          description: 'Write just enough code to make the test pass. No extra features, no optimization.',
-          example: '// Write the simplest implementation that satisfies the test'
+          description:
+            'Write just enough code to make the test pass. No extra features, no optimization.',
+          example: '// Write the simplest implementation that satisfies the test',
         },
         {
           step: 3,
           name: 'REFACTOR — Clean up without changing behavior',
-          description: 'Improve the code while keeping all tests green. Rename variables, extract functions, remove duplication.',
-          example: '// Refactor: extract helper, rename vars, simplify logic\n// Run tests again to ensure they still pass'
-        }
+          description:
+            'Improve the code while keeping all tests green. Rename variables, extract functions, remove duplication.',
+          example:
+            '// Refactor: extract helper, rename vars, simplify logic\n// Run tests again to ensure they still pass',
+        },
       ],
       summary: `TDD cycle for "${feature}": Write failing test → make it pass → improve code`,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
@@ -43,7 +46,7 @@ class TDDVibe {
       { type: 'edge-case', idea: 'Test with maximum values' },
       { type: 'error-case', idea: 'Test with invalid input' },
       { type: 'error-case', idea: 'Test error handling' },
-      { type: 'boundary', idea: 'Test boundary conditions' }
+      { type: 'boundary', idea: 'Test boundary conditions' },
     ];
     return { description, testIdeas, count: testIdeas.length };
   }

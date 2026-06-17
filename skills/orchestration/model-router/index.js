@@ -10,10 +10,12 @@ class ModelRouter {
   recommend(task) {
     const lower = task.toLowerCase();
     const models = this._getModels();
-    const scored = models.map(m => ({
-      ...m,
-      score: this._score(m, lower)
-    })).sort((a, b) => b.score - a.score);
+    const scored = models
+      .map(m => ({
+        ...m,
+        score: this._score(m, lower),
+      }))
+      .sort((a, b) => b.score - a.score);
 
     const best = scored[0];
     return {
@@ -22,23 +24,64 @@ class ModelRouter {
       reason: best.reason,
       alternatives: scored.slice(1, 3).map(m => ({ name: m.name, reason: m.reason })),
       allModels: scored,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
   _getModels() {
     return [
-      { name: 'Claude Opus', cost: 'high', speed: 'slow', reasoning: 'excellent', code: 'excellent', creativity: 'high', context: 200000 },
-      { name: 'Claude Sonnet', cost: 'medium', speed: 'fast', reasoning: 'good', code: 'excellent', creativity: 'medium', context: 200000 },
-      { name: 'Claude Haiku', cost: 'low', speed: 'fastest', reasoning: 'good', code: 'good', creativity: 'medium', context: 200000 },
-      { name: 'GPT-4o', cost: 'high', speed: 'fast', reasoning: 'excellent', code: 'excellent', creativity: 'high', context: 128000 },
-      { name: 'GPT-4o Mini', cost: 'low', speed: 'fastest', reasoning: 'good', code: 'good', creativity: 'medium', context: 128000 }
+      {
+        name: 'Claude Opus',
+        cost: 'high',
+        speed: 'slow',
+        reasoning: 'excellent',
+        code: 'excellent',
+        creativity: 'high',
+        context: 200000,
+      },
+      {
+        name: 'Claude Sonnet',
+        cost: 'medium',
+        speed: 'fast',
+        reasoning: 'good',
+        code: 'excellent',
+        creativity: 'medium',
+        context: 200000,
+      },
+      {
+        name: 'Claude Haiku',
+        cost: 'low',
+        speed: 'fastest',
+        reasoning: 'good',
+        code: 'good',
+        creativity: 'medium',
+        context: 200000,
+      },
+      {
+        name: 'GPT-4o',
+        cost: 'high',
+        speed: 'fast',
+        reasoning: 'excellent',
+        code: 'excellent',
+        creativity: 'high',
+        context: 128000,
+      },
+      {
+        name: 'GPT-4o Mini',
+        cost: 'low',
+        speed: 'fastest',
+        reasoning: 'good',
+        code: 'good',
+        creativity: 'medium',
+        context: 128000,
+      },
     ];
   }
 
   _score(model, task) {
     let score = 0;
-    if (/complex|architecture|strategy|design/.test(task) && model.reasoning === 'excellent') score += 3;
+    if (/complex|architecture|strategy|design/.test(task) && model.reasoning === 'excellent')
+      {score += 3;}
     if (/code|implement|build|function/.test(task) && model.code === 'excellent') score += 3;
     if (/quick|simple|draft|summarize/.test(task) && model.speed === 'fastest') score += 2;
     if (/creative|write|content|design/.test(task) && model.creativity === 'high') score += 2;

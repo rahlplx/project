@@ -23,12 +23,13 @@ class ParallelExec {
       groups: groups.map((g, i) => ({
         step: i + 1,
         tasks: g,
-        parallelCount: g.length
+        parallelCount: g.length,
       })),
-      recommendation: groups.length < tasks.length
-        ? `Run in ${groups.length} parallel groups (${Math.round((1 - groups.length / tasks.length) * 100)}% faster than sequential)`
-        : 'Tasks have dependencies — mostly sequential execution.',
-      timestamp: new Date().toISOString()
+      recommendation:
+        groups.length < tasks.length
+          ? `Run in ${groups.length} parallel groups (${Math.round((1 - groups.length / tasks.length) * 100)}% faster than sequential)`
+          : 'Tasks have dependencies — mostly sequential execution.',
+      timestamp: new Date().toISOString(),
     };
   }
 

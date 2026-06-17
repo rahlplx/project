@@ -6,7 +6,8 @@ class SpecEngine {
   constructor() {
     this.name = 'spec-engine';
     this.version = '1.0.0';
-    this.description = 'Parse natural language intent into structured specs for spec-driven development';
+    this.description =
+      'Parse natural language intent into structured specs for spec-driven development';
   }
 
   generate(intentPrompt) {
@@ -32,7 +33,7 @@ class SpecEngine {
       contradictions,
       actors,
       dependencies,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
@@ -65,7 +66,7 @@ class SpecEngine {
     return {
       valid: issues.length === 0,
       issues,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
@@ -92,14 +93,14 @@ class SpecEngine {
       contradictions: [],
       actors: [],
       dependencies: [],
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
   _extractTitle(text) {
     const patterns = [
       /(?:build|create|develop|make)\s+(?:a|an|the)\s+([^,.]+)/i,
-      /^(?:build|create|develop|make)\s+([^,.]+)/i
+      /^(?:build|create|develop|make)\s+([^,.]+)/i,
     ];
     for (const pattern of patterns) {
       const match = text.match(pattern);
@@ -121,7 +122,36 @@ class SpecEngine {
       .filter(s => s.length > 2);
 
     const featureNames = [];
-    const skipWords = ['must','should','need','can','will','not','be','is','are','the','a','an','this','that','for','and','but','or','have','has','do','does','was','were','been','being','having','doing'];
+    const skipWords = [
+      'must',
+      'should',
+      'need',
+      'can',
+      'will',
+      'not',
+      'be',
+      'is',
+      'are',
+      'the',
+      'a',
+      'an',
+      'this',
+      'that',
+      'for',
+      'and',
+      'but',
+      'or',
+      'have',
+      'has',
+      'do',
+      'does',
+      'was',
+      'were',
+      'been',
+      'being',
+      'having',
+      'doing',
+    ];
 
     for (const segment of segments) {
       const words = segment.split(/\s+/).filter(w => !skipWords.includes(w.toLowerCase()));
@@ -139,7 +169,7 @@ class SpecEngine {
       name,
       priority: i === 0 ? 'high' : i < 3 ? 'medium' : 'low',
       status: 'planned',
-      acceptanceCriteria: []
+      acceptanceCriteria: [],
     }));
   }
 
@@ -148,7 +178,7 @@ class SpecEngine {
     const patterns = [
       /must\s+(?:have|support|include|use|provide|require|be\s+able\s+to)\s+([^,.]+)/gi,
       /should\s+(?:have|support|include|use|provide|require|be\s+able\s+to)\s+([^,.]+)/gi,
-      /need(?:s)?\s+to\s+(?:have|support|include|use|provide)\s+([^,.]+)/gi
+      /need(?:s)?\s+to\s+(?:have|support|include|use|provide)\s+([^,.]+)/gi,
     ];
     for (const pattern of patterns) {
       let match;
@@ -160,7 +190,7 @@ class SpecEngine {
       id: `REQ-${String(i + 1).padStart(3, '0')}`,
       description: r.charAt(0).toUpperCase() + r.slice(1),
       priority: i < 2 ? 'high' : 'medium',
-      status: 'open'
+      status: 'open',
     }));
   }
 
@@ -171,7 +201,7 @@ class SpecEngine {
       /must\s+require\s+([^,.]+)/gi,
       /must\s+not\s+([^,.]+)/gi,
       /should\s+not\s+([^,.]+)/gi,
-      /cannot\s+([^,.]+)/gi
+      /cannot\s+([^,.]+)/gi,
     ];
     for (const pattern of patterns) {
       let match;
@@ -185,10 +215,15 @@ class SpecEngine {
   _detectContradictions(constraints) {
     const contradictions = [];
     const pairs = [
-      ['offline', 'cloud'], ['offline', 'api'], ['offline', 'online'],
-      ['sqlite', 'postgresql'], ['sqlite', 'mysql'],
-      ['no auth', 'authentication'], ['no auth', 'login'],
-      ['mobile only', 'desktop'], ['desktop only', 'mobile']
+      ['offline', 'cloud'],
+      ['offline', 'api'],
+      ['offline', 'online'],
+      ['sqlite', 'postgresql'],
+      ['sqlite', 'mysql'],
+      ['no auth', 'authentication'],
+      ['no auth', 'login'],
+      ['mobile only', 'desktop'],
+      ['desktop only', 'mobile'],
     ];
     for (let i = 0; i < constraints.length; i++) {
       for (let j = i + 1; j < constraints.length; j++) {
@@ -208,7 +243,7 @@ class SpecEngine {
     const actors = [];
     const patterns = [
       /(?:users?|admins?|managers?|developers?|customers?|clients?)\s+can\s+([^,.]+)/gi,
-      /(?:users?|admins?|managers?|developers?|customers?|clients?)\b/gi
+      /(?:users?|admins?|managers?|developers?|customers?|clients?)\b/gi,
     ];
     for (const pattern of patterns) {
       let match;
@@ -228,7 +263,7 @@ class SpecEngine {
     const patterns = [
       /depends?\s+(?:on|upon)\s+([^,.]+)/gi,
       /requires?\s+([^,.]+)/gi,
-      /uses?\s+([^,.]+)/gi
+      /uses?\s+([^,.]+)/gi,
     ];
     for (const pattern of patterns) {
       let match;

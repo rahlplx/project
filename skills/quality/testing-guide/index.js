@@ -32,9 +32,11 @@ class TestingGuide {
         functionsFound: functions.length,
         classesFound: classes.length,
         testsSuggested: testCases.length,
-        testFileName: options.fileName ? `${options.fileName}.test.${language === 'python' ? 'py' : 'js'}` : 'component.test.js'
+        testFileName: options.fileName
+          ? `${options.fileName}.test.${language === 'python' ? 'py' : 'js'}`
+          : 'component.test.js',
       },
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
@@ -50,13 +52,21 @@ class TestingGuide {
       /(?:async\s+)?function\s+(\w+)\s*\(([^)]*)\)/g,
       /(\w+)\s*=\s*(?:async\s+)?\([^)]*\)\s*=>/g,
       /def\s+(\w+)\s*\(([^)]*)\)/g,
-      /fn\s+(\w+)\s*\(([^)]*)\)/g
+      /fn\s+(\w+)\s*\(([^)]*)\)/g,
     ];
     for (const pat of patterns) {
       let m;
       while ((m = pat.exec(code)) !== null) {
         if (!funcs.find(f => f.name === m[1])) {
-          funcs.push({ name: m[1] || 'anonymous', params: m[2] ? m[2].split(',').map(p => p.trim()).filter(Boolean) : [] });
+          funcs.push({
+            name: m[1] || 'anonymous',
+            params: m[2]
+              ? m[2]
+                  .split(',')
+                  .map(p => p.trim())
+                  .filter(Boolean)
+              : [],
+          });
         }
       }
     }
@@ -92,9 +102,10 @@ class TestingGuide {
       type: 'happy-path',
       title: `should execute ${name} successfully`,
       description: `Test that ${name} runs without errors with valid input.`,
-      template: framework === 'jest'
-        ? `test('${name} works', () => {\n  const result = ${name}(${fn.params.map(() => '/* value */').join(', ')});\n  expect(result).toBeDefined();\n});`
-        : `def test_${name}():\n    result = ${name}(${fn.params.map(() => '/* value */').join(', ')})\n    assert result is not None`
+      template:
+        framework === 'jest'
+          ? `test('${name} works', () => {\n  const result = ${name}(${fn.params.map(() => '/* value */').join(', ')});\n  expect(result).toBeDefined();\n});`
+          : `def test_${name}():\n    result = ${name}(${fn.params.map(() => '/* value */').join(', ')})\n    assert result is not None`,
     });
 
     if (fn.params.length > 0) {
@@ -102,9 +113,10 @@ class TestingGuide {
         type: 'edge-case',
         title: `should handle empty params for ${name}`,
         description: `Test that ${name} handles empty or undefined parameters gracefully.`,
-        template: framework === 'jest'
-          ? `test('${name} handles empty input', () => {\n  expect(() => ${name}()).not.toThrow();\n});`
-          : `def test_${name}_empty():\n    try:\n        ${name}()\n    except Exception:\n        pytest.fail("${name} raised unexpectedly")`
+        template:
+          framework === 'jest'
+            ? `test('${name} handles empty input', () => {\n  expect(() => ${name}()).not.toThrow();\n});`
+            : `def test_${name}_empty():\n    try:\n        ${name}()\n    except Exception:\n        pytest.fail("${name} raised unexpectedly")`,
       });
     }
 
@@ -113,9 +125,10 @@ class TestingGuide {
         type: 'not-found',
         title: `should handle not-found for ${name}`,
         description: `Test that ${name} handles cases where data is not found.`,
-        template: framework === 'jest'
-          ? `test('${name} returns null for missing data', () => {\n  const result = ${name}('nonexistent');\n  expect(result).toBeNull();\n});`
-          : `def test_${name}_not_found():\n    result = ${name}('nonexistent')\n    assert result is None`
+        template:
+          framework === 'jest'
+            ? `test('${name} returns null for missing data', () => {\n  const result = ${name}('nonexistent');\n  expect(result).toBeNull();\n});`
+            : `def test_${name}_not_found():\n    result = ${name}('nonexistent')\n    assert result is None`,
       });
     }
 
@@ -128,18 +141,20 @@ class TestingGuide {
       type: 'instantiation',
       title: `should create ${cls.name} instance`,
       description: `Test that ${cls.name} can be instantiated.`,
-      template: framework === 'jest'
-        ? `test('${cls.name} creates instance', () => {\n  const instance = new ${cls.name}();\n  expect(instance).toBeInstanceOf(${cls.name});\n});`
-        : `def test_${cls.name}_create():\n    instance = ${cls.name}()\n    assert isinstance(instance, ${cls.name})`
+      template:
+        framework === 'jest'
+          ? `test('${cls.name} creates instance', () => {\n  const instance = new ${cls.name}();\n  expect(instance).toBeInstanceOf(${cls.name});\n});`
+          : `def test_${cls.name}_create():\n    instance = ${cls.name}()\n    assert isinstance(instance, ${cls.name})`,
     });
     if (cls.methods.length > 0) {
       tests.push({
         type: 'methods',
         title: `should have all methods on ${cls.name}`,
         description: `Test that ${cls.name} has expected methods.`,
-        template: framework === 'jest'
-          ? `test('${cls.name} has expected methods', () => {\n  const instance = new ${cls.name}();\n  ${cls.methods.map(m => `  expect(instance.${m}).toBeDefined();`).join('\n')}\n});`
-          : `def test_${cls.name}_methods():\n    instance = ${cls.name}()\n    ${cls.methods.map(m => `    assert hasattr(instance, '${m}')`).join('\n  ')}`
+        template:
+          framework === 'jest'
+            ? `test('${cls.name} has expected methods', () => {\n  const instance = new ${cls.name}();\n  ${cls.methods.map(m => `  expect(instance.${m}).toBeDefined();`).join('\n')}\n});`
+            : `def test_${cls.name}_methods():\n    instance = ${cls.name}()\n    ${cls.methods.map(m => `    assert hasattr(instance, '${m}')`).join('\n  ')}`,
       });
     }
     return tests;

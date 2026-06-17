@@ -4,7 +4,8 @@ class Architect {
   constructor() {
     this.name = 'architect';
     this.version = '1.0.0';
-    this.description = 'Decompose specs into RED/GREEN/REFACTOR/VERIFY task units with dependency ordering';
+    this.description =
+      'Decompose specs into RED/GREEN/REFACTOR/VERIFY task units with dependency ordering';
   }
 
   decompose(spec) {
@@ -27,7 +28,7 @@ class Architect {
         featureName: feature.name,
         type: 'RED',
         description: `Write failing tests for ${feature.name}`,
-        complexity: 'small'
+        complexity: 'small',
       });
       tasks.push({
         id: `${baseId}-GREEN`,
@@ -35,7 +36,7 @@ class Architect {
         featureName: feature.name,
         type: 'GREEN',
         description: `Implement ${feature.name} to pass tests`,
-        complexity: 'medium'
+        complexity: 'medium',
       });
       tasks.push({
         id: `${baseId}-REFACTOR`,
@@ -43,7 +44,7 @@ class Architect {
         featureName: feature.name,
         type: 'REFACTOR',
         description: `Refactor ${feature.name} implementation`,
-        complexity: 'small'
+        complexity: 'small',
       });
       tasks.push({
         id: `${baseId}-VERIFY`,
@@ -51,7 +52,7 @@ class Architect {
         featureName: feature.name,
         type: 'VERIFY',
         description: `Verify ${feature.name} against spec`,
-        complexity: 'small'
+        complexity: 'small',
       });
     }
 
@@ -224,7 +225,9 @@ class Architect {
     const remaining = features.filter(f => !result.find(r => r.id === f.id));
     for (const r of remaining) {
       if (!warnings.some(w => w.includes(r.id))) {
-        warnings.push(`Feature ${r.id} (${r.name}) could not be ordered due to dependency constraints`);
+        warnings.push(
+          `Feature ${r.id} (${r.name}) could not be ordered due to dependency constraints`
+        );
       }
     }
 

@@ -10,20 +10,24 @@
 const CLI_COMMANDS = [
   { command: 'graphify .', description: 'Process the current directory into a graph.' },
   { command: 'graphify ./path --mode deep', description: 'Aggressive edge extraction.' },
-  { command: 'graphify ./path --update', description: 'Merge changed files into an existing graph.' },
+  {
+    command: 'graphify ./path --update',
+    description: 'Merge changed files into an existing graph.',
+  },
   { command: 'graphify query [question]', description: 'Search the graph.' },
   { command: 'graphify path [node1] [node2]', description: 'Trace connections between two nodes.' },
   { command: 'graphify explain [concept]', description: 'Detail a specific node.' },
   { command: 'graphify ./path --watch', description: 'Auto-sync the graph as files change.' },
   { command: 'graphify ./path --wiki', description: 'Generate markdown articles from the graph.' },
-  { command: 'graphify hook install', description: 'Install post-commit automation.' }
+  { command: 'graphify hook install', description: 'Install post-commit automation.' },
 ];
 
 class Graphify {
   constructor() {
     this.name = 'graphify';
     this.version = '1.0.0';
-    this.description = 'Semantic codebase understanding — builds a dependency graph from source files';
+    this.description =
+      'Semantic codebase understanding — builds a dependency graph from source files';
   }
 
   analyze(files = []) {
@@ -52,7 +56,7 @@ class Graphify {
       nodes,
       edges,
       summary: `${nodes.length} nodes, ${edges.length} edges in dependency graph`,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
@@ -61,7 +65,7 @@ class Graphify {
     const patterns = [
       /require\(['"]([^'"]+)['"]\)/g,
       /from\s+['"]([^'"]+)['"]/g,
-      /import\s+(?:\w+\s*,?\s*)*\s*from\s+['"]([^'"]+)['"]/g
+      /import\s+(?:\w+\s*,?\s*)*\s*from\s+['"]([^'"]+)['"]/g,
     ];
     for (const pat of patterns) {
       let m;
@@ -79,7 +83,7 @@ class Graphify {
    * tooling) get classified as INFERRED, or AMBIGUOUS below a 0.5 threshold.
    */
   classifyEdges(edges = []) {
-    return edges.map((edge) => {
+    return edges.map(edge => {
       if (edge.confidence === undefined) {
         return { ...edge, tag: 'EXTRACTED', confidence: 1.0 };
       }
@@ -118,7 +122,7 @@ class Graphify {
       degree.set(edge.to, (degree.get(edge.to) || 0) + 1);
     }
     return [...(graph.edges || [])]
-      .map((edge) => ({ ...edge, score: (degree.get(edge.from) || 0) + (degree.get(edge.to) || 0) }))
+      .map(edge => ({ ...edge, score: (degree.get(edge.from) || 0) + (degree.get(edge.to) || 0) }))
       .sort((a, b) => a.score - b.score)
       .slice(0, topN);
   }
@@ -127,7 +131,7 @@ class Graphify {
    * Suggested questions the graph can uniquely answer, derived from its god nodes.
    */
   suggestedQuestions(graph) {
-    return this.godNodes(graph, 3).map((n) => `What depends on ${n.label || n.id}?`);
+    return this.godNodes(graph, 3).map(n => `What depends on ${n.label || n.id}?`);
   }
 
   /**
@@ -136,10 +140,14 @@ class Graphify {
    */
   buildReport(graph) {
     return {
-      stats: graph.stats || { files: 0, nodes: (graph.nodes || []).length, edges: (graph.edges || []).length },
+      stats: graph.stats || {
+        files: 0,
+        nodes: (graph.nodes || []).length,
+        edges: (graph.edges || []).length,
+      },
       godNodes: this.godNodes(graph),
       surprisingConnections: this.surprisingConnections(graph),
-      suggestedQuestions: this.suggestedQuestions(graph)
+      suggestedQuestions: this.suggestedQuestions(graph),
     };
   }
 
@@ -149,9 +157,9 @@ class Graphify {
   query(graph, question = '') {
     const terms = question.toLowerCase().split(/\s+/).filter(Boolean);
     if (!terms.length) return [];
-    return (graph.nodes || []).filter((node) => {
+    return (graph.nodes || []).filter(node => {
       const haystack = `${node.id} ${node.label || ''}`.toLowerCase();
-      return terms.some((term) => haystack.includes(term));
+      return terms.some(term => haystack.includes(term));
     });
   }
 
@@ -185,9 +193,9 @@ class Graphify {
    * Detail a specific node: itself plus all edges touching it (graphify explain [concept]).
    */
   explain(graph, nodeId) {
-    const node = (graph.nodes || []).find((n) => n.id === nodeId);
+    const node = (graph.nodes || []).find(n => n.id === nodeId);
     if (!node) return { found: false };
-    const edges = (graph.edges || []).filter((e) => e.from === nodeId || e.to === nodeId);
+    const edges = (graph.edges || []).filter(e => e.from === nodeId || e.to === nodeId);
     return { found: true, node, edges };
   }
 
@@ -227,13 +235,13 @@ class Graphify {
       { layer: 'API', pattern: /\b(api|route|controller|endpoint)\b/i },
       { layer: 'Service', pattern: /\b(service|logic|usecase|handler)\b/i },
       { layer: 'Data', pattern: /\b(model|schema|db|database|repository|migration)\b/i },
-      { layer: 'UI', pattern: /\b(component|view|page|ui|screen)\b/i }
+      { layer: 'UI', pattern: /\b(component|view|page|ui|screen)\b/i },
     ];
 
     const layers = { API: [], Service: [], Data: [], UI: [], Utility: [] };
     for (const node of graph.nodes || []) {
       const haystack = `${node.id} ${node.label || ''}`;
-      const match = LAYER_RULES.find((rule) => rule.pattern.test(haystack));
+      const match = LAYER_RULES.find(rule => rule.pattern.test(haystack));
       layers[match ? match.layer : 'Utility'].push(node.id);
     }
     return layers;
@@ -246,8 +254,8 @@ class Graphify {
    */
   riskScore(graph, nodeId, testCoverage = {}) {
     const degrees = this.godNodes(graph, (graph.nodes || []).length);
-    const maxDegree = Math.max(1, ...degrees.map((d) => d.degree));
-    const nodeDegree = degrees.find((d) => d.id === nodeId);
+    const maxDegree = Math.max(1, ...degrees.map(d => d.degree));
+    const nodeDegree = degrees.find(d => d.id === nodeId);
     const degreeScore = ((nodeDegree ? nodeDegree.degree : 0) / maxDegree) * 60;
 
     const coverage = testCoverage[nodeId] || 0;

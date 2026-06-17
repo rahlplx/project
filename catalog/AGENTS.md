@@ -13,9 +13,11 @@ The `catalog/` directory contains the curated tool registry. AI agents read this
    - `how_agent_uses` — how an agent should invoke it
    - `category` — one of the 10 defined categories
    - `verified_by` — proof of verification (stars, community check)
+
 - `category` — must match one of the existing categories
 
 2. Run the test suite to confirm YAML parses cleanly:
+
    ```bash
    npm test
    ```
@@ -33,12 +35,12 @@ The `catalog/` directory contains the curated tool registry. AI agents read this
 
 ## Verification Steps
 
-| Step | What Happens | How to Verify |
-|------|-------------|---------------|
-| YAML parse | tools.yaml loads without error | `npm test` passes |
-| Quality scores | Scores computed for all tools | quality-scores.json regenerated |
-| Category count | Each category ≥3 tools | Harness check passes |
-| Index rebuild | discovery-index.json matches disk | Index integrity check passes |
+| Step           | What Happens                      | How to Verify                   |
+| -------------- | --------------------------------- | ------------------------------- |
+| YAML parse     | tools.yaml loads without error    | `npm test` passes               |
+| Quality scores | Scores computed for all tools     | quality-scores.json regenerated |
+| Category count | Each category ≥3 tools            | Harness check passes            |
+| Index rebuild  | discovery-index.json matches disk | Index integrity check passes    |
 
 ## Cross-Reference
 

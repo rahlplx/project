@@ -9,7 +9,7 @@ describe('AntiSlopSkill', () => {
   it('should detect rainbow palette', () => {
     const s = new AntiSlopSkill();
     const r = s.analyze({
-      colors: ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF']
+      colors: ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF'],
     });
     expect(r.violations.some(v => v.id === 2)).toBe(true);
     expect(r.passed).toBe(false);
