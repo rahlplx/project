@@ -1,7 +1,7 @@
 {
-  "version": "2.9.0",
-  "last_evolution": "2026-06-14",
-  "evolution_count": 11,
+  "version": "2.9.1",
+  "last_evolution": "2026-06-17",
+  "evolution_count": 12,
   "rules": {
     "agent-native-catalog": {
       "fires": 35,
@@ -333,6 +333,42 @@
       "last_updated": "2026-06-14",
       "status": "active",
       "note": "Promoted to active (v2.9.0). Add *.tmp.js or .vibe/tmp/ patterns to .gitignore. Prevents accidental commits of ad-hoc scripts."
+    },
+    "ttlcache-on-hot-paths": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.1. Module-level TTLCache(30000) singleton on QueryEnricher.enrich() keyed on query:goal. Eliminates redundant .vibe/ I/O + git reads within 30s window. Pattern: cache at module scope, not constructor scope."
+    },
+    "lazy-load-deferred-require": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.1. CLI entry points must not eagerly require heavy modules at top level. Use getter `get handler() { return require(...) }` to defer to invocation time. Dropped CLI startup from ~400ms to 64ms. Gate: utility commands skip orchestrator entirely."
+    },
+    "tdd-before-optimization": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.1. Bolt iterated 3x on bin/vibe.js (153e3a1, 3726dca, c21356e) before landing clean optimization because no tests guarded the behavior. Rule: write/verify tests for the function BEFORE optimizing its internals. Applied: TTLCache + allowBacktrack tests added this session before any future refactor."
+    },
+    "independent-verify-agent": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted from proposed v2.9.1. 6-persona review (CEO/CTO/Designer/QA/Security/PM) caught 12 bugs the build agent missed including arg-order bug in writeGoalBlock, StateMachine scope leak in handoff block, and dead variable in mcp-adapter. Independent review = orthogonal catch surface."
     }
   },
   "harness": {
@@ -482,18 +518,6 @@
   },
   "proposed": [
     {
-      "id": "independent-verify-agent",
-      "status": "proposed",
-      "description": "VERIFY phase must use separate agent invocation with /clear and fresh context",
-      "rationale": "Independent agent catches blind spots that build agent misses (community pattern from ShepAlderson/copilot-orchestra)",
-      "trigger": "at BUILD→VERIFY transition",
-      "severity": "error",
-      "proposed_date": "2026-06-14",
-      "fires": 0,
-      "helpful": 0,
-      "false_positive": 0
-    },
-    {
       "id": "workflow-5-phase-gate",
       "status": "proposed",
       "description": "Harness check: state.json state_machine must be exactly [scope, build, verify, ship, evolve, done]",
@@ -506,5 +530,5 @@
       "false_positive": 0
     }
   ],
-  "updated": "2026-06-14T23:00:00Z"
+  "updated": "2026-06-17T00:00:00Z"
 }
