@@ -112,8 +112,8 @@ if (cmd) {
   const args = process.argv.slice(3);
 
   // ⚡ Bolt: Skip expensive QueryEnricher for utility commands
-  const isPhaseCmd = cmd.category === 'phase';
-  if (isPhaseCmd) {
+  const isUtilityCmd = cmd.category === 'utility';
+  if (!isUtilityCmd) {
     const { RoleLoader, ContextManager, QueryEnricher, announceSkills } = require(path.join(__dirname, '..', 'lib', 'orchestrator'));
 
     if (cmd.phase) {
