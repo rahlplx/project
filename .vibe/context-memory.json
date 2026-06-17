@@ -309,7 +309,7 @@
         "68086f5"
       ],
       "apply_when": "Security scan rule could match test/example files by path rather than content mention",
-      "avoid_when": "Rule detects patterns that genuinely appear in example docs that should be excluded",
+      "avoid_when": "The rule is specifically intended to scan test, example, or fixture files, or when these files must not be excluded",
       "source": "vibe-learnings",
       "date": "2026-06-17T22:51:35.576Z"
     },
@@ -347,7 +347,7 @@
       "evidence": [
         "68086f5"
       ],
-      "apply_when": "Never",
+      "apply_when": null,
       "avoid_when": "Always - use raw triple backticks",
       "source": "vibe-learnings",
       "date": "2026-06-17T22:51:35.576Z"
@@ -360,7 +360,7 @@
       "evidence": [
         "68086f5"
       ],
-      "apply_when": "Never for .vibe/ writes",
+      "apply_when": null,
       "avoid_when": "Always use writeJSON from state-helpers for .vibe/ directory",
       "source": "vibe-learnings",
       "date": "2026-06-17T22:51:35.576Z"
