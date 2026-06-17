@@ -253,9 +253,13 @@ if (cmd) {
     const queryText = args.join(' ') || state.goal || mode;
 
     // Seed GoalBlock so QueryEnricher GOAL_BLOCK source has data
+    // think with explicit args always refreshes the goal block (clears stale session context)
     try {
       const ctx = new ContextManager();
-      if (!ctx.readGoalBlock() && state.goal) {
+      const newGoal = args.join(' ').trim();
+      if (mode === 'think' && newGoal) {
+        ctx.writeGoalBlock('think', newGoal, "Run 'vibe plan' when ready");
+      } else if (!ctx.readGoalBlock() && state.goal) {
         ctx.writeGoalBlock(cmd.phase || 'utility', state.goal, `Continue via 'vibe ${mode}'`);
       }
     } catch {
