@@ -241,8 +241,9 @@ class SecurityAudit {
 
   getOwaspRule(owaspId) {
     const rule = SECURITY_RULES.find(r => r.owasp === owaspId);
-    if (!rule)
-      {return { type: 'error', timestamp: this._ts(), message: `OWASP rule ${owaspId} not found` };}
+    if (!rule) {
+      return { type: 'error', timestamp: this._ts(), message: `OWASP rule ${owaspId} not found` };
+    }
     return { type: 'owasp_rule', timestamp: this._ts(), ...rule };
   }
 

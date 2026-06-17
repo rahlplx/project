@@ -42,10 +42,12 @@ class CodeExplainer {
       /require\(|module\.exports|import\s+|export\s+|const\s+|let\s+|=>|console\.log|function\s*(\*|\w)/.test(
         code
       )
-    )
-      {return 'JavaScript';}
-    if (/def\s+\w+\s*\(|import\s+\w+|from\s+\w+|class\s+\w+:|print\s*\(/.test(code))
-      {return 'Python';}
+    ) {
+      return 'JavaScript';
+    }
+    if (/def\s+\w+\s*\(|import\s+\w+|from\s+\w+|class\s+\w+:|print\s*\(/.test(code)) {
+      return 'Python';
+    }
     if (/fn\s+\w+|let\s+mut|fn\s+main|println!|->\s*\w+/.test(code)) return 'Rust';
     if (/func\s+\w+|package\s+\w+|import\s+"|fmt\.Println/.test(code)) return 'Go';
     if (/public\s+(class|static)|System\.out|@Override/.test(code)) return 'Java';
@@ -179,11 +181,11 @@ class CodeExplainer {
       `Complexity is ${complexity.difficulty} (${complexity.branches} conditional branches).`
     );
 
-    if (complexity.difficulty === 'simple')
-      {parts.push('This code is straightforward and easy to follow.');}
-    else if (complexity.difficulty === 'moderate')
-      {parts.push('This code has some branching logic — review carefully.');}
-    else parts.push('This code is complex — consider simplifying or adding comments.');
+    if (complexity.difficulty === 'simple') {
+      parts.push('This code is straightforward and easy to follow.');
+    } else if (complexity.difficulty === 'moderate') {
+      parts.push('This code has some branching logic — review carefully.');
+    } else parts.push('This code is complex — consider simplifying or adding comments.');
 
     return parts.join(' ');
   }

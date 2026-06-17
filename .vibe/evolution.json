@@ -1,7 +1,7 @@
 {
-  "version": "2.9.1",
+  "version": "2.9.2",
   "last_evolution": "2026-06-17",
-  "evolution_count": 12,
+  "evolution_count": 13,
   "rules": {
     "agent-native-catalog": {
       "fires": 35,
@@ -375,6 +375,78 @@
       "last_updated": "2026-06-17",
       "status": "active",
       "note": "Promoted from proposed v2.9.1. 6-persona review (CEO/CTO/Designer/QA/Security/PM) caught 12 bugs the build agent missed including arg-order bug in writeGoalBlock, StateMachine scope leak in handoff block, and dead variable in mcp-adapter. Independent review = orthogonal catch surface."
+    },
+    "prettier-eslint-sequence": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.2. prettier --write THEN eslint --fix. Prettier reformats; eslint auto-adds curly braces where prettier split single-line ifs onto multiple lines. Reversed order fails — eslint fixes get re-broken by prettier. 200+ files formatted, 0 ESLint errors after sequence."
+    },
+    "prettierignore-before-format": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.2. Create .prettierignore BEFORE running prettier --write. Scope away .vibe/, .gsd/, .jules/, *.jsonl, generated dirs. Prevents state file churn and keeps diff reviewable. Without this, prettier formats 500+ files including session telemetry."
+    },
+    "format-then-rebuild-index": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.2. After any prettier --write pass touching skills/*/index.js, run: node -e \"require('./lib/discovery-index').writeIndex(process.cwd())\". Prettier changes whitespace → SHA-256 digest changes → index-json-integrity harness check fails. Caught in this session: 15/16 → 16/16 after rebuild."
+    },
+    "npm-files-publish-safety": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.2. Always add 'files' field to package.json for any publishable npm package. Without it: .vibe/ state, .husky/ hooks, test fixtures, and dev configs leak into the npm tarball. List: bin/, lib/, skills/, catalog/, references/, .well-known/, key docs only."
+    },
+    "prod-only-audit-in-ci": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.2. Use 'npm audit --omit=dev' in CI, not bare 'npm audit'. Jest devDependencies have 18 unfixable moderate CVEs (babel-jest, jest-snapshot chain). Prod-only audit gives clean signal: 0 real vulnerabilities. Full audit causes alert fatigue and blocks CI on noise."
+    },
+    "ci-node-version-matrix": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.2. Run CI matrix across Node LTS (20) + Current (22). Use actions/setup-node with cache: npm. Pin .nvmrc to LTS version to align local dev with lower CI bound. Catches version-specific API changes before they reach users."
+    },
+    "pre-commit-index-integrity": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.2. Added checkIndexIntegrity() as Gate 3 in .husky/pre-commit. Catches digest drift at commit time, not CI time. Provides clear fix command in error message. Pattern: catch early, provide fix. Pre-commit is 10x cheaper to fix than CI failure."
+    },
+    "type-coerce-before-iterate": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.2. When consuming a value that could be string or array, always coerce: Array.isArray(v) ? v : [String(v)]. The retro.js notes bug (iterating string characters) was caused by implicit type contract between auto-maintain.js (returns string) and retro.js (expected array). 18-item 'A l l' output."
     }
   },
   "harness": {

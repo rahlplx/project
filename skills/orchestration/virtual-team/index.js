@@ -37,8 +37,9 @@ class VirtualTeam {
     };
 
     const roleInfo = roles[role];
-    if (!roleInfo)
-      {return { error: `Unknown role: ${role}. Available: ${Object.keys(roles).join(', ')}` };}
+    if (!roleInfo) {
+      return { error: `Unknown role: ${role}. Available: ${Object.keys(roles).join(', ')}` };
+    }
 
     return {
       assigned: true,

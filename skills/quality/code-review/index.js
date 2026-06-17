@@ -23,8 +23,9 @@ class CodeReview {
         trimmed.startsWith('#') ||
         trimmed.startsWith('/*') ||
         trimmed.startsWith('*')
-      )
-        {return;}
+      ) {
+        return;
+      }
 
       if (trimmed.length > 100) {
         comments.push({

@@ -137,8 +137,9 @@ class DoneVerifier {
 
   respond(sessionId, criterionId, passed, note) {
     const session = this.sessions.find(s => s.id === sessionId);
-    if (!session)
-      {return { type: 'error', timestamp: this._ts(), message: `Session ${sessionId} not found` };}
+    if (!session) {
+      return { type: 'error', timestamp: this._ts(), message: `Session ${sessionId} not found` };
+    }
     session.responses[criterionId] = { passed, note, answeredAt: this._ts() };
     const remaining = DONE_CRITERIA.filter(c => !session.responses[c.id]);
     return {
@@ -154,8 +155,9 @@ class DoneVerifier {
 
   getReport(sessionId) {
     const session = this.sessions.find(s => s.id === sessionId);
-    if (!session)
-      {return { type: 'error', timestamp: this._ts(), message: `Session ${sessionId} not found` };}
+    if (!session) {
+      return { type: 'error', timestamp: this._ts(), message: `Session ${sessionId} not found` };
+    }
     const failed = DONE_CRITERIA.filter(
       c => session.responses[c.id] && !session.responses[c.id].passed
     );

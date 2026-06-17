@@ -1,0 +1,116 @@
+{
+  "learnings": [
+    {
+      "id": "2026-06-17T00:00:01Z",
+      "type": "pattern",
+      "title": "prettier-then-eslint-fix sequence",
+      "description": "Run prettier --write first, then eslint --fix. Prettier reformats; eslint --fix adds missing curly braces where prettier split single-line ifs onto multiple lines. Two-step sequence resolves all conflicts without manual edits.",
+      "evidence": ["1f3d9d1"],
+      "apply_when": "Any bulk formatting pass on the codebase",
+      "avoid_when": "Never run eslint --fix before prettier — order matters",
+      "source": "vibe-learnings",
+      "date": "2026-06-17"
+    },
+    {
+      "id": "2026-06-17T00:00:02Z",
+      "type": "pattern",
+      "title": "prettierignore-before-format",
+      "description": "Always create .prettierignore before running prettier --write. Scope away .vibe/, .gsd/, .jules/, *.jsonl, and any generated/state directories. Keeps the diff reviewable and prevents state file churn.",
+      "evidence": ["1f3d9d1"],
+      "apply_when": "First-time prettier setup on any project",
+      "avoid_when": null,
+      "source": "vibe-learnings",
+      "date": "2026-06-17"
+    },
+    {
+      "id": "2026-06-17T00:00:03Z",
+      "type": "anti-pattern",
+      "title": "prettier-breaks-digest-index",
+      "description": "prettier --write reformats skill index.js files, changing their content and invalidating SHA-256 digests in .well-known/agent-skills/index.json. This fails the index-json-integrity harness check. Always run writeIndex() after any bulk formatting pass.",
+      "evidence": ["1f3d9d1 (harness went 15/16, required manual rebuild)"],
+      "apply_when": null,
+      "avoid_when": "After any prettier --write pass that touches skills/*/index.js",
+      "fix": "node -e \"require('./lib/discovery-index').writeIndex(process.cwd())\"",
+      "source": "vibe-learnings",
+      "date": "2026-06-17"
+    },
+    {
+      "id": "2026-06-17T00:00:04Z",
+      "type": "pattern",
+      "title": "npm-files-field-for-publish-safety",
+      "description": "The 'files' field in package.json explicitly controls what gets published to npm. Without it, .vibe/ state, .husky/ hooks, test fixtures, and dev configs leak into the published package. Always list: bin/, lib/, skills/, catalog/, references/, .well-known/, and key docs.",
+      "evidence": ["1f3d9d1"],
+      "apply_when": "Any project with a publishable npm package",
+      "avoid_when": null,
+      "source": "vibe-learnings",
+      "date": "2026-06-17"
+    },
+    {
+      "id": "2026-06-17T00:00:05Z",
+      "type": "pattern",
+      "title": "prod-only-npm-audit",
+      "description": "npm audit --omit=dev separates real prod vulnerabilities from dev tooling noise. Jest internals regularly have moderate CVEs that cannot be fixed without --force. Running prod-only audit in CI prevents alert fatigue and gives a clean signal: 0 real vulnerabilities.",
+      "evidence": ["1f3d9d1"],
+      "apply_when": "CI security audit step for any Node.js project",
+      "avoid_when": null,
+      "source": "vibe-learnings",
+      "date": "2026-06-17"
+    },
+    {
+      "id": "2026-06-17T00:00:06Z",
+      "type": "anti-pattern",
+      "title": "retro-notes-string-vs-array",
+      "description": "runRetro() returns notes as a string. retro.js iterated it as an array, printing individual characters ('A', 'l', 'l'). Fix: always coerce: Array.isArray(notes) ? notes : [String(notes)]. Root cause: implicit interface contract between auto-maintain.js and retro.js was never documented or tested.",
+      "evidence": ["retro output showing 18 items / A / l / l"],
+      "apply_when": null,
+      "avoid_when": "When a function returns a value that callers treat as a specific type",
+      "source": "vibe-learnings",
+      "date": "2026-06-17"
+    },
+    {
+      "id": "2026-06-17T00:00:07Z",
+      "type": "pattern",
+      "title": "ci-node-matrix",
+      "description": "Run CI against Node 20 and Node 22 in a matrix. Catches version-specific behavior before it reaches users. Use actions/setup-node with cache: npm for fast installs. Pin .nvmrc to the LTS version (20) to align local dev with the lower CI bound.",
+      "evidence": ["1f3d9d1"],
+      "apply_when": "Any Node.js project with engines: >=18",
+      "avoid_when": null,
+      "source": "vibe-learnings",
+      "date": "2026-06-17"
+    },
+    {
+      "id": "2026-06-17T00:00:08Z",
+      "type": "pattern",
+      "title": "pre-commit-index-integrity-gate",
+      "description": "Adding checkIndexIntegrity() as Gate 3 in .husky/pre-commit catches digest drift before it hits the harness. Skill file edits that change content without rebuilding the index now fail at commit time with a clear fix command, not at CI time 10 minutes later.",
+      "evidence": ["1f3d9d1"],
+      "apply_when": "Any commit touching files under skills/*/index.js",
+      "avoid_when": null,
+      "source": "vibe-learnings",
+      "date": "2026-06-17"
+    },
+    {
+      "id": "2026-06-17T00:00:09Z",
+      "type": "pattern",
+      "title": "tdd-before-optimization",
+      "description": "Write tests for the function's observable behavior BEFORE optimizing its internals. Bolt iterated 3x on bin/vibe.js (commits 153e3a1, 3726dca, c21356e) because no tests guarded the behavior. With TTLCache and allowBacktrack tests in place first, future optimizations have a safety net.",
+      "evidence": ["b809ef0", "153e3a1", "3726dca", "c21356e"],
+      "apply_when": "Before any performance optimization or internal refactor",
+      "avoid_when": null,
+      "source": "vibe-learnings",
+      "date": "2026-06-17"
+    },
+    {
+      "id": "2026-06-17T00:00:10Z",
+      "type": "pattern",
+      "title": "backlog-review-by-date",
+      "description": "Rules with 0 fires should not be deleted immediately — add review_by dates (30 days from creation). At review time: if still 0 fires, retire. If fires > 0, mark quality_score and keep. Prevents premature deletion of rules that haven't had a chance to fire.",
+      "evidence": [".vibe/evolution.json v2.9.1"],
+      "apply_when": "When adding new rules that describe future-state behavior",
+      "avoid_when": null,
+      "source": "vibe-learnings",
+      "date": "2026-06-17"
+    }
+  ],
+  "updated": "2026-06-17T00:00:00Z"
+}

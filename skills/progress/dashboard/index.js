@@ -60,41 +60,44 @@ class Dashboard {
 
   _generateRecommendations(progress, blockers, total, done) {
     const recs = [];
-    if (blockers > 0)
-      {recs.push({
+    if (blockers > 0) {
+      recs.push({
         priority: 'high',
         message: `${blockers} blocker(s) need attention before shipping`,
-      });}
-    if (progress < 25)
-      {recs.push({
+      });
+    }
+    if (progress < 25) {
+      recs.push({
         priority: 'info',
         message: 'Early stage — focus on defining and completing the first milestone',
-      });}
-    else if (progress < 50)
-      {recs.push({
+      });
+    } else if (progress < 50) {
+      recs.push({
         priority: 'info',
         message: 'Building momentum — keep completing tasks one at a time',
-      });}
-    else if (progress < 75)
-      {recs.push({
+      });
+    } else if (progress < 75) {
+      recs.push({
         priority: 'info',
         message: 'More than halfway — start reviewing completed work for quality',
-      });}
-    else if (progress < 100)
-      {recs.push({
+      });
+    } else if (progress < 100) {
+      recs.push({
         priority: 'info',
         message: 'Almost done — run the done-checklist before shipping',
-      });}
-    else
-      {recs.push({
+      });
+    } else {
+      recs.push({
         priority: 'success',
         message: 'All tasks complete! Run done-checklist and deploy.',
-      });}
-    if (total > 0 && done === 0)
-      {recs.push({
+      });
+    }
+    if (total > 0 && done === 0) {
+      recs.push({
         priority: 'warning',
         message: 'No completed tasks yet. Try breaking work into smaller pieces.',
-      });}
+      });
+    }
     return recs;
   }
 

@@ -16,11 +16,12 @@ class KnowledgeBase {
       changelog: this._generateChangelog,
     };
     const gen = generators[type];
-    if (!gen)
-      {return {
+    if (!gen) {
+      return {
         success: false,
         error: `Unknown doc type: ${type}. Use: readme, api, component, changelog`,
-      };}
+      };
+    }
 
     const doc = gen(data);
     this._docs.push({ type, title: doc.title, generatedAt: new Date().toISOString() });

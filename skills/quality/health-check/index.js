@@ -116,20 +116,24 @@ class HealthCheck {
 
   _generateRecommendations(checks) {
     const recs = [];
-    if (!checks.find(c => c.check.includes('node_modules'))?.passed)
-      {recs.push({ priority: 'high', message: 'Run "npm install" to install dependencies.' });}
-    if (!checks.find(c => c.check.includes('.gitignore'))?.passed)
-      {recs.push({
+    if (!checks.find(c => c.check.includes('node_modules'))?.passed) {
+      recs.push({ priority: 'high', message: 'Run "npm install" to install dependencies.' });
+    }
+    if (!checks.find(c => c.check.includes('.gitignore'))?.passed) {
+      recs.push({
         priority: 'medium',
         message: 'Create a .gitignore file to avoid committing unnecessary files.',
-      });}
-    if (!checks.find(c => c.check.includes('README'))?.passed)
-      {recs.push({
+      });
+    }
+    if (!checks.find(c => c.check.includes('README'))?.passed) {
+      recs.push({
         priority: 'low',
         message: 'Add a README.md so others know what your project does.',
-      });}
-    if (!checks.find(c => c.check.includes('LICENSE'))?.passed)
-      {recs.push({ priority: 'low', message: 'Add a LICENSE file if you plan to share your code.' });}
+      });
+    }
+    if (!checks.find(c => c.check.includes('LICENSE'))?.passed) {
+      recs.push({ priority: 'low', message: 'Add a LICENSE file if you plan to share your code.' });
+    }
     return recs;
   }
 

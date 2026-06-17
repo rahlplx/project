@@ -28,11 +28,12 @@ class TemplateGallery {
     const results = this._templates().filter(
       t => t.category === category || t.tags.includes(category)
     );
-    if (results.length === 0)
-      {return {
+    if (results.length === 0) {
+      return {
         error: `No templates match '${category}'.`,
         suggestions: [...new Set(this._templates().map(t => t.category))],
-      };}
+      };
+    }
     return results;
   }
 

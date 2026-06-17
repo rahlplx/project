@@ -189,10 +189,12 @@ class TasteSkill {
     const issues = [];
     if ((hero.headlineLines || 1) > 2) issues.push('Headline exceeds 2 lines.');
     if ((hero.subtextWords || 0) > 20) issues.push('Subtext exceeds 20 words.');
-    if (hero.topPaddingRem !== undefined && hero.topPaddingRem > 6)
-      {issues.push('Top padding exceeds pt-24 (6rem) cap.');}
-    if ((hero.stackElements || 0) > 4)
-      {issues.push('Hero stack exceeds 4 text elements (eyebrow, headline, subtext, CTAs).');}
+    if (hero.topPaddingRem !== undefined && hero.topPaddingRem > 6) {
+      issues.push('Top padding exceeds pt-24 (6rem) cap.');
+    }
+    if ((hero.stackElements || 0) > 4) {
+      issues.push('Hero stack exceeds 4 text elements (eyebrow, headline, subtext, CTAs).');
+    }
     if (hero.ctaVisible === false) issues.push('CTA is not visible without scrolling.');
 
     return { passed: issues.length === 0, issues };
@@ -230,48 +232,54 @@ class TasteSkill {
     const findings = [];
 
     const emDash = this.checkEmDash(design.copyText);
-    if (emDash.violation)
-      {findings.push({
+    if (emDash.violation) {
+      findings.push({
         rule: 'em-dash-ban',
         severity: 'critical',
         message: `Found ${emDash.count} em-dash/en-dash character(s). Restructure with period, comma, or colon.`,
-      });}
+      });
+    }
 
     const ctaIntent = this.checkDuplicateCTAIntent(design.ctas);
-    if (ctaIntent.violation)
-      {findings.push({
+    if (ctaIntent.violation) {
+      findings.push({
         rule: 'duplicate-cta-intent',
         severity: 'critical',
         message: 'Two or more CTAs share the same intent.',
-      });}
+      });
+    }
 
     const hero = this.checkHeroDiscipline(design.hero);
-    if (!hero.passed)
-      {findings.push({ rule: 'hero-discipline', severity: 'high', message: hero.issues.join(' ') });}
+    if (!hero.passed) {
+      findings.push({ rule: 'hero-discipline', severity: 'high', message: hero.issues.join(' ') });
+    }
 
     const eyebrow = this.checkEyebrowRestraint(design.eyebrowCount, design.sectionCount);
-    if (!eyebrow.passed)
-      {findings.push({
+    if (!eyebrow.passed) {
+      findings.push({
         rule: 'eyebrow-restraint',
         severity: 'medium',
         message: `${eyebrow.eyebrowCount} eyebrows exceeds max of ${eyebrow.max} for ${design.sectionCount || 0} sections.`,
-      });}
+      });
+    }
 
     const blackWhite = this.checkPureBlackWhite(design.colors);
-    if (blackWhite.violation)
-      {findings.push({
+    if (blackWhite.violation) {
+      findings.push({
         rule: 'pure-black-white-ban',
         severity: 'medium',
         message: 'Use off-black/off-white instead of pure #000000/#ffffff.',
-      });}
+      });
+    }
 
     const marquee = this.checkMarqueeCount(design.marqueeCount);
-    if (!marquee.passed)
-      {findings.push({
+    if (!marquee.passed) {
+      findings.push({
         rule: 'marquee-max-one',
         severity: 'low',
         message: `${marquee.marqueeCount} marquees found; max one per page.`,
-      });}
+      });
+    }
 
     return { passed: findings.length === 0, findings };
   }

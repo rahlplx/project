@@ -37,8 +37,9 @@ class CodeTranslator {
     if (
       /require\(|module\.exports|const\s+|let\s+|=>|console\.log/.test(code) &&
       !/def\s+/.test(code)
-    )
-      {return 'javascript';}
+    ) {
+      return 'javascript';
+    }
     if (/def\s+\w+\s*\(|print\s*\(/.test(code)) return 'python';
     if (/fn\s+\w+|let\s+mut|println!/.test(code)) return 'rust';
     if (/func\s+\w+|package\s+|fmt\.Println/.test(code)) return 'go';

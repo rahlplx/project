@@ -147,8 +147,9 @@ class ImpeccableAudit {
     md += `**Surface type**: ${context.surfaceType}\n\n`;
     md += `**Audience**: ${context.audience}\n\n`;
     md += `**Voice**: ${context.voice}\n\n`;
-    if (context.antiReferences.length)
-      {md += `**Anti-references**: ${context.antiReferences.join(', ')}\n\n`;}
+    if (context.antiReferences.length) {
+      md += `**Anti-references**: ${context.antiReferences.join(', ')}\n\n`;
+    }
     if (context.palette.length) md += `**Palette**: ${context.palette.join(', ')}\n\n`;
     if (context.typography) md += `**Typography**: ${context.typography}\n\n`;
     if (context.components.length) md += `**Components**: ${context.components.join(', ')}\n\n`;

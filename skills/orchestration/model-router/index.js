@@ -80,8 +80,9 @@ class ModelRouter {
 
   _score(model, task) {
     let score = 0;
-    if (/complex|architecture|strategy|design/.test(task) && model.reasoning === 'excellent')
-      {score += 3;}
+    if (/complex|architecture|strategy|design/.test(task) && model.reasoning === 'excellent') {
+      score += 3;
+    }
     if (/code|implement|build|function/.test(task) && model.code === 'excellent') score += 3;
     if (/quick|simple|draft|summarize/.test(task) && model.speed === 'fastest') score += 2;
     if (/creative|write|content|design/.test(task) && model.creativity === 'high') score += 2;

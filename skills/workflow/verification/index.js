@@ -9,8 +9,9 @@ class Verification {
   }
 
   verify(spec, implementation) {
-    if (!spec || !implementation)
-      {return { success: false, error: 'Both spec and implementation required.' };}
+    if (!spec || !implementation) {
+      return { success: false, error: 'Both spec and implementation required.' };
+    }
 
     const results = [];
     const features = spec.features || spec.requirements || [];

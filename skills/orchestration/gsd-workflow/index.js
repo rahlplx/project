@@ -41,8 +41,9 @@ class GSDWorkflow {
    */
   nextCommand(stage, phaseState = {}) {
     const def = STAGES[stage];
-    if (!def)
-      {return { error: `Unknown stage: ${stage}. Valid stages: ${Object.keys(STAGES).join(', ')}` };}
+    if (!def) {
+      return { error: `Unknown stage: ${stage}. Valid stages: ${Object.keys(STAGES).join(', ')}` };
+    }
 
     if (stage === 'define') {
       if (!phaseState.requirementsLocked) return 'gsd-discuss-phase';
