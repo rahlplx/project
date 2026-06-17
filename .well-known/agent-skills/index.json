@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-17T16:51:43.627Z",
+  "generated_at": "2026-06-17T17:36:37.390Z",
   "skill_count": 56,
   "skills": [
     {
@@ -282,7 +282,7 @@
       "category": "setup",
       "description": "project-wizard",
       "url": "/.well-known/agent-skills/project-wizard/SKILL.md",
-      "digest": "sha256-8d4be306b8b0881070eef1453560e9c44930f57dc83e1e405cc6635a51a0004a"
+      "digest": "sha256-296d2d19339ccc52b058eca95d343e11e413d731f94c048356d5bb85501d9035"
     },
     {
       "name": "prompt-templates",

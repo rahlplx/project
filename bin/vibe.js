@@ -98,6 +98,12 @@ const commandDefs = [
     desc: 'Auto-evolve rules, retire underperformers',
     category: 'phase',
   },
+  {
+    name: 'done',
+    phase: 'done',
+    desc: 'Pipeline complete — summary and next steps',
+    category: 'phase',
+  },
 
   // Utility commands
   {
@@ -250,7 +256,7 @@ if (cmd) {
     try {
       const ctx = new ContextManager();
       if (!ctx.readGoalBlock() && state.goal) {
-        ctx.writeGoalBlock({ goal: state.goal, resumeWith: mode, phase: cmd.phase || 'utility' });
+        ctx.writeGoalBlock(cmd.phase || 'utility', state.goal, `Continue via 'vibe ${mode}'`);
       }
     } catch {
       /* degrade */

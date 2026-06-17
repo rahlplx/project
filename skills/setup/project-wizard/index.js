@@ -74,13 +74,25 @@ const COLOR_SCHEMES = [
   { name: 'Custom / Brand colors', value: 'custom' },
 ];
 
+function sanitizeInput(str, maxLen = 200) {
+  if (typeof str !== 'string') return '';
+  return str
+    // eslint-disable-next-line no-control-regex
+    .replace(/[\x00-\x1f\x7f]/g, ' ')
+    .replace(/`{3,}/g, '```')
+    .trim()
+    .slice(0, maxLen);
+}
+
 async function generateProjectSpec(answers) {
+  const projectName = sanitizeInput(answers.projectName, 100);
+  const description = sanitizeInput(answers.description, 500);
   const template = `# Project Specification
 
-## ${answers.projectName}
+## ${projectName}
 
 ### Overview
-${answers.description}
+${description}
 
 ### Project Type
 **${answers.projectType}**
