@@ -37,6 +37,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit --pretty",
     "format": "prettier --write .",
+    "postformat": "node -e \"require('./lib/discovery-index').writeIndex(process.cwd())\"",
     "format:check": "prettier --check .",
     "audit:prod": "npm audit --omit=dev",
     "prepublishOnly": "npm run lint && npm run typecheck && npm test && node bin/vibe.js harness"

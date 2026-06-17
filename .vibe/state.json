@@ -1,8 +1,8 @@
 {
   "project": "Vibe-Stack Curated Collection",
-  "version": "2.9.0",
+  "version": "2.9.1",
   "phase": "done",
-  "goal": "Implement unified AI engineering orchestrator (intent capture → market research → doc generation → implementation)",
+  "goal": "Implement unified AI engineering orchestrator (intent capture \u2192 market research \u2192 doc generation \u2192 implementation)",
   "step": 26,
   "mode": "auto",
   "agent": "opencode",
@@ -241,7 +241,7 @@
   "updated": "2026-06-16T12:57:14.080Z",
   "auto_pipeline": {
     "started": "2026-06-16T10:55:17.128Z",
-    "goal": "Implement unified AI engineering orchestrator (intent capture → market research → doc generation → implementation)",
+    "goal": "Implement unified AI engineering orchestrator (intent capture \u2192 market research \u2192 doc generation \u2192 implementation)",
     "state_machine": [
       "scope",
       "build",

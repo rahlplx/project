@@ -163,7 +163,6 @@ class SpecDriven {
     if (!code || !spec) return { aligned: false, message: 'Both code and spec are required.' };
 
     const specFeatures = spec.features?.map(f => f.name.toLowerCase()) || [];
-    const specReqs = spec.requirements?.map(r => r.description.toLowerCase()) || [];
     const codeLower = code.toLowerCase();
 
     const matched = specFeatures.filter(f => codeLower.includes(f));

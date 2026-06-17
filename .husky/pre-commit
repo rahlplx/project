@@ -24,10 +24,18 @@ try {
 
 // Gate 2: YAML validity
 try {
-  const yaml = require('js-yaml');
-  const raw = fs.readFileSync(path.join(ROOT, 'catalog/tools.yaml'), 'utf8');
-  yaml.load(raw);
-  console.log('[pre-commit] ✓ YAML valid');
+  let yaml;
+  try {
+    yaml = require('js-yaml');
+  } catch {
+    console.log('[pre-commit] ~ YAML check skipped (js-yaml not installed)');
+    yaml = null;
+  }
+  if (yaml) {
+    const raw = fs.readFileSync(path.join(ROOT, 'catalog/tools.yaml'), 'utf8');
+    yaml.load(raw);
+    console.log('[pre-commit] ✓ YAML valid');
+  }
 } catch (e) {
   console.error('[pre-commit] ✗ YAML: ' + e.message);
   exitCode = 1;

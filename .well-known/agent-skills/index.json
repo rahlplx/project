@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-17T14:56:15.896Z",
+  "generated_at": "2026-06-17T15:03:11.652Z",
   "skill_count": 56,
   "skills": [
     {
@@ -338,7 +338,7 @@
       "category": "workflow",
       "description": "spec-driven",
       "url": "/.well-known/agent-skills/spec-driven/SKILL.md",
-      "digest": "sha256-d6cd63b91081e63b9c1635fa9faf82dfa1449505de3fdec1393fdad3b6f4bb75"
+      "digest": "sha256-8117ab149d8e65d83d967a14dd4fd988507e4d0070cf87c46aecfacf65cc623c"
     },
     {
       "name": "spec-engine",
