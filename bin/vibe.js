@@ -118,6 +118,15 @@ if (cmd) {
   const span = tracer.startSpan(`cmd.${mode}`, { phase: cmd.phase || 'utility' });
   const args = process.argv.slice(3);
   const queryText = args.join(' ') || state.goal || mode;
+
+  // Seed GoalBlock so QueryEnricher GOAL_BLOCK source has data
+  try {
+    const ctx = new ContextManager();
+    const existing = ctx.readGoalBlock();
+    if (!existing && state.goal) {
+      ctx.writeGoalBlock({ goal: state.goal, resumeWith: mode, phase: cmd.phase || 'utility' });
+    }
+  } catch { /* degrade */ }
   const enriched = new QueryEnricher(path.resolve(__dirname, '..')).enrich(queryText);
   if (enriched.skills.length) {
     const phrase = announceSkills(enriched.skills);

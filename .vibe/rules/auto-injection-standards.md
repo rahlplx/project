@@ -26,7 +26,7 @@ Log a `low_confidence` span attribute via OTel tracer.
 
 ## Token budget
 Keep injected context under 500 tokens. Truncate KB entries at 80 chars.
-If `RoleLoader.checkContextBudget()` returns `{ warn: true }`, halve the injection.
+If `new RoleLoader().checkContextBudget()` returns `estimated > budget * 0.85`, skip injection entirely.
 
 ## Origin
 Pattern: `auto-prompt-injection` — DSPy ChainOfThought + SWE-agent context injection.
