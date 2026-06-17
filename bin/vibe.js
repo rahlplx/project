@@ -6,7 +6,8 @@ const cmdDir = path.resolve(__dirname, '..', 'lib', 'vibe-commands');
 const { register, validatePhase } = require(path.join(cmdDir, 'index'));
 const { readState, writeState, recordTelemetry, advancePhase, writeHandoff, getProjectInfo } = require(path.join(cmdDir, 'state-helpers'));
 const { showHelp } = require(path.join(cmdDir, 'help'));
-const { RoleLoader, ContextManager, StateMachine } = require(path.join(__dirname, '..', 'lib', 'orchestrator'));
+const { RoleLoader, ContextManager, StateMachine, QueryEnricher, announceSkills } = require(path.join(__dirname, '..', 'lib', 'orchestrator'));
+const { getTracer } = require(path.join(__dirname, '..', 'lib', 'telemetry', 'otel-tracer'));
 
 // ── Helper: load a handler module ──────────────────────────────
 function loadHandler(name) {
@@ -111,9 +112,24 @@ if (cmd) {
     }
   }
 
+  // Auto-prompt: enrich query with CoT + skill routing + session context
+  // Based on DSPy ChainOfThought + SWE-agent context injection patterns
+  const tracer = getTracer('vibe-cli', path.resolve(__dirname, '..'));
+  const span = tracer.startSpan(`cmd.${mode}`, { phase: cmd.phase || 'utility' });
+  const args = process.argv.slice(3);
+  const queryText = args.join(' ') || state.goal || mode;
+  const enriched = new QueryEnricher(path.resolve(__dirname, '..')).enrich(queryText);
+  if (enriched.skills.length) {
+    const phrase = announceSkills(enriched.skills);
+    if (phrase) console.log(`  \x1b[2m${phrase}\x1b[0m`);
+  }
+  span.setAttribute('skills', enriched.skills.join(','));
+  span.setAttribute('confidence', enriched.confidence);
+
   // Execute handler
   if (cmd.handler) {
-    const result = cmd.handler.handler(process.argv.slice(3), state);
+    const result = cmd.handler.handler(args, state);
+    span.setAttribute('status', (result && result.status) || 'ok').end();
 
     // Advance phase if applicable
     if (phaseCheck.nextPhase) {

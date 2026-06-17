@@ -1,4 +1,6 @@
 {
+  "disableBundledSkills": true,
+  "enabledMcpjsonServers": ["vibe-stack"],
   "hooks": {
     "PostToolUse": [
       {
