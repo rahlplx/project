@@ -76,12 +76,14 @@ const COLOR_SCHEMES = [
 
 function sanitizeInput(str, maxLen = 200) {
   if (typeof str !== 'string') return '';
-  return str
-    // eslint-disable-next-line no-control-regex
-    .replace(/[\x00-\x1f\x7f]/g, ' ')
-    .replace(/`{3,}/g, '```')
-    .trim()
-    .slice(0, maxLen);
+  return (
+    str
+      // eslint-disable-next-line no-control-regex
+      .replace(/[\x00-\x1f\x7f]/g, ' ')
+      .replace(/`{3,}/g, '```')
+      .trim()
+      .slice(0, maxLen)
+  );
 }
 
 async function generateProjectSpec(answers) {

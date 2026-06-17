@@ -1,0 +1,12 @@
+🛡️ Sentinel: Documentation Audit and Skill Standardization
+
+Implemented a multi-persona documentation audit and resolved high-priority
+inconsistencies. Refined security scanner precision and added input validation.
+
+- Defined 4 documentation expert personas in docs/audit/PERSONAS.md.
+- Identified and documented architectural phase drift in docs/audit/DOCUMENTATION_STRATEGY.md.
+- Unified 5 core skills to the SKILL.md format and schema.
+- Refined ASI03-005 scanner regex to reduce false positives by making it context-aware.
+- Hardened lib/intent-capture.js with length limits and control character stripping.
+- Updated SECURITY.md with explicit links to security tools.
+- Verified all changes with targeted test suites.
