@@ -15,11 +15,11 @@ An interactive tool that guides users through creating a comprehensive project s
 - Structured sections for Overview, Tech Stack, Features, Design, and Deployment.
 
 ## Example
-\`\`\`js
+```js
 const wizard = require('./skills/setup/project-wizard');
 const spec = await wizard.generateProjectSpec({
   projectName: 'Vibe App',
   projectType: 'saas',
   features: ['auth', 'database']
 });
-\`\`\`
+```
