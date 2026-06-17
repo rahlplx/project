@@ -16,7 +16,7 @@ A skill for managing and applying design tokens and themed components.
 - Updated UI screen definitions with consistent styling.
 
 ## Example
-\`\`\`js
+```js
 const ds = require('./skills/design/design-system');
 await ds.apply('assets/123', 'my-project');
-\`\`\`
+```
