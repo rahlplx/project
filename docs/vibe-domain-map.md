@@ -5,6 +5,7 @@ This document maps the core domains of the Vibe-Stack codebase, analyzed through
 ---
 
 ## 1. CLI Entry & Command Dispatch
+
 **The "Front Door" of the system.**
 
 - **WHAT**: Handles user input, registers commands, and dispatches to the correct handler.
@@ -20,6 +21,7 @@ This document maps the core domains of the Vibe-Stack codebase, analyzed through
 ---
 
 ## 2. Orchestration & Pipeline
+
 **The "Brain" of the operation.**
 
 - **WHAT**: Manages the 5-phase workflow (Think → Plan → Break → Build → Harness... → Done).
@@ -35,6 +37,7 @@ This document maps the core domains of the Vibe-Stack codebase, analyzed through
 ---
 
 ## 3. Context & State Management
+
 **The "Long-term Memory".**
 
 - **WHAT**: Persists project state, goals, and handoff documents.
@@ -50,6 +53,7 @@ This document maps the core domains of the Vibe-Stack codebase, analyzed through
 ---
 
 ## 4. Telemetry & Tracing
+
 **The "Observability Layer".**
 
 - **WHAT**: Records command usage, errors, and performance spans via a lightweight OTel shim.
@@ -65,6 +69,7 @@ This document maps the core domains of the Vibe-Stack codebase, analyzed through
 ---
 
 ## 5. Skill & Catalog Management
+
 **The "Capability Library".**
 
 - **WHAT**: A collection of JS-based agent skills and a curated YAML catalog of 3rd-party tools.
@@ -80,6 +85,7 @@ This document maps the core domains of the Vibe-Stack codebase, analyzed through
 ---
 
 ## 6. Autonomous Maintenance
+
 **The "Self-Healing Loop".**
 
 - **WHAT**: Background scripts that evolve rules and clean up technical debt based on telemetry.
@@ -95,6 +101,7 @@ This document maps the core domains of the Vibe-Stack codebase, analyzed through
 ---
 
 ## 7. External Integrations (MCP/IDE)
+
 **The "Bridge to the World".**
 
 - **WHAT**: Connects vibe-stack to Cursor, Claude Code, and other MCP-compatible environments.

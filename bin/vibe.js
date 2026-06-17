@@ -237,7 +237,11 @@ if (cmd) {
   const tracer = getTracer('vibe-cli', projectRoot);
   // Root span — requestId scopes the full user request for trace correlation
   const requestId = require('crypto').randomBytes(8).toString('hex');
-  const span = tracer.startSpan(`cmd.${mode}`, { phase: cmd.phase || 'utility', requestId, command: mode });
+  const span = tracer.startSpan(`cmd.${mode}`, {
+    phase: cmd.phase || 'utility',
+    requestId,
+    command: mode,
+  });
 
   let enriched = null;
   if (cmd.category !== 'utility') {
@@ -299,11 +303,17 @@ if (cmd) {
         const today = new Date().toDateString();
         const lastDay = lc.last_maintenance_day || '';
         const runsToday = lastDay === today ? dayRuns : 0;
-        if (lc.interaction_count >= threshold && (Date.now() - lastTs) > cooldownMs && runsToday < 50) {
+        if (
+          lc.interaction_count >= threshold &&
+          Date.now() - lastTs > cooldownMs &&
+          runsToday < 50
+        ) {
           const { spawn } = require('child_process');
-          const child = spawn(process.execPath, [
-            path.join(projectRoot, '.vibe', 'lifecycle', 'auto-maintain.js')
-          ], { detached: true, stdio: 'ignore' });
+          const child = spawn(
+            process.execPath,
+            [path.join(projectRoot, '.vibe', 'lifecycle', 'auto-maintain.js')],
+            { detached: true, stdio: 'ignore' }
+          );
           child.unref();
 
           // Reset counter + record timestamp
