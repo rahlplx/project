@@ -228,7 +228,8 @@ if (cmd) {
   }
 
   // Record telemetry
-  recordTelemetry(`vibe:${mode}`);
+  // ⚡ Bolt: Consolidated telemetry update returns lifecycle state, avoiding a reload later
+  const lc = recordTelemetry(`vibe:${mode}`);
 
   // ⚡ Bolt: only load orchestrator + run enrichment for phase commands
   const { getTracer } = require(path.join(__dirname, '..', 'lib', 'telemetry', 'otel-tracer'));
@@ -236,7 +237,11 @@ if (cmd) {
   const tracer = getTracer('vibe-cli', projectRoot);
   // Root span — requestId scopes the full user request for trace correlation
   const requestId = require('crypto').randomBytes(8).toString('hex');
-  const span = tracer.startSpan(`cmd.${mode}`, { phase: cmd.phase || 'utility', requestId, command: mode });
+  const span = tracer.startSpan(`cmd.${mode}`, {
+    phase: cmd.phase || 'utility',
+    requestId,
+    command: mode,
+  });
 
   let enriched = null;
   if (cmd.category !== 'utility') {
@@ -288,32 +293,42 @@ if (cmd) {
     span.setAttribute('status', (result && result.status) || 'ok').end();
 
     // Check lifecycle threshold — spawn auto-maintain if due (detached, non-blocking)
-    try {
-      const fs = require('fs');
-      const lcPath = path.join(projectRoot, '.vibe', 'lifecycle.json');
-      const lc = JSON.parse(fs.readFileSync(lcPath, 'utf8'));
-      const threshold = lc.triggers?.interaction_threshold || 10;
-      const cooldownMs = 60000;
-      const lastTs = lc.last_maintenance_ts || 0;
-      const dayRuns = lc.today_maintenance_count || 0;
-      const today = new Date().toDateString();
-      const lastDay = lc.last_maintenance_day || '';
-      const runsToday = lastDay === today ? dayRuns : 0;
-      if (lc.interaction_count >= threshold && (Date.now() - lastTs) > cooldownMs && runsToday < 50) {
-        const { spawn } = require('child_process');
-        const child = spawn(process.execPath, [
-          path.join(projectRoot, '.vibe', 'lifecycle', 'auto-maintain.js')
-        ], { detached: true, stdio: 'ignore' });
-        child.unref();
-        // Reset counter + record timestamp
-        lc.interaction_count = 0;
-        lc.last_maintenance_ts = Date.now();
-        lc.last_maintenance_day = today;
-        lc.today_maintenance_count = runsToday + 1;
-        fs.writeFileSync(lcPath, JSON.stringify(lc, null, 2) + '\n', 'utf8');
+    // ⚡ Bolt: Using the lifecycle object (lc) from earlier consolidated update
+    if (lc) {
+      try {
+        const threshold = lc.triggers?.interaction_threshold || 10;
+        const cooldownMs = 60000;
+        const lastTs = lc.last_maintenance_ts || 0;
+        const dayRuns = lc.today_maintenance_count || 0;
+        const today = new Date().toDateString();
+        const lastDay = lc.last_maintenance_day || '';
+        const runsToday = lastDay === today ? dayRuns : 0;
+        if (
+          lc.interaction_count >= threshold &&
+          Date.now() - lastTs > cooldownMs &&
+          runsToday < 50
+        ) {
+          const { spawn } = require('child_process');
+          const child = spawn(
+            process.execPath,
+            [path.join(projectRoot, '.vibe', 'lifecycle', 'auto-maintain.js')],
+            { detached: true, stdio: 'ignore' }
+          );
+          child.unref();
+
+          // Reset counter + record timestamp
+          lc.interaction_count = 0;
+          lc.last_maintenance_ts = Date.now();
+          lc.last_maintenance_day = today;
+          lc.today_maintenance_count = runsToday + 1;
+
+          const fs = require('fs');
+          const lcPath = path.join(projectRoot, '.vibe', 'lifecycle.json');
+          fs.writeFileSync(lcPath, JSON.stringify(lc, null, 2) + '\n', 'utf8');
+        }
+      } catch {
+        /* auto-maintain spawn is best-effort, never block CLI */
       }
-    } catch {
-      /* auto-maintain spawn is best-effort, never block CLI */
     }
 
     // Advance phase if applicable
