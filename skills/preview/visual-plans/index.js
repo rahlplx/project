@@ -114,7 +114,7 @@ class VisualPlansSkill {
   /**
    * Infer styles from description
    */
-  inferStyles(lowerSentence, type) {
+  inferStyles(lowerSentence, _type) {
     const styles = {};
 
     if (lowerSentence.includes('primary')) styles.variant = 'primary';

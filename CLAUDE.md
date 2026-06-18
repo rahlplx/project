@@ -9,6 +9,10 @@ The primary interface is `SKILL.md` — AI agents read it to learn how to help e
 The codebase itself (`lib/`, `bin/`, `skills/`) is the orchestrator + skill library that
 implements that interface.
 
+## Requirements
+
+Node.js 18+ required; CI tests on Node 20 and 22 — avoid APIs not available in both.
+
 ## Commands
 
 ```bash
@@ -20,14 +24,31 @@ npx jest -t "test name"                          # Run a single Jest test by nam
 node --test lib/orchestrator/state-machine.test.js  # Run a single node:test file directly
 npm run lint                # ESLint (0 errors required)
 npm run typecheck           # tsc --noEmit over lib/**/*.js (allowJs/checkJs, no .test.js)
-npm run format              # Prettier --write
+npm run format              # Prettier --write (printWidth 100, singleQuote, trailingComma es5)
 node bin/vibe.js <command>  # Run the CLI directly, e.g. `node bin/vibe.js status`
 node .vibe/lifecycle/auto-maintain.js  # Run the autonomous maintenance cycle
 ```
 
-Jest config (in `package.json`) excludes `.vibe/`, `.gsd/`, and a long list of files that
-are covered by `npm run test:node` instead — check `testPathIgnorePatterns` before assuming
-a `*.test.js` file runs under Jest.
+**Jest vs node:test partition** — Jest covers `skills/` tests; `lib/` tests use `node:test`.
+Jest's `testPathIgnorePatterns` excludes the entire `/lib/` directory, so any `*.test.js` file
+placed under `lib/` **must** use `node:test` syntax or it will be silently skipped by both runners.
+`npm run test:node` (via `scripts/run-node-tests.js`) finds files under `lib/` that contain
+`require('node:test')`.
+
+## Pre-commit Hooks
+
+`.husky/pre-commit` runs four gates before every commit:
+
+1. **ESLint** on `lib/` and `bin/` only (skills/ is excluded — `console.log` is allowed there)
+2. **YAML validity** for `catalog/tools.yaml`
+3. **Skill index integrity** — checks `.well-known/agent-skills/index.json` SHA-256 digests match `skills/`
+4. **`npm audit --omit=dev`** — blocks on CRITICAL or HIGH severity vulnerabilities
+
+If gate 3 fails after adding/removing a skill, regenerate the index:
+
+```bash
+node -e "require('./lib/discovery-index').writeIndex(process.cwd())"
+```
 
 ## Architecture
 
@@ -177,14 +198,20 @@ This project installs into 4 agent ecosystems without forking the skill library:
 | OpenCode    | `opencode.json`                     | `mcp` key, local stdio transport to `bin/mcp-server.js`                                                                                                                                                                                   |
 | Codex CLI   | `.codex/config.toml`                | `[mcp_servers.vibe-stack]` block (project-local auto-load varies by Codex CLI version — copy into `~/.codex/config.toml` if it isn't picked up)                                                                                           |
 
-`node bin/vibe.js install [--cursor|--windsurf|--claude-code|--all]` wraps `lib/install-ide.js`
-(`detectIDE`/`installForIDE`/`syncToIDE`) to generate IDE-native rule files and, for Claude
-Code, sync `skills/` JS modules into `.claude/skills/<category>/<name>.md` reference docs.
-With no flag it auto-detects the current IDE from env vars and existing config dirs.
+`node bin/vibe.js install [--cursor|--windsurf|--trae|--kilocode|--claude-code|--all]` wraps
+`lib/install-ide.js` (`detectIDE`/`installForIDE`/`syncToIDE`) to generate IDE-native rule files
+and, for Claude Code, sync `skills/` JS modules into `.claude/skills/<category>/<name>.md` reference
+docs. With no flag it auto-detects the current IDE from env vars and existing config dirs.
 
 ## Code Conventions
 
 - CommonJS only (`require`/`module.exports`) — no ESM, per ESLint `sourceType: 'commonjs'`.
-- No new runtime dependencies; prefer built-in Node.js APIs (see `CONTRIBUTING.md`).
+- No new runtime dependencies; the repo has exactly 2 production deps (MCP SDK + inquirer).
+  Prefer built-in Node.js APIs (see `CONTRIBUTING.md`).
 - New skills need `index.js` + `SKILL.md` + a test file (`node:test` or Jest) — see
   `skills/AGENTS.md` for the exact required shape before adding one.
+- After adding or removing a skill, update `.well-known/agent-skills/index.json` (the pre-commit
+  hook will catch drift, but regenerate proactively):
+  ```bash
+  node -e "require('./lib/discovery-index').writeIndex(process.cwd())"
+  ```

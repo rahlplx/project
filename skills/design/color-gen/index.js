@@ -58,9 +58,8 @@ class ColorGenerator {
     b /= 255;
     const max = Math.max(r, g, b);
     const min = Math.min(r, g, b);
-    let h,
-      s,
-      l = (max + min) / 2;
+    let h, s;
+    const l = (max + min) / 2;
 
     if (max === min) {
       h = s = 0;
@@ -144,8 +143,6 @@ class ColorGenerator {
    */
   meetsWCAG(color1, color2, level = 'AA') {
     const ratio = this.getContrastRatio(color1, color2);
-    const requirements = this.wcagRequirements;
-
     const thresholds = {
       AA: { normal: 4.5, large: 3 },
       AAA: { normal: 7, large: 4.5 },
@@ -304,10 +301,7 @@ class ColorGenerator {
   /**
    * Generate semantic color system
    */
-  generateSemanticPalette(baseColor) {
-    const base = this.hexToRgb(baseColor);
-    const hsl = this.rgbToHsl(base.r, base.g, base.b);
-
+  generateSemanticPalette(_baseColor) {
     const semantic = {
       success: { h: 142, s: 76, l: 45 }, // Green-ish
       warning: { h: 38, s: 92, l: 51 }, // Amber
