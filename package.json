@@ -81,7 +81,7 @@
       "/lib/"
     ],
     "coverageDirectory": ".vibe",
-    "coverageReporters": ["json-summary", "text", "lcov"]
+    "coverageReporters": ["json-summary", "text"]
   },
   "devDependencies": {
     "eslint": "^8.55.0",

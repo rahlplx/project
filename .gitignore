@@ -47,3 +47,9 @@ temp-test-output.txt
 # Test artifacts
 test-screenshots/
 screenshots/
+
+# Coverage artifacts
+.vibe/lcov-report/
+.vibe/lcov.info
+.vibe/clover.xml
+.vibe/coverage-final.json
