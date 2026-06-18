@@ -110,25 +110,57 @@ class CodeExplainer {
 
   _extractClasses(code) {
     const classes = [];
-    const classPattern = /class\s+(\w+)(?:\s+extends\s+(\w+))?/g;
+    const classPattern = /class\s+(\w+)(?:\s+extends\s+(\w+)|\s*:)?/g;
     let m;
     while ((m = classPattern.exec(code)) !== null) {
-      classes.push({ name: m[1], extends: m[2] || null, methods: [], _pos: m.index });
+      classes.push({
+        name: m[1],
+        extends: m[2] || null,
+        methods: [],
+        _pos: m.index,
+        _bodyStart: -1,
+        _bodyEnd: -1,
+      });
+    }
+
+    for (let i = 0; i < classes.length; i++) {
+      const cls = classes[i];
+      const stopAt = i + 1 < classes.length ? classes[i + 1]._pos : code.length;
+      let j = cls._pos;
+      while (j < stopAt && code[j] !== '{') j++;
+      if (j >= stopAt) continue;
+      cls._bodyStart = j;
+      let depth = 0;
+      for (; j < code.length; j++) {
+        if (code[j] === '{') depth++;
+        else if (code[j] === '}') {
+          depth--;
+          if (depth === 0) {
+            cls._bodyEnd = j;
+            break;
+          }
+        }
+      }
+      if (cls._bodyEnd === -1) cls._bodyEnd = code.length;
     }
 
     const methodPattern = /(?<!\bfunction\s*\*?\s*)(\w+)\s*\([^)]*\)\s*\{/g;
     const SKIP = new Set(['if', 'for', 'while', 'switch', 'catch', 'function', 'constructor']);
     while ((m = methodPattern.exec(code)) !== null) {
       if (SKIP.has(m[1])) continue;
-      // assign to the last class whose definition starts before this method
-      let target = null;
       for (const cls of classes) {
-        if (cls._pos < m.index) target = cls;
+        if (cls._bodyStart >= 0 && m.index > cls._bodyStart && m.index < cls._bodyEnd) {
+          cls.methods.push(m[1]);
+          break;
+        }
       }
-      if (target) target.methods.push(m[1]);
     }
 
-    classes.forEach(c => delete c._pos);
+    classes.forEach(c => {
+      delete c._pos;
+      delete c._bodyStart;
+      delete c._bodyEnd;
+    });
     return classes;
   }
 

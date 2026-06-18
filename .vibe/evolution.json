@@ -1,7 +1,7 @@
 {
   "version": "2.9.2",
-  "last_evolution": "2026-06-17",
-  "evolution_count": 13,
+  "last_evolution": "2026-06-18T03:30:00Z",
+  "evolution_count": 14,
   "rules": {
     "agent-native-catalog": {
       "fires": 35,
@@ -9,8 +9,9 @@
       "false_positive": 0,
       "quality_score": 1,
       "last_updated": "2026-06-13",
-      "status": "active",
-      "note": "Hard requirement. Applied to all 35 entries. Zero false positives."
+      "status": "promoted",
+      "note": "Hard requirement. Applied to all 35 entries. Zero false positives.",
+      "promoted_date": "2026-06-18"
     },
     "yaml-only-direct-push": {
       "fires": 3,
@@ -45,8 +46,9 @@
       "false_positive": 0,
       "quality_score": 1,
       "last_updated": "2026-06-14",
-      "status": "active",
-      "note": "Every skill MUST have a test file. 12+2=14 untested skills identified and fixed. 47 skills covered."
+      "status": "promoted",
+      "note": "Every skill MUST have a test file. 12+2=14 untested skills identified and fixed. 47 skills covered.",
+      "promoted_date": "2026-06-18"
     },
     "batch-catalog-additions": {
       "fires": 0,
@@ -542,8 +544,7 @@
       "note": "Validates state.json state_machine has exactly 6 entries matching 5-phase model: scope, build, verify, ship, evolve, done. Runs added as Check 15."
     }
   },
-  "proposed_rules": [
-  ],
+  "proposed_rules": [],
   "retired": {
     "test-suite-always-run": {
       "fires": 0,
@@ -608,5 +609,5 @@
       "false_positive": 0
     }
   ],
-  "updated": "2026-06-17T00:00:00Z"
+  "updated": "2026-06-18T03:30:00Z"
 }

@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-18T02:50:13.126Z",
+  "generated_at": "2026-06-18T02:55:40.562Z",
   "skill_count": 56,
   "skills": [
     {
@@ -50,7 +50,7 @@
       "category": "explain",
       "description": "code-explainer",
       "url": "/.well-known/agent-skills/code-explainer/SKILL.md",
-      "digest": "sha256-ecc2ae17894e6d8f7d11e3c04a0c3c3e2d706b66c573abe63d0830df1ab06fe6"
+      "digest": "sha256-204fe18287827afb1d6b5ace4a00d7ee6b3c4ddaa3003b5ae48e6c29eb2975e6"
     },
     {
       "name": "code-health",
