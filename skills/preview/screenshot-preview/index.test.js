@@ -171,9 +171,11 @@ describe('ScreenshotPreview — uncovered branches', () => {
   });
 
   it('capture() falls through to error result when puppeteer and canvas unavailable', async () => {
-    const result = await s.capture('http://localhost:9999/nothing', {
-      filename: 'test-cap.png',
-    }).catch(e => ({ error: e.message }));
+    const result = await s
+      .capture('http://localhost:9999/nothing', {
+        filename: 'test-cap.png',
+      })
+      .catch(e => ({ error: e.message }));
     expect(result).toBeDefined();
   });
 

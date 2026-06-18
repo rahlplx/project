@@ -45,7 +45,9 @@ describe('QuickStart', () => {
     const origLog = console.log;
     console.log = () => {};
     const sentinel = new Error('__exit__');
-    const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => { throw sentinel; });
+    const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {
+      throw sentinel;
+    });
     try {
       await mod.scaffold({ templateKey: 'nonexistent', outputDir: '/tmp', projectName: 'x' });
     } catch (e) {
