@@ -47,6 +47,10 @@ You see: "Done. Your font is now readable, contrast is WCAG-compliant, and the l
 
 Detailed analysis of our documentation strategy can be found in `docs/audit/DOCUMENTATION_STRATEGY.md`.
 
+## Documentation Audit
+
+Detailed analysis of our documentation strategy can be found in `docs/audit/DOCUMENTATION_STRATEGY.md`.
+
 ## What's Inside
 
 ```
