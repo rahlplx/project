@@ -1,9 +1,11 @@
 # skills/AGENTS.md
 
 ## Purpose
+
 Skills are reusable AI agent capabilities. Each skill encapsulates a specific workflow (deploy, design, review, orchestrate, etc.).
 
 ## Structure
+
 ```
 skills/
 ├── AGENTS.md           # This file
@@ -16,6 +18,7 @@ skills/
 ```
 
 ## Conventions
+
 - Each skill in its own directory under category
 - `index.js` exports: `name`, `description`, `category`, `methods` (sync + async)
 - `SKILL.md` has: `name`, `description`, `category`, `tools`, `triggers`, `examples`
@@ -24,6 +27,7 @@ skills/
 - Methods return Promises for async, values for sync
 
 ## Cross-References
+
 - `SKILL.md` → Entry point, delegates to this file
 - `catalog/AGENTS.md` → Tools available to skills
 - `references/AGENTS.md` → Reference doc patterns
