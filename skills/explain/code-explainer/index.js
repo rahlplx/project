@@ -110,20 +110,25 @@ class CodeExplainer {
 
   _extractClasses(code) {
     const classes = [];
-    const patterns = [/class\s+(\w+)(?:\s+extends\s+(\w+))?/g, /class\s+(\w+)(?:\s*\([^)]*\))?:/g];
-    for (const pat of patterns) {
-      let m;
-      while ((m = pat.exec(code)) !== null) {
-        classes.push({ name: m[1], extends: m[2] || null, methods: [] });
-      }
-    }
-    const methodPattern = /(\w+)\s*\([^)]*\)\s*{/g;
+    const classPattern = /class\s+(\w+)(?:\s+extends\s+(\w+))?/g;
     let m;
-    while ((m = methodPattern.exec(code)) !== null) {
-      if (classes.length > 0 && !['if', 'for', 'while', 'switch', 'catch'].includes(m[1])) {
-        classes[classes.length - 1].methods.push(m[1]);
-      }
+    while ((m = classPattern.exec(code)) !== null) {
+      classes.push({ name: m[1], extends: m[2] || null, methods: [], _pos: m.index });
     }
+
+    const methodPattern = /(\w+)\s*\([^)]*\)\s*\{/g;
+    const SKIP = new Set(['if', 'for', 'while', 'switch', 'catch', 'function', 'constructor']);
+    while ((m = methodPattern.exec(code)) !== null) {
+      if (SKIP.has(m[1])) continue;
+      // assign to the last class whose definition starts before this method
+      let target = null;
+      for (const cls of classes) {
+        if (cls._pos < m.index) target = cls;
+      }
+      if (target) target.methods.push(m[1]);
+    }
+
+    classes.forEach(c => delete c._pos);
     return classes;
   }
 

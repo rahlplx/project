@@ -69,7 +69,15 @@ class AntiPatterns {
         name: 'Deep Nesting',
         message: 'Code nested more than 3 levels deep',
         suggestion: 'Use early returns, guard clauses, or extract logic',
-        check: c => (c.match(/\{/g) || []).length - (c.match(/\}/g) || []).length > 3,
+        check: c => {
+          let depth = 0;
+          let max = 0;
+          for (const ch of c) {
+            if (ch === '{') { depth++; if (depth > max) max = depth; }
+            else if (ch === '}') depth--;
+          }
+          return max > 3;
+        },
       },
       {
         id: 'AP04',
