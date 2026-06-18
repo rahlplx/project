@@ -38,6 +38,7 @@ class ModelRouter {
         code: 'excellent',
         creativity: 'high',
         context: 200000,
+        reason: 'Best for complex reasoning, architecture, and strategy tasks.',
       },
       {
         name: 'Claude Sonnet',
@@ -47,6 +48,7 @@ class ModelRouter {
         code: 'excellent',
         creativity: 'medium',
         context: 200000,
+        reason: 'Balanced quality and speed; excellent for code tasks.',
       },
       {
         name: 'Claude Haiku',
@@ -56,6 +58,7 @@ class ModelRouter {
         code: 'good',
         creativity: 'medium',
         context: 200000,
+        reason: 'Fastest and cheapest; ideal for simple or high-volume tasks.',
       },
       {
         name: 'GPT-4o',
@@ -65,6 +68,7 @@ class ModelRouter {
         code: 'excellent',
         creativity: 'high',
         context: 128000,
+        reason: 'Strong reasoning and creativity; good OpenAI alternative for complex tasks.',
       },
       {
         name: 'GPT-4o Mini',
@@ -74,6 +78,7 @@ class ModelRouter {
         code: 'good',
         creativity: 'medium',
         context: 128000,
+        reason: 'Budget OpenAI option for simple classification or drafting tasks.',
       },
     ];
   }

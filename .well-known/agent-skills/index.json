@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-17T23:11:12.166Z",
+  "generated_at": "2026-06-18T02:55:40.562Z",
   "skill_count": 56,
   "skills": [
     {
@@ -10,7 +10,7 @@
       "category": "quality",
       "description": "anti-patterns",
       "url": "/.well-known/agent-skills/anti-patterns/SKILL.md",
-      "digest": "sha256-d1d6f3555733e6d9f1f334c8c41dcbb180ac63f1803207b7f970aa797e0499cb"
+      "digest": "sha256-1596140e6147a84a93cc6446b3d8b7856a8230a55b9c0d9a70fba9635eab0ef7"
     },
     {
       "name": "anti-slop",
@@ -50,7 +50,7 @@
       "category": "explain",
       "description": "code-explainer",
       "url": "/.well-known/agent-skills/code-explainer/SKILL.md",
-      "digest": "sha256-bfd60593452c1cab213c3c810a4753facfed7cedd7a5858023e6708d07e51523"
+      "digest": "sha256-204fe18287827afb1d6b5ace4a00d7ee6b3c4ddaa3003b5ae48e6c29eb2975e6"
     },
     {
       "name": "code-health",
@@ -106,7 +106,7 @@
       "category": "design",
       "description": "design-system",
       "url": "/.well-known/agent-skills/design-system/SKILL.md",
-      "digest": "sha256-8d8192f9eb1cb43d4ae3212480347265d206a4b11f75057334b9c3242953f36b"
+      "digest": "sha256-80b8297ddba34b9a4d9d15f8c09fbd1645d757668408a99b285cd8e7bdf5a16b"
     },
     {
       "name": "diff-preview",
@@ -194,7 +194,7 @@
       "category": "quality",
       "description": "health-check",
       "url": "/.well-known/agent-skills/health-check/SKILL.md",
-      "digest": "sha256-d987f54134be3443f1583dfb7b183744216f5074f2585cceca912a9fb97e86ab"
+      "digest": "sha256-77b1b3f9cfde0710cea023e248e5a5bb179bedfc8374bc5329092effbcb926ee"
     },
     {
       "name": "impeccable-audit",
@@ -226,7 +226,7 @@
       "category": "orchestration",
       "description": "model-router",
       "url": "/.well-known/agent-skills/model-router/SKILL.md",
-      "digest": "sha256-a268c320e32835ea310474f3c31b4c408bf8931152e8967d81124a3fd7dc84ee"
+      "digest": "sha256-b09a97e451040ab89fde70b341198e2d59064bd5399ebad5fc6b7100f297d730"
     },
     {
       "name": "nexus",
@@ -354,7 +354,7 @@
       "category": "orchestration",
       "description": "task-coordinator",
       "url": "/.well-known/agent-skills/task-coordinator/SKILL.md",
-      "digest": "sha256-ce3ebd626f99646b4d1436b02838621f1da27a5dc7f9794dd8e0d004f554e6c1"
+      "digest": "sha256-51fdd5054c1fe32ee83d24a122516c22ab1bb058d2e7aad8f1f2bd23db1c0c6e"
     },
     {
       "name": "taste-skill",

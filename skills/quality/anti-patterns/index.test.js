@@ -35,11 +35,17 @@ describe('AntiPatterns', () => {
     expect(s.toJSON().patterns).toBe(10);
   });
 
-  it('should categorize findings by severity', () => {
+  it('should detect deep nesting (AP03) on code with 5+ nesting levels', () => {
     const s = new AntiPatterns();
-    const r = s.analyze('const x = 12345; const y = 67890; const z = 99999; const w = 11111;');
-    expect(r.stats).toHaveProperty('critical');
-    expect(r.stats).toHaveProperty('warning');
-    expect(r.stats).toHaveProperty('info');
+    const code = 'if (a) { if (b) { if (c) { if (d) { if (e) { doSomething(); } } } } }';
+    const r = s.analyze(code);
+    expect(r.findings.some(f => f.id === 'AP03')).toBe(true);
+  });
+
+  it('should NOT flag AP03 on shallow nesting (2 levels)', () => {
+    const s = new AntiPatterns();
+    const code = 'function foo() { if (a) { return b; } }';
+    const r = s.analyze(code);
+    expect(r.findings.some(f => f.id === 'AP03')).toBe(false);
   });
 });

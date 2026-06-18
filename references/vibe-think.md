@@ -43,6 +43,13 @@ Write a concise think document to `plans/think-<topic>.md` with sections:
 - MVP scope
 - Success metrics
 
+## Flags
+
+- `--backtrack` — allow running `think` when the pipeline is already past this phase.
+  Use when a new requirement invalidates earlier assumptions and you need to re-examine
+  the problem before the next build cycle.
+  Example: `node bin/vibe.js think --backtrack "revised scope after user feedback"`
+
 ## Roles Active
 - CEO (strategy, market fit)
 - Designer (user experience, journey)

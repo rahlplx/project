@@ -83,8 +83,7 @@ class HealthCheck {
       severity: hasLicense ? 'ok' : 'info',
     });
 
-    // Disk space
-    const diskCheck = this._checkDiskSpace(resolved);
+    const memoryCheck = this._checkMemory(resolved);
 
     const passed = checks.filter(c => c.passed).length;
     const total = checks.length;
@@ -96,17 +95,17 @@ class HealthCheck {
       score: Math.round((passed / total) * 100),
       summary: `${passed}/${total} checks passed`,
       checks,
-      disk: diskCheck,
+      memory: memoryCheck,
       recommendations: this._generateRecommendations(checks),
       timestamp: new Date().toISOString(),
     };
   }
 
-  _checkDiskSpace(dir) {
+  _checkMemory(_dir) {
     try {
       const os = require('os');
       const free = os.freemem();
-      const total = os.totalmem();
+      const _total = os.totalmem();
       const freeGB = (free / 1024 / 1024 / 1024).toFixed(1);
       return { freeMemoryGB: parseFloat(freeGB), status: freeGB > 1 ? 'ok' : 'low' };
     } catch {

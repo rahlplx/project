@@ -490,6 +490,40 @@ function detectStuckPhases(thresholdMs = 300000) {
   return stuck;
 }
 
+// ── Phase 2b2: Dependency Freshness ───────────────────────────────
+function checkOutdatedDeps() {
+  console.log('  [telemetry] Checking dependency freshness...');
+  try {
+    let out;
+    try {
+      out = execFileSync('npm', ['outdated', '--json'], {
+        cwd: PROJECT_ROOT,
+        encoding: 'utf8',
+        timeout: 15000,
+        stdio: ['ignore', 'pipe', 'ignore'],
+      });
+    } catch (err) {
+      out = err.stdout;
+    }
+    const data = out && out.trim() ? JSON.parse(out) : {};
+    const packages = Object.keys(data);
+    if (packages.length === 0) {
+      console.log('  [telemetry]  ✓ all dependencies current');
+    } else {
+      console.log(`  [telemetry]  ⚠ ${packages.length} outdated package(s):`);
+      packages.slice(0, 5).forEach(p => {
+        const d = data[p];
+        console.log(`    ${p}: ${d.current} → ${d.latest}`);
+      });
+      if (packages.length > 5) console.log(`    ... and ${packages.length - 5} more`);
+    }
+    return { count: packages.length, packages: data };
+  } catch {
+    console.log('  [telemetry]  ~ dependency check skipped');
+    return { count: 0, packages: {} };
+  }
+}
+
 // ── Phase 2c: Save Harness Results ──────────────────────────────
 function saveHarnessResults(harnessResults) {
   const harnessPath = path.join(TELEMETRY_DIR, 'harness-results.json');
@@ -945,6 +979,8 @@ async function main() {
   const telemetry = captureTelemetry();
   // Phase 2b: Stuck detection
   const stuckPhases = detectStuckPhases();
+  // Phase 2b2: Dependency freshness
+  checkOutdatedDeps();
   // Phase 2c: Session retention
   const deletedCount = enforceSessionRetention(30);
   // Phase 2d: Compaction signal detection
