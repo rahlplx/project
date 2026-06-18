@@ -86,6 +86,11 @@
       "text"
     ]
   },
+  "overrides": {
+    "@istanbuljs/load-nyc-config": {
+      "js-yaml": "4.2.0"
+    }
+  },
   "devDependencies": {
     "eslint": "^8.55.0",
     "jest": "^29.7.0",
