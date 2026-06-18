@@ -93,7 +93,7 @@ class ModelRouter {
     if (/creative|write|content|design/.test(task) && model.creativity === 'high') score += 2;
     if (/large|whole|full/.test(task) && model.context >= 200000) score += 2;
     if (/budget|cheap|cost/.test(task) && model.cost === 'low') score += 2;
-    if (model.cost === 'low') score += 1; // default lean toward cheaper
+    if (model.cost === 'low') score += 1; // default lean: cheaper wins ties (pass constraints.quality=true to suppress)
     return score;
   }
 

@@ -30,6 +30,12 @@ const commandDefs = [
     aliases: ['scope'],
   },
   {
+    name: 'explain',
+    phase: 'think',
+    desc: 'Capture intent and generate PROJECT.md + PRD.md from plain-language input',
+    category: 'phase',
+  },
+  {
     name: 'plan',
     phase: 'plan',
     desc: 'Multi-perspective review, risk assessment, acceptance criteria',
@@ -308,12 +314,10 @@ if (cmd) {
           Date.now() - lastTs > cooldownMs &&
           runsToday < 50
         ) {
+          const maintainPath = path.join(projectRoot, '.vibe', 'lifecycle', 'auto-maintain.js');
+          if (!require('fs').existsSync(maintainPath)) break;
           const { spawn } = require('child_process');
-          const child = spawn(
-            process.execPath,
-            [path.join(projectRoot, '.vibe', 'lifecycle', 'auto-maintain.js')],
-            { detached: true, stdio: 'ignore' }
-          );
+          const child = spawn(process.execPath, [maintainPath], { detached: true, stdio: 'ignore' });
           child.unref();
 
           // Reset counter + record timestamp
