@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-18T02:43:21.743Z",
+  "generated_at": "2026-06-18T02:50:13.126Z",
   "skill_count": 56,
   "skills": [
     {
@@ -10,7 +10,7 @@
       "category": "quality",
       "description": "anti-patterns",
       "url": "/.well-known/agent-skills/anti-patterns/SKILL.md",
-      "digest": "sha256-c8a964d579596a4997f3b1518df775764d09096de1b0322f42357aa023373786"
+      "digest": "sha256-1596140e6147a84a93cc6446b3d8b7856a8230a55b9c0d9a70fba9635eab0ef7"
     },
     {
       "name": "anti-slop",
@@ -50,7 +50,7 @@
       "category": "explain",
       "description": "code-explainer",
       "url": "/.well-known/agent-skills/code-explainer/SKILL.md",
-      "digest": "sha256-bf0cac75b2bdeff363e5ed36ad5bfc94b444918ce6756473a263d116744a64a4"
+      "digest": "sha256-ecc2ae17894e6d8f7d11e3c04a0c3c3e2d706b66c573abe63d0830df1ab06fe6"
     },
     {
       "name": "code-health",
@@ -106,7 +106,7 @@
       "category": "design",
       "description": "design-system",
       "url": "/.well-known/agent-skills/design-system/SKILL.md",
-      "digest": "sha256-f001aec46a225af17ad36fb7af1644869b56182b64f8f387dcd1094026514319"
+      "digest": "sha256-80b8297ddba34b9a4d9d15f8c09fbd1645d757668408a99b285cd8e7bdf5a16b"
     },
     {
       "name": "diff-preview",
@@ -194,7 +194,7 @@
       "category": "quality",
       "description": "health-check",
       "url": "/.well-known/agent-skills/health-check/SKILL.md",
-      "digest": "sha256-9902d67cd008230a4035df0b7482267ca9eb141c5c88407058342e60d7792c65"
+      "digest": "sha256-77b1b3f9cfde0710cea023e248e5a5bb179bedfc8374bc5329092effbcb926ee"
     },
     {
       "name": "impeccable-audit",
@@ -354,7 +354,7 @@
       "category": "orchestration",
       "description": "task-coordinator",
       "url": "/.well-known/agent-skills/task-coordinator/SKILL.md",
-      "digest": "sha256-ce3ebd626f99646b4d1436b02838621f1da27a5dc7f9794dd8e0d004f554e6c1"
+      "digest": "sha256-51fdd5054c1fe32ee83d24a122516c22ab1bb058d2e7aad8f1f2bd23db1c0c6e"
     },
     {
       "name": "taste-skill",

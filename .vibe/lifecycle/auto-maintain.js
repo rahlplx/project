@@ -494,8 +494,18 @@ function detectStuckPhases(thresholdMs = 300000) {
 function checkOutdatedDeps() {
   console.log('  [telemetry] Checking dependency freshness...');
   try {
-    const out = execSync('npm outdated --json 2>/dev/null || true', { cwd: PROJECT_ROOT, encoding: 'utf8', timeout: 15000 });
-    const data = out ? JSON.parse(out) : {};
+    let out;
+    try {
+      out = execSync('npm outdated --json', {
+        cwd: PROJECT_ROOT,
+        encoding: 'utf8',
+        timeout: 15000,
+        stdio: ['ignore', 'pipe', 'ignore'],
+      });
+    } catch (err) {
+      out = err.stdout;
+    }
+    const data = out && out.trim() ? JSON.parse(out) : {};
     const packages = Object.keys(data);
     if (packages.length === 0) {
       console.log('  [telemetry]  ✓ all dependencies current');

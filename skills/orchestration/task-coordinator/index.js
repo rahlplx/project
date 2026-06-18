@@ -58,7 +58,9 @@ class TaskCoordinator {
     const visiting = new Set();
     const visit = step => {
       if (visited.has(step.id)) return;
-      if (visiting.has(step.id)) throw new Error(`Circular dependency detected at step: ${step.id}`);
+      if (visiting.has(step.id)) {
+        throw new Error(`Circular dependency detected at step: ${step.id}`);
+      }
       visiting.add(step.id);
       step.dependsOn.forEach(depId => {
         const dep = steps.find(s => s.id === depId);

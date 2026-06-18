@@ -83,8 +83,7 @@ class HealthCheck {
       severity: hasLicense ? 'ok' : 'info',
     });
 
-    // Disk space
-    const diskCheck = this._checkMemory(resolved);
+    const memoryCheck = this._checkMemory(resolved);
 
     const passed = checks.filter(c => c.passed).length;
     const total = checks.length;
@@ -96,7 +95,7 @@ class HealthCheck {
       score: Math.round((passed / total) * 100),
       summary: `${passed}/${total} checks passed`,
       checks,
-      disk: diskCheck,
+      memory: memoryCheck,
       recommendations: this._generateRecommendations(checks),
       timestamp: new Date().toISOString(),
     };

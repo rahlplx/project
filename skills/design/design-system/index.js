@@ -76,7 +76,7 @@ class DesignSystem {
     const naming = this.config.spacing.naming;
     const scale = this.config.spacing.scale;
 
-    scale.forEach((value) => {
+    scale.forEach(value => {
       const name = naming[value] || `space-${value}`;
       vars[`--space-${name}`] = `${value}px`;
     });

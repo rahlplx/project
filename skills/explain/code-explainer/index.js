@@ -116,7 +116,7 @@ class CodeExplainer {
       classes.push({ name: m[1], extends: m[2] || null, methods: [], _pos: m.index });
     }
 
-    const methodPattern = /(\w+)\s*\([^)]*\)\s*\{/g;
+    const methodPattern = /(?<!\bfunction\s*\*?\s*)(\w+)\s*\([^)]*\)\s*\{/g;
     const SKIP = new Set(['if', 'for', 'while', 'switch', 'catch', 'function', 'constructor']);
     while ((m = methodPattern.exec(code)) !== null) {
       if (SKIP.has(m[1])) continue;

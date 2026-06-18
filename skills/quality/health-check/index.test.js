@@ -26,9 +26,9 @@ describe('HealthCheck', () => {
     expect(r.recommendations).toBeDefined();
   });
 
-  it('should include disk check', () => {
+  it('should include memory check', () => {
     const s = new HealthCheck();
     const r = s.checkProject('.');
-    expect(r.disk).toHaveProperty('freeMemoryGB');
+    expect(r.memory).toHaveProperty('freeMemoryGB');
   });
 });
