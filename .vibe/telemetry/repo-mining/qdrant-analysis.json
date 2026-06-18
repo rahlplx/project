@@ -1,0 +1,14 @@
+{
+  "name": "qdrant",
+  "url": "https://github.com/qdrant/qdrant.git",
+  "stars": 32133,
+  "license": "Apache-2.0",
+  "quality_score": 0,
+  "patterns": [],
+  "anti_patterns": [
+    "no-tests",
+    "no-readme",
+    "no-ci"
+  ],
+  "candidates": []
+}

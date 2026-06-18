@@ -1,0 +1,8 @@
+# Codex CLI project config for vibe-stack.
+# Codex CLI loads this from .codex/config.toml for trusted projects, or copy
+# the [mcp_servers.vibe-stack] block below into ~/.codex/config.toml to enable
+# it globally (project-local auto-load behavior varies by Codex CLI version).
+
+[mcp_servers.vibe-stack]
+command = "node"
+args = ["bin/mcp-server.js"]

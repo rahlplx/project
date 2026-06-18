@@ -1,0 +1,28 @@
+{
+  "name": "langflow",
+  "url": "https://github.com/langflow-ai/langflow.git",
+  "stars": 149615,
+  "license": "MIT",
+  "quality_score": 75,
+  "patterns": [
+    "node",
+    "python",
+    "docker",
+    "typescript",
+    "tested",
+    "documented",
+    "catalog",
+    "self-improving",
+    "telemetry",
+    "mcp",
+    "agents"
+  ],
+  "anti_patterns": [],
+  "candidates": [
+    "catalog-pattern",
+    "self-improvement",
+    "mcp-integration",
+    "agent-arch",
+    "telemetry-system"
+  ]
+}

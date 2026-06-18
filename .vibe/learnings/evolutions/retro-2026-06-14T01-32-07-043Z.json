@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-06-14T01:32:07.043Z",
+  "assessment": "degraded",
+  "harness_summary": {
+    "total": 12,
+    "passed": 8,
+    "failed": 4
+  },
+  "telemetry": {
+    "commits_since_last": 10,
+    "total_sessions": 0
+  },
+  "notes": "Harness failed: test-suite, index-json-integrity, quality-scores, node-test-suite"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "langgraph",
+  "url": "https://github.com/langchain-ai/langgraph.git",
+  "stars": 34622,
+  "license": "MIT",
+  "quality_score": 60,
+  "patterns": [
+    "node",
+    "python",
+    "docker",
+    "typescript",
+    "tested",
+    "documented",
+    "self-improving",
+    "agents"
+  ],
+  "anti_patterns": [],
+  "candidates": [
+    "self-improvement",
+    "agent-arch"
+  ]
+}

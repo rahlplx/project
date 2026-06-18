@@ -1,0 +1,21 @@
+{
+  "name": "weaviate",
+  "url": "https://github.com/weaviate/weaviate.git",
+  "stars": 16324,
+  "license": "BSD-3-Clause",
+  "quality_score": 30,
+  "patterns": [
+    "python",
+    "docker",
+    "documented",
+    "self-improving",
+    "telemetry",
+    "mcp"
+  ],
+  "anti_patterns": [],
+  "candidates": [
+    "self-improvement",
+    "mcp-integration",
+    "telemetry-system"
+  ]
+}

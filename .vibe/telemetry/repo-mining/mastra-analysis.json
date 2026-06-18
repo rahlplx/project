@@ -1,0 +1,32 @@
+{
+  "name": "mastra",
+  "url": "https://github.com/mastra-ai/mastra.git",
+  "stars": 25014,
+  "license": "NOASSERTION",
+  "quality_score": 95,
+  "patterns": [
+    "node",
+    "typescript",
+    "tested",
+    "documented",
+    "skills",
+    "catalog",
+    "self-improving",
+    "telemetry",
+    "mcp",
+    "agents",
+    "rules",
+    "vibe-stack"
+  ],
+  "anti_patterns": [],
+  "candidates": [
+    "skill-adoption",
+    "catalog-pattern",
+    "self-improvement",
+    "mcp-integration",
+    "agent-arch",
+    "telemetry-system",
+    "rules-engine",
+    "vibe-stack-pattern"
+  ]
+}

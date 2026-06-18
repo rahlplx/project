@@ -1,0 +1,23 @@
+{
+  "name": "open-pencil",
+  "url": "https://github.com/open-pencil/open-pencil.git",
+  "stars": 5560,
+  "license": "MIT",
+  "quality_score": 60,
+  "patterns": [
+    "node",
+    "rust",
+    "typescript",
+    "tested",
+    "documented",
+    "self-improving",
+    "mcp",
+    "rules"
+  ],
+  "anti_patterns": [],
+  "candidates": [
+    "self-improvement",
+    "mcp-integration",
+    "rules-engine"
+  ]
+}

@@ -1,0 +1,457 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "version": "1.0",
+  "generated_at": "2026-06-18T10:41:01.181Z",
+  "skill_count": 56,
+  "skills": [
+    {
+      "name": "anti-patterns",
+      "type": "skill-md",
+      "category": "quality",
+      "description": "anti-patterns",
+      "url": "/.well-known/agent-skills/anti-patterns/SKILL.md",
+      "digest": "sha256-1596140e6147a84a93cc6446b3d8b7856a8230a55b9c0d9a70fba9635eab0ef7"
+    },
+    {
+      "name": "anti-slop",
+      "type": "skill-md",
+      "category": "design",
+      "description": "anti-slop",
+      "url": "/.well-known/agent-skills/anti-slop/SKILL.md",
+      "digest": "sha256-6b6edef3301d946c58c202dda65bcbbb128ccbaa37a1a0fa60d1020e7ddda387"
+    },
+    {
+      "name": "architect",
+      "type": "skill-md",
+      "category": "workflow",
+      "description": "architect",
+      "url": "/.well-known/agent-skills/architect/SKILL.md",
+      "digest": "sha256-030fb06ffd4f1e41417d90a4b9deff84f8a0c97a92a1f475523c18cddcd00032"
+    },
+    {
+      "name": "caveman-mode",
+      "type": "skill-md",
+      "category": "workflow",
+      "description": "caveman-mode",
+      "url": "/.well-known/agent-skills/caveman-mode/SKILL.md",
+      "digest": "sha256-e4ad74da530a2fa1842fad185f8cb11138cd81b6ba19dd78c54617f72539a042"
+    },
+    {
+      "name": "checkpoints",
+      "type": "skill-md",
+      "category": "workflow",
+      "description": "checkpoints",
+      "url": "/.well-known/agent-skills/checkpoints/SKILL.md",
+      "digest": "sha256-21b0ff4730be474cfbb98466e90fe00ed9dc390c78bedeb79bd0535822e59def"
+    },
+    {
+      "name": "code-explainer",
+      "type": "skill-md",
+      "category": "explain",
+      "description": "code-explainer",
+      "url": "/.well-known/agent-skills/code-explainer/SKILL.md",
+      "digest": "sha256-204fe18287827afb1d6b5ace4a00d7ee6b3c4ddaa3003b5ae48e6c29eb2975e6"
+    },
+    {
+      "name": "code-health",
+      "type": "skill-md",
+      "category": "quality",
+      "description": "code-health",
+      "url": "/.well-known/agent-skills/code-health/SKILL.md",
+      "digest": "sha256-8eea344da12b157a70d3b83a0a0bc8660f783edcec58a0565d3aac5d73f48030"
+    },
+    {
+      "name": "code-review",
+      "type": "skill-md",
+      "category": "quality",
+      "description": "code-review",
+      "url": "/.well-known/agent-skills/code-review/SKILL.md",
+      "digest": "sha256-60f2cdb7863b37d344f687f610b6b3dba500b6ded813aa78a0d31cd632b23d98"
+    },
+    {
+      "name": "code-translator",
+      "type": "skill-md",
+      "category": "explain",
+      "description": "code-translator",
+      "url": "/.well-known/agent-skills/code-translator/SKILL.md",
+      "digest": "sha256-e9dad1fcf9f787ecd8810484f1fffc98a69e5fdbe859e3895fd3d7931a3e3688"
+    },
+    {
+      "name": "color-gen",
+      "type": "skill-md",
+      "category": "design",
+      "description": "color-gen",
+      "url": "/.well-known/agent-skills/color-gen/SKILL.md",
+      "digest": "sha256-5ab6e07c61dc607359281fbc075d2ca753aca2d9a6f078fedf8cb46dbdb47910"
+    },
+    {
+      "name": "context-memory",
+      "type": "skill-md",
+      "category": "knowledge",
+      "description": "context-memory",
+      "url": "/.well-known/agent-skills/context-memory/SKILL.md",
+      "digest": "sha256-2c8330a38a8a42626493723bd99fb0620b3b01c3415f4f3a295d1fa11cbb3270"
+    },
+    {
+      "name": "dashboard",
+      "type": "skill-md",
+      "category": "progress",
+      "description": "dashboard",
+      "url": "/.well-known/agent-skills/dashboard/SKILL.md",
+      "digest": "sha256-59c69a7b53859710a90995b1a456b5ee074253c9461fe31d78ece3f172eae521"
+    },
+    {
+      "name": "design-system",
+      "type": "skill-md",
+      "category": "design",
+      "description": "design-system",
+      "url": "/.well-known/agent-skills/design-system/SKILL.md",
+      "digest": "sha256-80b8297ddba34b9a4d9d15f8c09fbd1645d757668408a99b285cd8e7bdf5a16b"
+    },
+    {
+      "name": "diff-preview",
+      "type": "skill-md",
+      "category": "preview",
+      "description": "diff-preview",
+      "url": "/.well-known/agent-skills/diff-preview/SKILL.md",
+      "digest": "sha256-734b8c8377e16a2810ed3851e482c7fd4d0b3d8aebfd1753abb5d761ca7191cb"
+    },
+    {
+      "name": "done-checklist",
+      "type": "skill-md",
+      "category": "progress",
+      "description": "done-checklist",
+      "url": "/.well-known/agent-skills/done-checklist/SKILL.md",
+      "digest": "sha256-ba092685c38a9ac34b4ff770a1370d967b46b048b259d32fc6e7d4af152bbbf6"
+    },
+    {
+      "name": "done-verifier",
+      "type": "skill-md",
+      "category": "quality",
+      "description": "done-verifier",
+      "url": "/.well-known/agent-skills/done-verifier/SKILL.md",
+      "digest": "sha256-fed5692f11dcc4c1d91933ac8e7a0a2b11d44c1b5c7c64cafc7486f1589da2fc"
+    },
+    {
+      "name": "error-translator",
+      "type": "skill-md",
+      "category": "progress",
+      "description": "error-translator",
+      "url": "/.well-known/agent-skills/error-translator/SKILL.md",
+      "digest": "sha256-96b6c5d3107f846bd01e014a71b103d22e5e6b9ecac50d273b1903de7c338ec0"
+    },
+    {
+      "name": "flowchart-gen",
+      "type": "skill-md",
+      "category": "preview",
+      "description": "flowchart-gen",
+      "url": "/.well-known/agent-skills/flowchart-gen/SKILL.md",
+      "digest": "sha256-d1e3f3c009e692081345028ca542680bd84dc35e97c8e99e90a5b7e1d6e5f477"
+    },
+    {
+      "name": "git-free-deploy",
+      "type": "skill-md",
+      "category": "deploy",
+      "description": "git-free-deploy",
+      "url": "/.well-known/agent-skills/git-free-deploy/SKILL.md",
+      "digest": "sha256-a7108c6ff6af98352cfef072cc37e108f6a50e95769ae7a0534eeab1f6870d94"
+    },
+    {
+      "name": "git-ops",
+      "type": "skill-md",
+      "category": "workflow",
+      "description": "git-ops",
+      "url": "/.well-known/agent-skills/git-ops/SKILL.md",
+      "digest": "sha256-b8175935acb7b763bafcf089ca853ede645007233815294db645ea0a8de9a66b"
+    },
+    {
+      "name": "graphify",
+      "type": "skill-md",
+      "category": "knowledge",
+      "description": "graphify",
+      "url": "/.well-known/agent-skills/graphify/SKILL.md",
+      "digest": "sha256-0543a6b045c5ef1bf20e5e1151a1c9e6d997a4cf92bff4bb4426fc8620fe61ef"
+    },
+    {
+      "name": "gsd-workflow",
+      "type": "skill-md",
+      "category": "orchestration",
+      "description": "gsd-workflow",
+      "url": "/.well-known/agent-skills/gsd-workflow/SKILL.md",
+      "digest": "sha256-181126a3c66dcb42c176db4e9df8cc90064c69c0e208284d75990a5f63ea9bd4"
+    },
+    {
+      "name": "guardrails",
+      "type": "skill-md",
+      "category": "quality",
+      "description": "guardrails",
+      "url": "/.well-known/agent-skills/guardrails/SKILL.md",
+      "digest": "sha256-2704cfbb0f343eda077808fd4aa1e7d6bddc48157adb3a583007a1e02ce03eda"
+    },
+    {
+      "name": "health-check",
+      "type": "skill-md",
+      "category": "quality",
+      "description": "health-check",
+      "url": "/.well-known/agent-skills/health-check/SKILL.md",
+      "digest": "sha256-77b1b3f9cfde0710cea023e248e5a5bb179bedfc8374bc5329092effbcb926ee"
+    },
+    {
+      "name": "impeccable-audit",
+      "type": "skill-md",
+      "category": "design",
+      "description": "impeccable-audit",
+      "url": "/.well-known/agent-skills/impeccable-audit/SKILL.md",
+      "digest": "sha256-747d3b13ca58a8a4311dc1e951ecf95d3cccd67dc3f8e7ae659fa2ffcc7f5c92"
+    },
+    {
+      "name": "intent-capture",
+      "type": "skill-md",
+      "category": "explain",
+      "description": "intent-capture",
+      "url": "/.well-known/agent-skills/intent-capture/SKILL.md",
+      "digest": "sha256-494878f88d7ab1ed4ec861a9e1f20f860a0fe15c91f21a4bdcbb672c4d249862"
+    },
+    {
+      "name": "knowledge-base",
+      "type": "skill-md",
+      "category": "knowledge",
+      "description": "knowledge-base",
+      "url": "/.well-known/agent-skills/knowledge-base/SKILL.md",
+      "digest": "sha256-95d7ee0996bd0caabe30977aa424a26aceecfa92be65f6030199e38f4246197f"
+    },
+    {
+      "name": "model-router",
+      "type": "skill-md",
+      "category": "orchestration",
+      "description": "model-router",
+      "url": "/.well-known/agent-skills/model-router/SKILL.md",
+      "digest": "sha256-a659e8e427473dc1d2ead77633360650438a38ee12a9ee5fd92f7e4adb38a08a"
+    },
+    {
+      "name": "nexus",
+      "type": "skill-md",
+      "category": "orchestration",
+      "description": "nexus",
+      "url": "/.well-known/agent-skills/nexus/SKILL.md",
+      "digest": "sha256-a6f61052f33cd810111979d79221f86603d2c853c1d8ed7a21d8f75764acde3b"
+    },
+    {
+      "name": "nit",
+      "type": "skill-md",
+      "category": "testing-qa",
+      "description": "nit",
+      "url": "/.well-known/agent-skills/nit/SKILL.md",
+      "digest": "sha256-33d406e53759f55aa8e8dbb056cb4fb3a8c2ae1ba57e05671ef578be59cb8549"
+    },
+    {
+      "name": "one-click-netlify",
+      "type": "skill-md",
+      "category": "deploy",
+      "description": "one-click-netlify",
+      "url": "/.well-known/agent-skills/one-click-netlify/SKILL.md",
+      "digest": "sha256-8757a5912bb555074523baf20ed848811cb85cf69258779bed59d67ad43804cb"
+    },
+    {
+      "name": "one-click-vercel",
+      "type": "skill-md",
+      "category": "deploy",
+      "description": "one-click-vercel",
+      "url": "/.well-known/agent-skills/one-click-vercel/SKILL.md",
+      "digest": "sha256-7972838a00b2b1d0ae5d9283cd94cc932548d655739c3e5283c3702bab7afba0"
+    },
+    {
+      "name": "parallel-exec",
+      "type": "skill-md",
+      "category": "orchestration",
+      "description": "parallel-exec",
+      "url": "/.well-known/agent-skills/parallel-exec/SKILL.md",
+      "digest": "sha256-6ae473ed476ed9ed7aa39c1f4834d393afe98677103fecc7c40c7aa38989b2ae"
+    },
+    {
+      "name": "planning-agent",
+      "type": "skill-md",
+      "category": "workflow",
+      "description": "planning-agent",
+      "url": "/.well-known/agent-skills/planning-agent/SKILL.md",
+      "digest": "sha256-77ad88ba1a282066e8ec15cfda5c23931064307580ec80a9e0e1314c28b9be36"
+    },
+    {
+      "name": "project-wizard",
+      "type": "skill-md",
+      "category": "setup",
+      "description": "project-wizard",
+      "url": "/.well-known/agent-skills/project-wizard/SKILL.md",
+      "digest": "sha256-ec1cdefdc08966a2f2790a03e261880bb6755c2ad3c28a8072dfaed1791f3a9f"
+    },
+    {
+      "name": "prompt-templates",
+      "type": "skill-md",
+      "category": "setup",
+      "description": "prompt-templates",
+      "url": "/.well-known/agent-skills/prompt-templates/SKILL.md",
+      "digest": "sha256-ce96bbe62091a92c1350dc4c0c3f7d62dde1c05a5736017c9970792ddc15a380"
+    },
+    {
+      "name": "quick-start",
+      "type": "skill-md",
+      "category": "setup",
+      "description": "quick-start",
+      "url": "/.well-known/agent-skills/quick-start/SKILL.md",
+      "digest": "sha256-d35f4d50137425afbe69fadf7c23e8aab854d2c9f5fcde109c54ab4e7a45328a"
+    },
+    {
+      "name": "rollback",
+      "type": "skill-md",
+      "category": "workflow",
+      "description": "rollback",
+      "url": "/.well-known/agent-skills/rollback/SKILL.md",
+      "digest": "sha256-5218189954876e59ada09074829dcb89e65cdfc559dbf38ba8db630557d8b76a"
+    },
+    {
+      "name": "screenshot-preview",
+      "type": "skill-md",
+      "category": "preview",
+      "description": "screenshot-preview",
+      "url": "/.well-known/agent-skills/screenshot-preview/SKILL.md",
+      "digest": "sha256-14ad644915b4b9ab1c4c84dc59c48bdc2d265d7909352cad511f5906302bd116"
+    },
+    {
+      "name": "security-audit",
+      "type": "skill-md",
+      "category": "quality",
+      "description": "security-audit",
+      "url": "/.well-known/agent-skills/security-audit/SKILL.md",
+      "digest": "sha256-4dc287a7273c871644ef0f738ab1363fb55856161160051c8c84f793cee16e3e"
+    },
+    {
+      "name": "security-defaults",
+      "type": "skill-md",
+      "category": "quality",
+      "description": "security-defaults",
+      "url": "/.well-known/agent-skills/security-defaults/SKILL.md",
+      "digest": "sha256-7eb2c7070c33e1dda2db5af01c5dd7e780a7b89ecc448cda12f82f2aec0e63f8"
+    },
+    {
+      "name": "spec-driven",
+      "type": "skill-md",
+      "category": "workflow",
+      "description": "spec-driven",
+      "url": "/.well-known/agent-skills/spec-driven/SKILL.md",
+      "digest": "sha256-8117ab149d8e65d83d967a14dd4fd988507e4d0070cf87c46aecfacf65cc623c"
+    },
+    {
+      "name": "spec-engine",
+      "type": "skill-md",
+      "category": "workflow",
+      "description": "spec-engine",
+      "url": "/.well-known/agent-skills/spec-engine/SKILL.md",
+      "digest": "sha256-b1c7affb904cab828c20ea6caddca84d1037e4426a38da9aae68480e36edd402"
+    },
+    {
+      "name": "task-coordinator",
+      "type": "skill-md",
+      "category": "orchestration",
+      "description": "task-coordinator",
+      "url": "/.well-known/agent-skills/task-coordinator/SKILL.md",
+      "digest": "sha256-51fdd5054c1fe32ee83d24a122516c22ab1bb058d2e7aad8f1f2bd23db1c0c6e"
+    },
+    {
+      "name": "taste-skill",
+      "type": "skill-md",
+      "category": "design",
+      "description": "taste-skill",
+      "url": "/.well-known/agent-skills/taste-skill/SKILL.md",
+      "digest": "sha256-2a3be72039f7d3e2ea857c141f4727c5cfa9105df87ec3c51a415cb09703b883"
+    },
+    {
+      "name": "tdd-vibe",
+      "type": "skill-md",
+      "category": "workflow",
+      "description": "tdd-vibe",
+      "url": "/.well-known/agent-skills/tdd-vibe/SKILL.md",
+      "digest": "sha256-a8468a6021f45e9afc9b77aff9ba92639bcabd1f2bab7b034f2ba53b64d9acbb"
+    },
+    {
+      "name": "template-gallery",
+      "type": "skill-md",
+      "category": "design",
+      "description": "template-gallery",
+      "url": "/.well-known/agent-skills/template-gallery/SKILL.md",
+      "digest": "sha256-6a306f3c2128a350eed1712b3954878bba0c37d6da067a473eb9997c1f5fdc70"
+    },
+    {
+      "name": "testing-guide",
+      "type": "skill-md",
+      "category": "quality",
+      "description": "testing-guide",
+      "url": "/.well-known/agent-skills/testing-guide/SKILL.md",
+      "digest": "sha256-ceb4d09e4bce89c0cab0ae17728ca126161e9f1b18cfe29c10114c470e324c0e"
+    },
+    {
+      "name": "theme-factory",
+      "type": "skill-md",
+      "category": "design",
+      "description": "theme-factory",
+      "url": "/.well-known/agent-skills/theme-factory/SKILL.md",
+      "digest": "sha256-d1f3a626cf59625cf015944e2d9d51c63c7f89a3ee99e1cf11b6bfd7383d8415"
+    },
+    {
+      "name": "tracker",
+      "type": "skill-md",
+      "category": "progress",
+      "description": "tracker",
+      "url": "/.well-known/agent-skills/tracker/SKILL.md",
+      "digest": "sha256-d6bad610b04057525e86b2edb38e3b4224532e5edfa1561a383b7f64a19984f2"
+    },
+    {
+      "name": "typography-rules",
+      "type": "skill-md",
+      "category": "design",
+      "description": "typography-rules",
+      "url": "/.well-known/agent-skills/typography-rules/SKILL.md",
+      "digest": "sha256-a91fd84b1eec266e2a5ce2975aabcdb68bd7973805cc17c13b94176e259c7ccc"
+    },
+    {
+      "name": "verification",
+      "type": "skill-md",
+      "category": "workflow",
+      "description": "verification",
+      "url": "/.well-known/agent-skills/verification/SKILL.md",
+      "digest": "sha256-1689ec06f65bebf9032bb2bb16465f576aa89080db8a5192b3c317ed2b183897"
+    },
+    {
+      "name": "vibe-review",
+      "type": "skill-md",
+      "category": "quality",
+      "description": "vibe-review",
+      "url": "/.well-known/agent-skills/vibe-review/SKILL.md",
+      "digest": "sha256-41afc8a02791ba01a5271e8f0ac076162b6f38107db86b44836bf02a2797bea4"
+    },
+    {
+      "name": "virtual-team",
+      "type": "skill-md",
+      "category": "orchestration",
+      "description": "virtual-team",
+      "url": "/.well-known/agent-skills/virtual-team/SKILL.md",
+      "digest": "sha256-f188167c0fbf2e47532a0221cf81153da6d4c148cb60e8a1c6a9e851e41e464d"
+    },
+    {
+      "name": "visual-plans",
+      "type": "skill-md",
+      "category": "preview",
+      "description": "visual-plans",
+      "url": "/.well-known/agent-skills/visual-plans/SKILL.md",
+      "digest": "sha256-9d9993d0efadd9a84bc2984ff851c90cf9dadcaec29d4114ddf4796d1a522b40"
+    },
+    {
+      "name": "wednesday-graph",
+      "type": "skill-md",
+      "category": "knowledge",
+      "description": "wednesday-graph",
+      "url": "/.well-known/agent-skills/wednesday-graph/SKILL.md",
+      "digest": "sha256-e267538f5eda2cbb9b6c33bc99b798397d54b1fb3be416da066a93a10bddd451"
+    }
+  ],
+  "errors": []
+}

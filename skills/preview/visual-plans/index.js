@@ -19,14 +19,14 @@ class VisualPlansSkill {
   generatePlan(description) {
     const components = this.parseDescription(description);
     const layout = this.determineLayout(components);
-    
+
     return {
       type: 'visual-plan',
       timestamp: new Date().toISOString(),
       layout,
       components,
       mockup: this.generateMockupCode(components),
-      styling: this.getStylingGuide()
+      styling: this.getStylingGuide(),
     };
   }
 
@@ -36,14 +36,14 @@ class VisualPlansSkill {
   parseDescription(description) {
     const components = [];
     const sentences = description.split(/[,;]|\n/).filter(s => s.trim());
-    
+
     for (const sentence of sentences) {
       const component = this.extractComponent(sentence.trim());
       if (component) {
         components.push(component);
       }
     }
-    
+
     return components;
   }
 
@@ -52,7 +52,7 @@ class VisualPlansSkill {
    */
   extractComponent(sentence) {
     const lowerSentence = sentence.toLowerCase();
-    
+
     const componentTypes = [
       { keywords: ['button', 'btn'], type: 'button' },
       { keywords: ['input', 'text field', 'field'], type: 'input' },
@@ -64,20 +64,20 @@ class VisualPlansSkill {
       { keywords: ['form'], type: 'form' },
       { keywords: ['footer'], type: 'footer' },
       { keywords: ['modal', 'dialog', 'popup'], type: 'modal' },
-      { keywords: ['sidebar', 'sidebar'], type: 'sidebar' }
+      { keywords: ['sidebar', 'sidebar'], type: 'sidebar' },
     ];
-    
+
     for (const { keywords, type } of componentTypes) {
       if (keywords.some(k => lowerSentence.includes(k))) {
         return {
           type,
           label: this.extractLabel(sentence),
           position: this.inferPosition(lowerSentence),
-          styles: this.inferStyles(lowerSentence, type)
+          styles: this.inferStyles(lowerSentence, type),
         };
       }
     }
-    
+
     return null;
   }
 
@@ -88,14 +88,14 @@ class VisualPlansSkill {
     const patterns = [
       /(?:called|named|labeled|labeled as)\s+["']([^"']+)["']/i,
       /(?:with|showing|displaying)\s+["']([^"']+)["']/i,
-      /^(\w+(?:\s+\w+){0,2})/
+      /^(\w+(?:\s+\w+){0,2})/,
     ];
-    
+
     for (const pattern of patterns) {
       const match = sentence.match(pattern);
       if (match) return match[1];
     }
-    
+
     return sentence.split(' ').slice(0, 2).join(' ');
   }
 
@@ -114,22 +114,22 @@ class VisualPlansSkill {
   /**
    * Infer styles from description
    */
-  inferStyles(lowerSentence, type) {
+  inferStyles(lowerSentence, _type) {
     const styles = {};
-    
+
     if (lowerSentence.includes('primary')) styles.variant = 'primary';
     else if (lowerSentence.includes('secondary')) styles.variant = 'secondary';
-    
+
     if (lowerSentence.includes('large') || lowerSentence.includes('big')) {
       styles.size = 'large';
     } else if (lowerSentence.includes('small')) {
       styles.size = 'small';
     }
-    
+
     if (lowerSentence.includes('rounded')) styles.borderRadius = '12px';
     if (lowerSentence.includes('dark')) styles.backgroundColor = '#333';
     if (lowerSentence.includes('light')) styles.backgroundColor = '#f5f5f5';
-    
+
     return styles;
   }
 
@@ -140,7 +140,7 @@ class VisualPlansSkill {
     const hasNav = components.some(c => c.type === 'navigation');
     const hasSidebar = components.some(c => c.type === 'sidebar');
     const hasHeader = components.some(c => c.type === 'header');
-    
+
     if (hasSidebar && hasNav) {
       return 'sidebar-layout';
     }
@@ -155,15 +155,15 @@ class VisualPlansSkill {
    */
   generateMockupCode(components) {
     let code = '// Generated UI Mockup\n\n';
-    
-    code += `const UI = () => (\n  <div class="app-container">\n`;
-    
+
+    code += 'const UI = () => (\n  <div class="app-container">\n';
+
     for (const component of components) {
       code += this.generateComponentCode(component, 2);
     }
-    
+
     code += '  </div>\n);\n';
-    
+
     return code;
   }
 
@@ -173,7 +173,7 @@ class VisualPlansSkill {
   generateComponentCode(component, indent) {
     const spaces = '  '.repeat(indent);
     const { type, label, styles } = component;
-    
+
     switch (type) {
       case 'button':
         return `${spaces}<button class="btn ${styles.variant || ''}">${label}</button>\n`;
@@ -199,22 +199,22 @@ class VisualPlansSkill {
         fontFamily: 'Inter, system-ui, sans-serif',
         spacing: '8px',
         borderRadius: '4px',
-        shadows: 'none'
+        shadows: 'none',
       },
       modern: {
         fontFamily: 'SF Pro, Inter, sans-serif',
         spacing: '16px',
         borderRadius: '12px',
-        shadows: '0 4px 12px rgba(0,0,0,0.1)'
+        shadows: '0 4px 12px rgba(0,0,0,0.1)',
       },
       brutalist: {
         fontFamily: 'monospace',
         spacing: '4px',
         borderRadius: '0px',
-        shadows: '4px 4px 0 #000'
-      }
+        shadows: '4px 4px 0 #000',
+      },
     };
-    
+
     return styles[this.style] || styles.minimal;
   }
 
@@ -226,13 +226,13 @@ class VisualPlansSkill {
     lines.push('┌─────────────────────────────────────┐');
     lines.push('│           UI Mockup                 │');
     lines.push('├─────────────────────────────────────┤');
-    
+
     for (const comp of components.slice(0, 5)) {
       const label = (comp.label || comp.type).substring(0, 25);
       const padding = ' '.repeat(Math.max(0, 30 - label.length));
       lines.push(`│ [${comp.type.toUpperCase()}] ${label}${padding}│`);
     }
-    
+
     lines.push('└─────────────────────────────────────┘');
     return lines.join('\n');
   }

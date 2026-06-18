@@ -1,0 +1,55 @@
+# Dependencies
+node_modules/
+
+# Build/Coverage
+coverage/
+dist/
+build/
+
+# Environment/Secrets
+.env
+.env.local
+.env.*.local
+external/
+# .claude/ is intentionally force-tracked (settings.json + skills/ + hooks/ are part of the repo).
+# New files here need `git add -f` — this line prevents accidental commits of local-only Claude state.
+.claude/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Tool-specific
+.opencode/
+.gsd/
+.eslintcache
+
+# Temp files
+*.log
+jest_output.txt
+temp-test-output.txt
+
+# Vibe internal (sensitive)
+.vibe/repo-mining/
+.vibe/telemetry/sessions/
+.vibe/telemetry/compaction-dedup.json
+.vibe/telemetry/tracker.json
+.vibe/learnings/evolutions/retro-*.json
+
+# Test artifacts
+test-screenshots/
+screenshots/
+
+# Coverage artifacts
+.vibe/lcov-report/
+.vibe/lcov.info
+.vibe/clover.xml
+.vibe/coverage-final.json

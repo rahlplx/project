@@ -1,6 +1,6 @@
 /**
  * Anti-Slop Design Skill
- * 
+ *
  * Deterministic anti-pattern detectors to prevent AI-generated design slop.
  * Contains 41 rules that catch common design mistakes and enforce quality.
  */
@@ -10,7 +10,7 @@ class AntiSlopSkill {
     this.name = 'anti-slop';
     this.version = '1.0.0';
     this.description = 'Detects and prevents 41 common AI design anti-patterns';
-    
+
     // Initialize all 41 anti-pattern detectors
     this.detectors = this.initializeDetectors();
   }
@@ -18,7 +18,7 @@ class AntiSlopSkill {
   initializeDetectors() {
     return {
       // ===== COLOR ANTI-PATTERNS (1-10) =====
-      
+
       /**
        * 1. Purple Gradient Ban
        * AI loves generic purple gradients - detect and replace with purposeful palettes
@@ -27,10 +27,10 @@ class AntiSlopSkill {
         id: 1,
         category: 'color',
         name: 'Purple Gradient Ban',
-        pattern: /gradient.*purple|linear-gradient.*#?[8b5cf6|#8b5cf6|violet|purple]/i,
+        pattern: /gradient.*purple|linear-gradient.*#?(?:8b5cf6|#8b5cf6|violet|purple)/i,
         message: 'Purple gradients are an AI cliché. Use purposeful, brand-specific colors.',
         severity: 'medium',
-        fix: 'Use brand-appropriate gradient or solid colors from your design system.'
+        fix: 'Use brand-appropriate gradient or solid colors from your design system.',
       },
 
       /**
@@ -41,15 +41,24 @@ class AntiSlopSkill {
         id: 2,
         category: 'color',
         name: 'Rainbow Palette Overuse',
-        check: (design) => {
+        check: design => {
           const colors = design.colors || [];
-          const rainbowColors = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#9400D3'];
+          const rainbowColors = [
+            '#FF0000',
+            '#FF7F00',
+            '#FFFF00',
+            '#00FF00',
+            '#0000FF',
+            '#4B0082',
+            '#9400D3',
+          ];
           const matches = colors.filter(c => rainbowColors.includes(c.toUpperCase()));
           return matches.length > 2;
         },
-        message: 'Rainbow color palettes are a sign of AI-generated design. Use a cohesive palette.',
+        message:
+          'Rainbow color palettes are a sign of AI-generated design. Use a cohesive palette.',
         severity: 'high',
-        fix: 'Limit to 3-5 colors from a coherent palette. Use tools like coolors.co for inspiration.'
+        fix: 'Limit to 3-5 colors from a coherent palette. Use tools like coolors.co for inspiration.',
       },
 
       /**
@@ -61,7 +70,7 @@ class AntiSlopSkill {
         category: 'color',
         name: 'Neon Color Overuse',
         pattern: /#[0-9a-f]{6}/i,
-        check: (design) => {
+        check: design => {
           const colors = design.colors || [];
           return colors.some(c => {
             const hex = c.replace('#', '');
@@ -75,7 +84,7 @@ class AntiSlopSkill {
         },
         message: 'Excessive neon colors indicate AI generation. Use refined, professional colors.',
         severity: 'medium',
-        fix: 'Reduce saturation and brightness. Professional designs use muted, purposeful colors.'
+        fix: 'Reduce saturation and brightness. Professional designs use muted, purposeful colors.',
       },
 
       /**
@@ -89,7 +98,7 @@ class AntiSlopSkill {
         pattern: /(background-clip|text-fill-color|webkit-background-clip).*text|text.*gradient/i,
         message: 'Gradient text is often an AI design anti-pattern.',
         severity: 'low',
-        fix: 'Use solid colors or subtle shadows for text emphasis.'
+        fix: 'Use solid colors or subtle shadows for text emphasis.',
       },
 
       /**
@@ -100,16 +109,18 @@ class AntiSlopSkill {
         id: 5,
         category: 'color',
         name: 'Excessive Drop Shadows',
-        check: (design) => {
+        check: design => {
           const shadows = design.shadows || [];
-          return shadows.filter(s => {
-            if (typeof s === 'string') return s.includes('box-shadow');
-            return (s.blur || 20) > 40 || (s.opacity || 0.5) > 0.5;
-          }).length > 3;
+          return (
+            shadows.filter(s => {
+              if (typeof s === 'string') return s.includes('box-shadow');
+              return (s.blur || 20) > 40 || (s.opacity || 0.5) > 0.5;
+            }).length > 3
+          );
         },
         message: 'Too many or too heavy shadows create an artificial look.',
         severity: 'medium',
-        fix: 'Limit shadows to key interactive elements. Use subtle, consistent shadow values.'
+        fix: 'Limit shadows to key interactive elements. Use subtle, consistent shadow values.',
       },
 
       /**
@@ -120,7 +131,7 @@ class AntiSlopSkill {
         id: 6,
         category: 'color',
         name: 'Monotonous Button Color',
-        check: (design) => {
+        check: design => {
           const buttons = design.buttons || [];
           const colors = buttons.map(b => b.backgroundColor || b.bg);
           const uniqueColors = [...new Set(colors)];
@@ -128,7 +139,7 @@ class AntiSlopSkill {
         },
         message: 'All buttons being the same blue indicates template-based AI generation.',
         severity: 'medium',
-        fix: 'Use semantic colors: primary for main actions, secondary for alternatives, danger for destructive.'
+        fix: 'Use semantic colors: primary for main actions, secondary for alternatives, danger for destructive.',
       },
 
       /**
@@ -139,14 +150,14 @@ class AntiSlopSkill {
         id: 7,
         category: 'color',
         name: 'Low Contrast Text',
-        check: (design) => {
+        check: design => {
           const textColor = design.textColor || '#FFFFFF';
           const bgColor = design.backgroundColor || '#FFFFFF';
           return this.calculateContrastRatio(textColor, bgColor) < 4.5;
         },
         message: 'Text contrast ratio below 4.5:1 fails WCAG accessibility.',
         severity: 'high',
-        fix: 'Ensure text has at least 4.5:1 contrast ratio against background.'
+        fix: 'Ensure text has at least 4.5:1 contrast ratio against background.',
       },
 
       /**
@@ -157,13 +168,13 @@ class AntiSlopSkill {
         id: 8,
         category: 'color',
         name: 'Harsh Pure Black Text',
-        check: (design) => {
+        check: design => {
           const textColor = design.textColor || '';
           return textColor.toLowerCase() === '#000000' || textColor === 'black';
         },
         message: 'Pure black (#000000) can create harsh contrast. Consider softer dark colors.',
         severity: 'low',
-        fix: 'Use near-black like #1a1a2e or #333333 for softer readability.'
+        fix: 'Use near-black like #1a1a2e or #333333 for softer readability.',
       },
 
       /**
@@ -174,13 +185,13 @@ class AntiSlopSkill {
         id: 9,
         category: 'color',
         name: 'Excessive Color Palette',
-        check: (design) => {
+        check: design => {
           const colors = design.colors || [];
           return colors.length > 8;
         },
         message: 'Using more than 8 colors indicates lack of design system discipline.',
         severity: 'medium',
-        fix: 'Limit to a primary palette of 3-5 colors plus neutrals.'
+        fix: 'Limit to a primary palette of 3-5 colors plus neutrals.',
       },
 
       /**
@@ -191,7 +202,7 @@ class AntiSlopSkill {
         id: 10,
         category: 'color',
         name: 'Flat Grayscale Palette',
-        check: (design) => {
+        check: design => {
           const grays = design.grays || design.neutrals || [];
           if (grays.length < 3) return false;
           const values = grays.map(g => {
@@ -203,7 +214,7 @@ class AntiSlopSkill {
         },
         message: 'Too many gray steps with narrow range creates flat, lifeless UI.',
         severity: 'low',
-        fix: 'Use 5-7 well-spaced gray values with intentional temperature (warm or cool).'
+        fix: 'Use 5-7 well-spaced gray values with intentional temperature (warm or cool).',
       },
 
       // ===== TYPOGRAPHY ANTI-PATTERNS (11-18) =====
@@ -216,13 +227,13 @@ class AntiSlopSkill {
         id: 11,
         category: 'typography',
         name: 'Inter Font Overuse',
-        check: (design) => {
+        check: design => {
           const font = (design.fontFamily || design.font || '').toLowerCase();
           return font.includes('inter');
         },
         message: 'Inter font is overused by AI tools. Consider distinctive alternatives.',
         severity: 'medium',
-        fix: 'Choose fonts that match your brand: Playfair Display for elegance, Space Grotesk for tech, etc.'
+        fix: 'Choose fonts that match your brand: Playfair Display for elegance, Space Grotesk for tech, etc.',
       },
 
       /**
@@ -233,14 +244,14 @@ class AntiSlopSkill {
         id: 12,
         category: 'typography',
         name: 'Font Variety Overload',
-        check: (design) => {
+        check: design => {
           const fonts = design.fonts || [design.fontFamily];
           const uniqueFonts = fonts.filter(f => f).length;
           return uniqueFonts > 4;
         },
         message: 'More than 4 different fonts indicates lack of design system.',
         severity: 'high',
-        fix: 'Limit to 2-3 fonts: one for headings, one for body, optional for accents.'
+        fix: 'Limit to 2-3 fonts: one for headings, one for body, optional for accents.',
       },
 
       /**
@@ -251,7 +262,7 @@ class AntiSlopSkill {
         id: 13,
         category: 'typography',
         name: 'Missing Type Hierarchy',
-        check: (design) => {
+        check: design => {
           const sizes = design.fontSizes || [];
           if (sizes.length < 3) return true;
           const uniqueSizes = [...new Set(sizes.map(s => this.normalizeSize(s)))];
@@ -259,7 +270,7 @@ class AntiSlopSkill {
         },
         message: 'Lack of typographic scale creates visual monotony.',
         severity: 'high',
-        fix: 'Implement a type scale: 12/14/16/20/24/32/48/64px or use 1.25 ratio.'
+        fix: 'Implement a type scale: 12/14/16/20/24/32/48/64px or use 1.25 ratio.',
       },
 
       /**
@@ -270,14 +281,14 @@ class AntiSlopSkill {
         id: 14,
         category: 'typography',
         name: 'Excessive Center Alignment',
-        check: (design) => {
+        check: design => {
           const alignments = design.textAlign || design.alignments || [];
           const centered = alignments.filter(a => a === 'center' || a === 'centered').length;
           return centered / (alignments.length || 1) > 0.7;
         },
         message: 'Over 70% centered text suggests lazy AI alignment.',
         severity: 'medium',
-        fix: 'Use left alignment for body text, center for headlines and CTAs only.'
+        fix: 'Use left alignment for body text, center for headlines and CTAs only.',
       },
 
       /**
@@ -288,14 +299,14 @@ class AntiSlopSkill {
         id: 15,
         category: 'typography',
         name: 'ALL CAPS Header Usage',
-        check: (design) => {
+        check: design => {
           const headers = design.headers || [];
           const allCaps = headers.filter(h => h === h.toUpperCase() && h.length > 3);
           return allCaps.length > 0;
         },
         message: 'ALL CAPS headers are an AI design cliché.',
         severity: 'medium',
-        fix: 'Use title case or sentence case. ALL CAPS is acceptable for badges/labels only.'
+        fix: 'Use title case or sentence case. ALL CAPS is acceptable for badges/labels only.',
       },
 
       /**
@@ -306,14 +317,14 @@ class AntiSlopSkill {
         id: 16,
         category: 'typography',
         name: 'Inappropriate Font Selection',
-        check: (design) => {
+        check: design => {
           const font = (design.fontFamily || '').toLowerCase();
           const badFonts = ['comic sans', 'papyrus', 'wingdings', 'webdings', 'brush script'];
           return badFonts.some(bad => font.includes(bad));
         },
         message: 'These fonts are universally inappropriate for professional design.',
         severity: 'high',
-        fix: 'Use professional fonts: Roboto, Open Sans, Lato, Playfair Display, etc.'
+        fix: 'Use professional fonts: Roboto, Open Sans, Lato, Playfair Display, etc.',
       },
 
       /**
@@ -324,14 +335,14 @@ class AntiSlopSkill {
         id: 17,
         category: 'typography',
         name: 'Inconsistent Font Weights',
-        check: (design) => {
+        check: design => {
           const weights = design.fontWeights || [];
           const uniqueWeights = [...new Set(weights)];
           return uniqueWeights.length > 5;
         },
         message: 'Using too many different font weights breaks visual harmony.',
         severity: 'medium',
-        fix: 'Limit to 2-3 weights: 400 (regular), 600 (semibold), 700 (bold).'
+        fix: 'Limit to 2-3 weights: 400 (regular), 600 (semibold), 700 (bold).',
       },
 
       /**
@@ -342,13 +353,13 @@ class AntiSlopSkill {
         id: 18,
         category: 'typography',
         name: 'Body Text Too Small',
-        check: (design) => {
+        check: design => {
           const bodySize = design.bodyFontSize || 16;
           return bodySize < 16;
         },
         message: 'Body text below 16px hurts readability.',
         severity: 'high',
-        fix: 'Use minimum 16px for body text, 14px acceptable only for captions.'
+        fix: 'Use minimum 16px for body text, 14px acceptable only for captions.',
       },
 
       // ===== LAYOUT ANTI-PATTERNS (19-28) =====
@@ -361,14 +372,14 @@ class AntiSlopSkill {
         id: 19,
         category: 'layout',
         name: 'Three Card Feature Layout',
-        check: (design) => {
+        check: design => {
           const cards = design.cards || [];
           const sections = design.sections || [];
-          return (cards.length === 3 || sections.filter(s => s.type === 'features').length > 0);
+          return cards.length === 3 || sections.filter(s => s.type === 'features').length > 0;
         },
         message: 'The 3-card feature layout is an AI design cliché.',
         severity: 'medium',
-        fix: 'Use varied layouts: 2-column, masonry, asymmetric grids, or unique section designs.'
+        fix: 'Use varied layouts: 2-column, masonry, asymmetric grids, or unique section designs.',
       },
 
       /**
@@ -379,14 +390,14 @@ class AntiSlopSkill {
         id: 20,
         category: 'layout',
         name: 'Hero Section Overload',
-        check: (design) => {
+        check: design => {
           const hero = design.hero || {};
           const elements = hero.elements || [];
           return elements.length > 5;
         },
         message: 'Hero sections should be simple with one clear CTA.',
         severity: 'medium',
-        fix: 'Hero should contain: headline, subheadline, CTA, optional background. Nothing else.'
+        fix: 'Hero should contain: headline, subheadline, CTA, optional background. Nothing else.',
       },
 
       /**
@@ -397,7 +408,7 @@ class AntiSlopSkill {
         id: 21,
         category: 'layout',
         name: 'Uniform Padding Syndrome',
-        check: (design) => {
+        check: design => {
           const paddings = design.paddings || [];
           if (paddings.length < 5) return false;
           const uniquePaddings = [...new Set(paddings)];
@@ -405,7 +416,7 @@ class AntiSlopSkill {
         },
         message: 'Identical padding everywhere creates mechanical feel.',
         severity: 'low',
-        fix: 'Use varied spacing: tighter for related items, looser for section separation.'
+        fix: 'Use varied spacing: tighter for related items, looser for section separation.',
       },
 
       /**
@@ -416,13 +427,13 @@ class AntiSlopSkill {
         id: 22,
         category: 'layout',
         name: 'Excessive Symmetry',
-        check: (design) => {
+        check: design => {
           const layout = design.layout || {};
           return layout.symmetry === 'perfect' || layout.symmetry === true;
         },
         message: 'Perfect symmetry feels robotic. Asymmetry is more interesting.',
         severity: 'low',
-        fix: 'Break symmetry with offset elements, varied content lengths, or intentional imbalance.'
+        fix: 'Break symmetry with offset elements, varied content lengths, or intentional imbalance.',
       },
 
       /**
@@ -433,13 +444,13 @@ class AntiSlopSkill {
         id: 23,
         category: 'layout',
         name: 'Footer Link Overload',
-        check: (design) => {
+        check: design => {
           const footerLinks = design.footer?.links || [];
           return footerLinks.length > 20;
         },
         message: 'Excessive footer links create visual noise.',
         severity: 'medium',
-        fix: 'Limit to essential links. Group in 3-4 columns max.'
+        fix: 'Limit to essential links. Group in 3-4 columns max.',
       },
 
       /**
@@ -450,13 +461,13 @@ class AntiSlopSkill {
         id: 24,
         category: 'layout',
         name: 'Grid Lines as Decoration',
-        check: (design) => {
+        check: design => {
           const elements = design.elements || [];
           return elements.some(el => el.type === 'grid-line' || el.showGrid === true);
         },
         message: 'Visible grid lines are a design mistake.',
         severity: 'high',
-        fix: 'Use invisible grid for alignment, never as visible decoration.'
+        fix: 'Use invisible grid for alignment, never as visible decoration.',
       },
 
       /**
@@ -467,13 +478,13 @@ class AntiSlopSkill {
         id: 25,
         category: 'layout',
         name: 'Infinite Scroll Without Option',
-        check: (design) => {
+        check: design => {
           const pagination = design.pagination || {};
           return pagination.type === 'infinite' && !pagination.showLoadMore;
         },
         message: 'Infinite scroll without load more button frustrates users.',
         severity: 'medium',
-        fix: 'Provide load more button or pagination as alternative to infinite scroll.'
+        fix: 'Provide load more button or pagination as alternative to infinite scroll.',
       },
 
       /**
@@ -484,13 +495,13 @@ class AntiSlopSkill {
         id: 26,
         category: 'layout',
         name: 'Excessive Sticky Elements',
-        check: (design) => {
+        check: design => {
           const stickyElements = design.stickyElements || [];
           return stickyElements.length > 1;
         },
         message: 'Multiple sticky elements compete for attention.',
         severity: 'medium',
-        fix: 'Only one element should be sticky (usually header/nav).'
+        fix: 'Only one element should be sticky (usually header/nav).',
       },
 
       /**
@@ -501,13 +512,13 @@ class AntiSlopSkill {
         id: 27,
         category: 'layout',
         name: 'Fixed Width on Mobile',
-        check: (design) => {
+        check: design => {
           const containers = design.containers || [];
           return containers.some(c => c.width && !c.width.includes('%') && !c.width.includes('vw'));
         },
         message: 'Fixed width containers break responsive layouts.',
         severity: 'high',
-        fix: 'Use fluid widths: 100%, max-width, or viewport units.'
+        fix: 'Use fluid widths: 100%, max-width, or viewport units.',
       },
 
       /**
@@ -518,13 +529,13 @@ class AntiSlopSkill {
         id: 28,
         category: 'layout',
         name: 'Narrow Centered Content Column',
-        check: (design) => {
+        check: design => {
           const container = design.container || {};
           return container.maxWidth && container.maxWidth < 800 && container.margin === 'auto';
         },
         message: 'All content in narrow centered column feels like a Word document.',
         severity: 'medium',
-        fix: 'Use full-width sections for visual variety. Reserve narrow columns for reading-heavy content.'
+        fix: 'Use full-width sections for visual variety. Reserve narrow columns for reading-heavy content.',
       },
 
       // ===== COMPONENT ANTI-PATTERNS (29-35) =====
@@ -537,14 +548,14 @@ class AntiSlopSkill {
         id: 29,
         category: 'component',
         name: 'Excessive Pill/Pill Shaped Elements',
-        check: (design) => {
+        check: design => {
           const radius = design.borderRadius || [];
           const pillCount = radius.filter(r => r >= 999).length;
           return pillCount > 2;
         },
         message: 'Too many pill-shaped elements is an AI design pattern.',
         severity: 'medium',
-        fix: 'Use subtle border-radius: 4-12px for buttons, 8-16px for cards.'
+        fix: 'Use subtle border-radius: 4-12px for buttons, 8-16px for cards.',
       },
 
       /**
@@ -555,7 +566,7 @@ class AntiSlopSkill {
         id: 30,
         category: 'component',
         name: 'Icon Overload',
-        check: (design) => {
+        check: design => {
           const icons = design.icons || [];
           const sets = icons.map(i => i.set).filter(Boolean);
           const uniqueSets = [...new Set(sets)];
@@ -563,7 +574,7 @@ class AntiSlopSkill {
         },
         message: 'Too many icons create visual noise. Be selective.',
         severity: 'medium',
-        fix: 'Limit icons to key actions and concepts. Use one icon family consistently.'
+        fix: 'Limit icons to key actions and concepts. Use one icon family consistently.',
       },
 
       /**
@@ -574,13 +585,13 @@ class AntiSlopSkill {
         id: 31,
         category: 'component',
         name: 'Default Avatar Styling',
-        check: (design) => {
+        check: design => {
           const avatars = design.avatars || [];
           return avatars.some(a => a.shape === 'circle' && !a.border);
         },
         message: 'Default circular avatars without styling look generic.',
         severity: 'low',
-        fix: 'Add subtle borders, shadows, or use rounded squares for more personality.'
+        fix: 'Add subtle borders, shadows, or use rounded squares for more personality.',
       },
 
       /**
@@ -591,13 +602,13 @@ class AntiSlopSkill {
         id: 32,
         category: 'component',
         name: 'Notification Badge Spam',
-        check: (design) => {
+        check: design => {
           const badges = design.badges || [];
           return badges.length > 3;
         },
         message: 'Many notification badges overwhelm the UI.',
         severity: 'medium',
-        fix: 'Use badges sparingly for critical notifications only. Consider alternatives like dots.'
+        fix: 'Use badges sparingly for critical notifications only. Consider alternatives like dots.',
       },
 
       /**
@@ -608,14 +619,14 @@ class AntiSlopSkill {
         id: 33,
         category: 'component',
         name: 'Toggle Switch Overuse',
-        check: (design) => {
+        check: design => {
           const toggles = design.toggles || [];
           const selects = design.selects || [];
           return toggles.length > 5 && toggles.length > selects.length;
         },
         message: 'Toggles should only be used for binary on/off states.',
         severity: 'low',
-        fix: 'Use checkboxes for multiple selection, dropdowns for options, toggles for settings only.'
+        fix: 'Use checkboxes for multiple selection, dropdowns for options, toggles for settings only.',
       },
 
       /**
@@ -626,7 +637,7 @@ class AntiSlopSkill {
         id: 34,
         category: 'component',
         name: 'Loading Spinner Instead of Skeleton',
-        check: (design) => {
+        check: design => {
           const loading = design.loadingIndicators || [];
           const hasSpinner = loading.some(l => l.type === 'spinner');
           const hasSkeleton = loading.some(l => l.type === 'skeleton');
@@ -634,7 +645,7 @@ class AntiSlopSkill {
         },
         message: 'Spinners are less user-friendly than skeleton screens.',
         severity: 'low',
-        fix: 'Use skeleton screens for content loading, spinners only for actions.'
+        fix: 'Use skeleton screens for content loading, spinners only for actions.',
       },
 
       /**
@@ -645,14 +656,14 @@ class AntiSlopSkill {
         id: 35,
         category: 'component',
         name: 'Missing Empty States',
-        check: (design) => {
+        check: design => {
           const hasLists = (design.lists || []).length > 0;
           const hasEmptyStates = (design.emptyStates || []).length > 0;
           return hasLists && !hasEmptyStates;
         },
         message: 'Empty states help users understand when content is missing.',
         severity: 'medium',
-        fix: 'Design empty states for lists, tables, search results with helpful messaging.'
+        fix: 'Design empty states for lists, tables, search results with helpful messaging.',
       },
 
       // ===== INTERACTION ANTI-PATTERNS (36-38) =====
@@ -665,13 +676,13 @@ class AntiSlopSkill {
         id: 36,
         category: 'interaction',
         name: 'Excessive Hover Interactions',
-        check: (design) => {
+        check: design => {
           const hoverElements = design.hoverInteractions || [];
           return hoverElements.length > 5;
         },
         message: 'Too many hover effects create distracting, inaccessible interactions.',
         severity: 'medium',
-        fix: 'Reserve hover effects for interactive elements only. Mobile has no hover state.'
+        fix: 'Reserve hover effects for interactive elements only. Mobile has no hover state.',
       },
 
       /**
@@ -682,13 +693,13 @@ class AntiSlopSkill {
         id: 37,
         category: 'interaction',
         name: 'Auto-play Media Content',
-        check: (design) => {
+        check: design => {
           const videos = design.videos || [];
           return videos.some(v => v.autoplay === true && !v.muted);
         },
         message: 'Auto-playing media with sound is an accessibility violation.',
         severity: 'high',
-        fix: 'Never auto-play with sound. Auto-play muted video only if essential, with pause control.'
+        fix: 'Never auto-play with sound. Auto-play muted video only if essential, with pause control.',
       },
 
       /**
@@ -699,14 +710,14 @@ class AntiSlopSkill {
         id: 38,
         category: 'interaction',
         name: 'Excessive Modal Usage',
-        check: (design) => {
+        check: design => {
           const modals = design.modals || [];
           const pages = design.pages || [];
           return modals.length > pages.length * 2;
         },
         message: 'Too many modals disrupt user flow.',
         severity: 'medium',
-        fix: 'Use modals only for critical confirmations. Use inline editing or pages for complex forms.'
+        fix: 'Use modals only for critical confirmations. Use inline editing or pages for complex forms.',
       },
 
       // ===== CONTENT ANTI-PATTERNS (39-41) =====
@@ -719,14 +730,14 @@ class AntiSlopSkill {
         id: 39,
         category: 'content',
         name: 'Lorem Ipsum Placeholder Text',
-        check: (design) => {
+        check: design => {
           const text = design.text || '';
           const patterns = /lorem|ipsum|placeholder|temp text|sample text/i;
           return patterns.test(text);
         },
         message: 'Placeholder text should never appear in production designs.',
         severity: 'high',
-        fix: 'Replace all placeholder text with real, contextual content.'
+        fix: 'Replace all placeholder text with real, contextual content.',
       },
 
       /**
@@ -737,16 +748,22 @@ class AntiSlopSkill {
         id: 40,
         category: 'content',
         name: 'Cliché Stock Photos',
-        check: (design) => {
+        check: design => {
           const images = design.images || [];
-          const clicheKeywords = ['handshake', 'diversity', 'technology hand', 'team smile', 'lightbulb moment'];
-          return images.some(img => 
+          const clicheKeywords = [
+            'handshake',
+            'diversity',
+            'technology hand',
+            'team smile',
+            'lightbulb moment',
+          ];
+          return images.some(img =>
             clicheKeywords.some(kw => (img.alt || img.caption || '').toLowerCase().includes(kw))
           );
         },
         message: 'Stock photo clichés undermine authenticity.',
         severity: 'medium',
-        fix: 'Use real photography, illustrations, or abstract visuals. Consider AI-generated custom art.'
+        fix: 'Use real photography, illustrations, or abstract visuals. Consider AI-generated custom art.',
       },
 
       /**
@@ -757,32 +774,40 @@ class AntiSlopSkill {
         id: 41,
         category: 'content',
         name: 'Vague Hero Headlines',
-        check: (design) => {
+        check: design => {
           const heroText = design.hero?.headline || '';
           const vaguePhrases = [
-            'welcome to the future', 'innovating tomorrow', 
-            'cutting edge', 'next generation', 'revolutionary solution',
-            'disrupting the industry', 'best in class', 'world class'
+            'welcome to the future',
+            'innovating tomorrow',
+            'cutting edge',
+            'next generation',
+            'revolutionary solution',
+            'disrupting the industry',
+            'best in class',
+            'world class',
           ];
           return vaguePhrases.some(phrase => heroText.toLowerCase().includes(phrase));
         },
         message: 'Vague hero headlines add no value. Be specific.',
         severity: 'high',
-        fix: 'Use specific, benefit-driven headlines that communicate real value.'
-      }
+        fix: 'Use specific, benefit-driven headlines that communicate real value.',
+      },
     };
   }
 
   // Helper method to calculate contrast ratio
   calculateContrastRatio(color1, color2) {
-    const getLuminance = (hex) => {
-      const rgb = hex.replace('#', '').match(/.{2}/g).map(x => {
-        let val = parseInt(x, 16) / 255;
-        return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
-      });
+    const getLuminance = hex => {
+      const rgb = hex
+        .replace('#', '')
+        .match(/.{2}/g)
+        .map(x => {
+          const val = parseInt(x, 16) / 255;
+          return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
+        });
       return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
     };
-    
+
     const l1 = getLuminance(color1);
     const l2 = getLuminance(color2);
     const lighter = Math.max(l1, l2);
@@ -825,7 +850,7 @@ class AntiSlopSkill {
             name: detector.name,
             message: detector.message,
             fix: detector.fix,
-            severity: detector.severity
+            severity: detector.severity,
           };
 
           if (detector.severity === 'high') {
@@ -840,14 +865,14 @@ class AntiSlopSkill {
     }
 
     const score = this.calculateScore(violations.length, warnings.length);
-    
+
     return {
       passed: violations.length === 0,
       score,
       violations,
       warnings,
       totalIssues: violations.length + warnings.length,
-      summary: this.generateSummary(violations, warnings, score)
+      summary: this.generateSummary(violations, warnings, score),
     };
   }
 
@@ -892,7 +917,7 @@ class AntiSlopSkill {
       categories[detector.category].push({
         id: detector.id,
         name: detector.name,
-        severity: detector.severity
+        severity: detector.severity,
       });
     }
     return categories;
@@ -910,7 +935,7 @@ class AntiSlopSkill {
           name: detector.name,
           message: detector.message,
           fix: detector.fix,
-          severity: detector.severity
+          severity: detector.severity,
         };
       }
     }

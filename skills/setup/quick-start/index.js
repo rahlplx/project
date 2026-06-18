@@ -2,14 +2,14 @@
 
 /**
  * Quick Start - One-command project scaffolding
- * 
+ *
  * Usage: node index.js [template-name]
  *   or node index.js to see interactive selection
  */
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 
 // Template definitions
 const TEMPLATES = {
@@ -21,7 +21,7 @@ const TEMPLATES = {
     devDeps: ['eslint', 'prettier'],
     envVars: ['VITE_API_URL'],
   },
-  'nextjs': {
+  nextjs: {
     name: 'Next.js (App Router)',
     description: 'Full-stack React framework with App Router',
     repo: 'https://github.com/vercel/next.js',
@@ -53,7 +53,7 @@ const TEMPLATES = {
     devDeps: ['eslint', 'prettier'],
     envVars: ['API_URL'],
   },
-  'electron': {
+  electron: {
     name: 'Electron App',
     description: 'Cross-platform desktop apps with React',
     repo: 'https://github.com/NickGerleman/expo-template',
@@ -61,7 +61,7 @@ const TEMPLATES = {
     devDeps: ['electron', 'electron-builder'],
     envVars: ['VITE_API_URL'],
   },
-  'remix': {
+  remix: {
     name: 'Remix',
     description: 'Full-stack React framework',
     repo: 'https://github.com/remix-run/remix',
@@ -77,7 +77,7 @@ const TEMPLATES = {
     devDeps: ['eslint', 'prettier'],
     envVars: ['VITE_API_URL'],
   },
-  'svelte': {
+  svelte: {
     name: 'SvelteKit',
     description: 'Svelte with file-based routing',
     repo: 'https://github.com/sveltejs/kit',
@@ -85,7 +85,7 @@ const TEMPLATES = {
     devDeps: ['eslint', 'prettier'],
     envVars: ['PUBLIC_API_URL'],
   },
-  'astro': {
+  astro: {
     name: 'Astro',
     description: 'Content-focused static site builder',
     repo: 'https://github.com/withastro/astro',
@@ -98,15 +98,19 @@ const TEMPLATES = {
     description: 'Node.js CLI with commander.js',
     repo: '',
     files: {
-      'package.json': JSON.stringify({
-        name: 'my-cli-tool',
-        version: '1.0.0',
-        description: 'A CLI tool',
-        type: 'module',
-        bin: { 'my-cli': './bin/index.js' },
-        scripts: { start: 'node bin/index.js' },
-        dependencies: { commander: '^10.0.0', chalk: '^5.0.0' },
-      }, null, 2),
+      'package.json': JSON.stringify(
+        {
+          name: 'my-cli-tool',
+          version: '1.0.0',
+          description: 'A CLI tool',
+          type: 'module',
+          bin: { 'my-cli': './bin/index.js' },
+          scripts: { start: 'node bin/index.js' },
+          dependencies: { commander: '^10.0.0', chalk: '^5.0.0' },
+        },
+        null,
+        2
+      ),
       'bin/index.js': `#!/usr/bin/env node
 import { program } from 'commander';
 import chalk from 'chalk';
@@ -185,12 +189,15 @@ function generateEnvFile(template) {
     return header + '# No environment variables required\n';
   }
 
-  const vars = template.envVars.map(v => {
-    const example = v.startsWith('NEXT_PUBLIC_') || v.startsWith('VITE_') || v.startsWith('PUBLIC_')
-      ? 'your-value-here'
-      : 'REPLACE_WITH_REAL_VALUE';
-    return `${v}=${example}`;
-  }).join('\n');
+  const vars = template.envVars
+    .map(v => {
+      const example =
+        v.startsWith('NEXT_PUBLIC_') || v.startsWith('VITE_') || v.startsWith('PUBLIC_')
+          ? 'your-value-here'
+          : 'REPLACE_WITH_REAL_VALUE';
+      return `${v}=${example}`;
+    })
+    .join('\n');
 
   return header + vars;
 }
@@ -260,19 +267,6 @@ async function createFromFiles(template, projectDir) {
   }
 }
 
-async function cloneRepo(template, projectDir, options) {
-  const { name } = template;
-
-  if (options.skipInstall) {
-    logStep(3, 'Skipping installation (--skip-install flag)');
-  }
-
-  log(`\n${colors.yellow}Note: For ${name}, please run these commands manually:${colors.reset}`);
-  log(`  cd ${projectDir}`);
-  log(`  npm install`);
-  log(`  npm run dev\n`);
-}
-
 async function scaffold(options) {
   const { templateKey, projectName, outputDir, skipInstall, list } = options;
 
@@ -321,21 +315,34 @@ async function scaffold(options) {
   } else if (template.repo) {
     log(`  Cloning from ${template.repo}...`, 'blue');
     try {
-      execSync(`git clone --depth 1 --branch ${template.branch} ${template.repo} "${projectDir}"`, {
-        stdio: 'pipe',
-      });
-      log(`  Cloned successfully`, 'green');
+      const safeRepo = template.repo.replace(/[^a-zA-Z0-9._:/@-]/g, '');
+      execFileSync(
+        'git',
+        ['clone', '--depth', '1', '--branch', template.branch, safeRepo, projectDir],
+        {
+          stdio: 'pipe',
+        }
+      );
+      log('  Cloned successfully', 'green');
 
       // Remove .git folder for clean start
       fs.rmSync(path.join(projectDir, '.git'), { recursive: true, force: true });
     } catch (error) {
-      log(`  Warning: Could not clone repository`, 'yellow');
-      log(`  Creating minimal project structure instead...`, 'yellow');
-      fs.writeFileSync(path.join(projectDir, 'package.json'), JSON.stringify({
-        name: projectName,
-        version: '1.0.0',
-        private: true,
-      }, null, 2), 'utf8');
+      log('  Warning: Could not clone repository', 'yellow');
+      log('  Creating minimal project structure instead...', 'yellow');
+      fs.writeFileSync(
+        path.join(projectDir, 'package.json'),
+        JSON.stringify(
+          {
+            name: projectName,
+            version: '1.0.0',
+            private: true,
+          },
+          null,
+          2
+        ),
+        'utf8'
+      );
     }
   }
 
@@ -343,11 +350,7 @@ async function scaffold(options) {
   logStep(3, 'Generating configuration files...');
 
   // Create .env.example
-  fs.writeFileSync(
-    path.join(projectDir, '.env.example'),
-    generateEnvFile(template),
-    'utf8'
-  );
+  fs.writeFileSync(path.join(projectDir, '.env.example'), generateEnvFile(template), 'utf8');
   log('  Created .env.example', 'green');
 
   // Create README.md
@@ -375,12 +378,11 @@ async function scaffold(options) {
       process.chdir(projectDir);
       log('  Running npm install...', 'blue');
 
-      execSync('npm install', { stdio: 'inherit', cwd: projectDir });
+      execFileSync('npm', ['install'], { stdio: 'inherit', cwd: projectDir });
 
-      // Install dev dependencies
       if (template.devDeps && template.devDeps.length > 0) {
         log('  Installing dev dependencies...', 'blue');
-        execSync(`npm install --save-dev ${template.devDeps.join(' ')}`, {
+        execFileSync('npm', ['install', '--save-dev', ...template.devDeps], {
           stdio: 'inherit',
           cwd: projectDir,
         });
@@ -388,8 +390,8 @@ async function scaffold(options) {
 
       log('  Dependencies installed', 'green');
     } catch (error) {
-      log(`  Warning: Could not install dependencies automatically`, 'yellow');
-      log(`  Please run "npm install" manually in the project directory`, 'yellow');
+      log('  Warning: Could not install dependencies automatically', 'yellow');
+      log('  Please run "npm install" manually in the project directory', 'yellow');
     }
   }
 
@@ -462,15 +464,20 @@ ${colors.cyan}Examples:${colors.reset}
   node index.js --list
 
 ${colors.cyan}Available Templates:${colors.reset}
-${Object.keys(TEMPLATES).map(t => `  - ${t}`).join('\n')}
+${Object.keys(TEMPLATES)
+  .map(t => `  - ${t}`)
+  .join('\n')}
 `);
 }
 
-// Main execution
-const options = parseArgs(process.argv);
-scaffold(options)
-  .then(() => process.exit(0))
-  .catch(error => {
-    console.error('Error:', error.message);
-    process.exit(1);
-  });
+// Main execution (only when run directly, not when required as module)
+if (require.main === module) {
+  const options = parseArgs(process.argv);
+  scaffold(options)
+    .then(() => process.exit(0))
+    .catch(error => {
+      console.error('Error:', error.message);
+      process.exit(1);
+    });
+}
+module.exports = { scaffold, TEMPLATES };

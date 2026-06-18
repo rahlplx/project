@@ -1,0 +1,471 @@
+{
+  "timestamp": "2026-06-13T17:28:50.447Z",
+  "avg_quality": 55,
+  "repos": 12,
+  "top_patterns": [
+    [
+      "documented",
+      10
+    ],
+    [
+      "mcp",
+      9
+    ],
+    [
+      "node",
+      8
+    ],
+    [
+      "typescript",
+      8
+    ],
+    [
+      "tested",
+      8
+    ],
+    [
+      "agents",
+      8
+    ],
+    [
+      "docker",
+      7
+    ],
+    [
+      "self-improving",
+      7
+    ],
+    [
+      "python",
+      6
+    ],
+    [
+      "telemetry",
+      6
+    ],
+    [
+      "skills",
+      5
+    ],
+    [
+      "rules",
+      5
+    ],
+    [
+      "catalog",
+      4
+    ],
+    [
+      "vibe-stack",
+      2
+    ],
+    [
+      "rust",
+      2
+    ],
+    [
+      "ci-cd",
+      1
+    ],
+    [
+      "pluggable",
+      1
+    ],
+    [
+      "tool-based",
+      1
+    ],
+    [
+      "api-first",
+      1
+    ],
+    [
+      "yaml-config",
+      1
+    ],
+    [
+      "monorepo",
+      1
+    ],
+    [
+      "makefile",
+      1
+    ]
+  ],
+  "top_candidates": [
+    [
+      "mcp-integration",
+      9
+    ],
+    [
+      "agent-arch",
+      7
+    ],
+    [
+      "self-improvement",
+      6
+    ],
+    [
+      "telemetry-system",
+      6
+    ],
+    [
+      "rules-engine",
+      5
+    ],
+    [
+      "catalog-pattern",
+      4
+    ],
+    [
+      "skill-adoption",
+      3
+    ],
+    [
+      "vibe-stack-pattern",
+      2
+    ],
+    [
+      "agent-arch-monorepo",
+      1
+    ],
+    [
+      "sdk-package-split",
+      1
+    ],
+    [
+      "async-sync-parity",
+      1
+    ],
+    [
+      "tool-registry-pattern",
+      1
+    ],
+    [
+      "settings-schema-export",
+      1
+    ],
+    [
+      "skill-progressive-disclosure",
+      1
+    ],
+    [
+      "doc-generation",
+      1
+    ],
+    [
+      "ci-quality-gates",
+      1
+    ]
+  ],
+  "all_repos": [
+    {
+      "name": "opencode",
+      "url": "https://github.com/anomalyco/opencode.git",
+      "stars": 173952,
+      "license": "MIT",
+      "quality_score": 85,
+      "patterns": [
+        "node",
+        "docker",
+        "typescript",
+        "tested",
+        "documented",
+        "skills",
+        "catalog",
+        "self-improving",
+        "mcp",
+        "agents",
+        "rules"
+      ],
+      "anti_patterns": [],
+      "candidates": [
+        "skill-adoption",
+        "catalog-pattern",
+        "self-improvement",
+        "mcp-integration",
+        "agent-arch",
+        "rules-engine"
+      ],
+      "quality": 85
+    },
+    {
+      "name": "langchain",
+      "url": "https://github.com/langchain-ai/langchain.git",
+      "stars": 139196,
+      "license": "MIT",
+      "quality_score": 0,
+      "patterns": [],
+      "anti_patterns": [
+        "no-tests",
+        "no-readme",
+        "no-ci"
+      ],
+      "candidates": [],
+      "quality": 0
+    },
+    {
+      "name": "crewAI",
+      "url": "https://github.com/crewAIInc/crewAI.git",
+      "stars": 53445,
+      "license": "MIT",
+      "quality_score": 45,
+      "patterns": [
+        "python",
+        "documented",
+        "skills",
+        "catalog",
+        "telemetry",
+        "mcp",
+        "agents",
+        "rules"
+      ],
+      "anti_patterns": [],
+      "candidates": [
+        "catalog-pattern",
+        "mcp-integration",
+        "agent-arch",
+        "telemetry-system",
+        "rules-engine"
+      ],
+      "quality": 45
+    },
+    {
+      "name": "mastra",
+      "url": "https://github.com/mastra-ai/mastra.git",
+      "stars": 25014,
+      "license": "NOASSERTION",
+      "quality_score": 95,
+      "patterns": [
+        "node",
+        "typescript",
+        "tested",
+        "documented",
+        "skills",
+        "catalog",
+        "self-improving",
+        "telemetry",
+        "mcp",
+        "agents",
+        "rules",
+        "vibe-stack"
+      ],
+      "anti_patterns": [],
+      "candidates": [
+        "skill-adoption",
+        "catalog-pattern",
+        "self-improvement",
+        "mcp-integration",
+        "agent-arch",
+        "telemetry-system",
+        "rules-engine",
+        "vibe-stack-pattern"
+      ],
+      "quality": 95
+    },
+    {
+      "name": "langgraph",
+      "url": "https://github.com/langchain-ai/langgraph.git",
+      "stars": 34622,
+      "license": "MIT",
+      "quality_score": 60,
+      "patterns": [
+        "node",
+        "python",
+        "docker",
+        "typescript",
+        "tested",
+        "documented",
+        "self-improving",
+        "agents"
+      ],
+      "anti_patterns": [],
+      "candidates": [
+        "self-improvement",
+        "agent-arch"
+      ],
+      "quality": 60
+    },
+    {
+      "name": "qdrant",
+      "url": "https://github.com/qdrant/qdrant.git",
+      "stars": 32133,
+      "license": "Apache-2.0",
+      "quality_score": 0,
+      "patterns": [],
+      "anti_patterns": [
+        "no-tests",
+        "no-readme",
+        "no-ci"
+      ],
+      "candidates": [],
+      "quality": 0
+    },
+    {
+      "name": "mem0",
+      "url": "https://github.com/mem0ai/mem0.git",
+      "stars": 58480,
+      "license": "Apache-2.0",
+      "quality_score": 75,
+      "patterns": [
+        "node",
+        "python",
+        "docker",
+        "typescript",
+        "tested",
+        "documented",
+        "skills",
+        "telemetry",
+        "mcp",
+        "agents",
+        "vibe-stack"
+      ],
+      "anti_patterns": [],
+      "candidates": [
+        "skill-adoption",
+        "mcp-integration",
+        "agent-arch",
+        "telemetry-system",
+        "vibe-stack-pattern"
+      ],
+      "quality": 75
+    },
+    {
+      "name": "weaviate",
+      "url": "https://github.com/weaviate/weaviate.git",
+      "stars": 16324,
+      "license": "BSD-3-Clause",
+      "quality_score": 30,
+      "patterns": [
+        "python",
+        "docker",
+        "documented",
+        "self-improving",
+        "telemetry",
+        "mcp"
+      ],
+      "anti_patterns": [],
+      "candidates": [
+        "self-improvement",
+        "mcp-integration",
+        "telemetry-system"
+      ],
+      "quality": 30
+    },
+    {
+      "name": "langflow",
+      "url": "https://github.com/langflow-ai/langflow.git",
+      "stars": 149615,
+      "license": "MIT",
+      "quality_score": 75,
+      "patterns": [
+        "node",
+        "python",
+        "docker",
+        "typescript",
+        "tested",
+        "documented",
+        "catalog",
+        "self-improving",
+        "telemetry",
+        "mcp",
+        "agents"
+      ],
+      "anti_patterns": [],
+      "candidates": [
+        "catalog-pattern",
+        "self-improvement",
+        "mcp-integration",
+        "agent-arch",
+        "telemetry-system"
+      ],
+      "quality": 75
+    },
+    {
+      "name": "penpot",
+      "url": "https://github.com/penpot/penpot.git",
+      "stars": 49640,
+      "license": "MPL-2.0",
+      "quality_score": 55,
+      "patterns": [
+        "node",
+        "rust",
+        "docker",
+        "typescript",
+        "tested",
+        "documented",
+        "telemetry",
+        "mcp",
+        "agents",
+        "rules"
+      ],
+      "anti_patterns": [],
+      "candidates": [
+        "mcp-integration",
+        "agent-arch",
+        "telemetry-system",
+        "rules-engine"
+      ],
+      "quality": 55
+    },
+    {
+      "name": "open-pencil",
+      "url": "https://github.com/open-pencil/open-pencil.git",
+      "stars": 5560,
+      "license": "MIT",
+      "quality_score": 60,
+      "patterns": [
+        "node",
+        "rust",
+        "typescript",
+        "tested",
+        "documented",
+        "self-improving",
+        "mcp",
+        "rules"
+      ],
+      "anti_patterns": [],
+      "candidates": [
+        "self-improvement",
+        "mcp-integration",
+        "rules-engine"
+      ],
+      "quality": 60
+    },
+    {
+      "name": "software-agent-sdk",
+      "stars": 816,
+      "quality": 85,
+      "patterns": [
+        "node",
+        "python",
+        "docker",
+        "tested",
+        "documented",
+        "typescript",
+        "ci-cd",
+        "mcp",
+        "agents",
+        "skills",
+        "pluggable",
+        "tool-based",
+        "api-first",
+        "yaml-config",
+        "monorepo",
+        "makefile",
+        "self-improving"
+      ],
+      "candidates": [
+        "agent-arch-monorepo",
+        "sdk-package-split",
+        "async-sync-parity",
+        "tool-registry-pattern",
+        "mcp-integration",
+        "settings-schema-export",
+        "skill-progressive-disclosure",
+        "doc-generation",
+        "ci-quality-gates"
+      ]
+    }
+  ]
+}

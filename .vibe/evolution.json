@@ -1,0 +1,613 @@
+{
+  "version": "2.9.2",
+  "last_evolution": "2026-06-18T03:30:00Z",
+  "evolution_count": 14,
+  "rules": {
+    "agent-native-catalog": {
+      "fires": 35,
+      "helpful": 35,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-13",
+      "status": "promoted",
+      "note": "Hard requirement. Applied to all 35 entries. Zero false positives.",
+      "promoted_date": "2026-06-18"
+    },
+    "yaml-only-direct-push": {
+      "fires": 3,
+      "helpful": 3,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-13",
+      "status": "active",
+      "note": "Best practice for data-only commits. No regressions across 3 pushes."
+    },
+    "auto-pipeline-for-curation": {
+      "fires": 6,
+      "helpful": 6,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Cross-domain pattern. 5 successful pipeline runs including 6-track parallel enhancement."
+    },
+    "execFileSync-over-execSync": {
+      "fires": 3,
+      "helpful": 3,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Security: never use execSync(string). 3 files migrated. No regressions."
+    },
+    "test-for-every-skill": {
+      "fires": 14,
+      "helpful": 14,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "promoted",
+      "note": "Every skill MUST have a test file. 12+2=14 untested skills identified and fixed. 47 skills covered.",
+      "promoted_date": "2026-06-18"
+    },
+    "batch-catalog-additions": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "retired_at": "2026-06-14",
+      "reason": "Retired: 0 fires, never exercised. The anti-pattern it replaced (incremental-catalog-runs) is sufficiently covered by auto-pipeline-for-curation pattern."
+    },
+    "append-not-insert-yaml": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "retired_at": "2026-06-14",
+      "reason": "Retired: 0 fires, never exercised. The anti-pattern it replaced (mid-file-yaml-edits) is covered by edit-tool-for-yaml-blocks pattern."
+    },
+    "jaccard-originality-check": {
+      "fires": 2,
+      "helpful": 2,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Shingle-based Jaccard similarity check. 47 skills checked, worst 19.3%, zero false positives."
+    },
+    "verify-gate-before-advance": {
+      "fires": 3,
+      "helpful": 3,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Prevents skipping quality gates. Verified across Phase 1 (10 transitions) and 6-track build."
+    },
+    "skill-structural-linter": {
+      "fires": 2,
+      "helpful": 2,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Structural lint check. 47 skills, 41 clean, 6 warnings, 0 errors."
+    },
+    "six-track-parallel-execution": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "6 independent tracks dispatched in parallel with zero file conflicts. 50 files, 5858 insertions."
+    },
+    "owasp-security-scan-asi-patterns": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "40 detection patterns across OWASP ASI01-ASI08. 47 skills scanned, 0 CRITICAL findings."
+    },
+    "mcp-discovery-well-known": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "RFC Cloudflare .well-known/agent-skills/index.json format. 47 skill modules indexed with SHA-256 digests."
+    },
+    "test-convention-node-test": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Declare test_convention: node:test before subagent dispatch. Prevented mixed imports during 6-track integration. All new tests use node:test imports."
+    },
+    "writeIndex-arg-validation": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Validated by D-grade fix session. writeIndex('.', '.well-known/agent-skills/index.json') corrupted index. Arg validation now prevents recurrence."
+    },
+    "quality-score-persist-check": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Validated by D-grade fix session. computeAllToolScores() returned correct values but didn't persist. Explicit writeQualityScores() call required."
+    },
+    "yaml-edit-use-tool-not-string": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Validated by D-grade fix session. Inline YAML string construction caused escape errors. Edit tool for YAML blocks prevents this."
+    },
+    "deep-research-before-design": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "4 community patterns (AI-DLC, copilot-orchestra, ABIvan-Tech, Agentic Dev Playbook) validated 5-phase workflow design before writing."
+    },
+    "stress-tested-plan-structure": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "7-section plan structure (CEO, Eng, Design, Risk, Tasks, AC, Decisions) produced comprehensive, low-risk plan."
+    },
+    "fn-tostring-schema-generation": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "fn.toString() + regex parses method signatures into JSON Schema for MCP tools. 49 skills auto-schema'd without modification. JSDoc ~10% coverage so name-based fallback critical."
+    },
+    "isError-structured-err": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "MCP tool errors must include isError:true + structured content with 'suggestion' field. Agents infer next steps from suggestions."
+    },
+    "token-budget-truncation": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "TokenOptimizer caps responses at 4000 tokens. Strategy: first 50% + last 20% with summary preserves context. ANSI strip before truncation."
+    },
+    "dead-dep-audit": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Periodic check for ESM-only deps (chalk v5, ora v7) that cannot be require()'d from CJS. Removed chalk+ora, installed @modelcontextprotocol/sdk."
+    },
+    "mcp-server-tested": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "MCP adapter integration tests: listTools, callTool, token optimization, error handling, batch calls. All 11 node:test suites pass."
+    },
+    "named-param-schema": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "SchemaGenerator extracts named params from fn.toString(). Agents no longer guess positional _args. Default values included in schema."
+    },
+    "eslint-prefer-const": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Unified .eslintrc.js enforces prefer-const, no-var, eqeqeq, curly, quotes: single, semi. Eliminated .eslintrc.json duplication."
+    },
+    "eslint-no-control-regex": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "ANSI regex \\x1b triggers no-control-regex. Use String.fromCharCode(27) in IIFE or add rule exception."
+    },
+    "static-vs-instance-methods": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Methods designed as static must be called as ClassName.method(), not this.method(). Consistency prevents runtime errors."
+    },
+    "temp-file-cleanup": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Ad-hoc scripts (regen-index.js) left in root. Ship phase must delete temp files or use .vibe/tmp/."
+    },
+    "use-handoff-at-transitions": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "Every phase transition must produce a handoff.md. Prevents context loss between layers. Promoted from proposed."
+    },
+    "mcp-sdk-schema-method-literal": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-14",
+      "status": "active",
+      "note": "MCP SDK setRequestHandler expects request schemas with method literals (ListToolsRequestSchema), not Result schemas."
+    },
+    "compaction-dedup-window": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "last_updated": "2026-06-14",
+      "review_by": "2026-07-14",
+      "status": "active",
+      "note": "New rule from retro action item. Compaction events must dedupe within 5-min window per project. Prevents 7x spam on rapid session starts."
+    },
+    "eslint-cache-flag": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "last_updated": "2026-06-14",
+      "review_by": "2026-07-14",
+      "status": "active",
+      "note": "New rule from retro action item. Harness eslint check must use --cache flag to speed up runs. Currently ~6s bottleneck."
+    },
+    "index-md-crossref-validation": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "last_updated": "2026-06-14",
+      "review_by": "2026-07-14",
+      "status": "active",
+      "note": "New harness check from retro action item. Validates every pattern/anti-pattern appears in at least one cross-ref table in INDEX.md. Prevents orphaned learnings."
+    },
+    "unified-test-convention": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "last_updated": "2026-06-14",
+      "review_by": "2026-07-14",
+      "status": "active",
+      "note": "New rule consolidating testing cluster (3 anti-patterns: mixed-test-conventions, regex-in-jest-config, skip-test-verification-on-docs-only). Single convention: node:test + always-run + no regex in jest config."
+    },
+    "state-json-sync-on-ship": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "last_updated": "2026-06-14",
+      "review_by": "2026-07-14",
+      "status": "active",
+      "note": "Promoted to active (v2.9.0). Auto-update state.json phase to 'done' after git commit. Prevents out-of-sync state between phases."
+    },
+    "temp-file-gitignore": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "last_updated": "2026-06-14",
+      "review_by": "2026-07-14",
+      "status": "active",
+      "note": "Promoted to active (v2.9.0). Add *.tmp.js or .vibe/tmp/ patterns to .gitignore. Prevents accidental commits of ad-hoc scripts."
+    },
+    "ttlcache-on-hot-paths": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.1. Module-level TTLCache(30000) singleton on QueryEnricher.enrich() keyed on query:goal. Eliminates redundant .vibe/ I/O + git reads within 30s window. Pattern: cache at module scope, not constructor scope."
+    },
+    "lazy-load-deferred-require": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.1. CLI entry points must not eagerly require heavy modules at top level. Use getter `get handler() { return require(...) }` to defer to invocation time. Dropped CLI startup from ~400ms to 64ms. Gate: utility commands skip orchestrator entirely."
+    },
+    "tdd-before-optimization": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.1. Bolt iterated 3x on bin/vibe.js (153e3a1, 3726dca, c21356e) before landing clean optimization because no tests guarded the behavior. Rule: write/verify tests for the function BEFORE optimizing its internals. Applied: TTLCache + allowBacktrack tests added this session before any future refactor."
+    },
+    "independent-verify-agent": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted from proposed v2.9.1. 6-persona review (CEO/CTO/Designer/QA/Security/PM) caught 12 bugs the build agent missed including arg-order bug in writeGoalBlock, StateMachine scope leak in handoff block, and dead variable in mcp-adapter. Independent review = orthogonal catch surface."
+    },
+    "prettier-eslint-sequence": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.2. prettier --write THEN eslint --fix. Prettier reformats; eslint auto-adds curly braces where prettier split single-line ifs onto multiple lines. Reversed order fails — eslint fixes get re-broken by prettier. 200+ files formatted, 0 ESLint errors after sequence."
+    },
+    "prettierignore-before-format": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.2. Create .prettierignore BEFORE running prettier --write. Scope away .vibe/, .gsd/, .jules/, *.jsonl, generated dirs. Prevents state file churn and keeps diff reviewable. Without this, prettier formats 500+ files including session telemetry."
+    },
+    "format-then-rebuild-index": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.2. After any prettier --write pass touching skills/*/index.js, run: node -e \"require('./lib/discovery-index').writeIndex(process.cwd())\". Prettier changes whitespace → SHA-256 digest changes → index-json-integrity harness check fails. Caught in this session: 15/16 → 16/16 after rebuild."
+    },
+    "npm-files-publish-safety": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.2. Always add 'files' field to package.json for any publishable npm package. Without it: .vibe/ state, .husky/ hooks, test fixtures, and dev configs leak into the npm tarball. List: bin/, lib/, skills/, catalog/, references/, .well-known/, key docs only."
+    },
+    "prod-only-audit-in-ci": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.2. Use 'npm audit --omit=dev' in CI, not bare 'npm audit'. Jest devDependencies have 18 unfixable moderate CVEs (babel-jest, jest-snapshot chain). Prod-only audit gives clean signal: 0 real vulnerabilities. Full audit causes alert fatigue and blocks CI on noise."
+    },
+    "ci-node-version-matrix": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.2. Run CI matrix across Node LTS (20) + Current (22). Use actions/setup-node with cache: npm. Pin .nvmrc to LTS version to align local dev with lower CI bound. Catches version-specific API changes before they reach users."
+    },
+    "pre-commit-index-integrity": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.2. Added checkIndexIntegrity() as Gate 3 in .husky/pre-commit. Catches digest drift at commit time, not CI time. Provides clear fix command in error message. Pattern: catch early, provide fix. Pre-commit is 10x cheaper to fix than CI failure."
+    },
+    "type-coerce-before-iterate": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-17",
+      "status": "active",
+      "note": "Promoted v2.9.2. When consuming a value that could be string or array, always coerce: Array.isArray(v) ? v : [String(v)]. The retro.js notes bug (iterating string characters) was caused by implicit type contract between auto-maintain.js (returns string) and retro.js (expected array). 18-item 'A l l' output."
+    }
+  },
+  "harness": {
+    "catalog-yaml-valid": {
+      "runs": 6,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "YAML validated every time. Zero syntax errors across 35 entries."
+    },
+    "catalog-category-count": {
+      "runs": 6,
+      "finds": 6,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "Category counts verified. All hitting targets. 6 gap finds."
+    },
+    "test-suite": {
+      "runs": 8,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "762 Jest tests + 63 node:test = 825 total. 77 Jest suites + 11 node:test suites. All pass after MCP adapter integration."
+    },
+    "handoff-templates": {
+      "runs": 3,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "Verifies all 8 handoff docs exist. Never failed."
+    },
+    "phase-gates-doc": {
+      "runs": 3,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "Verifies gates.md has all phase transitions documented. Never failed."
+    },
+    "skill-originality": {
+      "runs": 3,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "47 skills checked, worst 19.3%, zero fails."
+    },
+    "skill-lint": {
+      "runs": 3,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "47 skills, 41 clean, 6 warnings, 0 errors."
+    },
+    "index-json-integrity": {
+      "runs": 2,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "Validates .well-known/agent-skills/index.json matches on-disk skills. 49 entries verified (removed deployment/railway duplicate)."
+    },
+    "quality-scores": {
+      "runs": 1,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "Validates catalog/quality-scores.json covers all 35 tools. All scored, no D-grade tools."
+    },
+    "security-scan": {
+      "runs": 1,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "OWASP ASI01-ASI08 scan of all 47 skills. 0 CRITICAL findings."
+    },
+    "spec-gates-g09-g14": {
+      "runs": 1,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "6 new spec enforcement gates (G09-G14). All pass on current skills."
+    },
+    "node-test-suite": {
+      "runs": 2,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "node:test runner for excluded files. 63 tests across 11 suites. SchemaGenerator, TokenOptimizer, PerformanceOptimizer, MCPAdapter all covered."
+    },
+    "state-machine-valid": {
+      "runs": 1,
+      "finds": 0,
+      "false_positive": 0,
+      "quality_score": 1,
+      "note": "Validates state.json state_machine has exactly 6 entries matching 5-phase model: scope, build, verify, ship, evolve, done. Runs added as Check 15."
+    }
+  },
+  "proposed_rules": [],
+  "retired": {
+    "test-suite-always-run": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "retired_at": "2026-06-14",
+      "reason": "Retired v2.9.0: 0 runs, never exercised. Redundant with test-suite check which already runs every cycle."
+    },
+    "tdd": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "retired_at": "2026-06-13",
+      "reason": "No production code in curation projects. Rule had zero applicability."
+    },
+    "mid-file-yaml-edits": {
+      "fires": 3,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": 0,
+      "retired_at": "2026-06-13",
+      "reason": "Reclassified as anti-pattern. Replaced by: append-not-insert-yaml."
+    },
+    "incremental-catalog-runs": {
+      "fires": 3,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": 0,
+      "retired_at": "2026-06-13",
+      "reason": "Reclassified as anti-pattern. Replaced by: batch-catalog-additions."
+    },
+    "verify-before-describe": {
+      "fires": 2,
+      "helpful": 0,
+      "false_positive": 1,
+      "quality_score": 0,
+      "retired_at": "2026-06-13",
+      "reason": "Reclassified as anti-pattern. Replaced by: pre-verify-tool-metadata."
+    },
+    "pre-verify-tool-metadata": {
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0,
+      "quality_score": null,
+      "retired_at": "2026-06-14",
+      "reason": "Never implemented. 0 fires. Replaced by test-for-every-skill + regex-in-jest-config."
+    }
+  },
+  "proposed": [
+    {
+      "id": "workflow-5-phase-gate",
+      "status": "proposed",
+      "description": "Harness check: state.json state_machine must be exactly [scope, build, verify, ship, evolve, done]",
+      "rationale": "Ensures new 5-phase workflow is enforced; prevents drift back to 11-phase",
+      "trigger": "on state.json write and at harness phase",
+      "severity": "warning",
+      "proposed_date": "2026-06-14",
+      "fires": 0,
+      "helpful": 0,
+      "false_positive": 0
+    }
+  ],
+  "updated": "2026-06-18T03:30:00Z"
+}

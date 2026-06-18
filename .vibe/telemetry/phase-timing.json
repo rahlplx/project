@@ -1,0 +1,96 @@
+{
+  "version": "1.0.0",
+  "records": [
+    {
+      "phase": "plan",
+      "startTime": "2026-06-13T16:01:05.695Z",
+      "endTime": "2026-06-13T16:01:34.695Z",
+      "durationMs": 29000,
+      "recordedAt": "2026-06-13T16:01:34.695Z"
+    },
+    {
+      "phase": "break",
+      "startTime": "2026-06-13T16:01:26.772Z",
+      "endTime": "2026-06-13T16:01:54.772Z",
+      "durationMs": 28000,
+      "recordedAt": "2026-06-13T16:01:54.772Z"
+    },
+    {
+      "phase": "build",
+      "startTime": "2026-06-13T20:04:06.102Z",
+      "endTime": "2026-06-13T20:04:33.102Z",
+      "durationMs": 27000,
+      "recordedAt": "2026-06-13T20:04:33.102Z"
+    },
+    {
+      "phase": "harness",
+      "startTime": "2026-06-13T20:32:10.829Z",
+      "endTime": "2026-06-13T20:32:36.829Z",
+      "durationMs": 26000,
+      "recordedAt": "2026-06-13T20:32:36.829Z"
+    },
+    {
+      "phase": "review",
+      "startTime": "2026-06-13T21:08:41.356Z",
+      "endTime": "2026-06-13T21:09:06.356Z",
+      "durationMs": 25000,
+      "recordedAt": "2026-06-13T21:09:06.356Z"
+    },
+    {
+      "phase": "ship",
+      "startTime": "2026-06-13T22:31:22.221Z",
+      "endTime": "2026-06-13T22:31:46.221Z",
+      "durationMs": 24000,
+      "recordedAt": "2026-06-13T22:31:46.221Z"
+    },
+    {
+      "phase": "retro",
+      "startTime": "2026-06-13T23:21:16.049Z",
+      "endTime": "2026-06-13T23:21:39.049Z",
+      "durationMs": 23000,
+      "recordedAt": "2026-06-13T23:21:39.049Z"
+    },
+    {
+      "phase": "learn",
+      "startTime": "2026-06-13T23:37:34.435Z",
+      "endTime": "2026-06-13T23:37:56.435Z",
+      "durationMs": 22000,
+      "recordedAt": "2026-06-13T23:37:56.435Z"
+    },
+    {
+      "phase": "evolve",
+      "startTime": "2026-06-13T23:38:10.331Z",
+      "endTime": "2026-06-13T23:38:31.331Z",
+      "durationMs": 21000,
+      "recordedAt": "2026-06-13T23:38:31.331Z"
+    },
+    {
+      "phase": "done",
+      "startTime": "2026-06-13T23:38:37.197Z",
+      "endTime": "2026-06-13T23:38:57.197Z",
+      "durationMs": 20000,
+      "recordedAt": "2026-06-13T23:38:57.197Z"
+    },
+    {
+      "phase": "think",
+      "startTime": "2026-06-13T23:39:02.914Z",
+      "endTime": "2026-06-13T23:39:21.914Z",
+      "durationMs": 19000,
+      "recordedAt": "2026-06-13T23:39:21.914Z"
+    },
+    {
+      "phase": "plan",
+      "startTime": "2026-06-13T23:39:56.683Z",
+      "endTime": "2026-06-13T23:40:14.683Z",
+      "durationMs": 18000,
+      "recordedAt": "2026-06-13T23:40:14.683Z"
+    },
+    {
+      "phase": "break",
+      "startTime": "2026-06-13T23:40:17.815Z",
+      "endTime": "2026-06-13T23:40:34.815Z",
+      "durationMs": 17000,
+      "recordedAt": "2026-06-13T23:40:34.815Z"
+    }
+  ]
+}

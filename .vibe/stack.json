@@ -1,0 +1,8 @@
+{
+  "framework": "unknown",
+  "language": "typescript",
+  "testFramework": "jest",
+  "testCommand": "npx jest",
+  "buildCommand": null,
+  "lintCommand": null
+}

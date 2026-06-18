@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "errors": [
+    {
+      "id": "err-bootstrap-1",
+      "context": "test-suite",
+      "category": "system",
+      "message": "spawnSync npm ENOENT",
+      "recordedAt": "2026-06-13T23:37:56.435Z"
+    },
+    {
+      "id": "err-bootstrap-2",
+      "context": "test-suite",
+      "category": "system",
+      "message": "spawnSync npm.cmd EINVAL",
+      "recordedAt": "2026-06-13T23:38:57.197Z"
+    }
+  ]
+}
