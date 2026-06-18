@@ -217,10 +217,31 @@ function runHarness(runTestSuite = true) {
 
   // Check 12: node:test suite (excluded files)
   if (!runTestSuite) {
-    results.push({ check: 'node-test-suite', pass: true, data: { passCount: 0, failCount: 0, skipped: true } });
+    results.push({
+      check: 'node-test-suite',
+      pass: true,
+      data: { passCount: 0, failCount: 0, skipped: true },
+    });
   } else {
     try {
-      const output = stripAnsi(execFileSync('node', ['--test', 'lib/security-scan.test.js', 'lib/security-scan.report.test.js', 'lib/phase-timing.test.js', 'lib/error-trends.test.js', 'lib/stuck-detector.test.js', 'lib/install-ide.test.js', 'lib/agents-md.test.js', 'lib/tool-registry.test.js', 'lib/lint-config.test.js'], { cwd: PROJECT_ROOT, timeout: 120000, encoding: 'utf8' }));
+      const output = stripAnsi(
+        execFileSync(
+          'node',
+          [
+            '--test',
+            'lib/security-scan.test.js',
+            'lib/security-scan.report.test.js',
+            'lib/phase-timing.test.js',
+            'lib/error-trends.test.js',
+            'lib/stuck-detector.test.js',
+            'lib/install-ide.test.js',
+            'lib/agents-md.test.js',
+            'lib/tool-registry.test.js',
+            'lib/lint-config.test.js',
+          ],
+          { cwd: PROJECT_ROOT, timeout: 120000, encoding: 'utf8' }
+        )
+      );
       const passed = output.match(/pass (\d+)/);
       const failed = output.match(/fail (\d+)/);
       const passCount = passed ? parseInt(passed[1]) : 0;
@@ -228,13 +249,34 @@ function runHarness(runTestSuite = true) {
       results.push({
         check: 'node-test-suite',
         pass: failCount === 0,
-        data: { passCount, failCount }
+        data: { passCount, failCount },
       });
       console.log(`  [harness]  ✓ node-test-suite (${passCount} passed, ${failCount} failed)`);
     } catch (e) {
       results.push({ check: 'node-test-suite', pass: false, error: e.message });
       console.log(`  [harness]  ✗ node-test-suite: ${e.message}`);
     }
+  }
+
+  // Check 12b: Coverage Gate (Bolt ⚡ Requirement)
+  try {
+    const coveragePath = path.join(PROJECT_ROOT, 'coverage', 'coverage-summary.json');
+    if (fs.existsSync(coveragePath)) {
+      const summary = JSON.parse(fs.readFileSync(coveragePath, 'utf8'));
+      const total = summary.total || summary;
+      const lines = total.lines.pct;
+      const pass = lines >= 75; // Matches package.json threshold
+      results.push({
+        check: 'coverage-gate',
+        pass,
+        data: { lines, threshold: 75 },
+      });
+      console.log(`  [harness]  ${pass ? '✓' : '✗'} coverage-gate (${lines}% lines, threshold: 75%)`);
+    } else {
+      console.log('  [harness]  ⚠ coverage-gate skipped (no coverage-summary.json found)');
+    }
+  } catch (e) {
+    results.push({ check: 'coverage-gate', pass: false, error: e.message });
   }
 
   // Check 13: ESLint lint check (warnings allowed, errors block)
