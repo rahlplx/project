@@ -8,13 +8,13 @@ This manifesto outlines the "Proven Ways" for 100% robustness in a codebase buil
 
 For 100% confidence, we use a multi-layered approach:
 
-| Level | Method | Tool | Frequency |
-|-------|--------|------|-----------|
-| **L1: Unit** | Functional parity checks | Jest / `node:test` | Every PR |
-| **L2: Coverage** | Mandatory 75%+ line coverage | Istanbul/c8 | CI Gate |
-| **L3: Invariants** | State machine validation | `state-machine.test.js` | Every commit |
-| **L4: E2E** | Think → Ship full pipeline audit | `/vibe:qa` (Playwright) | Pre-release |
-| **L5: Infra** | Skill index & catalog integrity | `/vibe:harness` | Autonomous |
+| Level              | Method                           | Tool                    | Frequency    |
+| ------------------ | -------------------------------- | ----------------------- | ------------ |
+| **L1: Unit**       | Functional parity checks         | Jest / `node:test`      | Every PR     |
+| **L2: Coverage**   | Mandatory 75%+ line coverage     | Istanbul/c8             | CI Gate      |
+| **L3: Invariants** | State machine validation         | `state-machine.test.js` | Every commit |
+| **L4: E2E**        | Think → Ship full pipeline audit | `/vibe:qa` (Playwright) | Pre-release  |
+| **L5: Infra**      | Skill index & catalog integrity  | `/vibe:harness`         | Autonomous   |
 
 ---
 
@@ -43,4 +43,4 @@ For 100% confidence, we use a multi-layered approach:
 
 ---
 
-*Verified by Bolt ⚡, The Architect, and QA.*
+_Verified by Bolt ⚡, The Architect, and QA._

@@ -317,7 +317,10 @@ if (cmd) {
           const maintainPath = path.join(projectRoot, '.vibe', 'lifecycle', 'auto-maintain.js');
           if (require('fs').existsSync(maintainPath)) {
             const { spawn } = require('child_process');
-            const child = spawn(process.execPath, [maintainPath], { detached: true, stdio: 'ignore' });
+            const child = spawn(process.execPath, [maintainPath], {
+              detached: true,
+              stdio: 'ignore',
+            });
             child.unref();
 
             // Reset counter + record timestamp

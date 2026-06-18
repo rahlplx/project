@@ -57,4 +57,35 @@ try {
   console.log('[pre-commit] ~ Skill index check skipped: ' + e.message);
 }
 
+// Gate 4: npm audit
+try {
+  const audit = execFileSync('npm', ['audit', '--omit=dev'], {
+    cwd: ROOT,
+    stdio: 'pipe',
+    timeout: 60000,
+    encoding: 'utf8',
+  });
+  console.log('[pre-commit] ✓ npm audit');
+} catch (e) {
+  const out = e.stdout || '';
+  const critical = (out.match(/critical/gi) || []).length;
+  const high = (out.match(/high/gi) || []).length;
+  if (critical > 0 || high > 0) {
+    console.error(
+      '[pre-commit] ✗ npm audit: ' +
+        critical +
+        ' critical, ' +
+        high +
+        ' high severity vulnerabilities'
+    );
+    exitCode = 1;
+  } else {
+    console.log(
+      '[pre-commit] ~ npm audit: ' +
+        (out.match(/\d+ (moderate|low)/)?.[0] || 'non-critical') +
+        ' only'
+    );
+  }
+}
+
 process.exit(exitCode);
