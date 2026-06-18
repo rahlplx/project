@@ -251,8 +251,10 @@ class ScreenshotPreview {
    */
   _safePath(filename) {
     const base = path.basename(filename);
-    const safe = path.join(this.outputDir, base);
-    if (!safe.startsWith(this.outputDir)) {
+    const resolvedDir = path.resolve(this.outputDir);
+    const safe = path.resolve(resolvedDir, base);
+    const relative = path.relative(resolvedDir, safe);
+    if (relative.startsWith('..') || path.isAbsolute(relative)) {
       throw new Error(`Invalid path: ${filename}`);
     }
     return safe;

@@ -63,27 +63,12 @@ This document maps the core domains of the Vibe-Stack codebase, analyzed through
 - **WHERE**: `lib/telemetry/`, `.vibe/telemetry/`.
 - **HOW**: Writes `.jsonl` span files that are later aggregated.
 - **REAL-WORLD RESULT**: Clear visibility into which skills are used most and where errors happen.
-- **EFFICIENCY RATING**: ⭐⭐⭐⭐ (High efficiency after Bolt's I/O consolidation).
-- **PROVEN SOLUTION**: Consolidate telemetry and lifecycle updates into a single write cycle.
+- **EFFICIENCY RATING**: ⭐⭐⭐ (Low overhead, but adds constant startup tax).
+- **PROVEN SOLUTION**: Move tracer initialization inside the command execution block to skip for utility commands.
 
 ---
 
-## 5. QA & Robustness Audit
-**The "Stability Guardian".**
-
-- **WHAT**: Functional E2E testing and coverage enforcement.
-- **WHY**: To ensure "vibe coding" doesn't introduce regressions or break data flow.
-- **WHO**: **QA** (Persona: Reliability Lead).
-- **WHEN**: Before every PR and release.
-- **WHERE**: `/vibe:qa`, `scripts/e2e/user-flow.js`, `docs/testing-manifesto.md`.
-- **HOW**: Simulates full "Think-to-Ship" workflows and enforces a 75% coverage gate.
-- **REAL-WORLD RESULT**: 100% confidence that the pipeline state machine transitions correctly.
-- **EFFICIENCY RATING**: ⭐⭐⭐⭐ (Automated audit prevents manual re-testing).
-- **PROVEN SOLUTION**: Use `scripts/e2e/user-flow.js` to audit the full infra and goal persistence.
-
----
-
-## 6. Skill & Catalog Management
+## 5. Skill & Catalog Management
 
 **The "Capability Library".**
 
@@ -99,7 +84,7 @@ This document maps the core domains of the Vibe-Stack codebase, analyzed through
 
 ---
 
-## 7. Autonomous Maintenance
+## 6. Autonomous Maintenance
 
 **The "Self-Healing Loop".**
 
@@ -115,16 +100,16 @@ This document maps the core domains of the Vibe-Stack codebase, analyzed through
 
 ---
 
-## 8. External Integrations (MCP/IDE)
+## 7. External Integrations (MCP/IDE)
 
-**The "Bridge to the World" (Agent-Agnostic Plugin).**
+**The "Bridge to the World".**
 
-- **WHAT**: Connects vibe-stack to any AI coding agent (Cursor, Trae, Kilocode, Antigravity, etc.).
-- **WHY**: To make Vibe-Stack the universal engine for all vibe-coders regardless of their IDE.
+- **WHAT**: Connects vibe-stack to Cursor, Claude Code, and other MCP-compatible environments.
+- **WHY**: To bring vibe-coding skills directly into the user's preferred editor.
 - **WHO**: **The Ambassador** (Persona: Interoperability).
-- **WHEN**: Installation via `vibe install`.
+- **WHEN**: Installation and during live MCP sessions.
 - **WHERE**: `bin/mcp-server.js`, `lib/install-ide.js`, `plugin/`.
-- **HOW**: Automatically formats instructions into `.md`, `.mdc`, or `plugin.json` based on the detected agent.
-- **REAL-WORLD RESULT**: One command (`vibe install --all`) prepares every agent on your machine.
-- **EFFICIENCY RATING**: ⭐⭐⭐⭐⭐ (Universal compatibility with zero manual config).
-- **PROVEN SOLUTION**: Implement agent-specific rule templates (Cursor MDC, Antigravity JSON) in `install-ide.js`.
+- **HOW**: Implements the Model Context Protocol (MCP) for tool discovery and execution.
+- **REAL-WORLD RESULT**: "Talk to your code" in Cursor with full Vibe-Stack context.
+- **EFFICIENCY RATING**: ⭐⭐⭐ (Interpreted bridge; slight latency).
+- **PROVEN SOLUTION**: Use `ResponseStreamer` for real-time progress updates during long-running tool calls.

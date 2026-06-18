@@ -42,18 +42,14 @@ describe('ModelRouter', () => {
     expect(top200k[0].score).toBeGreaterThan(bottom128k[0].score);
   });
 
-  it('should include all model metadata in allModels response', () => {
+  it('should include non-empty reason string in recommendation', () => {
     const s = new ModelRouter();
-    const r = s.recommend('implement feature');
-    r.allModels.forEach(m => {
-      expect(m).toHaveProperty('name');
-      expect(m).toHaveProperty('cost');
-      expect(m).toHaveProperty('speed');
-      expect(m).toHaveProperty('reasoning');
-      expect(m).toHaveProperty('code');
-      expect(m).toHaveProperty('creativity');
-      expect(m).toHaveProperty('context');
-      expect(m).toHaveProperty('score');
+    const r = s.recommend('implement a complex architecture');
+    expect(typeof r.reason).toBe('string');
+    expect(r.reason.length).toBeGreaterThan(0);
+    r.alternatives.forEach(a => {
+      expect(typeof a.reason).toBe('string');
+      expect(a.reason.length).toBeGreaterThan(0);
     });
   });
 });

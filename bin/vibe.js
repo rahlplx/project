@@ -4,7 +4,7 @@ const path = require('path');
 // ── Bootstrap: load all vibe commands ──────────────────────────
 const cmdDir = path.resolve(__dirname, '..', 'lib', 'vibe-commands');
 const { register, validatePhase } = require(path.join(cmdDir, 'index'));
-const { readState, writeState, recordTelemetry, advancePhase, writeHandoff } = require(
+const { readState, writeState, recordTelemetry, advancePhase, writeHandoff, writeJSON } = require(
   path.join(cmdDir, 'state-helpers')
 );
 const { showHelp } = require(path.join(cmdDir, 'help'));
@@ -322,9 +322,7 @@ if (cmd) {
           lc.last_maintenance_day = today;
           lc.today_maintenance_count = runsToday + 1;
 
-          const fs = require('fs');
-          const lcPath = path.join(projectRoot, '.vibe', 'lifecycle.json');
-          fs.writeFileSync(lcPath, JSON.stringify(lc, null, 2) + '\n', 'utf8');
+          writeJSON(path.join(projectRoot, '.vibe', 'lifecycle.json'), lc);
         }
       } catch {
         /* auto-maintain spawn is best-effort, never block CLI */

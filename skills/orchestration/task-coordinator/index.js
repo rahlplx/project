@@ -55,12 +55,18 @@ class TaskCoordinator {
   _resolveOrder(steps) {
     const resolved = [];
     const visited = new Set();
+    const visiting = new Set();
     const visit = step => {
       if (visited.has(step.id)) return;
+      if (visiting.has(step.id)) {
+        throw new Error(`Circular dependency detected at step: ${step.id}`);
+      }
+      visiting.add(step.id);
       step.dependsOn.forEach(depId => {
         const dep = steps.find(s => s.id === depId);
         if (dep) visit(dep);
       });
+      visiting.delete(step.id);
       visited.add(step.id);
       resolved.push(step);
     };

@@ -64,9 +64,11 @@ describe('ScreenshotPreview', () => {
     expect(path.basename(safe)).toBe('test.png');
   });
 
-  it('_safePath should throw on path traversal', () => {
+  it('_safePath should redirect traversal attempts to outputDir', () => {
+    const path = require('path');
     const s = new ScreenshotPreview({ outputDir: './safe-test' });
-    expect(() => s._safePath('../../etc/passwd')).toThrow('Invalid path');
+    const result = s._safePath('../../etc/passwd');
+    expect(result).toBe(path.resolve('./safe-test', 'passwd'));
   });
 
   it('getMetadata should throw on nonexistent file', () => {

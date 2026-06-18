@@ -62,8 +62,13 @@ describe('CodeExplainer', () => {
     expect(r.timestamp).toBeTruthy();
   });
 
-  it('should return metadata', () => {
+  it('should assign methods to their correct class in multi-class files', () => {
     const s = new CodeExplainer();
-    expect(s.toJSON().name).toBe('code-explainer');
+    const code = 'class Dog { bark() {} } class Cat { meow() {} purr() {} }';
+    const r = s.explain(code);
+    const dog = r.details.classes.find(c => c.name === 'Dog');
+    const cat = r.details.classes.find(c => c.name === 'Cat');
+    expect(dog.methods).toBe(1);
+    expect(cat.methods).toBe(2);
   });
 });

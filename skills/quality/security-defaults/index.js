@@ -67,7 +67,7 @@ class SecurityDefaults {
         name: 'SQL injection protection',
         category: 'database',
         passed:
-          !/SELECT.*\+|INSERT.*\+|query\(['"][^'"]*\$\{/.test(code) ||
+          !/SELECT.*\+|INSERT.*\+|query\(\s*`[^`]*\$\{/.test(code) ||
           !/sql|query|database/i.test(code) ||
           options.skipDbCheck,
       },

@@ -53,6 +53,9 @@ class ParallelExec {
         }
       }
 
+      if (group.length === 0) {
+        throw new Error('Circular or unresolvable dependency detected in task graph');
+      }
       groups.push(group.map(t => t.id));
       group.forEach(t => {
         const idx = remaining.findIndex(r => r.id === t.id);

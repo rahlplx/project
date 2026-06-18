@@ -5,7 +5,7 @@ class ContextMemory {
     this.name = 'context-memory';
     this.version = '1.0.0';
     this.description = 'Persistent context across sessions — remembers preferences and decisions';
-    this._store = {};
+    this._store = Object.create(null);
   }
 
   remember(key, value) {

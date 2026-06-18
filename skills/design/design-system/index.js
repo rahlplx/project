@@ -64,7 +64,7 @@ class DesignSystem {
     if (typeof nameOrValue === 'number') {
       return nameOrValue;
     }
-    const value = Object.entries(naming).find(([v, n]) => n === nameOrValue);
+    const value = Object.entries(naming).find(([, n]) => n === nameOrValue);
     return value ? parseInt(value[0]) : 16;
   }
 
@@ -76,7 +76,7 @@ class DesignSystem {
     const naming = this.config.spacing.naming;
     const scale = this.config.spacing.scale;
 
-    scale.forEach((value, index) => {
+    scale.forEach(value => {
       const name = naming[value] || `space-${value}`;
       vars[`--space-${name}`] = `${value}px`;
     });
