@@ -1,7 +1,7 @@
 {
   "phase": "done",
   "step": 10,
-  "mode": "auto",
+  "goal": "--from=done",
   "completed": [
     "think-complete",
     "plan-complete",
@@ -15,21 +15,23 @@
     "evolve-complete"
   ],
   "auto_pipeline": {
+    "started": "2026-06-18T22:23:10.551Z",
+    "goal": "--from=done",
     "state_machine": [
       "think",
       "plan",
-      "detect",
       "break",
-      "design",
       "build",
       "harness",
       "review",
-      "qa",
       "ship",
       "retro",
       "learn",
       "evolve",
       "done"
-    ]
-  }
+    ],
+    "failed_at_phase": null
+  },
+  "mode": "auto",
+  "updated": "2026-06-18T22:23:10.551Z"
 }
