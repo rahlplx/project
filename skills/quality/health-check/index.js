@@ -105,7 +105,6 @@ class HealthCheck {
     try {
       const os = require('os');
       const free = os.freemem();
-      const _total = os.totalmem();
       const freeGB = (free / 1024 / 1024 / 1024).toFixed(1);
       return { freeMemoryGB: parseFloat(freeGB), status: freeGB > 1 ? 'ok' : 'low' };
     } catch {

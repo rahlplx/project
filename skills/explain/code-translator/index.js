@@ -91,7 +91,7 @@ class CodeTranslator {
     );
   }
 
-  _translateLine(line, mapping, from, to) {
+  _translateLine(line, mapping, from, _to) {
     let result = line;
 
     if (mapping['//'] && from !== 'python') result = mapping['//'](result);

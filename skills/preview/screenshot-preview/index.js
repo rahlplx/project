@@ -45,7 +45,7 @@ class ScreenshotPreview {
 
     try {
       // Use puppeteer if available, otherwise use fallback
-      const screenshot = await this.captureWithPuppeteer(url, {
+      await this.captureWithPuppeteer(url, {
         path: outputPath,
         ...viewport,
         fullPage,

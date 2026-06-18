@@ -270,7 +270,7 @@ class FlowchartGen {
   /**
    * Heuristic to determine if a class might call a function
    */
-  mightCall(cls, func, structure) {
+  mightCall(cls, func, _structure) {
     // Simple heuristic: check if function name suggests it belongs to the class
     const funcLower = func.name.toLowerCase();
     const classLower = cls.name.toLowerCase();

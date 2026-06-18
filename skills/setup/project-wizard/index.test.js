@@ -1,3 +1,4 @@
+const fs = require('fs');
 const mod = require('./index');
 
 describe('ProjectWizard', () => {
@@ -86,5 +87,191 @@ describe('ProjectWizard', () => {
     expect(spec).toContain('## Minimal');
     expect(spec).not.toContain('### Authentication');
     expect(spec).not.toContain('### Database');
+  });
+});
+
+const BASE_ANSWERS = {
+  projectName: 'Base',
+  description: 'Base project',
+  projectType: 'api',
+  deploymentTargets: ['docker'],
+  features: [],
+  designPreference: 'minimalist',
+  colorScheme: 'blue',
+  responsiveDesign: true,
+};
+
+describe('generateProjectSpec — branch coverage', () => {
+  it('includes realtime section when realtime feature selected', async () => {
+    const spec = await mod.generateProjectSpec({
+      ...BASE_ANSWERS,
+      features: ['realtime'],
+      realtimeUseCases: 'Live chat, notifications',
+    });
+    expect(spec).toContain('### Real-time Features');
+    expect(spec).toContain('Live chat, notifications');
+  });
+
+  it('includes typography section when fonts provided', async () => {
+    const spec = await mod.generateProjectSpec({
+      ...BASE_ANSWERS,
+      fonts: 'Inter, Roboto',
+    });
+    expect(spec).toContain('### Typography');
+    expect(spec).toContain('Inter, Roboto');
+  });
+
+  it('includes custom cicd content when provided', async () => {
+    const spec = await mod.generateProjectSpec({
+      ...BASE_ANSWERS,
+      cicd: 'GitHub Actions',
+    });
+    expect(spec).toContain('GitHub Actions');
+  });
+
+  it('uses fallback when techPreferences not set', async () => {
+    const spec = await mod.generateProjectSpec({ ...BASE_ANSWERS });
+    expect(spec).toContain('To be determined based on project requirements');
+  });
+
+  it('uses fallback for optional fields when omitted', async () => {
+    const spec = await mod.generateProjectSpec({ ...BASE_ANSWERS });
+    expect(spec).toContain('To be determined');
+    expect(spec).toContain('Not specified');
+    expect(spec).toContain('None specified');
+  });
+
+  it('standard responsive text when responsiveDesign is false', async () => {
+    const spec = await mod.generateProjectSpec({ ...BASE_ANSWERS, responsiveDesign: false });
+    expect(spec).toContain('Standard responsive (desktop-primary)');
+  });
+});
+
+describe('main() — mocked inquirer', () => {
+  let writeSpy;
+  let exitSpy;
+  let promptSpy;
+  let inquirer;
+
+  beforeEach(() => {
+    inquirer = require('inquirer');
+    writeSpy = jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
+    exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {});
+    jest.spyOn(console, 'log').mockImplementation(() => {});
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('happy path with no special features writes PROJECT.md', async () => {
+    promptSpy = jest.spyOn(inquirer, 'prompt').mockResolvedValue({
+      ...BASE_ANSWERS,
+      techPreferences: '',
+      timeline: 'TBD',
+      budget: 'None',
+      notes: '',
+    });
+    await mod.main();
+    expect(writeSpy).toHaveBeenCalled();
+    expect(writeSpy.mock.calls[0][0]).toMatch(/PROJECT\.md$/);
+  });
+
+  it('conditional auth prompt is called when auth feature selected', async () => {
+    promptSpy = jest
+      .spyOn(inquirer, 'prompt')
+      .mockResolvedValueOnce({
+        ...BASE_ANSWERS,
+        features: ['auth'],
+        techPreferences: '',
+        timeline: 'TBD',
+        budget: 'None',
+        notes: '',
+      })
+      .mockResolvedValueOnce({ authMethod: 'JWT', authProviders: ['Google'] });
+    await mod.main();
+    expect(promptSpy).toHaveBeenCalledTimes(2);
+  });
+
+  it('auth prompt with empty providers uses fallback string', async () => {
+    promptSpy = jest
+      .spyOn(inquirer, 'prompt')
+      .mockResolvedValueOnce({
+        ...BASE_ANSWERS,
+        features: ['auth'],
+        techPreferences: '',
+        timeline: 'TBD',
+        budget: 'None',
+        notes: '',
+      })
+      .mockResolvedValueOnce({ authMethod: 'session', authProviders: [] });
+    await mod.main();
+    expect(writeSpy).toHaveBeenCalled();
+  });
+
+  it('conditional database prompt is called when database feature selected', async () => {
+    promptSpy = jest
+      .spyOn(inquirer, 'prompt')
+      .mockResolvedValueOnce({
+        ...BASE_ANSWERS,
+        features: ['database'],
+        techPreferences: '',
+        timeline: 'TBD',
+        budget: 'None',
+        notes: '',
+      })
+      .mockResolvedValueOnce({ databaseType: 'MySQL', orm: 'Sequelize' });
+    await mod.main();
+    expect(promptSpy).toHaveBeenCalledTimes(2);
+  });
+
+  it('conditional realtime prompt is called when realtime feature selected', async () => {
+    promptSpy = jest
+      .spyOn(inquirer, 'prompt')
+      .mockResolvedValueOnce({
+        ...BASE_ANSWERS,
+        features: ['realtime'],
+        techPreferences: '',
+        timeline: 'TBD',
+        budget: 'None',
+        notes: '',
+      })
+      .mockResolvedValueOnce({ realtimeUseCases: 'Chat' });
+    await mod.main();
+    expect(promptSpy).toHaveBeenCalledTimes(2);
+  });
+
+  it('prompt validate functions enforce non-empty input', async () => {
+    let capturedQuestions;
+    jest.spyOn(inquirer, 'prompt').mockImplementation(qs => {
+      if (!capturedQuestions) capturedQuestions = qs;
+      return Promise.resolve({
+        ...BASE_ANSWERS,
+        techPreferences: '',
+        timeline: 'TBD',
+        budget: 'None',
+        notes: '',
+      });
+    });
+    await mod.main();
+    const nameValidate = capturedQuestions.find(q => q.name === 'projectName').validate;
+    const descValidate = capturedQuestions.find(q => q.name === 'description').validate;
+    expect(nameValidate('my-app')).toBe(true);
+    expect(nameValidate('')).toBe('Project name is required');
+    expect(descValidate('A description')).toBe(true);
+    expect(descValidate('   ')).toBe('Description is required');
+  });
+
+  it('isTtyError path logs appropriate message and exits', async () => {
+    jest.spyOn(inquirer, 'prompt').mockRejectedValue({ isTtyError: true });
+    await mod.main();
+    expect(exitSpy).toHaveBeenCalledWith(1);
+  });
+
+  it('generic error path logs error message and exits', async () => {
+    jest.spyOn(inquirer, 'prompt').mockRejectedValue(new Error('prompt failed'));
+    await mod.main();
+    expect(exitSpy).toHaveBeenCalledWith(1);
   });
 });

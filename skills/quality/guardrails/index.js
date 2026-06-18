@@ -8,7 +8,7 @@ class Guardrails {
     this.config = config;
   }
 
-  check(action, context = {}) {
+  check(action, _context = {}) {
     if (!action) return { allowed: false, reason: 'No action specified.' };
 
     const guardrails = this._getGuardrails();
