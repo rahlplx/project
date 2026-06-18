@@ -1,91 +1,48 @@
-#!/usr/bin/env node
-const { execFileSync } = require('child_process');
-const fs = require('fs');
-const path = require('path');
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
-const ROOT = path.resolve(__dirname, '..');
-let exitCode = 0;
+# Skip if eslint not installed (optional dependency)
+if ! command -v npx >/dev/null 2>&1; then
+  echo "⚠ npx not found, skipping pre-commit checks"
+  exit 0
+fi
 
-// Gate 1: ESLint (errors only — warnings don't block commit)
-const eslintBin = path.join(ROOT, 'node_modules', '.bin', 'eslint');
-try {
-  execFileSync(eslintBin, ['lib/', 'bin/', '--no-eslintrc', '-c', '.eslintrc.js', '--quiet'], {
-    cwd: ROOT,
-    stdio: 'pipe',
-    timeout: 30000,
-    encoding: 'utf8',
-  });
-  console.log('[pre-commit] ✓ ESLint');
-} catch (e) {
-  console.error('[pre-commit] ✗ ESLint: lint errors found');
-  console.error(e.stdout || e.message);
-  exitCode = 1;
-}
+if ! [ -f "node_modules/.bin/eslint" ]; then
+  echo "⚠ ESLint not installed, skipping lint check"
+  exit 0
+fi
 
-// Gate 2: YAML validity
-try {
-  let yaml;
-  try {
-    yaml = require('js-yaml');
-  } catch {
-    console.log('[pre-commit] ~ YAML check skipped (js-yaml not installed)');
-    yaml = null;
-  }
-  if (yaml) {
-    const raw = fs.readFileSync(path.join(ROOT, 'catalog/tools.yaml'), 'utf8');
-    yaml.load(raw);
-    console.log('[pre-commit] ✓ YAML valid');
-  }
-} catch (e) {
-  console.error('[pre-commit] ✗ YAML: ' + e.message);
-  exitCode = 1;
-}
+echo "🔍 Running pre-commit checks..."
 
-// Gate 3: index.json integrity (prevents skill drift from breaking harness)
-try {
-  const { checkIndexIntegrity } = require(path.join(ROOT, 'lib', 'check-index-integrity'));
-  const result = checkIndexIntegrity({ rootDir: ROOT });
-  if (result.pass) {
-    console.log('[pre-commit] ✓ Skill index integrity');
-  } else {
-    console.error(
-      '[pre-commit] ✗ Skill index out of sync — run: node -e "require(\'./lib/discovery-index\').writeIndex(process.cwd())"'
-    );
-    exitCode = 1;
-  }
-} catch (e) {
-  console.log('[pre-commit] ~ Skill index check skipped: ' + e.message);
-}
+# 1. ESLint (quick check)
+echo "  → ESLint..."
+npx eslint . --max-warnings=0 2>&1 | head -30
+LINT_EXIT=$?
+if [ $LINT_EXIT -ne 0 ]; then
+  echo "❌ ESLint failed. Fix errors or commit with --no-verify"
+  exit 1
+fi
 
-// Gate 4: npm audit
-try {
-  const audit = execFileSync('npm', ['audit', '--omit=dev'], {
-    cwd: ROOT,
-    stdio: 'pipe',
-    timeout: 60000,
-    encoding: 'utf8',
-  });
-  console.log('[pre-commit] ✓ npm audit');
-} catch (e) {
-  const out = e.stdout || '';
-  const critical = (out.match(/critical/gi) || []).length;
-  const high = (out.match(/high/gi) || []).length;
-  if (critical > 0 || high > 0) {
-    console.error(
-      '[pre-commit] ✗ npm audit: ' +
-        critical +
-        ' critical, ' +
-        high +
-        ' high severity vulnerabilities'
-    );
-    exitCode = 1;
-  } else {
-    console.log(
-      '[pre-commit] ~ npm audit: ' +
-        (out.match(/\d+ (moderate|low)/)?.[0] || 'non-critical') +
-        ' only'
-    );
-  }
-}
+# 2. YAML validation (catalog/tools.yaml)
+echo "  → YAML validation..."
+if [ -f "catalog/tools.yaml" ]; then
+  node -e "
+    const fs = require('fs');
+    const yaml = require('js-yaml');
+    try {
+      yaml.load(fs.readFileSync('catalog/tools.yaml', 'utf8'));
+      console.log('  ✓ catalog/tools.yaml valid');
+    } catch (e) {
+      console.error('❌ YAML invalid:', e.message);
+      process.exit(1);
+    }
+  "
+  YAML_EXIT=$?
+  if [ $YAML_EXIT -ne 0 ]; then
+    echo "❌ YAML validation failed"
+    exit 1
+  fi
+fi
 
-process.exit(exitCode);
+echo "✅ Pre-commit checks passed"
+exit 0

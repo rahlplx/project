@@ -1,22 +1,29 @@
-# S01: Tool Registry
+# S01 Plan — AGENTS.md Per Section
 
-Replace hardcoded skill loading with a `ToolRegistry` class.
-Tools register themselves with metadata and an `is_usable()` check.
+## Slice Goal
+Create AI-readable documentation in each major directory so agents never ask "how do I add a tool?" or "how are skills structured?"
 
-## Must-haves
-- `lib/tool-registry.js` — ToolRegistry class with register() and findUsable()
-- `bin/skill-loader.js` — refactored to use ToolRegistry
-- `bin/vibe-stack.js` — uses registry for tool discovery
-- Old behavior preserved: `getSkills()` still works as before
-- New behavior: `findUsable('deploy')` returns only installable tools
-
-## Verification
-- All 209 tests still pass
-- `findUsable('deploy')` returns only tools with available dependencies
-- `register()` rejects duplicate names
-- `getAll()` returns all registered tools regardless of usability
+## Must-Haves
+- `catalog/AGENTS.md` — how to add/find tools
+- `skills/AGENTS.md` — how skills are structured
+- `references/AGENTS.md` — how reference docs work
+- `.vibe/AGENTS.md` — how lifecycle works (update existing)
+- Each file has: Purpose, Structure, Conventions, Cross-References
+- Harness validates all 4 exist with required sections
 
 ## Tasks
-T01: Create ToolRegistry class
-T02: Refactor skill-loader to use registry
-T03: Wire registry into vibe-stack.js
+
+| Task | Description | Files |
+|------|-------------|-------|
+| T01 | Create catalog/AGENTS.md | `catalog/AGENTS.md` |
+| T02 | Create skills/AGENTS.md | `skills/AGENTS.md` |
+| T03 | Create references/AGENTS.md | `references/AGENTS.md` |
+| T04 | Update .vibe/AGENTS.md | `.vibe/AGENTS.md` |
+
+## Verification
+- File existence check in harness: all 4 exist
+- Content check: each has Purpose, Structure, Conventions, Cross-References
+- Zero regressions: `npm test` passes (1,165 tests)
+
+## Risk
+LOW — Zero code changes. Pure documentation.

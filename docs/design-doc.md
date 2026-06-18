@@ -191,14 +191,29 @@ The 5-phase model is adopted immediately for new work. The 11-phase state machin
 
 ## Review Feedback (from /vibe:plan)
 
-| Perspective      | Key Input                                                                | Incorporated                                     |
-| ---------------- | ------------------------------------------------------------------------ | ------------------------------------------------ |
-| **CEO**          | Narrowest wedge = AGENTS.md per section (zero code, proves concept)      | Priority order adjusted: P2 → P1 → P3 → P4 → P5  |
-| **CEO**          | 10-star version = agent auto-discovers + explains why tools are unusable | Added to use cases: "why is tool X unavailable?" |
-| **Eng**          | isUsable() needs 3s timeout to prevent network hangs                     | Added to Tool Registry spec                      |
-| **Eng**          | Registry should return BOTH usable AND unusable tools with reasons       | Added getUnusable() method                       |
-| **Eng**          | Test matrix needs 4 layers: unit, integration, existence, config         | Added to test plan                               |
-| **Out of scope** | Async/sync parity, settings schema, monorepo split, visual builder       | Confirmed as deferred                            |
+### CEO Review (Product)
+
+| Key Input | Incorporated |
+|-----------|--------------|
+| 10-star version = agent auto-discovers + explains why tools are unusable | Added to use cases: "why is tool X unavailable?" |
+| Narrowest wedge = AGENTS.md per section (zero code, proves concept) | Priority order: AGENTS.md → Tool Registry → CI Gates |
+| OUT of scope: async/sync parity, settings schema, monorepo, visual builder, behavior tests, GitHub Actions | Confirmed as deferred |
+
+### Eng Review (Architecture)
+
+| Key Input | Incorporated |
+|-----------|--------------|
+| isUsable() needs 3s timeout to prevent network hangs | Added to Tool Registry spec |
+| Registry should return BOTH usable AND unusable tools with reasons | Added getUnusable() method |
+| Test matrix needs 4 layers: unit, integration, existence, config | Added to test plan |
+| Async primitive: Promises (standard Node.js) | Decision logged |
+| Skill registration: Explicit (ToolRegistry.register) | Decision logged |
+| CI gate timing: Both pre-commit (quick) + CI (full) | Decision logged |
+| Registry API: Class with register/findUsable/findAll/getUnusable | Decision logged |
+
+### Design Review
+
+**N/A** — CLI-only repo, no UI surfaces.
 
 ### Implementation Order (This Cycle)
 

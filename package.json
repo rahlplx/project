@@ -77,8 +77,7 @@
     "testPathIgnorePatterns": [
       "node_modules",
       "\\.vibe",
-      "\\.gsd",
-      "/lib/"
+      "\\.gsd"
     ],
     "coverageDirectory": ".vibe",
     "coverageReporters": [

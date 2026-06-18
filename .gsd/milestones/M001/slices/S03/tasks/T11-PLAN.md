@@ -1,36 +1,74 @@
-# T11: Create GitHub workflow + README badge
+# T11 Plan — Write lint-config.test.js
 
-## Plan
-Create a GitHub Actions workflow that runs all quality gates on push and PR.
-Add a status badge to README.md.
+## Objective
+Create test that validates ESLint config parses without errors.
 
-## Files
-- `.github/workflows/quality-gates.yml` — new workflow
-- `README.md` — add badge
+## Files to Create
+- `lib/lint-config.test.js`
 
-## Workflow
-```yaml
-name: Quality Gates
-on: [push, pull_request]
-jobs:
-  quality:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-      - run: npm ci
-      - run: npm run lint           # S03 Gate
-      - run: npm run typecheck      # S03 Gate (if exists, else skip)
-      - run: npm test               # Existing gate
-      - run: node -e "require('js-yaml').load(require('fs').readFileSync('catalog/tools.yaml','utf8'))"
+## Test Specification
+
+```javascript
+const { Linter } = require('eslint');
+const fs = require('fs');
+const path = require('path');
+
+describe('ESLint Config', () => {
+  let linter;
+  let config;
+  
+  beforeAll(() => {
+    linter = new Linter();
+    // Load the actual config
+    config = require('../../.eslintrc.js');
+  });
+  
+  test('config is valid object', () => {
+    expect(config).toBeDefined();
+    expect(typeof config).toBe('object');
+  });
+  
+  test('config has required properties', () => {
+    expect(config.env).toBeDefined();
+    expect(config.parserOptions).toBeDefined();
+    expect(config.rules).toBeDefined();
+    expect(config.ignorePatterns).toBeDefined();
+  });
+  
+  test('config parses without errors', () => {
+    const testCode = `
+      const x = 1;
+      function foo() { return x; }
+      module.exports = foo;
+    `;
+    
+    const messages = linter.verify(testCode, config, {
+      filename: 'test.js'
+    });
+    
+    // Should not have config parsing errors
+    const configErrors = messages.filter(m => m.ruleId === null);
+    expect(configErrors).toHaveLength(0);
+  });
+  
+  test('rules are valid rule IDs', () => {
+    const ruleIds = Object.keys(config.rules || {});
+    for (const ruleId of ruleIds) {
+      // Each rule should be loadable by ESLint
+      expect(() => {
+        linter.defineRule(ruleId, require(`eslint/lib/rules/${ruleId}`));
+      }).not.toThrow();
+    }
+  });
+  
+  test('ignorePatterns includes node_modules', () => {
+    expect(config.ignorePatterns).toContain('node_modules/');
+  });
+});
 ```
 
-## Badge
-```markdown
-[![Quality Gates](https://github.com/rahlplx/project/actions/workflows/quality-gates.yml/badge.svg)](https://github.com/rahlplx/project/actions/workflows/quality-gates.yml)
-```
-
-## Verify
-- Workflow file is valid YAML
-- Badge renders in README preview
-- `npm test` still passes (no code changes)
+## Verification
+- File exists at `lib/lint-config.test.js`
+- `npx jest lib/lint-config.test.js` passes
+- Test runs as part of `npm test`
+- Catches config regression if `.eslintrc.js` breaks
