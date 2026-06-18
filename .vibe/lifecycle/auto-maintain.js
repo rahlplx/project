@@ -260,7 +260,10 @@ function runHarness(runTestSuite = true) {
 
   // Check 12b: Coverage Gate (Bolt ⚡ Requirement)
   try {
-    const coveragePath = path.join(PROJECT_ROOT, 'coverage', 'coverage-summary.json');
+    const coveragePath =
+      fs.existsSync(path.join(PROJECT_ROOT, '.vibe', 'coverage-summary.json'))
+        ? path.join(PROJECT_ROOT, '.vibe', 'coverage-summary.json')
+        : path.join(PROJECT_ROOT, 'coverage', 'coverage-summary.json');
     if (fs.existsSync(coveragePath)) {
       const summary = JSON.parse(fs.readFileSync(coveragePath, 'utf8'));
       const total = summary.total || summary;

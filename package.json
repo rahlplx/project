@@ -79,7 +79,9 @@
       "\\.vibe",
       "\\.gsd",
       "/lib/"
-    ]
+    ],
+    "coverageDirectory": ".vibe",
+    "coverageReporters": ["json-summary", "text", "lcov"]
   },
   "devDependencies": {
     "eslint": "^8.55.0",
