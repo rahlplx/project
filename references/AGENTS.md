@@ -23,6 +23,24 @@ references/
 └── vibe-design.md      # Design phase reference
 ```
 
+## File Map
+| File | Phase / Command |
+|------|----------------|
+| `vibe-think.md` | think |
+| `vibe-plan.md` | plan |
+| `vibe-break.md` | break |
+| `vibe-build.md` | build |
+| `vibe-review.md` | review |
+| `vibe-harness.md` | harness |
+| `vibe-ship.md` | ship |
+| `vibe-retro.md` | retro |
+| `vibe-learn.md` | learn |
+| `vibe-evolve.md` | evolve |
+| `vibe-auto.md` | auto mode |
+| `vibe-quick.md` | quick workflow |
+| `vibe-detect.md` | stack detection |
+| `vibe-design.md` | design |
+
 ## Conventions
 - One file per phase/command: `vibe-<phase>.md`
 - Format: Process → Steps → Outputs → Decisions

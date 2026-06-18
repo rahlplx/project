@@ -32,8 +32,8 @@ console.log(plan.mockup);
 
 ```javascript
 const skill = new VisualPlansSkill({
-  colorScheme: 'dark',      // 'light', 'dark', or 'modern'
-  style: 'brutalist'        // 'minimal', 'modern', or 'brutalist'
+  colorScheme: 'dark', // 'light', 'dark', or 'modern'
+  style: 'brutalist', // 'minimal', 'modern', or 'brutalist'
 });
 ```
 
@@ -43,25 +43,25 @@ const skill = new VisualPlansSkill({
 
 The skill automatically identifies UI components from descriptions:
 
-| Component | Keywords |
-|-----------|----------|
-| Button | button, btn |
-| Input | input, text field, field |
-| Header | header, heading, title |
-| Navigation | nav, navigation, menu |
-| Card | card, panel, container |
-| Image | image, img, photo |
-| List | list, items |
-| Form | form |
-| Footer | footer |
-| Modal | modal, dialog, popup |
+| Component  | Keywords                 |
+| ---------- | ------------------------ |
+| Button     | button, btn              |
+| Input      | input, text field, field |
+| Header     | header, heading, title   |
+| Navigation | nav, navigation, menu    |
+| Card       | card, panel, container   |
+| Image      | image, img, photo        |
+| List       | list, items              |
+| Form       | form                     |
+| Footer     | footer                   |
+| Modal      | modal, dialog, popup     |
 
 ### Layout Detection
 
 Automatically determines appropriate layout structures:
 
 - **sidebar-layout**: Detected when both sidebar and navigation present
-- **app-layout**: Detected when header and navigation present  
+- **app-layout**: Detected when header and navigation present
 - **single-page**: Default layout for simple pages
 
 ### Output Structure
@@ -126,6 +126,7 @@ const plan = skill.generatePlan(
 ### Minimal Style
 
 Clean, minimal design with:
+
 - System fonts
 - 8px base spacing
 - 4px border radius
@@ -134,6 +135,7 @@ Clean, minimal design with:
 ### Modern Style
 
 Contemporary design with:
+
 - SF Pro / Inter fonts
 - 16px base spacing
 - 12px border radius
@@ -142,6 +144,7 @@ Contemporary design with:
 ### Brutalist Style
 
 Bold, stark design with:
+
 - Monospace fonts
 - 4px base spacing
 - No border radius

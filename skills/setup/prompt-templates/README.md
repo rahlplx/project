@@ -438,14 +438,14 @@ Test cases to cover:
 Test structure:
 describe('[Unit]') {
   beforeEach(() => { /* setup */ })
-  
+
   it('should [EXPECTATION]', () => {
     // Arrange
     const input = [VALUE];
-    
+
     // Act
     const result = [CALL_FUNCTION(input)];
-    
+
     // Assert
     expect(result).toBe([EXPECTED]);
   });

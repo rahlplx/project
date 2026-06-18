@@ -31,7 +31,7 @@ console.log(pairing);
 const styles = typo.generateTypography({
   fontFamily: pairing,
   typeScale: 'majorThird',
-  baseSize: 16
+  baseSize: 16,
 });
 
 // Export as CSS
@@ -42,52 +42,52 @@ console.log(typo.toCSS(styles));
 
 ### Modern & Clean (8 pairings)
 
-| ID | Heading | Body | Mood | Best For |
-|----|---------|------|------|----------|
-| `plus-jakarta` | Plus Jakarta Sans | Inter | Modern, professional | SaaS, Apps, Portfolios |
-| `dm-sans` | DM Sans | IBM Plex Sans | Friendly, approachable | Startups, Creative, Agency |
-| `outfit` | Outfit | Source Sans 3 | Bold, contemporary | Modern apps, Dashboards |
-| `sora` | Sora | Work Sans | Futuristic, minimal | Tech, Finance, Premium |
-| `manrope` | Manrope | Manrope | Versatile, geometric | Universal, Product |
-| `space-grotesk` | Space Grotesk | IBM Plex Sans | Techy, distinctive | Dev tools, Gaming |
-| `figtree` | Figtree | Figtree | Friendly, rounded | Consumer apps, Social |
-| `general-sans` | General Sans | General Sans | Swiss-inspired, balanced | Editorial, Branding |
+| ID              | Heading           | Body          | Mood                     | Best For                   |
+| --------------- | ----------------- | ------------- | ------------------------ | -------------------------- |
+| `plus-jakarta`  | Plus Jakarta Sans | Inter         | Modern, professional     | SaaS, Apps, Portfolios     |
+| `dm-sans`       | DM Sans           | IBM Plex Sans | Friendly, approachable   | Startups, Creative, Agency |
+| `outfit`        | Outfit            | Source Sans 3 | Bold, contemporary       | Modern apps, Dashboards    |
+| `sora`          | Sora              | Work Sans     | Futuristic, minimal      | Tech, Finance, Premium     |
+| `manrope`       | Manrope           | Manrope       | Versatile, geometric     | Universal, Product         |
+| `space-grotesk` | Space Grotesk     | IBM Plex Sans | Techy, distinctive       | Dev tools, Gaming          |
+| `figtree`       | Figtree           | Figtree       | Friendly, rounded        | Consumer apps, Social      |
+| `general-sans`  | General Sans      | General Sans  | Swiss-inspired, balanced | Editorial, Branding        |
 
 ### Serif & Editorial (5 pairings)
 
-| ID | Heading | Body | Mood | Best For |
-|----|---------|------|------|----------|
-| `fraunces` | Fraunces | Source Serif 4 | Warm, distinctive | Magazines, Blogs, Luxury |
-| `playfair` | Playfair Display | Source Sans 3 | Elegant, classic | Fashion, Luxury, Editorial |
-| `libre-baskerville` | Libre Baskerville | Libre Franklin | Traditional, authoritative | News, Academic, Legal |
-| `cormorant` | Cormorant | Jost | Delicate, refined | Art, Culture, Boutique |
-| `newsreader` | Newsreader | Newsreader | Editorial, newspaper | Publications, Long-form |
+| ID                  | Heading           | Body           | Mood                       | Best For                   |
+| ------------------- | ----------------- | -------------- | -------------------------- | -------------------------- |
+| `fraunces`          | Fraunces          | Source Serif 4 | Warm, distinctive          | Magazines, Blogs, Luxury   |
+| `playfair`          | Playfair Display  | Source Sans 3  | Elegant, classic           | Fashion, Luxury, Editorial |
+| `libre-baskerville` | Libre Baskerville | Libre Franklin | Traditional, authoritative | News, Academic, Legal      |
+| `cormorant`         | Cormorant         | Jost           | Delicate, refined          | Art, Culture, Boutique     |
+| `newsreader`        | Newsreader        | Newsreader     | Editorial, newspaper       | Publications, Long-form    |
 
 ### Display & Impact (3 pairings)
 
-| ID | Heading | Body | Mood | Best For |
-|----|---------|------|------|----------|
-| `bebas` | Bebas Neue | Barlow | Bold, impactful | Sports, Events, Promo |
-| `anton` | Anton | Work Sans | Heavy, commanding | Headlines, Hero, Ads |
-| `big-shoulders` | Big Shoulders | Big Shoulders | Industrial, urban | Sports, City, Bold |
+| ID              | Heading       | Body          | Mood              | Best For              |
+| --------------- | ------------- | ------------- | ----------------- | --------------------- |
+| `bebas`         | Bebas Neue    | Barlow        | Bold, impactful   | Sports, Events, Promo |
+| `anton`         | Anton         | Work Sans     | Heavy, commanding | Headlines, Hero, Ads  |
+| `big-shoulders` | Big Shoulders | Big Shoulders | Industrial, urban | Sports, City, Bold    |
 
 ### Mono & Technical (2 pairings)
 
-| ID | Heading | Body | Mood | Best For |
-|----|---------|------|------|----------|
-| `jetbrains` | JetBrains Mono | Inter | Technical, precise | Documentation, Code |
-| `fira-code` | Fira Code | Fira Sans | Clean, readable | Developer, Tech docs |
+| ID          | Heading        | Body      | Mood               | Best For             |
+| ----------- | -------------- | --------- | ------------------ | -------------------- |
+| `jetbrains` | JetBrains Mono | Inter     | Technical, precise | Documentation, Code  |
+| `fira-code` | Fira Code      | Fira Sans | Clean, readable    | Developer, Tech docs |
 
 ## Type Scale Systems
 
 ### Available Scales
 
-| Scale | Ratio | Use Case |
-|-------|-------|----------|
-| `minorThird` | 1.2 | Compact UI, small viewports |
-| `majorThird` | 1.25 | Balanced, general use (default) |
-| `perfectFourth` | 1.333 | Readable, modern feel |
-| `goldenRatio` | 1.618 | Dramatic, artistic expression |
+| Scale           | Ratio | Use Case                        |
+| --------------- | ----- | ------------------------------- |
+| `minorThird`    | 1.2   | Compact UI, small viewports     |
+| `majorThird`    | 1.25  | Balanced, general use (default) |
+| `perfectFourth` | 1.333 | Readable, modern feel           |
+| `goldenRatio`   | 1.618 | Dramatic, artistic expression   |
 
 ### Using Type Scales
 
@@ -108,22 +108,22 @@ const custom = typo.calculateScale(16, 1.25, 6);
 
 ## Line Height Guidelines
 
-| Category | Range | Best For |
-|----------|-------|----------|
-| `tight` | 1.0 - 1.2 | Display text, large headings |
-| `snug` | 1.25 - 1.375 | Small headings, UI labels |
-| `normal` | 1.4 - 1.5 | Body text, large text (18px+) |
-| `relaxed` | 1.5 - 1.625 | Long-form reading, articles |
-| `loose` | 1.625 - 2.0 | Accessibility, large print |
+| Category  | Range        | Best For                      |
+| --------- | ------------ | ----------------------------- |
+| `tight`   | 1.0 - 1.2    | Display text, large headings  |
+| `snug`    | 1.25 - 1.375 | Small headings, UI labels     |
+| `normal`  | 1.4 - 1.5    | Body text, large text (18px+) |
+| `relaxed` | 1.5 - 1.625  | Long-form reading, articles   |
+| `loose`   | 1.625 - 2.0  | Accessibility, large print    |
 
 ### Dynamic Line Height
 
 ```javascript
 // Get recommended line height for font size
-typo.getLineHeight(48);  // 1.0
-typo.getLineHeight(24);  // 1.2
-typo.getLineHeight(16);  // 1.5
-typo.getLineHeight(12);  // 1.6
+typo.getLineHeight(48); // 1.0
+typo.getLineHeight(24); // 1.2
+typo.getLineHeight(16); // 1.5
+typo.getLineHeight(12); // 1.6
 ```
 
 ## Font Stack Generation
@@ -179,7 +179,7 @@ const pairing = typo.getPairing('plus-jakarta');
 const typography = typo.generateTypography({
   fontFamily: pairing,
   typeScale: 'majorThird',
-  baseSize: 16
+  baseSize: 16,
 });
 
 console.log(typography);
@@ -226,9 +226,9 @@ const luxury = typo.suggestPairing('luxury');
 
 ```javascript
 // Get recommended letter spacing
-typo.getLetterSpacing(60, 700);           // '-0.03em' (large bold)
-typo.getLetterSpacing(32, 600);           // '-0.01em' (medium heading)
-typo.getLetterSpacing(16, 400);           // '0' (body text)
+typo.getLetterSpacing(60, 700); // '-0.03em' (large bold)
+typo.getLetterSpacing(32, 600); // '-0.01em' (medium heading)
+typo.getLetterSpacing(16, 400); // '0' (body text)
 typo.getLetterSpacing(12, 600, 'uppercase'); // '0.05em' (uppercase label)
 ```
 
@@ -300,13 +300,22 @@ p {
 
 ```html
 <!-- Plus Jakarta Sans + Inter -->
-<link href="https://fonts.googleapis.com/css2?family=Inter&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
 
 <!-- Playfair Display + Source Sans 3 -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap"
+  rel="stylesheet"
+/>
 
 <!-- Fraunces + Source Serif 4 -->
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Serif+4:wght@400;500;600&display=swap"
+  rel="stylesheet"
+/>
 ```
 
 ## Best Practices

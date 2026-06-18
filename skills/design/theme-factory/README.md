@@ -24,7 +24,7 @@ const themeFactory = new ThemeFactory();
 ```javascript
 // Use a preset theme
 const package = themeFactory.generatePackage('midnight');
-console.log(package.css);  // Ready-to-use CSS
+console.log(package.css); // Ready-to-use CSS
 
 // Create a custom theme from primary color
 const quick = themeFactory.quickTheme('#6366f1', 'Purple Power');
@@ -34,26 +34,26 @@ const quick = themeFactory.quickTheme('#6366f1', 'Purple Power');
 
 ### Dark Themes
 
-| Theme | Description | Best For |
-|-------|-------------|----------|
-| `midnight` | Deep purple-blue with indigo accents | Modern apps, dashboards |
-| `noir` | Pure black with white accents | Minimalist, high-contrast |
-| `ocean` | Deep ocean blues with cyan accents | Data visualization, analytics |
+| Theme      | Description                          | Best For                      |
+| ---------- | ------------------------------------ | ----------------------------- |
+| `midnight` | Deep purple-blue with indigo accents | Modern apps, dashboards       |
+| `noir`     | Pure black with white accents        | Minimalist, high-contrast     |
+| `ocean`    | Deep ocean blues with cyan accents   | Data visualization, analytics |
 
 ### Light Themes
 
-| Theme | Description | Best For |
-|-------|-------------|----------|
-| `cloud` | Clean white with blue accents | SaaS, corporate |
-| `paper` | Warm cream with amber accents | Editorial, blogs |
-| `mint` | Fresh green tones | Health, nature, eco |
+| Theme   | Description                   | Best For            |
+| ------- | ----------------------------- | ------------------- |
+| `cloud` | Clean white with blue accents | SaaS, corporate     |
+| `paper` | Warm cream with amber accents | Editorial, blogs    |
+| `mint`  | Fresh green tones             | Health, nature, eco |
 
 ### Special Themes
 
-| Theme | Description | Accessibility |
-|-------|-------------|---------------|
-| `highContrast` | Maximum contrast black/white | WCAG AAA compliance |
-| `corporate` | Professional navy blue | Enterprise, business |
+| Theme          | Description                  | Accessibility        |
+| -------------- | ---------------------------- | -------------------- |
+| `highContrast` | Maximum contrast black/white | WCAG AAA compliance  |
+| `corporate`    | Professional navy blue       | Enterprise, business |
 
 ### Available Presets
 
@@ -86,9 +86,9 @@ const midnight = themeFactory.getPreset('midnight');
 const package = themeFactory.generatePackage('ocean');
 
 // Access components
-console.log(package.theme.colors.background.primary);  // '#0c1929'
-console.log(package.css);                             // CSS variables string
-console.log(package.variables['--bg-primary']);       // '#0c1929'
+console.log(package.theme.colors.background.primary); // '#0c1929'
+console.log(package.css); // CSS variables string
+console.log(package.variables['--bg-primary']); // '#0c1929'
 ```
 
 ### Quick Theme from Primary Color
@@ -112,8 +112,8 @@ const customTheme = themeFactory.createTheme({
   fontFamily: {
     heading: '"Playfair Display", serif',
     body: '"Inter", sans-serif',
-    mono: '"Fira Code", monospace'
-  }
+    mono: '"Fira Code", monospace',
+  },
 });
 ```
 
@@ -125,7 +125,7 @@ const package = themeFactory.generatePackage('custom', {
   type: 'dark',
   primaryColor: '#10b981',
   backgroundColor: '#064e3b',
-  textColor: '#ecfdf5'
+  textColor: '#ecfdf5',
 });
 ```
 
@@ -137,7 +137,7 @@ const package = themeFactory.generatePackage('custom', {
 const colors = themeFactory.colorManipulation;
 
 // Lighten by 20%
-const lighter = colors.adjustBrightness('#3b82f6', 20);  // '#7db3f9'
+const lighter = colors.adjustBrightness('#3b82f6', 20); // '#7db3f9'
 
 // Darken by 30%
 const darker = colors.adjustBrightness('#3b82f6', -30); // '#1d4ed8'
@@ -148,10 +148,10 @@ const darker = colors.adjustBrightness('#3b82f6', -30); // '#1d4ed8'
 ```javascript
 // Hex to HSL
 const hsl = colors.hexToHsl('#3b82f6');
-console.log(hsl);  // { h: 217, s: 91, l: 60 }
+console.log(hsl); // { h: 217, s: 91, l: 60 }
 
 // HSL to Hex
-const hex = colors.hslToHex(217, 91, 60);  // '#3b82f6'
+const hex = colors.hslToHex(217, 91, 60); // '#3b82f6'
 ```
 
 ### Color Scale Generation
@@ -173,7 +173,7 @@ console.log(scale);
 ```javascript
 // Calculate contrast ratio
 const ratio = colors.getContrastRatio('#ffffff', '#000000');
-console.log(ratio);  // 21
+console.log(ratio); // 21
 
 // Get accessible text color
 const textColor = colors.getAccessibleTextColor('#3b82f6');
@@ -327,7 +327,7 @@ export function useTheme(themeId) {
   useEffect(() => {
     const package = themeFactory.generatePackage(themeId);
     setTheme(package);
-    
+
     // Apply CSS variables to :root
     const style = document.documentElement;
     Object.entries(package.variables).forEach(([varName, value]) => {
@@ -342,7 +342,7 @@ export function useTheme(themeId) {
 function App() {
   const theme = useTheme('midnight');
   if (!theme) return null;
-  
+
   return <div style={{ background: 'var(--bg-primary)' }}>...</div>;
 }
 ```
@@ -360,9 +360,9 @@ module.exports = {
       colors: midnight.colors,
       fontFamily: midnight.typography.fontFamily,
       borderRadius: midnight.borderRadius,
-      boxShadow: midnight.shadows
-    }
-  }
+      boxShadow: midnight.shadows,
+    },
+  },
 };
 ```
 
@@ -388,7 +388,7 @@ export const Button = styled.button`
   color: ${cloud.colors.text.inverse};
   border-radius: ${cloud.borderRadius.md}px;
   padding: ${cloud.spacing.base * 0.625}px ${cloud.spacing.base}px;
-  
+
   &:hover {
     filter: brightness(1.1);
   }
@@ -437,7 +437,7 @@ console.log(brandTheme.css);
 const enterpriseTheme = themeFactory.createTheme({
   name: 'Enterprise Blue',
   type: 'light',
-  primaryColor: '#1e40af',      // Enterprise blue
+  primaryColor: '#1e40af', // Enterprise blue
   secondaryAccentColor: '#3b82f6',
   backgroundColor: '#f8fafc',
   textColor: '#0f172a',
@@ -448,21 +448,21 @@ const enterpriseTheme = themeFactory.createTheme({
   fontFamily: {
     heading: '"Libre Franklin", sans-serif',
     body: '"Libre Franklin", sans-serif',
-    mono: '"IBM Plex Mono", monospace'
+    mono: '"IBM Plex Mono", monospace',
   },
   borderRadius: {
     sm: 2,
     md: 4,
     lg: 6,
     xl: 8,
-    full: 9999
+    full: 9999,
   },
   shadows: {
     sm: '0 1px 2px rgba(0, 0, 0, 0.05)',
     md: '0 1px 4px rgba(0, 0, 0, 0.08)',
     lg: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    glow: 'none'
-  }
+    glow: 'none',
+  },
 });
 
 const package = themeFactory.generatePackage('enterprise-blue', enterpriseTheme);

@@ -44,28 +44,28 @@ node index.js --list
 
 ## Available Templates
 
-| Template | Description |
-|----------|-------------|
-| `react-vite` | Modern React with Vite build tool |
-| `nextjs` | Full-stack React with App Router |
-| `node-api` | Express.js REST API with TypeScript |
-| `fastify-api` | High-performance Fastify web framework |
-| `react-native` | Cross-platform mobile apps |
-| `electron` | Cross-platform desktop apps |
-| `remix` | Full-stack React framework |
-| `vue-vite` | Vue.js with Composition API |
-| `svelte` | SvelteKit with file-based routing |
-| `astro` | Content-focused static site builder |
-| `cli-tool` | Node.js CLI with commander.js |
+| Template       | Description                            |
+| -------------- | -------------------------------------- |
+| `react-vite`   | Modern React with Vite build tool      |
+| `nextjs`       | Full-stack React with App Router       |
+| `node-api`     | Express.js REST API with TypeScript    |
+| `fastify-api`  | High-performance Fastify web framework |
+| `react-native` | Cross-platform mobile apps             |
+| `electron`     | Cross-platform desktop apps            |
+| `remix`        | Full-stack React framework             |
+| `vue-vite`     | Vue.js with Composition API            |
+| `svelte`       | SvelteKit with file-based routing      |
+| `astro`        | Content-focused static site builder    |
+| `cli-tool`     | Node.js CLI with commander.js          |
 
 ## Options
 
-| Flag | Description |
-|------|-------------|
-| `--list, -l` | Show all available templates |
-| `--output, -o` | Set output directory |
-| `--skip-install, -s` | Skip npm install step |
-| `--help, -h` | Show help message |
+| Flag                 | Description                  |
+| -------------------- | ---------------------------- |
+| `--list, -l`         | Show all available templates |
+| `--output, -o`       | Set output directory         |
+| `--skip-install, -s` | Skip npm install step        |
+| `--help, -h`         | Show help message            |
 
 ## Examples
 

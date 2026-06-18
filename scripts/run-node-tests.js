@@ -22,7 +22,8 @@ function glob(dir) {
 
 function usesNodeTest(file) {
   try {
-    return readFileSync(file, 'utf8').includes("require('node:test')");
+    const content = readFileSync(file, 'utf8');
+    return content.includes("require('node:test')") || content.includes('jest-compat');
   } catch {
     return false;
   }
