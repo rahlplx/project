@@ -1,37 +1,27 @@
 {
-  "phase": "done",
-  "step": 10,
-  "goal": "--from=done",
-  "completed": [
-    "think-complete",
-    "plan-complete",
-    "break-complete",
-    "build-complete",
-    "harness-complete",
-    "review-complete",
-    "ship-complete",
-    "retro-complete",
-    "learn-complete",
-    "evolve-complete"
-  ],
+  "phase": "error_recovery",
+  "step": 0,
+  "mode": "auto",
+  "completed": [],
+  "status": "ERROR_RECOVERY",
+  "lastHeartbeat": 1781808373946,
   "auto_pipeline": {
-    "started": "2026-06-18T14:13:06.176Z",
-    "goal": "--from=done",
     "state_machine": [
       "think",
       "plan",
+      "detect",
       "break",
+      "design",
       "build",
       "harness",
       "review",
+      "qa",
       "ship",
       "retro",
       "learn",
       "evolve",
-      "done"
-    ],
-    "failed_at_phase": null
-  },
-  "mode": "auto",
-  "updated": "2026-06-18T14:13:06.176Z"
+      "done",
+      "error_recovery"
+    ]
+  }
 }
