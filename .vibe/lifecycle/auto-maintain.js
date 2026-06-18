@@ -496,7 +496,7 @@ function checkOutdatedDeps() {
   try {
     let out;
     try {
-      out = execSync('npm outdated --json', {
+      out = execFileSync('npm', ['outdated', '--json'], {
         cwd: PROJECT_ROOT,
         encoding: 'utf8',
         timeout: 15000,
