@@ -148,22 +148,59 @@ function runHarness(runTestSuite = true) {
     console.log(`  [harness]  ✗ skill-lint: ${e.message}`);
   }
 
-  // Check 8: Index integrity (.well-known/agent-skills/index.json)
-  try {
-    const { checkIndexIntegrity } = require(path.join(PROJECT_ROOT, 'lib', 'check-index-integrity.js'));
-    const result = checkIndexIntegrity({ rootDir: PROJECT_ROOT });
-    results.push({
-      check: 'index-json-integrity',
-      pass: result.pass,
-      data: { existing: result.details.existing, onDisk: result.details.onDisk, missing: result.details.missing, extra: result.details.extra }
-    });
-    console.log(`  [harness]  ${result.pass ? '✓' : '✗'} index-json-integrity (${result.details.existing} entries, ${result.details.onDisk} on disk)`);
-  } catch (e) {
-    results.push({ check: 'index-json-integrity', pass: false, error: e.message });
-    console.log(`  [harness]  ✗ index-json-integrity: ${e.message}`);
-  }
+   // Check 8: Index integrity (.well-known/agent-skills/index.json)
+   try {
+     const { checkIndexIntegrity } = require(path.join(PROJECT_ROOT, 'lib', 'check-index-integrity.js'));
+     const result = checkIndexIntegrity({ rootDir: PROJECT_ROOT });
+     results.push({
+       check: 'index-json-integrity',
+       pass: result.pass,
+       data: { existing: result.details.existing, onDisk: result.details.onDisk, missing: result.details.missing, extra: result.details.extra }
+     });
+     console.log(`  [harness]  ${result.pass ? '✓' : '✗'} index-json-integrity (${result.details.existing} entries, ${result.details.onDisk} on disk)`);
+   } catch (e) {
+     results.push({ check: 'index-json-integrity', pass: false, error: e.message });
+     console.log(`  [harness]  ✗ index-json-integrity: ${e.message}`);
+   }
 
-  // Check 9: Quality scores (catalog/quality-scores.json)
+   // Check 8b: AGENTS.md files exist with required sections
+   try {
+     const requiredFiles = [
+       path.join(PROJECT_ROOT, 'catalog', 'AGENTS.md'),
+       path.join(PROJECT_ROOT, 'skills', 'AGENTS.md'),
+       path.join(PROJECT_ROOT, 'references', 'AGENTS.md'),
+       path.join(ROOT, 'AGENTS.md')
+     ];
+     const requiredSections = ['Purpose', 'Structure', 'Conventions', 'Cross-References'];
+     let missingFiles = [];
+     let missingSections = [];
+     
+     for (const file of requiredFiles) {
+       if (!fs.existsSync(file)) {
+         missingFiles.push(file.replace(PROJECT_ROOT + path.sep, ''));
+       } else {
+         const content = fs.readFileSync(file, 'utf8');
+         for (const section of requiredSections) {
+           if (!content.includes(section)) {
+             missingSections.push(`${file.replace(PROJECT_ROOT + path.sep, '')}: ${section}`);
+           }
+         }
+       }
+     }
+     
+     const pass = missingFiles.length === 0 && missingSections.length === 0;
+     results.push({
+       check: 'agents-md-exists',
+       pass,
+       data: { missingFiles, missingSections }
+     });
+     console.log(`  [harness]  ${pass ? '✓' : '✗'} agents-md-exists (${missingFiles.length} missing files, ${missingSections.length} missing sections)`);
+   } catch (e) {
+     results.push({ check: 'agents-md-exists', pass: false, error: e.message });
+     console.log(`  [harness]  ✗ agents-md-exists: ${e.message}`);
+   }
+
+   // Check 9: Quality scores (catalog/quality-scores.json)
   try {
     const scoresPath = path.join(PROJECT_ROOT, 'catalog', 'quality-scores.json');
     const scores = JSON.parse(fs.readFileSync(scoresPath, 'utf8'));
@@ -302,6 +339,16 @@ function runHarness(runTestSuite = true) {
   } catch (e) {
     results.push({ check: 'eslint-lint-pass', pass: false, error: e.message });
     console.log(`  [harness]  ✗ eslint-lint-pass: ${e.message}`);
+  }
+
+  // Check 13b: Typecheck gate (tsc --checkJs)
+  try {
+    execSync('npm run typecheck', { cwd: PROJECT_ROOT, timeout: 60000, stdio: 'pipe' });
+    results.push({ check: 'typecheck-gate', pass: true, data: { message: 'Typecheck passed' } });
+    console.log(`  [harness]  ✓ typecheck-gate`);
+  } catch (e) {
+    results.push({ check: 'typecheck-gate', pass: false, error: e.message });
+    console.log(`  [harness]  ✗ typecheck-gate: ${e.message}`);
   }
 
   // Check 14: toolsDiscovered count validation

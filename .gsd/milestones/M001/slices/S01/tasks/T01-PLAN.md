@@ -1,35 +1,38 @@
-# T01: Create ToolRegistry class
+# T01 Plan — Create catalog/AGENTS.md
 
-## Plan
-Create `lib/tool-registry.js` with a `ToolRegistry` class that provides:
-- `register(name, entry)` — register a tool with metadata and factory
-- `findUsable(category)` — return only tools whose is_usable() returns true
-- `getAll()` — return all registered tools regardless of usability
-- `getCategories()` — return distinct category names
+## Objective
+Create `catalog/AGENTS.md` explaining how to add/find tools in the catalog.
 
-Entry structure:
-```js
-{
-  name: 'git-free-deploy',
-  category: 'deploy',
-  description: '...',
-  isUsable: () => true/false,
-  factory: () => import or create instance,
-  metadata: { stars, license, ... }
-}
+## Files to Create
+- `catalog/AGENTS.md`
+
+## Required Sections
+
+### Purpose
+The catalog is the central registry of verified AI tools. Agents use it to discover available tools and their metadata.
+
+### Structure
+```
+catalog/
+├── tools.yaml          # Main tool registry (35 tools, 7 categories)
+├── verified-by.md      # Community verification log
+├── AGENTS.md           # This file
 ```
 
-## Files
-- `lib/tool-registry.js` — new file
-- `lib/tool-registry.test.js` — new test file
+### Conventions
+- Tools in `tools.yaml` use YAML format with required fields: `id`, `name`, `category`, `description`, `what_it_does`, `how_agent_uses`, `install`, `verify`
+- Categories: deploy, design, orchestration, quality, testing, utility, setup
+- Version pinned to specific release/commit
+- License must be OSS (MIT, Apache-2.0, BSD-3-Clause)
+- Stars ≥ 100, last commit < 6 months, no critical CVEs
 
-## Must-haves
-- register() stores entry, throws on duplicate name
-- findUsable('deploy') filters by category + is_usable()
-- getAll() returns all entries
-- getCategories() returns unique sorted categories
-- All exported as ESM module
+### Cross-References
+- `SKILL.md` → Entry point, delegates to this file
+- `skills/AGENTS.md` → How skills consume tools
+- `.vibe/AGENTS.md` → Lifecycle for tool curation
+- `plans/plan-catalog-expansion.md` → Expansion process
 
-## Verify
-- `node lib/tool-registry.test.js` passes
-- `npm test` still passes (209 tests)
+## Verification
+- File exists at `catalog/AGENTS.md`
+- Contains all 4 required sections present
+- `npm test` passes (no regressions)

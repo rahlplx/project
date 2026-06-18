@@ -1,21 +1,30 @@
-# S02: AGENTS.md Per Section
+# S02 Plan — Tool Registry
 
-Create AI-developer documentation files for each major directory.
-Every AGENTS.md explains the directory's purpose, conventions, and examples.
+## Slice Goal
+Implement `ToolRegistry` class with explicit registration and `isUsable()` filtering so agents only get tools available on the user's machine.
 
-## Must-haves
-- `catalog/AGENTS.md` — how to add/find/modify tools in the catalog
-- `skills/AGENTS.md` — how skills are structured, how to create/update them
-- `references/AGENTS.md` — how reference docs work, when to create them
-- `.vibe/AGENTS.md` — how the lifecycle system works, what each file does
-- Every AGENTS.md includes: purpose, conventions, examples, related files
-
-## Style Guide
-Write for an AI agent reader. Use imperative tone. Include code examples.
-Each file: 30-60 lines. Don't repeat what's already in SKILL.md — cross-reference it.
+## Must-Haves
+- `lib/tool-registry.js` — ToolRegistry class with register/findUsable/findAll/getUnusable
+- Refactor `bin/skill-loader.js` to use ToolRegistry instead of hardcoded list
+- Tests: `lib/tool-registry.test.js` (unit + integration)
+- Harness updated with AGENTS.md existence check
+- 3s timeout on isUsable() via Promise.race
 
 ## Tasks
-T04: Create catalog/AGENTS.md
-T05: Create skills/AGENTS.md
-T06: Create references/AGENTS.md
-T07: Create .vibe/AGENTS.md
+
+| Task | Description | Files |
+|------|-------------|-------|
+| T05 | Implement ToolRegistry class | `lib/tool-registry.js` |
+| T06 | Refactor bin/skill-loader.js | `bin/skill-loader.js` |
+| T07 | Write ToolRegistry tests | `lib/tool-registry.test.js` |
+| T08 | Update harness for AGENTS.md check | `lib/harness.test.js` |
+
+## Verification
+- ToolRegistry unit tests pass (register, findUsable, findAll, getUnusable, edge cases)
+- Integration tests pass (real isUsable checks: git --version, which netlify-cli)
+- skill-loader.js uses ToolRegistry (no hardcoded lists)
+- Harness validates AGENTS.md existence
+- All 1,165 tests pass
+
+## Risk
+LOW — Isolated class with explicit API. Matches mastra/OpenHands SDK patterns.

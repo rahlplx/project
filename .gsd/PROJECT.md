@@ -1,16 +1,25 @@
-# Vibe-Stack Curated Collection
+# Project: Vibe-Stack Enhancement Roadmap
 
-## What
-A curated collection of community-verified AI engineering tools for vibe coders.
-AI agents read SKILL.md, find tools in catalog/tools.yaml, and help non-coders build software.
+## What This Is
+A curated collection of AI tools and skills for vibe coders — people who build software by describing what they want in plain language, not by writing code. An AI agent reads `SKILL.md`, finds tools in `catalog/tools.yaml`, and helps the vibe coder build, design, test, and ship.
 
 ## Current State
-- 35 curated tools across 7 categories
-- 45 agent skills (legacy, kept as-is)
-- 209 passing tests (jest)
+- 35 community-verified tools across 7 categories
+- 45 agent skills (deploy, design, orchestration, quality, etc.)
+- 1,165 passing tests (573 Jest + 592 node:test)
 - Auto-maintenance lifecycle (harness → telemetry → retro → learn → evolve)
-- Cross-repo mining system (12 repos analyzed for patterns)
+- Cross-repo mining of 12 top AI repos
 
-## Build Target
-M001: Enhancements from cross-repo mining insights.
-Implement the 3 highest-impact patterns we found: Tool Registry, AGENTS.md docs, CI gates.
+## Goal
+Fill all prioritized gaps from mining 12 repos:
+1. **AGENTS.md per section** — AI-readable docs in every major directory
+2. **Tool Registry** — `isUsable()` filtering so agents only get working tools
+3. **CI Quality Gates**CI Quality Gates** — lint + typecheck + test + validate (4 gates)
+4. **Async/Sync Parity** — all 45 skills get async methods (deferred to next cycle)
+5. **Settings Schema** — exported programmatically (deferred to next cycle)
+
+## Target State
+- Agent auto-discovers usable tools, explains why others aren't
+- <5% "how do I?" queries (currently 47%)
+- 4 quality gates (currently 1)
+- 5-phase pipeline (currently 11-phase)

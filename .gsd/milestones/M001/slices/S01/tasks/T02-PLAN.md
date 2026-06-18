@@ -1,21 +1,43 @@
-# T02: Refactor skill-loader.js to use ToolRegistry
+# T02 Plan — Create skills/AGENTS.md
 
-## Plan
-Rewrite `bin/skill-loader.js` to import and use ToolRegistry.
-Each skill directory registers itself on import.
-The loader's `getSkills()` method delegates to `ToolRegistry.getAll()`.
+## Objective
+Create `skills/AGENTS.md` explaining how skills are structured and how to create new ones.
 
-## Files
-- `bin/skill-loader.js` — refactored
-- `bin/skill-loader.test.js` — updated if needed
+## Files to Create
+- `skills/AGENTS.md`
 
-## Must-haves
-- All skills auto-register when loaded
-- `getSkills()` returns same shape as before (backward compat)
-- `getUsableSkills(category)` is new — returns only usable tools
-- Old callers of `getSkills()` continue to work unchanged
+## Required Sections
 
-## Verify
-- `node bin/skill-loader.test.js` or `npm test` — 209 tests pass
-- `getSkills()` returns 45 skills (unchanged)
-- `getUsableSkills('deploy')` returns only deploy skills
+### Purpose
+Skills are reusable AI agent capabilities. Each skill encapsulates a specific workflow (deploy, design, review, orchestrate, etc.).
+
+### Structure
+```
+skills/
+├── AGENTS.md           # This file
+├── <category>/
+│   ├── <skill-name>/
+│   │   ├── index.js    # Main skill implementation
+│   │   ├── index.test.js # Tests
+│   │   ├── SKILL.md    # Skill manifest for agents
+│   │   └── README.md   # Optional human docs
+```
+
+### Conventions
+- Each skill in its own directory under category
+- `index.js` exports: `name`, `description`, `category`, `methods` (sync + async)
+- `SKILL.md` has: `name`, `description`, `category`, `tools`, `triggers`, `examples`
+- Test file required: `index.test.js` (TDD — test first)
+- Skill names: kebab-case, category prefix optional
+- Methods return Promises for async, values for sync
+
+### Cross-References
+- `SKILL.md` → Entry point, delegates to this file
+- `catalog/AGENTS.md` → Tools available to skills
+- `references/AGENTS.md` → Reference doc patterns
+- `plans/plan-catalog-expansion.md` → Adding skills to catalog
+
+## Verification
+- File exists at `skills/AGENTS.md`
+- Contains all 4 required sections
+- `npm test` passes
