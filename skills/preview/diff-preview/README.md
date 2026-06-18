@@ -13,7 +13,7 @@ const DiffPreview = require('./skills/preview/diff-preview');
 const diffTool = new DiffPreview({
   contextLines: 3,
   showLineNumbers: true,
-  colorize: true
+  colorize: true,
 });
 ```
 
@@ -48,6 +48,7 @@ Computes differences using LCS (Longest Common Subsequence) algorithm for optima
 ### Statistics
 
 Automatically calculates:
+
 - Lines added
 - Lines removed
 - Unchanged lines
@@ -59,10 +60,10 @@ Automatically calculates:
 
 ```javascript
 const diff = new DiffPreview({
-  contextLines: 3,        // Lines of context around changes (default: 3)
-  showLineNumbers: true,   // Display line numbers (default: true)
-  colorize: true,          // Use ANSI colors (default: true)
-  wordDiff: false          // Enable word-level diff (default: false)
+  contextLines: 3, // Lines of context around changes (default: 3)
+  showLineNumbers: true, // Display line numbers (default: true)
+  colorize: true, // Use ANSI colors (default: true)
+  wordDiff: false, // Enable word-level diff (default: false)
 });
 ```
 
@@ -73,11 +74,13 @@ const diff = new DiffPreview({
 Generate a complete diff between two code strings.
 
 **Parameters:**
+
 - `oldCode` (string): Original code
 - `newCode` (string): Modified code
 - `options` (object, optional): Override constructor options
 
 **Returns:**
+
 ```javascript
 {
   type: 'diff',
@@ -94,15 +97,17 @@ Generate a complete diff between two code strings.
 Generate side-by-side view of changes.
 
 **Parameters:**
+
 - `maxWidth` (number): Maximum characters per column (default: 40)
 
 **Returns:**
+
 ```javascript
 [
   { type: 'unchanged', left: 'function greet(name) {', right: 'function greet(name) {' },
   { type: 'removed', left: '  return "Hello, " + name;', right: '' },
-  { type: 'added', left: '', right: '  return "Hi, " + name + "!";' }
-]
+  { type: 'added', left: '', right: '  return "Hi, " + name + "!";' },
+];
 ```
 
 #### `generateUnifiedDiff(oldCode, newCode, filename?)`
@@ -110,6 +115,7 @@ Generate side-by-side view of changes.
 Generate Git-style unified diff format.
 
 **Output:**
+
 ```
 --- a/file.js
 +++ b/file.js
@@ -125,6 +131,7 @@ Generate Git-style unified diff format.
 Export diff as a standalone HTML file.
 
 **Parameters:**
+
 - `title` (string): Page title (default: 'Code Diff')
 
 **Returns:** Complete HTML document as string
@@ -147,6 +154,7 @@ Export diff as JSON string.
 #### HTML Output
 
 Dark-themed HTML with syntax highlighting:
+
 - Green background for additions
 - Red background for deletions
 - Monospace font throughout

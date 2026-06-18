@@ -11,9 +11,9 @@ The Flowchart Gen skill analyzes source code and produces various diagram format
 ```javascript
 const FlowchartGen = require('./skills/preview/flowchart-gen');
 const generator = new FlowchartGen({
-  direction: 'LR',      // Layout direction
-  showDetails: true,     // Include method names, line numbers
-  maxDepth: 10          // Maximum traversal depth
+  direction: 'LR', // Layout direction
+  showDetails: true, // Include method names, line numbers
+  maxDepth: 10, // Maximum traversal depth
 });
 ```
 
@@ -48,18 +48,19 @@ console.log(flowchart.mermaid);
 
 ### Multiple Output Formats
 
-| Format | Description | Use Case |
-|--------|-------------|----------|
-| Mermaid | Markdown-compatible flowchart syntax | Documentation, GitHub |
-| ASCII | Text-based diagram | Terminal, logs |
-| SVG | Vector graphics | Web, presentations |
-| React Flow | Interactive node graph | Web apps, dashboards |
-| JSON | Structured data | API responses, storage |
-| YAML | Human-readable format | Config files |
+| Format     | Description                          | Use Case               |
+| ---------- | ------------------------------------ | ---------------------- |
+| Mermaid    | Markdown-compatible flowchart syntax | Documentation, GitHub  |
+| ASCII      | Text-based diagram                   | Terminal, logs         |
+| SVG        | Vector graphics                      | Web, presentations     |
+| React Flow | Interactive node graph               | Web apps, dashboards   |
+| JSON       | Structured data                      | API responses, storage |
+| YAML       | Human-readable format                | Config files           |
 
 ### Code Analysis
 
 Automatically extracts:
+
 - Import statements and dependencies
 - Function declarations and calls
 - Class definitions and methods
@@ -85,9 +86,9 @@ TB (Top-Bottom)    LR (Left-Right)    RL (Right-Left)    BT (Bottom-Top)
 
 ```javascript
 const generator = new FlowchartGen({
-  direction: 'LR',     // Flowchart layout direction
-  showDetails: true,   // Include node details (methods, line numbers)
-  maxDepth: 10         // Maximum recursion depth for analysis
+  direction: 'LR', // Flowchart layout direction
+  showDetails: true, // Include node details (methods, line numbers)
+  maxDepth: 10, // Maximum recursion depth for analysis
 });
 ```
 
@@ -98,10 +99,12 @@ const generator = new FlowchartGen({
 Generate complete flowchart from code.
 
 **Parameters:**
+
 - `codeStructure` (string|object): Source code string or pre-parsed structure
 - `options` (object, optional): Override defaults
 
 **Returns:**
+
 ```javascript
 {
   type: 'flowchart',
@@ -124,6 +127,7 @@ Generate complete flowchart from code.
 Parse source code into structured format.
 
 **Returns:**
+
 ```javascript
 {
   imports: ['react', 'axios'],
@@ -139,6 +143,7 @@ Parse source code into structured format.
 Generate Mermaid flowchart syntax.
 
 **Example Output:**
+
 ```mermaid
 flowchart LR
     entry([Start])
@@ -154,6 +159,7 @@ flowchart LR
 Generate ASCII art diagram.
 
 **Example Output:**
+
 ```
       ┌─────────────┐
       │    Start    │
@@ -171,6 +177,7 @@ Generate ASCII art diagram.
 Generate SVG diagram.
 
 **Parameters:**
+
 - `width` (number): SVG width (default: 800)
 - `height` (number): SVG height (default: 600)
 
@@ -268,7 +275,7 @@ function Diagram({ code }) {
     generator.extractNodes(generator.parseCode(code)),
     generator.extractEdges(generator.parseCode(code))
   );
-  
+
   return (
     <ReactFlowProvider>
       <Controls />
@@ -288,24 +295,23 @@ const code = fs.readFileSync('./src/index.js', 'utf8');
 const generator = new FlowchartGen();
 
 const structure = generator.parseCode(code);
-const svg = generator.toSVG(
-  generator.extractNodes(structure),
-  generator.extractEdges(structure),
-  { width: 1200, height: 800 }
-);
+const svg = generator.toSVG(generator.extractNodes(structure), generator.extractEdges(structure), {
+  width: 1200,
+  height: 800,
+});
 
 fs.writeFileSync('architecture.svg', svg);
 ```
 
 ## Node Types
 
-| Type | Shape | Description |
-|------|-------|-------------|
-| `start` | Oval | Entry point of application |
-| `end` | Oval | Exit point |
-| `process` | Rectangle | Functions, classes, modules |
-| `external` | Diamond | External dependencies |
-| `decision` | Diamond | Conditional branches |
+| Type       | Shape     | Description                 |
+| ---------- | --------- | --------------------------- |
+| `start`    | Oval      | Entry point of application  |
+| `end`      | Oval      | Exit point                  |
+| `process`  | Rectangle | Functions, classes, modules |
+| `external` | Diamond   | External dependencies       |
+| `decision` | Diamond   | Conditional branches        |
 
 ## Styling
 
@@ -326,8 +332,8 @@ const generator = new FlowchartGen({
     start: '#90EE90',
     end: '#FFB6C1',
     process: '#E6E6FA',
-    external: '#FFE4B5'
-  }
+    external: '#FFE4B5',
+  },
 });
 ```
 
@@ -335,11 +341,11 @@ const generator = new FlowchartGen({
 
 ### With Documentation Tools
 
-```javascript
+````javascript
 // Generate for Docusaurus, GitBook, etc.
 const mermaid = generator.toMermaid(nodes, edges);
 // Insert into markdown with ```mermaid block
-```
+````
 
 ### With Code Review
 

@@ -14,7 +14,7 @@ const screenshots = new ScreenshotPreview({
   outputDir: './screenshots',
   format: 'png',
   quality: 90,
-  viewport: { width: 1280, height: 720 }
+  viewport: { width: 1280, height: 720 },
 });
 ```
 
@@ -39,7 +39,7 @@ Capture any URL or local file:
 const result = await screenshots.capture('http://localhost:3000', {
   filename: 'homepage.png',
   viewport: { width: 1920, height: 1080 },
-  fullPage: true
+  fullPage: true,
 });
 ```
 
@@ -48,14 +48,13 @@ const result = await screenshots.capture('http://localhost:3000', {
 Capture multiple URLs in sequence:
 
 ```javascript
-const results = await screenshots.captureBatch([
-  'http://localhost:3000/',
-  'http://localhost:3000/about',
-  'http://localhost:3000/contact'
-], {
-  concurrency: 2,
-  filename: 'page-{index}.png'
-});
+const results = await screenshots.captureBatch(
+  ['http://localhost:3000/', 'http://localhost:3000/about', 'http://localhost:3000/contact'],
+  {
+    concurrency: 2,
+    filename: 'page-{index}.png',
+  }
+);
 
 console.log(`Captured ${results.successful} of ${results.total}`);
 ```
@@ -65,10 +64,7 @@ console.log(`Captured ${results.successful} of ${results.total}`);
 Compare two screenshots to detect visual changes:
 
 ```javascript
-const comparison = await screenshots.compare(
-  'before.png',
-  'after.png'
-);
+const comparison = await screenshots.compare('before.png', 'after.png');
 
 console.log(`Difference: ${comparison.percentDiff}`);
 if (!comparison.identical) {
@@ -83,14 +79,15 @@ if (!comparison.identical) {
 
 ```javascript
 const screenshots = new ScreenshotPreview({
-  outputDir: './screenshots',    // Where to save screenshots
-  format: 'png',                  // Output format: 'png' or 'jpg'
-  quality: 90,                   // JPEG quality (1-100)
-  viewport: {                    // Browser viewport
+  outputDir: './screenshots', // Where to save screenshots
+  format: 'png', // Output format: 'png' or 'jpg'
+  quality: 90, // JPEG quality (1-100)
+  viewport: {
+    // Browser viewport
     width: 1280,
-    height: 720
+    height: 720,
   },
-  delay: 1000                    // Wait time before capture (ms)
+  delay: 1000, // Wait time before capture (ms)
 });
 ```
 
@@ -101,6 +98,7 @@ const screenshots = new ScreenshotPreview({
 Capture a single screenshot.
 
 **Parameters:**
+
 - `url` (string): URL or file path to capture
 - `options.filename` (string): Custom filename
 - `options.viewport` (object): Override default viewport
@@ -108,6 +106,7 @@ Capture a single screenshot.
 - `options.waitForSelector` (string): Wait for element before capture
 
 **Returns:**
+
 ```javascript
 {
   success: true,
@@ -124,10 +123,12 @@ Capture a single screenshot.
 Capture multiple URLs.
 
 **Parameters:**
+
 - `urls` (array): Array of URLs to capture
 - `options.concurrency` (number): Parallel captures (default: 1)
 
 **Returns:**
+
 ```javascript
 {
   total: 5,
@@ -145,6 +146,7 @@ Capture multiple URLs.
 Compare two screenshots pixel-by-pixel.
 
 **Returns:**
+
 ```javascript
 {
   identical: false,
@@ -159,6 +161,7 @@ Compare two screenshots pixel-by-pixel.
 Get current configuration and recent screenshots.
 
 **Returns:**
+
 ```javascript
 {
   timestamp: '2024-01-15T10:30:00.000Z',
@@ -174,9 +177,11 @@ Get current configuration and recent screenshots.
 List recent screenshots.
 
 **Parameters:**
+
 - `limit` (number): Maximum number to return (default: 10)
 
 **Returns:**
+
 ```javascript
 [
   { name: 'screenshot-2024-01-15.png', path: '...', size: 245678, created: Date },
@@ -197,6 +202,7 @@ Delete a screenshot.
 Clean up old screenshots.
 
 **Parameters:**
+
 - `options.maxAge` (number): Maximum age in ms (default: 24 hours)
 - `options.maxFiles` (number): Maximum files to keep (default: 100)
 
@@ -213,6 +219,7 @@ Create thumbnail version.
 Add text annotation to screenshot.
 
 **Parameters:**
+
 - `annotation.text` (string): Text to add
 - `annotation.x` (number): X position
 - `annotation.y` (number): Y position
@@ -228,6 +235,7 @@ Get screenshot file metadata.
 List screenshots with filtering.
 
 **Parameters:**
+
 - `options.format` (string): Filter by format
 - `options.since` (date): Filter by date
 - `options.before` (date): Filter by date
@@ -245,10 +253,10 @@ Export all screenshots as ZIP archive.
 const ScreenshotPreview = require('./screenshot-preview');
 const screenshots = new ScreenshotPreview();
 
-exec('npm run build', async (error) => {
+exec('npm run build', async error => {
   if (!error) {
     await screenshots.capture('http://localhost:3000', {
-      filename: 'build-success.png'
+      filename: 'build-success.png',
     });
   }
 });
@@ -259,22 +267,22 @@ exec('npm run build', async (error) => {
 ```javascript
 async function runVisualTests() {
   const screenshots = new ScreenshotPreview();
-  
+
   // Capture baseline
   await screenshots.capture('http://localhost:3000', {
-    filename: 'baseline.png'
+    filename: 'baseline.png',
   });
-  
+
   // Make changes...
-  
+
   // Capture new version
   await screenshots.capture('http://localhost:3000', {
-    filename: 'current.png'
+    filename: 'current.png',
   });
-  
+
   // Compare
   const result = await screenshots.compare('baseline.png', 'current.png');
-  
+
   if (!result.identical) {
     console.log(`Visual changes detected: ${result.percentDiff}`);
     screenshots.open(result.diffImagePath);
@@ -287,21 +295,19 @@ async function runVisualTests() {
 ```javascript
 async function generateReport() {
   const screenshots = new ScreenshotPreview();
-  
+
   const pages = ['/', '/about', '/pricing', '/contact'];
-  const results = await screenshots.captureBatch(
-    pages.map(p => `http://localhost:3000${p}`)
-  );
-  
+  const results = await screenshots.captureBatch(pages.map(p => `http://localhost:3000${p}`));
+
   const report = {
     timestamp: new Date().toISOString(),
     pages: results.results.map(r => ({
       url: r.url,
       captured: r.success,
-      path: r.path
-    }))
+      path: r.path,
+    })),
   };
-  
+
   fs.writeFileSync('screenshot-report.json', JSON.stringify(report, null, 2));
 }
 ```
@@ -311,13 +317,13 @@ async function generateReport() {
 ```javascript
 async function createGallery() {
   const screenshots = new ScreenshotPreview();
-  
+
   const files = screenshots.getRecentScreenshots(20);
-  
+
   for (const file of files) {
     await screenshots.createThumbnail(file.name, 150);
   }
-  
+
   console.log('Gallery thumbnails created');
 }
 ```
@@ -327,19 +333,19 @@ async function createGallery() {
 ```javascript
 async function annotateError() {
   const screenshots = new ScreenshotPreview();
-  
+
   // Capture error state
   await screenshots.capture('http://localhost:3000/error');
-  
+
   // Add annotation
   await screenshots.annotate('error.png', {
     text: 'Error occurred here',
     x: 100,
     y: 200,
     color: '#ff0000',
-    fontSize: 24
+    fontSize: 24,
   });
-  
+
   screenshots.open('annotated_error.png');
 }
 ```
@@ -352,13 +358,13 @@ async function annotateError() {
 // Mobile screenshot
 await screenshots.capture(url, {
   viewport: { width: 375, height: 667 },
-  filename: 'mobile-home.png'
+  filename: 'mobile-home.png',
 });
 
 // Tablet screenshot
 await screenshots.capture(url, {
   viewport: { width: 768, height: 1024 },
-  filename: 'tablet-home.png'
+  filename: 'tablet-home.png',
 });
 ```
 
@@ -367,7 +373,7 @@ await screenshots.capture(url, {
 ```javascript
 await screenshots.capture('http://localhost:3000/dashboard', {
   waitForSelector: '.dashboard-loaded',
-  delay: 2000
+  delay: 2000,
 });
 ```
 
@@ -376,7 +382,7 @@ await screenshots.capture('http://localhost:3000/dashboard', {
 ```javascript
 await screenshots.capture('http://localhost:3000/long-page', {
   fullPage: true,
-  filename: 'full-page.png'
+  filename: 'full-page.png',
 });
 ```
 
@@ -386,7 +392,7 @@ await screenshots.capture('http://localhost:3000/long-page', {
 // Clean up screenshots older than 7 days
 screenshots.cleanup({
   maxAge: 7 * 24 * 60 * 60 * 1000,
-  maxFiles: 50
+  maxFiles: 50,
 });
 ```
 

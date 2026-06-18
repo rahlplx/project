@@ -24,8 +24,8 @@ const colorGen = new ColorGenerator();
 ```javascript
 // Generate a complete color system from primary color
 const pkg = colorGen.generatePackage('#6366f1', 'Indigo');
-console.log(pkg.css);  // Ready-to-use CSS variables
-console.log(pkg.system.scale);  // 10-step color scale
+console.log(pkg.css); // Ready-to-use CSS variables
+console.log(pkg.system.scale); // 10-step color scale
 ```
 
 ## Core Utilities
@@ -97,18 +97,18 @@ console.log(scale);
 
 ```javascript
 const customScale = colorGen.generateScale('#10b981', {
-  steps: 12,              // Number of steps (default: 10)
-  startLightness: 95,     // Lightest shade lightness (default: 95)
-  endLightness: 10,       // Darkest shade lightness (default: 10)
-  startShade: 50,         // Starting shade number (default: 50)
-  shadeStep: 100          // Shade increment (default: 100)
+  steps: 12, // Number of steps (default: 10)
+  startLightness: 95, // Lightest shade lightness (default: 95)
+  endLightness: 10, // Darkest shade lightness (default: 10)
+  startShade: 50, // Starting shade number (default: 50)
+  shadeStep: 100, // Shade increment (default: 100)
 });
 ```
 
 ### Color Harmonies
 
 ```javascript
-const base = '#3b82f6';  // Blue
+const base = '#3b82f6'; // Blue
 
 // Complementary (opposite on color wheel)
 colorGen.getComplementary(base);
@@ -344,9 +344,9 @@ const pkg = colorGen.generatePackage(presets.ocean.primary, 'Ocean');
 ## WCAG Requirements Reference
 
 | Level | Normal Text (4.5:1) | Large Text (3:1) |
-|-------|---------------------|-------------------|
-| AA | ✓ Minimum | ✓ Minimum |
-| AAA | ✓ Enhanced | ✓ Enhanced |
+| ----- | ------------------- | ---------------- |
+| AA    | ✓ Minimum           | ✓ Minimum        |
+| AAA   | ✓ Enhanced          | ✓ Enhanced       |
 
 - **Normal Text**: Below 18pt regular or 14pt bold
 - **Large Text**: 18pt+ regular or 14pt+ bold
@@ -362,7 +362,7 @@ function ColorProvider({ palette }) {
   useEffect(() => {
     const root = document.documentElement;
     const vars = colorGen.toCSSVariables(palette, 'app');
-    
+
     Object.entries(vars).forEach(([name, value]) => {
       root.style.setProperty(name, value);
     });
@@ -373,11 +373,7 @@ function ColorProvider({ palette }) {
 
 // Usage
 function Button() {
-  return (
-    <button style={{ background: 'var(--app-primary-500)' }}>
-      Click me
-    </button>
-  );
+  return <button style={{ background: 'var(--app-primary-500)' }}>Click me</button>;
 }
 ```
 
@@ -391,9 +387,9 @@ const pkg = colorGen.generatePackage('#6366f1', 'indigo');
 module.exports = {
   theme: {
     extend: {
-      colors: pkg.tailwind.colors
-    }
-  }
+      colors: pkg.tailwind.colors,
+    },
+  },
 };
 ```
 
@@ -413,7 +409,7 @@ export const Card = styled.div`
 export const Button = styled.button`
   background: ${palette.primary[500]};
   color: ${colorGen.getAccessibleTextColor(palette.primary[500]).color};
-  
+
   &:hover {
     background: ${palette.primary[600]};
   }
