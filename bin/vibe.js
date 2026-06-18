@@ -315,18 +315,19 @@ if (cmd) {
           runsToday < 50
         ) {
           const maintainPath = path.join(projectRoot, '.vibe', 'lifecycle', 'auto-maintain.js');
-          if (!require('fs').existsSync(maintainPath)) break;
-          const { spawn } = require('child_process');
-          const child = spawn(process.execPath, [maintainPath], { detached: true, stdio: 'ignore' });
-          child.unref();
+          if (require('fs').existsSync(maintainPath)) {
+            const { spawn } = require('child_process');
+            const child = spawn(process.execPath, [maintainPath], { detached: true, stdio: 'ignore' });
+            child.unref();
 
-          // Reset counter + record timestamp
-          lc.interaction_count = 0;
-          lc.last_maintenance_ts = Date.now();
-          lc.last_maintenance_day = today;
-          lc.today_maintenance_count = runsToday + 1;
+            // Reset counter + record timestamp
+            lc.interaction_count = 0;
+            lc.last_maintenance_ts = Date.now();
+            lc.last_maintenance_day = today;
+            lc.today_maintenance_count = runsToday + 1;
 
-          writeJSON(path.join(projectRoot, '.vibe', 'lifecycle.json'), lc);
+            writeJSON(path.join(projectRoot, '.vibe', 'lifecycle.json'), lc);
+          }
         }
       } catch {
         /* auto-maintain spawn is best-effort, never block CLI */

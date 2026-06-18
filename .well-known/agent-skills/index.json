@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-18T02:55:40.562Z",
+  "generated_at": "2026-06-18T07:55:38.127Z",
   "skill_count": 56,
   "skills": [
     {
@@ -226,7 +226,7 @@
       "category": "orchestration",
       "description": "model-router",
       "url": "/.well-known/agent-skills/model-router/SKILL.md",
-      "digest": "sha256-b09a97e451040ab89fde70b341198e2d59064bd5399ebad5fc6b7100f297d730"
+      "digest": "sha256-a659e8e427473dc1d2ead77633360650438a38ee12a9ee5fd92f7e4adb38a08a"
     },
     {
       "name": "nexus",
