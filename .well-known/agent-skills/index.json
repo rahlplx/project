@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-18T16:04:05.180Z",
+  "generated_at": "2026-06-18T17:21:33.869Z",
   "skill_count": 56,
   "skills": [
     {
@@ -290,7 +290,7 @@
       "category": "setup",
       "description": "Pre-built, copy-paste prompt templates for common development tasks. These templates are designed to work with AI coding assistants and can be customized for your specific needs.",
       "url": "/.well-known/agent-skills/prompt-templates/SKILL.md",
-      "digest": "sha256-ce96bbe62091a92c1350dc4c0c3f7d62dde1c05a5736017c9970792ddc15a380"
+      "digest": "sha256-7ff95166f94c2d78add291e336ef17b03c7cdbd452df77ee02eb8403f8c34d91"
     },
     {
       "name": "quick-start",
