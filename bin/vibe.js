@@ -1,34 +1,35 @@
 #!/usr/bin/env node
 const path = require('path');
+const fs = require('fs');
 
-// Bootstrap: load all vibenexus commands
 const cmdDir = path.resolve(__dirname, '..', 'lib', 'vibenexus-commands');
-const { register, validatePhase } = require(path.join(cmdDir, 'index'));
-const { readState, writeState, recordTelemetry, advancePhase, writeHandoff, writeJSON } = require(
-  path.join(cmdDir, 'state-helpers')
-);
+const { readState, writeState } = require(path.join(cmdDir, 'state-helpers'));
 
-// Register basic commands for VibeNexus CLI
-const commandDefs = [
-  { name: 'auto', desc: 'Full VibeNexus pipeline state machine' },
-  { name: 'status', desc: 'Read VibeNexus state and render dashboard' },
-  { name: 'help', desc: 'Show VibeNexus command reference' },
-  { name: 'harness', desc: 'Production readiness validation' },
-  { name: 'maintenance', desc: 'Run VibeNexus auto-maintenance cycle' },
-];
-
-for (const def of commandDefs) {
-  register(def.name, {
-    handler: (args) => {
-       console.log(`[VibeNexus] Running ${def.name}...`);
-       // Implementation deferred to vibenexus-commands handlers
-    },
-    description: def.desc,
-  });
+function loadHandler(name) {
+  const p = path.join(cmdDir, name + '.js');
+  if (fs.existsSync(p)) return require(p);
+  return null;
 }
 
-console.log("═══ VibeNexus CLI ═══");
-if (process.argv.includes('help')) {
-  console.log("Commands:");
-  commandDefs.forEach(d => console.log(`  - ${d.name}: ${d.desc}`));
+const mode = process.argv[2] || 'help';
+const args = process.argv.slice(3);
+
+console.log("═══ VibeNexus Core ═══");
+
+const handlerMod = loadHandler(mode);
+if (handlerMod && handlerMod.handler) {
+  const state = readState() || { phase: 'scope', step: 0 };
+  handlerMod.handler(args, state).then(res => {
+    if (res && res.status === 'error') process.exit(1);
+    process.exit(0);
+  }).catch(err => {
+    console.error("Fatal Error:", err.message);
+    process.exit(1);
+  });
+} else {
+  console.log("Commands: auto, status, harness, maintenance, help");
+  if (mode !== 'help') {
+    console.log("Unknown command:", mode);
+    process.exit(1);
+  }
 }
