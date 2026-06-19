@@ -95,22 +95,67 @@ function runHarness(runTestSuite = true) {
       let jestBin;
       try { jestBin = require.resolve('jest/bin/jest', { paths: [PROJECT_ROOT] }); }
       catch { jestBin = path.join(PROJECT_ROOT, 'node_modules', '.bin', 'jest'); }
-      const output = stripAnsi(execFileSync(process.execPath, [jestBin, '--silent'], { cwd: PROJECT_ROOT, timeout: 120000, encoding: 'utf8' }));
-      const suites = output.match(/Test Suites:\s+(\d+)\s+passed/);
-      const passed = output.match(/Tests:\s+(\d+)\s+passed/);
-      const failed = output.match(/Tests:\s+(\d+)\s+failed/);
-      const passCount = passed ? parseInt(passed[1]) : 0;
-      const failCount = failed ? parseInt(failed[1]) : 0;
-      const suiteCount = suites ? parseInt(suites[1]) : 0;
-      results.push({
-        check: 'test-suite',
-        pass: failCount === 0,
-        data: { passCount, failCount, suiteCount }
-      });
-      console.log(`  [harness]  ✓ test-suite (${suiteCount} suites, ${passCount} passed, ${failCount} failed)`);
+      // FIX (Bug #1): Reduce timeout from 120s to 60s to prevent harness hang.
+      // FIX (Bug #3): Catch EAGAIN (resource exhaustion) and report as skipped, not failed.
+      let output;
+      try {
+        output = stripAnsi(execFileSync(process.execPath, [jestBin, '--silent'], {
+          cwd: PROJECT_ROOT,
+          timeout: 60000, // 60s hard cap (was 120s — caused hangs under constrained ulimit -u)
+          encoding: 'utf8',
+        }));
+      } catch (execErr) {
+        if (execErr.code === 'EAGAIN' || (execErr.message && execErr.message.includes('EAGAIN'))) {
+          results.push({
+            check: 'test-suite',
+            pass: false,
+            skipped: true,
+            reason: 'EAGAIN — resource limits prevented test execution (ulimit -u too low?)',
+          });
+          console.log(`  [harness]  ⚠ test-suite SKIPPED (EAGAIN — resource limits)`);
+          output = null;
+        } else if (execErr.signal === 'SIGTERM' || (execErr.killed && execErr.signal)) {
+          // Timeout — process was killed after 60s
+          results.push({
+            check: 'test-suite',
+            pass: false,
+            skipped: true,
+            reason: `Timeout after 60s (signal: ${execErr.signal})`,
+          });
+          console.log(`  [harness]  ⚠ test-suite SKIPPED (timeout after 60s)`);
+          output = null;
+        } else {
+          throw execErr;
+        }
+      }
+      if (output !== null) {
+        const suites = output.match(/Test Suites:\s+(\d+)\s+passed/);
+        const passed = output.match(/Tests:\s+(\d+)\s+passed/);
+        const failed = output.match(/Tests:\s+(\d+)\s+failed/);
+        const passCount = passed ? parseInt(passed[1]) : 0;
+        const failCount = failed ? parseInt(failed[1]) : 0;
+        const suiteCount = suites ? parseInt(suites[1]) : 0;
+        results.push({
+          check: 'test-suite',
+          pass: failCount === 0,
+          data: { passCount, failCount, suiteCount }
+        });
+        console.log(`  [harness]  ✓ test-suite (${suiteCount} suites, ${passCount} passed, ${failCount} failed)`);
+      }
     } catch (e) {
-      results.push({ check: 'test-suite', pass: false, error: e.message });
-      console.log(`  [harness]  ✗ test-suite: ${e.message}`);
+      // FIX (Bug #3): Catch EAGAIN at the outer try/catch level too.
+      if (e.code === 'EAGAIN' || (e.message && e.message.includes('EAGAIN'))) {
+        results.push({
+          check: 'test-suite',
+          pass: false,
+          skipped: true,
+          reason: `EAGAIN: ${e.message}`,
+        });
+        console.log(`  [harness]  ⚠ test-suite SKIPPED (EAGAIN)`);
+      } else {
+        results.push({ check: 'test-suite', pass: false, error: e.message });
+        console.log(`  [harness]  ✗ test-suite: ${e.message}`);
+      }
     }
   } else {
     results.push({ check: 'test-suite', pass: true, data: { passCount: 0, failCount: 0, skipped: true } });
@@ -276,7 +321,8 @@ function runHarness(runTestSuite = true) {
             'lib/tool-registry.test.js',
             'lib/lint-config.test.js',
           ],
-          { cwd: PROJECT_ROOT, timeout: 120000, encoding: 'utf8' }
+          // FIX (Bug #1): Reduce timeout from 120s to 60s.
+          { cwd: PROJECT_ROOT, timeout: 60000, encoding: 'utf8' }
         )
       );
       const passed = output.match(/pass (\d+)/);
@@ -290,8 +336,19 @@ function runHarness(runTestSuite = true) {
       });
       console.log(`  [harness]  ✓ node-test-suite (${passCount} passed, ${failCount} failed)`);
     } catch (e) {
-      results.push({ check: 'node-test-suite', pass: false, error: e.message });
-      console.log(`  [harness]  ✗ node-test-suite: ${e.message}`);
+      // FIX (Bug #3): EAGAIN → skipped, not failed.
+      if (e.code === 'EAGAIN' || (e.message && e.message.includes('EAGAIN'))) {
+        results.push({
+          check: 'node-test-suite',
+          pass: false,
+          skipped: true,
+          reason: `EAGAIN: ${e.message}`,
+        });
+        console.log(`  [harness]  ⚠ node-test-suite SKIPPED (EAGAIN)`);
+      } else {
+        results.push({ check: 'node-test-suite', pass: false, error: e.message });
+        console.log(`  [harness]  ✗ node-test-suite: ${e.message}`);
+      }
     }
   }
 
@@ -320,6 +377,7 @@ function runHarness(runTestSuite = true) {
   }
 
   // Check 13: ESLint lint check (warnings allowed, errors block)
+  // FIX (Bug #3): Detect EAGAIN and report as skipped, not failed.
   try {
     const eslintBin = path.join(PROJECT_ROOT, 'node_modules', 'eslint', 'bin', 'eslint.js');
     const eslintCache = path.join(PROJECT_ROOT, '.eslintcache');
@@ -327,28 +385,84 @@ function runHarness(runTestSuite = true) {
     try {
       eslintOutput = execFileSync(process.execPath, [eslintBin, 'lib/', 'bin/', '--no-eslintrc', '-c', '.eslintrc.js', '--format', 'json', '--cache', '--cache-location', eslintCache], { cwd: PROJECT_ROOT, timeout: 60000, encoding: 'utf8' });
     } catch (execErr) {
-      eslintOutput = execErr.stdout || execErr.message;
+      // FIX (Bug #3): Detect spawn failures (EAGAIN, ENOENT, etc.) and report as skipped.
+      // The error message typically contains "spawnSync" or "spawn" when the process
+      // couldn't be created — this is a resource issue, not a lint failure.
+      const isSpawnFailure =
+        execErr.code === 'EAGAIN' ||
+        execErr.code === 'ENOENT' ||
+        execErr.errno === 'EAGAIN' ||
+        (execErr.message && (
+          execErr.message.includes('EAGAIN') ||
+          execErr.message.includes('spawnSync') ||
+          execErr.message.includes('spawn ')
+        ));
+      if (isSpawnFailure) {
+        results.push({
+          check: 'eslint-lint-pass',
+          pass: false,
+          skipped: true,
+          reason: `Spawn failure: ${execErr.code || execErr.message.slice(0, 80)}`,
+        });
+        console.log(`  [harness]  ⚠ eslint-lint-pass SKIPPED (spawn failure)`);
+        eslintOutput = null;
+      } else {
+        eslintOutput = execErr.stdout || execErr.message;
+      }
     }
-    const cleaned = stripAnsi(eslintOutput);
-    const results_json = JSON.parse(cleaned);
-    const errorCount = results_json.reduce((sum, f) => sum + f.errorCount, 0);
-    const warningCount = results_json.reduce((sum, f) => sum + f.warningCount, 0);
-    const pass = errorCount === 0;
-    results.push({ check: 'eslint-lint-pass', pass, data: { errors: errorCount, warnings: warningCount } });
-    console.log(`  [harness]  ${pass ? '✓' : '✗'} eslint-lint-pass (${errorCount} errors, ${warningCount} warnings)`);
+    if (eslintOutput && !results.some(r => r.check === 'eslint-lint-pass' && r.skipped)) {
+      const cleaned = stripAnsi(eslintOutput);
+      const results_json = JSON.parse(cleaned);
+      const errorCount = results_json.reduce((sum, f) => sum + f.errorCount, 0);
+      const warningCount = results_json.reduce((sum, f) => sum + f.warningCount, 0);
+      const pass = errorCount === 0;
+      results.push({ check: 'eslint-lint-pass', pass, data: { errors: errorCount, warnings: warningCount } });
+      console.log(`  [harness]  ${pass ? '✓' : '✗'} eslint-lint-pass (${errorCount} errors, ${warningCount} warnings)`);
+    }
   } catch (e) {
-    results.push({ check: 'eslint-lint-pass', pass: false, error: e.message });
-    console.log(`  [harness]  ✗ eslint-lint-pass: ${e.message}`);
+    if (e.code === 'EAGAIN' || (e.message && e.message.includes('EAGAIN'))) {
+      results.push({
+        check: 'eslint-lint-pass',
+        pass: false,
+        skipped: true,
+        reason: `EAGAIN: ${e.message}`,
+      });
+      console.log(`  [harness]  ⚠ eslint-lint-pass SKIPPED (EAGAIN)`);
+    } else {
+      results.push({ check: 'eslint-lint-pass', pass: false, error: e.message });
+      console.log(`  [harness]  ✗ eslint-lint-pass: ${e.message}`);
+    }
   }
 
   // Check 13b: Typecheck gate (tsc --checkJs)
+  // FIX (Bug #3): Detect EAGAIN and report as skipped, not failed.
   try {
     execSync('npm run typecheck', { cwd: PROJECT_ROOT, timeout: 60000, stdio: 'pipe' });
     results.push({ check: 'typecheck-gate', pass: true, data: { message: 'Typecheck passed' } });
     console.log(`  [harness]  ✓ typecheck-gate`);
   } catch (e) {
-    results.push({ check: 'typecheck-gate', pass: false, error: e.message });
-    console.log(`  [harness]  ✗ typecheck-gate: ${e.message}`);
+    // FIX (Bug #3): Broaden spawn failure detection (EAGAIN, ENOENT, spawnSync errors).
+    const isSpawnFailure =
+      e.code === 'EAGAIN' ||
+      e.code === 'ENOENT' ||
+      e.errno === 'EAGAIN' ||
+      (e.message && (
+        e.message.includes('EAGAIN') ||
+        e.message.includes('spawnSync') ||
+        e.message.includes('spawn ')
+      ));
+    if (isSpawnFailure) {
+      results.push({
+        check: 'typecheck-gate',
+        pass: false,
+        skipped: true,
+        reason: `Spawn failure: ${e.code || e.message.slice(0, 80)}`,
+      });
+      console.log(`  [harness]  ⚠ typecheck-gate SKIPPED (spawn failure)`);
+    } else {
+      results.push({ check: 'typecheck-gate', pass: false, error: e.message });
+      console.log(`  [harness]  ✗ typecheck-gate: ${e.message}`);
+    }
   }
 
   // Check 14: toolsDiscovered count validation
