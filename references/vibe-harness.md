@@ -43,7 +43,7 @@ Trigger: `node .vibe/lifecycle/auto-maintain.js`
 
 ### 7. Skill Lint
 - Runs `lib/lint-skills.js` structural linter
-- Checks all 45 skills for:
+- Checks all 55+ skills for:
   - module.exports presence (error if missing)
   - class/object pattern compliance
   - Minimum file size (warning if <10 lines)

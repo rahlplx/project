@@ -1,6 +1,6 @@
 {
   "name": "vibe-stack",
-  "description": "45+ AI agent skills for vibe coders — design, security, TDD, review, deploy, and the 4-phase /vibe orchestrator. Agent-agnostic: also installable in Codex CLI, OpenCode, and Cursor.",
+  "description": "55+ AI agent skills for vibe coders — design, security, TDD, review, deploy, and the 4-phase /vibe orchestrator. Agent-agnostic: also installable in Codex CLI, OpenCode, and Cursor.",
   "version": "1.1.0",
   "author": {
     "name": "rahlplx"

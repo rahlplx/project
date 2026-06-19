@@ -130,7 +130,7 @@ Export project settings as a typed schema that agents can read programmatically:
 | Tool Registry   | Hardcoded lists  | Plugable with is_usable()                 |
 | AGENTS.md files | 0                | 4 (catalog, skills, references, .vibe)    |
 | CI gates        | Test only (jest) | 4 gates (lint, typecheck, test, validate) |
-| Async methods   | 0                | All 45 skills                             |
+| Async methods   | 0                | All 55+ skills                            |
 | Settings schema | None             | Exported programmatically                 |
 
 ---
@@ -234,7 +234,7 @@ SKILL.md                ← One file tells agent everything
 catalog/tools.yaml      ← 35 tools, flat
 bin/skill-loader.js     ← Loads all skills, no filtering
 .vibe/evolution.json    ← Ad-hoc rule tracking
-45 skills               ← All sync methods
+55+ skills              ← All sync methods
 1 test gate             ← jest only
 ```
 
@@ -249,6 +249,6 @@ references/AGENTS.md    ← How reference docs work
 catalog/tools.yaml      ← Same 35+ tools
 lib/tool-registry.js    ← Registry with is_usable() filtering
 lib/settings.js         ← Exported settings schema
-45 skills               ← All methods have sync + async versions
+55+ skills              ← All methods have sync + async versions
 4 test gates            ← lint, typecheck, test, validate
 ```

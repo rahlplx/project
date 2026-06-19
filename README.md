@@ -13,7 +13,7 @@ No terminal. No code. Just tell your AI agent what you want and it happens.
 A curated collection of **community-verified AI engineering tools** — organized so your
 AI agent can find the right one for whatever you're building.
 
-**45+ agent skills** + **curated catalog of best-in-class tools** = everything you need
+**55+ agent skills** + **curated catalog of best-in-class tools** = everything you need
 to go from idea to shipped product without writing code.
 
 ## How It Works
@@ -52,7 +52,7 @@ Detailed analysis of our documentation strategy can be found in `docs/audit/DOCU
 ```
 vibe-stack/
 ├── SKILL.md           ← Instructions for your AI agent (start here)
-├── skills/            ← 45 agent skills your AI can use
+├── skills/            ← 55+ agent skills your AI can use
 ├── catalog/           ← Curated list of community-verified tools
 │   ├── tools.yaml     ← The catalog itself
 │   └── verified-by.md ← Who verified each tool and how

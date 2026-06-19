@@ -655,7 +655,7 @@ tools:
       standard way to give agents superpowers.
     how_agent_uses: >
       Our MCP server (bin/mcp-server.js) uses this pattern. Agents connect
-      to the MCP server and discover all 45+ skills as tools automatically.
+      to the MCP server and discover all 55+ skills as tools automatically.
     in_skills: true
     skill_path: bin/mcp-server.js
 
