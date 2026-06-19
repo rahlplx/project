@@ -98,7 +98,7 @@ Same pattern — add the stdio server config pointing to `npx vibe-stack mcp`.
 
 ## Available Tools
 
-When connected, the MCP server exposes **45 skills × multiple methods** as tools.
+When connected, the MCP server exposes **55+ skills × multiple methods** as tools.
 All tools follow the naming pattern: `{category}_{skillname}:{method}`
 
 ### Example Tools
@@ -114,7 +114,7 @@ All tools follow the naming pattern: `{category}_{skillname}:{method}`
 
 ### Full list
 
-Run `npx vibe-stack list` to see all 45 skills.
+Run `npx vibe-stack list` to see all 55+ skills.
 
 ## Manual Usage (Without MCP)
 
@@ -133,6 +133,6 @@ npx vibe-stack quality/vibe-review review "const x = 1;"
 ## How It Works
 
 1. `npx vibe-stack mcp` starts a JSON-RPC server over stdin/stdout
-2. The server auto-discovers all 45 skills in `skills/`
+2. The server auto-discovers all 55+ skills in `skills/`
 3. Each public method becomes a tool the agent can call
 4. No dependencies, no build step, no network required after install

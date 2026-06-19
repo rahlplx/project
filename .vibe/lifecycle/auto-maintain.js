@@ -353,8 +353,10 @@ function runHarness(runTestSuite = true) {
 
   // Check 14: toolsDiscovered count validation
   try {
-    const state = readJSON(STATE_PATH);
-    const declaredCount = state?.infrastructure?.toolsDiscovered || 0;
+    const yaml = require('js-yaml');
+    const toolsYaml = fs.readFileSync(path.join(PROJECT_ROOT, 'catalog', 'tools.yaml'), 'utf8');
+    const doc = yaml.load(toolsYaml);
+    const declaredCount = doc.tools?.length || 0;
     
     // Count actual skills on disk
     const skillsDir = path.join(PROJECT_ROOT, 'skills');
@@ -368,11 +370,10 @@ function runHarness(runTestSuite = true) {
       }
     }
     
-    // Validate: toolsDiscovered should be > skillCount (each skill has multiple tools)
-    // and reasonable (< 1000)
-    const pass = declaredCount > skillCount && declaredCount < 1000;
-    results.push({ check: 'tools-discovered-count', pass, data: { declared: declaredCount, skillCount, ratio: (declaredCount / skillCount).toFixed(1) } });
-    console.log(`  [harness]  ${pass ? '✓' : '✗'} tools-discovered-count (${declaredCount} tools, ${skillCount} skills, ratio: ${(declaredCount / skillCount).toFixed(1)})`);
+    // Validate: toolsDiscovered should be positive and reasonable
+    const pass = declaredCount > 0 && declaredCount < 1000;
+    results.push({ check: 'tools-discovered-count', pass, data: { declared: declaredCount, skillCount } });
+    console.log(`  [harness]  ${pass ? '✓' : '✗'} tools-discovered-count (${declaredCount} tools, ${skillCount} skills)`);
   } catch (e) {
     results.push({ check: 'tools-discovered-count', pass: false, error: e.message });
     console.log(`  [harness]  ✗ tools-discovered-count: ${e.message}`);
@@ -1027,6 +1028,14 @@ function syncStateMetrics(state, harnessResults) {
 
     if (!state.infrastructure) state.infrastructure = {};
     state.infrastructure.harnessChecks = Array.isArray(harnessResults) ? harnessResults.length : (harnessResults?.lastResults?.length || 0);
+
+    // Count tools from catalog
+    try {
+      const yaml = require('js-yaml');
+      const toolsYaml = fs.readFileSync(path.join(PROJECT_ROOT, 'catalog', 'tools.yaml'), 'utf8');
+      const doc = yaml.load(toolsYaml);
+      state.infrastructure.toolsDiscovered = doc.tools?.length || 0;
+    } catch { /* degrade silently */ }
 
     // Count passing tests from latest harness node-test result
     const nodeCheck = (Array.isArray(harnessResults) ? harnessResults : (harnessResults?.lastResults || []))

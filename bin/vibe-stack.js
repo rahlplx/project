@@ -13,7 +13,7 @@ const keys = Object.keys(skills);
 
 if (!mode || mode === '--help' || mode === '-h') {
   console.log(`
-  vibe-stack — 45 AI agent skills for vibe coders
+  vibe-stack — 55+ AI agent skills for vibe coders
 
   USAGE:
     npx vibe-stack <skill-path> <method> [args...]

@@ -1,7 +1,7 @@
 {
   "name": "@lablaunchpad/vibe-stack",
   "version": "2.9.1",
-  "description": "45 AI agent skills for vibe coders — deploy, design, review, orchestrate. Works with Codex, OpenCode, Claude Code, Antigravity, and any MCP-compatible agent.",
+  "description": "55+ AI agent skills for vibe coders — deploy, design, review, orchestrate. Works with Codex, OpenCode, Claude Code, Antigravity, and any MCP-compatible agent.",
   "main": "bin/vibe.js",
   "bin": {
     "vibe-stack": "bin/vibe.js"
@@ -40,7 +40,8 @@
     "postformat": "node -e \"require('./lib/discovery-index').writeIndex(process.cwd())\"",
     "format:check": "prettier --check .",
     "audit:prod": "npm audit --omit=dev",
-    "prepublishOnly": "npm run lint && npm run typecheck && npm test && node bin/vibe.js harness"
+    "prepublishOnly": "npm run lint && npm run typecheck && npm test && node bin/vibe.js harness",
+    "prepare": "husky"
   },
   "keywords": [
     "vibe-coding",
@@ -86,6 +87,11 @@
       "text"
     ]
   },
+  "lint-staged": {
+    "*.js": ["eslint --fix", "prettier --write"],
+    "*.yaml": ["prettier --write"],
+    "*.yml": ["prettier --write"]
+  },
   "overrides": {
     "@istanbuljs/load-nyc-config": {
       "js-yaml": "4.2.0"
@@ -93,8 +99,10 @@
   },
   "devDependencies": {
     "eslint": "^8.55.0",
+    "husky": "^9.1.7",
     "jest": "^29.7.0",
     "js-yaml": "^4.2.0",
+    "lint-staged": "^17.0.7",
     "prettier": "^3.1.0",
     "typescript": "^6.0.3"
   }
