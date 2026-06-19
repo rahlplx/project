@@ -45,6 +45,18 @@ commit_msg.txt
 .vibe/telemetry/tracker.json
 .vibe/learnings/evolutions/retro-*.json
 
+# Vibe runtime state (per-machine, not institutional memory)
+# M4: These files change on every CLI invocation, creating noisy git status.
+# They're ephemeral per-machine state — tracked files create merge conflicts
+# across clones. Institutional memory (.vibe/rules/, .vibe/learnings/,
+# .vibe/evolution.json) stays tracked.
+.vibe/state.json
+.vibe/goals.json
+.vibe/handoff.md
+.vibe/telemetry/otel/spans.jsonl
+.vibe/maintenance-log.json
+.vibe/lifecycle.json
+
 # Test artifacts
 test-screenshots/
 screenshots/
