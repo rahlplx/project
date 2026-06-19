@@ -19,11 +19,11 @@ An interactive tool that guides users through creating a comprehensive project s
 
 ## Example
 
-\`\`\`js
+```js
 const wizard = require('./skills/setup/project-wizard');
 const spec = await wizard.generateProjectSpec({
 projectName: 'Vibe App',
 projectType: 'saas',
 features: ['auth', 'database']
 });
-\`\`\`
+```

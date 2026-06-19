@@ -20,7 +20,7 @@ A skill for managing and applying design tokens and themed components.
 
 ## Example
 
-\`\`\`js
+```js
 const ds = require('./skills/design/design-system');
 await ds.apply('assets/123', 'my-project');
-\`\`\`
+```
