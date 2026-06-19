@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const { SkillBase } = require('../../../lib/skill-base.js');
 
 const HEALTH_CHECKS = [
   {
@@ -77,9 +76,8 @@ const HEALTH_CHECKS = [
   },
 ];
 
-class CodeHealth extends SkillBase {
+class CodeHealth {
   constructor(options = {}) {
-    super();
     this.name = 'code-health';
     this.description =
       'Static code health checks: no eval, no innerHTML, no empty catch, line length';
@@ -91,7 +89,7 @@ class CodeHealth extends SkillBase {
     return new Date().toISOString();
   }
 
-  analyzeFileSync(filePath) {
+  analyzeFile(filePath) {
     const abs = path.isAbsolute(filePath) ? filePath : path.join(this.projectRoot, filePath);
     if (!fs.existsSync(abs)) {
       return { type: 'error', timestamp: this._ts(), message: `File not found: ${filePath}` };
@@ -134,11 +132,7 @@ class CodeHealth extends SkillBase {
     };
   }
 
-  analyzeFile(filePath) {
-    return this.analyzeFileSync(filePath);
-  }
-
-  analyzeDirectorySync(dirPath, extensions) {
+  analyzeDirectory(dirPath, extensions) {
     const abs = path.isAbsolute(dirPath) ? dirPath : path.join(this.projectRoot, dirPath);
     const exts = extensions || ['.js', '.ts', '.jsx', '.tsx'];
     const results = [];
@@ -163,10 +157,6 @@ class CodeHealth extends SkillBase {
     };
   }
 
-  analyzeDirectory(dirPath, extensions) {
-    return this.analyzeDirectorySync(dirPath, extensions);
-  }
-
   _walk(dir, exts, results) {
     if (!fs.existsSync(dir)) return;
     const skip = ['node_modules', '.git', 'dist', 'build', '.next', 'coverage'];
@@ -178,12 +168,12 @@ class CodeHealth extends SkillBase {
         this._walk(full, exts, results);
       } else if (exts.some(e => item.endsWith(e))) {
         const rel = path.relative(this.projectRoot, full);
-        results.push(this.analyzeFileSync(rel));
+        results.push(this.analyzeFile(rel));
       }
     }
   }
 
-  getCheckListSync() {
+  getCheckList() {
     return {
       type: 'health_checks',
       timestamp: this._ts(),
@@ -196,11 +186,7 @@ class CodeHealth extends SkillBase {
     };
   }
 
-  getCheckList() {
-    return this.getCheckListSync();
-  }
-
-  toMarkdownSync(analysis) {
+  toMarkdown(analysis) {
     if (!analysis) return '# Code Health\nRun analyzeFile() or analyzeDirectory() first.';
     const a = analysis;
     const lines = [
@@ -228,16 +214,8 @@ class CodeHealth extends SkillBase {
     return lines.join('\n');
   }
 
-  toMarkdown(analysis) {
-    return this.toMarkdownSync(analysis);
-  }
-
-  toJSONSync() {
-    return { checks: HEALTH_CHECKS.map(c => ({ id: c.id, name: c.name, severity: c.severity })) };
-  }
-
   toJSON() {
-    return this.toJSONSync();
+    return { checks: HEALTH_CHECKS.map(c => ({ id: c.id, name: c.name, severity: c.severity })) };
   }
 }
 

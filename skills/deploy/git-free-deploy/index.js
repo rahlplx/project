@@ -2,44 +2,30 @@
 
 const fs = require('fs');
 const path = require('path');
-const { SkillBase } = require('../../../lib/skill-base.js');
 
-class GitFreeDeploy extends SkillBase {
+class GitFreeDeploy {
   constructor(config = {}) {
-    super();
     this.name = 'git-free-deploy';
     this.version = '1.0.0';
     this.description =
-      'Deploy static sites without git - wraps surge.sh, npx serve, and Netlify Drop';
+      'Deploy static sites without git — wraps surge.sh, npx serve, and Netlify Drop';
   }
 
-  buildServeCommandSync(projectPath = '.', port = 3000) {
+  buildServeCommand(projectPath = '.', port = 3000) {
     return { cmd: 'npx', args: ['serve', projectPath, '-p', String(port)] };
   }
 
-  buildServeCommand(projectPath, port) {
-    return this.buildServeCommandSync(projectPath, port);
-  }
-
-  buildSurgeCommandSync(projectPath = '.', domain) {
+  buildSurgeCommand(projectPath = '.', domain) {
     const args = ['surge', projectPath];
     if (domain) args.push(domain);
     return { cmd: 'npx', args };
   }
 
-  buildSurgeCommand(projectPath, domain) {
-    return this.buildSurgeCommandSync(projectPath, domain);
-  }
-
-  buildNetlifyDropCommandSync(projectPath = '.') {
+  buildNetlifyDropCommand(projectPath = '.') {
     return { cmd: 'npx', args: ['netlify-cli', 'deploy', '--dir', projectPath] };
   }
 
-  buildNetlifyDropCommand(projectPath) {
-    return this.buildNetlifyDropCommandSync(projectPath);
-  }
-
-  prepareStaticFilesSync(sourceDir = '.') {
+  prepareStaticFiles(sourceDir = '.') {
     const resolvedSource = path.resolve(sourceDir);
     if (!fs.existsSync(resolvedSource)) {
       return { success: false, error: `Source not found: ${sourceDir}` };
@@ -66,30 +52,22 @@ class GitFreeDeploy extends SkillBase {
     };
   }
 
-  prepareStaticFiles(sourceDir) {
-    return this.prepareStaticFilesSync(sourceDir);
-  }
-
-  generateDeployPackageSync(sourceDir = '.') {
-    const files = this.prepareStaticFilesSync(sourceDir);
+  generateDeployPackage(sourceDir = '.') {
+    const files = this.prepareStaticFiles(sourceDir);
     if (!files.success) return files;
     return {
       success: true,
       fileCount: files.fileCount,
       commands: [
-        { label: 'Local preview', ...this.buildServeCommandSync(sourceDir) },
-        { label: 'Deploy via Surge.sh', ...this.buildSurgeCommandSync(sourceDir) },
-        { label: 'Deploy via Netlify Drop', ...this.buildNetlifyDropCommandSync(sourceDir) },
+        { label: 'Local preview', ...this.buildServeCommand(sourceDir) },
+        { label: 'Deploy via Surge.sh', ...this.buildSurgeCommand(sourceDir) },
+        { label: 'Deploy via Netlify Drop', ...this.buildNetlifyDropCommand(sourceDir) },
       ],
       timestamp: new Date().toISOString(),
     };
   }
 
-  generateDeployPackage(sourceDir) {
-    return this.generateDeployPackageSync(sourceDir);
-  }
-
-  validateStaticSiteSync(sourceDir = '.') {
+  validateStaticSite(sourceDir = '.') {
     const resolved = path.resolve(sourceDir);
     if (!fs.existsSync(resolved)) return { valid: false, error: 'Directory not found' };
     const checks = {
@@ -99,23 +77,15 @@ class GitFreeDeploy extends SkillBase {
     return { valid: checks.hasIndexHtml, checks };
   }
 
-  validateStaticSite(sourceDir) {
-    return this.validateStaticSiteSync(sourceDir);
-  }
-
-  toJSONSync() {
-    return { name: this.name, version: this.version, description: this.description };
-  }
-
   toJSON() {
-    return this.toJSONSync();
+    return { name: this.name, version: this.version, description: this.description };
   }
 }
 
 if (require.main === module) {
   const skill = new GitFreeDeploy();
   const dir = process.argv[2] || '.';
-  const pkg = skill.generateDeployPackageSync(dir);
+  const pkg = skill.generateDeployPackage(dir);
   console.log(
     pkg.success
       ? pkg.commands.map(c => `${c.label}: ${c.cmd} ${c.args.join(' ')}`).join('\n')

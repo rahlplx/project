@@ -1,16 +1,13 @@
 #!/usr/bin/env node
 
-const { SkillBase } = require('../../../lib/skill-base.js');
-
-class AntiPatterns extends SkillBase {
+class AntiPatterns {
   constructor(config = {}) {
-    super();
     this.name = 'anti-patterns';
     this.version = '1.0.0';
     this.description = 'Detects common coding anti-patterns and suggests better alternatives';
   }
 
-  analyzeSync(code) {
+  analyze(code) {
     if (!code) return { success: false, error: 'No code provided.' };
 
     const patterns = this._getPatterns();
@@ -40,10 +37,6 @@ class AntiPatterns extends SkillBase {
       },
       timestamp: new Date().toISOString(),
     };
-  }
-
-  analyze(code) {
-    return this.analyzeSync(code);
   }
 
   _getPatterns() {
@@ -173,17 +166,13 @@ class AntiPatterns extends SkillBase {
     ];
   }
 
-  toJSONSync() {
+  toJSON() {
     return {
       name: this.name,
       version: this.version,
       description: this.description,
       patterns: this._getPatterns().length,
     };
-  }
-
-  toJSON() {
-    return this.toJSONSync();
   }
 }
 

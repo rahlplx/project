@@ -1,7 +1,5 @@
 'use strict';
 
-const { SkillBase } = require('../../../lib/skill-base.js');
-
 const DONE_CRITERIA = [
   {
     id: 'spec_met',
@@ -103,9 +101,8 @@ const DONE_CRITERIA = [
   },
 ];
 
-class DoneVerifier extends SkillBase {
+class DoneVerifier {
   constructor(options = {}) {
-    super();
     this.name = 'done-verifier';
     this.description =
       '14-point checklist verifying a feature is truly production-ready before shipping';
@@ -117,7 +114,7 @@ class DoneVerifier extends SkillBase {
     return new Date().toISOString();
   }
 
-  startVerificationSync(projectName) {
+  startVerification(projectName) {
     const session = {
       id: Date.now().toString(36),
       projectName,
@@ -138,11 +135,7 @@ class DoneVerifier extends SkillBase {
     };
   }
 
-  startVerification(projectName) {
-    return this.startVerificationSync(projectName);
-  }
-
-  respondSync(sessionId, criterionId, passed, note) {
+  respond(sessionId, criterionId, passed, note) {
     const session = this.sessions.find(s => s.id === sessionId);
     if (!session) {
       return { type: 'error', timestamp: this._ts(), message: `Session ${sessionId} not found` };
@@ -160,11 +153,7 @@ class DoneVerifier extends SkillBase {
     };
   }
 
-  respond(sessionId, criterionId, passed, note) {
-    return this.respondSync(sessionId, criterionId, passed, note);
-  }
-
-  getReportSync(sessionId) {
+  getReport(sessionId) {
     const session = this.sessions.find(s => s.id === sessionId);
     if (!session) {
       return { type: 'error', timestamp: this._ts(), message: `Session ${sessionId} not found` };
@@ -200,11 +189,7 @@ class DoneVerifier extends SkillBase {
     };
   }
 
-  getReport(sessionId) {
-    return this.getReportSync(sessionId);
-  }
-
-  quickCheckSync(answers) {
+  quickCheck(answers) {
     // answers = { criterionId: boolean }
     const failed = DONE_CRITERIA.filter(c => answers[c.id] === false && c.blocking);
     const unanswered = DONE_CRITERIA.filter(c => answers[c.id] === undefined);
@@ -220,20 +205,12 @@ class DoneVerifier extends SkillBase {
     };
   }
 
-  quickCheck(answers) {
-    return this.quickCheckSync(answers);
-  }
-
-  getCriteriaSync(category) {
+  getCriteria(category) {
     const criteria = category ? DONE_CRITERIA.filter(c => c.category === category) : DONE_CRITERIA;
     return { type: 'criteria_list', timestamp: this._ts(), criteria };
   }
 
-  getCriteria(category) {
-    return this.getCriteriaSync(category);
-  }
-
-  toMarkdownSync() {
+  toMarkdown() {
     const lines = ['# Done Checklist', ''];
     const byCategory = {};
     for (const c of DONE_CRITERIA) {
@@ -251,16 +228,8 @@ class DoneVerifier extends SkillBase {
     return lines.join('\n');
   }
 
-  toMarkdown() {
-    return this.toMarkdownSync();
-  }
-
-  toJSONSync() {
-    return { criteria: DONE_CRITERIA };
-  }
-
   toJSON() {
-    return this.toJSONSync();
+    return { criteria: DONE_CRITERIA };
   }
 }
 

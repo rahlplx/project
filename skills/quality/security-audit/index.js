@@ -1,7 +1,5 @@
 'use strict';
 
-const { SkillBase } = require('../../../lib/skill-base.js');
-
 // OWASP Top 10 aligned security checks
 const SECURITY_RULES = [
   {
@@ -165,9 +163,8 @@ const CODE_PATTERNS = [
   },
 ];
 
-class SecurityAudit extends SkillBase {
+class SecurityAudit {
   constructor(options = {}) {
-    super();
     this.name = 'security-audit';
     this.description = 'OWASP Top 10 aligned security audit with code pattern scanning';
     this.options = options;
@@ -177,7 +174,7 @@ class SecurityAudit extends SkillBase {
     return new Date().toISOString();
   }
 
-  scanCodeSync(code) {
+  scanCode(code) {
     const found = CODE_PATTERNS.filter(p => p.pattern.test(code));
     return {
       type: 'code_scan',
@@ -188,7 +185,7 @@ class SecurityAudit extends SkillBase {
     };
   }
 
-  auditChecklistSync(appType) {
+  auditChecklist(appType) {
     const relevant =
       appType === 'api'
         ? SECURITY_RULES.filter(r => !['A08_software_integrity'].includes(r.id))
@@ -209,7 +206,7 @@ class SecurityAudit extends SkillBase {
     };
   }
 
-  evaluateSync(answers) {
+  evaluate(answers) {
     // answers = { ruleId: { passed: boolean, notes: string } }
     const results = SECURITY_RULES.map(r => {
       const answer = answers[r.id];
@@ -242,7 +239,7 @@ class SecurityAudit extends SkillBase {
     };
   }
 
-  getOwaspRuleSync(owaspId) {
+  getOwaspRule(owaspId) {
     const rule = SECURITY_RULES.find(r => r.owasp === owaspId);
     if (!rule) {
       return { type: 'error', timestamp: this._ts(), message: `OWASP rule ${owaspId} not found` };
@@ -250,7 +247,7 @@ class SecurityAudit extends SkillBase {
     return { type: 'owasp_rule', timestamp: this._ts(), ...rule };
   }
 
-  toMarkdownSync() {
+  toMarkdown() {
     const lines = ['# Security Audit Checklist (OWASP Top 10)', ''];
     for (const r of SECURITY_RULES) {
       const sev = r.severity === 'critical' ? '🔴' : r.severity === 'high' ? '🟠' : '🟡';
@@ -263,7 +260,7 @@ class SecurityAudit extends SkillBase {
     return lines.join('\n');
   }
 
-  toJSONSync() {
+  toJSON() {
     return {
       rules: SECURITY_RULES.map(r => ({
         id: r.id,
@@ -272,30 +269,6 @@ class SecurityAudit extends SkillBase {
         severity: r.severity,
       })),
     };
-  }
-
-  scanCode(code) {
-    return this.scanCodeSync(code);
-  }
-
-  auditChecklist(appType) {
-    return this.auditChecklistSync(appType);
-  }
-
-  evaluate(answers) {
-    return this.evaluateSync(answers);
-  }
-
-  getOwaspRule(owaspId) {
-    return this.getOwaspRuleSync(owaspId);
-  }
-
-  toMarkdown() {
-    return this.toMarkdownSync();
-  }
-
-  toJSON() {
-    return this.toJSONSync();
   }
 }
 
