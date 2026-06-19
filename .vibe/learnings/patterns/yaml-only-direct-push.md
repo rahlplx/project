@@ -17,4 +17,4 @@ Any commit that modifies only catalog entries, config files, docs, or other non-
 - `catalog/tools.yaml` — 3 direct-to-main commits across 35 entries
 
 ## Tested On
-vibe-stack-curated-collection, 2026-06-13
+vibenexus-curated-collection, 2026-06-13

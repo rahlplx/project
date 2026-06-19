@@ -1,4 +1,4 @@
-# Project: Vibe-Stack Enhancement Roadmap
+# Project: VibeNexus Enhancement Roadmap
 
 ## What This Is
 A curated collection of AI tools and skills for vibe coders — people who build software by describing what they want in plain language, not by writing code. An AI agent reads `SKILL.md`, finds tools in `catalog/tools.yaml`, and helps the vibe coder build, design, test, and ship.

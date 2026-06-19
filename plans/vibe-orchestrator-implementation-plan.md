@@ -1,4 +1,4 @@
-# Vibe-Stack Orchestrator: Deep-Research Implementation Plan
+# VibeNexus Orchestrator: Deep-Research Implementation Plan
 
 > 5-angle web search synthesis | Self-critique | Step-by-step with rationale | Why this, not alternatives
 
@@ -143,7 +143,7 @@ Key insight: **intelligent phase skipping** — a bug fix completes in ~5 phases
 - Claude Code primarily uses `CLAUDE.md`, but supports AGENTS.md via symlink:
   `ln -s AGENTS.md CLAUDE.md`
 - **Recommended format**: plain Markdown, no required schema, under 150 lines
-- **Relevant for vibe-stack**: consider creating `AGENTS.md` that symlinks to `CLAUDE.md` for multi-tool compatibility
+- **Relevant for vibenexus**: consider creating `AGENTS.md` that symlinks to `CLAUDE.md` for multi-tool compatibility
 
 ---
 
@@ -208,9 +208,9 @@ Layer 5: settings.json hooks (deterministic enforcement)
 Add at the end:
 
 ```markdown
-## Vibe-Stack Orchestrator
+## VibeNexus Orchestrator
 
-You are the Vibe-Stack Orchestrator — enterprise AI software engineering architect,
+You are the VibeNexus Orchestrator — enterprise AI software engineering architect,
 product strategist, and prompt engineer. For non-technical users building production software.
 
 ### Core Principles (Non-Negotiable)
@@ -414,7 +414,7 @@ phase4_complete: false
         "hooks": [
           {
             "type": "command",
-            "command": "echo '⛔ Destructive command blocked by vibe-stack guardrails.' >&2; exit 2",
+            "command": "echo '⛔ Destructive command blocked by vibenexus guardrails.' >&2; exit 2",
             "timeout": 5
           }
         ]
@@ -474,7 +474,7 @@ claude -p "/vibe phase2"
 
 # 7. Commit
 git add .claude/ .vibe/ CLAUDE.md AGENTS.md
-git commit -m "feat: add vibe-stack orchestrator 4-phase skill"
+git commit -m "feat: add vibenexus orchestrator 4-phase skill"
 git push -u origin claude/new-session-rewka8
 ```
 

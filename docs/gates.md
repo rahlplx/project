@@ -1,8 +1,8 @@
-# Phase Gates: Vibe-Stack 5-Phase Pipeline
+# Phase Gates: VibeNexus 5-Phase Pipeline
 
 ## Purpose
 
-Every phase transition in the vibe-stack pipeline requires passing its quality gate. No phase advances without meeting its criteria. This prevents context loss and quality regressions between layers.
+Every phase transition in the vibenexus pipeline requires passing its quality gate. No phase advances without meeting its criteria. This prevents context loss and quality regressions between layers.
 
 ## Gate Summary
 

@@ -16,7 +16,7 @@ Before major architecture decisions. After catalog expansion. When looking for i
 
 ## Key Findings (2026-06-13)
 - **11 repos verified**: opencode, langchain, crewAI, mastra, langgraph, qdrant, mem0, weaviate, langflow, penpot, open-pencil
-- **Top repo for our patterns**: mastra (95/100) — TS, tested, documented, MCP, agents, rules, vibe-stack
+- **Top repo for our patterns**: mastra (95/100) — TS, tested, documented, MCP, agents, rules, vibenexus
 - **Most common integration candidate**: MCP integration (8/11 repos)
 - **Avg quality**: 53/100
 
@@ -25,4 +25,4 @@ Before major architecture decisions. After catalog expansion. When looking for i
 - `.vibe/telemetry/repo-mining/` — individual analyses + insights.json
 
 ## Tested On
-vibe-stack-curated-collection, 2026-06-13
+vibenexus-curated-collection, 2026-06-13

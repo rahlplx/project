@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A **unified AI-agent-agnostic orchestrator** that adds enterprise-grade planning (intent capture → market research → doc generation → implementation) with reusable utility catalogs and a knowledge feedback loop — built on top of the existing vibe-stack system.
+A **unified AI-agent-agnostic orchestrator** that adds enterprise-grade planning (intent capture → market research → doc generation → implementation) with reusable utility catalogs and a knowledge feedback loop — built on top of the existing vibenexus system.
 
 **Key constraint**: NO Claude Code-specific integration. Works with ANY AI agent via SKILL.md + MCP + CLI.
 
@@ -860,7 +860,7 @@ tools: {
 - [ ] 3-round Q&A (not 10 flat questions)
 - [ ] Knowledge base for cross-project learning
 - [ ] Utility catalog with verified repos
-- [ ] Integration with existing vibe-stack
+- [ ] Integration with existing vibenexus
 - [ ] 29 tests across 6 steps
 - [ ] Input validation for Phase 1
 - [ ] Fallback paths for each phase

@@ -17,4 +17,4 @@ Any time you add a tool to `catalog/tools.yaml`. Always write both fields. Never
 - `catalog/tools.yaml` — all 35 entries use this pattern
 
 ## Tested On
-vibe-stack-curated-collection, 2026-06-13
+vibenexus-curated-collection, 2026-06-13

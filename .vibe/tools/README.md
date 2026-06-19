@@ -21,7 +21,7 @@ node .vibe/tools/repo-miner.js
 
 The tool mines these curated repositories:
 
-- **Core vibe-stack ecosystem**: This repo, opencode
+- **Core vibenexus ecosystem**: This repo, opencode
 - **gstack / gsd equivalents**: gstack, gsd
 - **Superpowers equivalent**: superpowers
 - **Agent frameworks**: langchain, crewai, fastmcp, mastra

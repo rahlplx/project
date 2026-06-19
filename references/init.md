@@ -1,6 +1,6 @@
 # vibe:init — Onboarding Wizard
 
-First-time setup for vibe-stack in a new project directory.
+First-time setup for vibenexus in a new project directory.
 
 ## When to Run
 

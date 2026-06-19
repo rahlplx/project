@@ -1,4 +1,4 @@
-# Design Doc: Vibe-Stack Repo Enhancement Roadmap
+# Design Doc: VibeNexus Repo Enhancement Roadmap
 
 ## What This Is
 

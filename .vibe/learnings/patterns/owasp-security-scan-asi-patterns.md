@@ -23,4 +23,4 @@ Any repo containing agent skill modules, prompt files, or AI configuration that 
 - `lib/security-scan.report.js` — text/JSON/markdown formatters
 
 ## Tested On
-Vibe-Stack Curated Collection, 2026-06-14. 73 tests, 0 CRITICAL findings across 47 skills.
+VibeNexus Curated Collection, 2026-06-14. 73 tests, 0 CRITICAL findings across 47 skills.

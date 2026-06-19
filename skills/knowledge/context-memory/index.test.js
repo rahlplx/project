@@ -8,8 +8,8 @@ describe('ContextMemory', () => {
 
   it('should remember and recall', () => {
     const s = new ContextMemory();
-    s.remember('name', 'vibe-stack');
-    expect(s.recall('name').value).toBe('vibe-stack');
+    s.remember('name', 'vibenexus');
+    expect(s.recall('name').value).toBe('vibenexus');
   });
 
   it('should forget', () => {

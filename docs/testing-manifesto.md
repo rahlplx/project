@@ -1,4 +1,4 @@
-# 📜 The Vibe-Stack Testing Manifesto
+# 📜 The VibeNexus Testing Manifesto
 
 This manifesto outlines the "Proven Ways" for 100% robustness in a codebase built with vibes, agents, and engineering.
 

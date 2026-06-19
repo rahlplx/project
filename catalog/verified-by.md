@@ -8,13 +8,13 @@ and what "verified" means.
 | Level  | Badge                    | Meaning                                             |
 | ------ | ------------------------ | --------------------------------------------------- |
 | Tier 1 | **official**             | Maintained by the company that built it             |
-| Tier 2 | **community-vibe-stack** | Reviewed by the Vibe-Stack curation team            |
+| Tier 2 | **community-vibenexus** | Reviewed by the VibeNexus curation team            |
 | Tier 3 | **community (N stars)**  | Widely adopted by the community (N+ GitHub stars)   |
 | Tier 4 | **contributor**          | Contributed and self-verified by a community member |
 
 ## Verification Process (Tier 2)
 
-To be `community-vibe-stack` verified:
+To be `community-vibenexus` verified:
 
 1. **Exists.** The repo is real, maintained, not abandoned.
 2. **Works.** Someone on the team installed and used it successfully.
@@ -26,7 +26,7 @@ To be `community-vibe-stack` verified:
 
 | Verifier               | Type          | Notes                                            |
 | ---------------------- | ------------- | ------------------------------------------------ |
-| `community-vibe-stack` | Curated team  | Vibe-Stack maintainers review each tool manually |
+| `community-vibenexus` | Curated team  | VibeNexus maintainers review each tool manually |
 | `community (N+ stars)` | Market signal | N+ GitHub stars from real developers             |
 | `microsoft`            | Official      | Maintained by Microsoft                          |
 | `google-labs`          | Official      | Maintained by Google Labs                        |

@@ -13,27 +13,27 @@ const keys = Object.keys(skills);
 
 if (!mode || mode === '--help' || mode === '-h') {
   console.log(`
-  vibe-stack — 45 AI agent skills for vibe coders
+  vibenexus — 45 AI agent skills for vibe coders
 
   USAGE:
-    npx vibe-stack <skill-path> <method> [args...]
-    npx vibe-stack mcp          (start MCP server for AI agents)
-    npx vibe-stack list         (list all skills)
-    npx vibe-stack list --all   (list all registered tools)
-    npx vibe-stack --help       (this message)
+    npx vibenexus <skill-path> <method> [args...]
+    npx vibenexus mcp          (start MCP server for AI agents)
+    npx vibenexus list         (list all skills)
+    npx vibenexus list --all   (list all registered tools)
+    npx vibenexus --help       (this message)
 
   EXAMPLES:
-    npx vibe-stack deploy/one-click-vercel buildDeployCommand .
-    npx vibe-stack progress/error-translator translate "ECONNREFUSED"
-    npx vibe-stack quality/vibe-review review "const x = 1;"
+    npx vibenexus deploy/one-click-vercel buildDeployCommand .
+    npx vibenexus progress/error-translator translate "ECONNREFUSED"
+    npx vibenexus quality/vibe-review review "const x = 1;"
 
   PLATFORM CONFIG (for AI agent integration):
     Add to your agent's MCP tools config:
     {
       "mcpServers": {
-        "vibe-stack": {
+        "vibenexus": {
           "command": "npx",
-          "args": ["vibe-stack", "mcp"]
+          "args": ["vibenexus", "mcp"]
         }
       }
     }
@@ -84,7 +84,7 @@ const args = process.argv.slice(4);
 const entry = skills[skillKey];
 if (!entry) {
   console.error('Unknown skill: ' + skillKey);
-  console.error('Run: npx vibe-stack list');
+  console.error('Run: npx vibenexus list');
   process.exit(1);
 }
 

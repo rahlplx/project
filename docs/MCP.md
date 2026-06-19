@@ -1,15 +1,15 @@
 # MCP.md — Platform Integration Guide
 
-Add `vibe-stack` as an MCP tool server to **any AI agent** that supports the Model Context Protocol.
+Add `vibenexus` as an MCP tool server to **any AI agent** that supports the Model Context Protocol.
 
 ## Quick Start (All Platforms)
 
 ```json
 {
   "mcpServers": {
-    "vibe-stack": {
+    "vibenexus": {
       "command": "npx",
-      "args": ["vibe-stack", "mcp"]
+      "args": ["vibenexus", "mcp"]
     }
   }
 }
@@ -24,9 +24,9 @@ Add to `~/.config/opencode/opencode.json` or `.opencode/opencode.json` in your p
 ```json
 {
   "mcpServers": {
-    "vibe-stack": {
+    "vibenexus": {
       "command": "npx",
-      "args": ["vibe-stack", "mcp"]
+      "args": ["vibenexus", "mcp"]
     }
   }
 }
@@ -39,9 +39,9 @@ Add to your project's `.mcp.json` or Claude config:
 ```json
 {
   "mcpServers": {
-    "vibe-stack": {
+    "vibenexus": {
       "command": "npx",
-      "args": ["vibe-stack", "mcp"]
+      "args": ["vibenexus", "mcp"]
     }
   }
 }
@@ -54,9 +54,9 @@ Add to your Codex agent configuration:
 ```json
 {
   "mcpServers": {
-    "vibe-stack": {
+    "vibenexus": {
       "command": "npx",
-      "args": ["vibe-stack", "mcp"]
+      "args": ["vibenexus", "mcp"]
     }
   }
 }
@@ -69,9 +69,9 @@ Use the Antigravity MCP tools configuration:
 ```json
 {
   "tools": {
-    "vibe-stack": {
+    "vibenexus": {
       "command": "npx",
-      "args": ["vibe-stack", "mcp"]
+      "args": ["vibenexus", "mcp"]
     }
   }
 }
@@ -84,9 +84,9 @@ Add to `.cursor/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "vibe-stack": {
+    "vibenexus": {
       "command": "npx",
-      "args": ["vibe-stack", "mcp"]
+      "args": ["vibenexus", "mcp"]
     }
   }
 }
@@ -94,7 +94,7 @@ Add to `.cursor/mcp.json`:
 
 ### Windsurf / Other MCP Agents
 
-Same pattern — add the stdio server config pointing to `npx vibe-stack mcp`.
+Same pattern — add the stdio server config pointing to `npx vibenexus mcp`.
 
 ## Available Tools
 
@@ -114,7 +114,7 @@ All tools follow the naming pattern: `{category}_{skillname}:{method}`
 
 ### Full list
 
-Run `npx vibe-stack list` to see all 45 skills.
+Run `npx vibenexus list` to see all 45 skills.
 
 ## Manual Usage (Without MCP)
 
@@ -122,17 +122,17 @@ If your agent doesn't support MCP, use the CLI directly:
 
 ```bash
 # List all skills
-npx vibe-stack list
+npx vibenexus list
 
 # Call a specific skill method
-npx vibe-stack deploy/one-click-vercel buildDeployCommand .
-npx vibe-stack progress/error-translator translate "ECONNREFUSED"
-npx vibe-stack quality/vibe-review review "const x = 1;"
+npx vibenexus deploy/one-click-vercel buildDeployCommand .
+npx vibenexus progress/error-translator translate "ECONNREFUSED"
+npx vibenexus quality/vibe-review review "const x = 1;"
 ```
 
 ## How It Works
 
-1. `npx vibe-stack mcp` starts a JSON-RPC server over stdin/stdout
+1. `npx vibenexus mcp` starts a JSON-RPC server over stdin/stdout
 2. The server auto-discovers all 45 skills in `skills/`
 3. Each public method becomes a tool the agent can call
 4. No dependencies, no build step, no network required after install

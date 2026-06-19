@@ -1,7 +1,7 @@
 # .vibe/AGENTS.md
 
 ## Purpose
-The `.vibe/` directory powers the autonomous lifecycle and self-improvement system of vibe-stack. An AI agent reads these files at session start to understand the project state and what maintenance work is needed.
+The `.vibe/` directory powers the autonomous lifecycle and self-improvement system of vibenexus. An AI agent reads these files at session start to understand the project state and what maintenance work is needed.
 
 ## Structure
 ```

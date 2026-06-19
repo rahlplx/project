@@ -1,7 +1,7 @@
 # Project: AI-Native SDLC Adoption
 
 ## Summary
-Adopted the 5-phase AI-Native SDLC (Brief→Align→Plan→Verify→Ship) mapped to vibe-stack's SCOPE→BUILD→VERIFY→SHIP→EVOLVE state machine. Integrated gstack (strategy/QA), GSD (context), Superpowers (TDD/execution) into unified workflow.
+Adopted the 5-phase AI-Native SDLC (Brief→Align→Plan→Verify→Ship) mapped to vibenexus's SCOPE→BUILD→VERIFY→SHIP→EVOLVE state machine. Integrated gstack (strategy/QA), GSD (context), Superpowers (TDD/execution) into unified workflow.
 
 ## What Worked
 1. **MCP SDK compliance** - `@modelcontextprotocol/sdk` v1.29.0 provides CJS-compatible `require` paths. Zero ESM friction.
@@ -50,4 +50,4 @@ Adopted the 5-phase AI-Native SDLC (Brief→Align→Plan→Verify→Ship) mapped
 4. Rebuild INDEX.md cross-references
 
 ## Tested On
-vibe-stack, 2026-06-14
+vibenexus, 2026-06-14

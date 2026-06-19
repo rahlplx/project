@@ -42,7 +42,7 @@ Last updated: 2026-06-14T12:00:00.000Z
 ## Projects
 
 - [AI-Native SDLC Adoption](projects/ai-native-sdlc-adoption.md)
-- [Vibe-Stack Curated Collection](projects/vibe-stack-curated-collection.md)
+- [VibeNexus Curated Collection](projects/vibenexus-curated-collection.md)
 
 ## Solutions
 

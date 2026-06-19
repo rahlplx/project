@@ -1,7 +1,7 @@
 # Pattern: Auto Pipeline Maps to Catalog Curation
 
 ## Problem
-The vibe-stack auto pipeline (think→plan→break→build→harness→review→ship→retro) was designed for software features with tests and code. Curation work (adding tool entries to a YAML catalog) doesn't have tests or build steps.
+The vibenexus auto pipeline (think→plan→break→build→harness→review→ship→retro) was designed for software features with tests and code. Curation work (adding tool entries to a YAML catalog) doesn't have tests or build steps.
 
 ## Solution
 The pipeline phases still map cleanly:
@@ -21,4 +21,4 @@ Any curation or data-entry pipeline. The structured thinking is the value — ad
 - `references/vibe-curation.md` — adapted pipeline for curation
 
 ## Tested On
-vibe-stack-curated-collection, 2026-06-13
+vibenexus-curated-collection, 2026-06-13

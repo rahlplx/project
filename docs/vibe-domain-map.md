@@ -1,6 +1,6 @@
-# 🗺️ Vibe-Stack Domain Map & Efficiency Guide
+# 🗺️ VibeNexus Domain Map & Efficiency Guide
 
-This document maps the core domains of the Vibe-Stack codebase, analyzed through the lens of multiple expert personas to maximize efficiency, performance, and clarity.
+This document maps the core domains of the VibeNexus codebase, analyzed through the lens of multiple expert personas to maximize efficiency, performance, and clarity.
 
 ---
 
@@ -104,12 +104,12 @@ This document maps the core domains of the Vibe-Stack codebase, analyzed through
 
 **The "Bridge to the World".**
 
-- **WHAT**: Connects vibe-stack to Cursor, Claude Code, and other MCP-compatible environments.
+- **WHAT**: Connects vibenexus to Cursor, Claude Code, and other MCP-compatible environments.
 - **WHY**: To bring vibe-coding skills directly into the user's preferred editor.
 - **WHO**: **The Ambassador** (Persona: Interoperability).
 - **WHEN**: Installation and during live MCP sessions.
 - **WHERE**: `bin/mcp-server.js`, `lib/install-ide.js`, `plugin/`.
 - **HOW**: Implements the Model Context Protocol (MCP) for tool discovery and execution.
-- **REAL-WORLD RESULT**: "Talk to your code" in Cursor with full Vibe-Stack context.
+- **REAL-WORLD RESULT**: "Talk to your code" in Cursor with full VibeNexus context.
 - **EFFICIENCY RATING**: ⭐⭐⭐ (Interpreted bridge; slight latency).
 - **PROVEN SOLUTION**: Use `ResponseStreamer` for real-time progress updates during long-running tool calls.

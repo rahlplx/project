@@ -13,4 +13,4 @@ Any time quality scores need to be regenerated and saved to disk.
 - `lib/quality-score.js` — computeAllToolScores reads existing scores if path given but never writes
 
 ## Tested On
-vibe-stack, 2026-06-14
+vibenexus, 2026-06-14

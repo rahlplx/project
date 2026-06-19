@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Pre-commit hook for vibe-stack.
+ * Pre-commit hook for vibenexus.
  * To install: copy or symlink to .git/hooks/pre-commit
  * Or run: npx husky (if installed)
  *

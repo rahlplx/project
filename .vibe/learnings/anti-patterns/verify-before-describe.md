@@ -6,7 +6,7 @@ Two tools (OpenPencil at "5.4k+ stars", Refact.ai) had less metadata available t
 ## Root Cause
 The workflow was: pick a tool → write description → verify later. Should be: pick tool → verify repo_url/stars/license/activity → confirm it meets criteria → write description once.
 
-## How vibe-stack Should Catch It
+## How vibenexus Should Catch It
 Add a pre-flight checklist to the curation workflow in `references/vibe-curation.md`:
 1. Confirm repo_url resolves
 2. Confirm license is compatible
@@ -15,4 +15,4 @@ Add a pre-flight checklist to the curation workflow in `references/vibe-curation
 5. THEN write description
 
 ## Incident
-vibe-stack-curated-collection, 2026-06-13 — 2 entries needed post-hoc verification that should have been pre-hoc.
+vibenexus-curated-collection, 2026-06-13 — 2 entries needed post-hoc verification that should have been pre-hoc.

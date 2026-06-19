@@ -6,7 +6,7 @@ Methods designed as static are called with `this.` context, causing runtime erro
 ## Root Cause
 Inconsistent mental model about whether a method belongs to the class (static) or an instance. TypeScript/JavaScript allows both but mixing causes confusion.
 
-## How vibe-stack Should Catch It
+## How vibenexus Should Catch It
 1. **Method design decision** - At implementation time, ask: "Does this method need instance state?"
    - No → make it static
    - Yes → make it instance method
@@ -29,7 +29,7 @@ class TokenOptimizer {
 ```
 
 ## Incident
-vibe-stack, 2026-06-14: TokenOptimizer.wrapResult/wrapError designed as static but initially called with `this.` in MCPAdapter. Fixed to static calls.
+vibenexus, 2026-06-14: TokenOptimizer.wrapResult/wrapError designed as static but initially called with `this.` in MCPAdapter. Fixed to static calls.
 
 ## Prevention
 - Document static vs instance convention in coding standards

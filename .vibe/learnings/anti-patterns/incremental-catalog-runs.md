@@ -11,8 +11,8 @@ Each run had the same think→research→add→commit cycle. The research and ed
 ## Root Cause
 Breaking work into "safe" increments. Each run felt smaller and lower-risk. But catalog-only changes never risked breakage — there was no reason to gate.
 
-## How vibe-stack Should Catch It
+## How vibenexus Should Catch It
 Before starting a curation run, estimate the total number of new tools needed. If >5, batch into a single pipeline run. The constraint is research time per tool (~3 min), not pipeline safety.
 
 ## Incident
-vibe-stack-curated-collection, 2026-06-13 — 3 commits that could have been 1, each with its own think→plan→break→build cycle.
+vibenexus-curated-collection, 2026-06-13 — 3 commits that could have been 1, each with its own think→plan→break→build cycle.

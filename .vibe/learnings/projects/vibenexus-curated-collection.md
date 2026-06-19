@@ -1,4 +1,4 @@
-# Project: Vibe-Stack Curated Collection
+# Project: VibeNexus Curated Collection
 
 ## Summary
 Community-verified AI engineering tool catalog for vibe coders. Pivoted from 45 custom skills (build-from-scratch) to curated collection of winning community repos. Agent-native architecture: SKILL.md at root tells any AI agent how to find and use tools from `catalog/tools.yaml`.

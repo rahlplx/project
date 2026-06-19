@@ -13,4 +13,4 @@ Editing YAML files with block-style (`>`) multi-line strings. Never use inline `
 - `catalog/tools.yaml` — all 3 D-grade tool entries updated via edit tool
 
 ## Tested On
-vibe-stack, 2026-06-14
+vibenexus, 2026-06-14

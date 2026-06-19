@@ -9,11 +9,11 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in Vibe-Stack, please report it responsibly.
+If you discover a security vulnerability in VibeNexus, please report it responsibly.
 
 **Do NOT open a public issue for security vulnerabilities.**
 
-Instead, please email: security@vibe-stack.dev
+Instead, please email: security@vibenexus.dev
 
 Include:
 
@@ -58,7 +58,7 @@ Include:
 
 ## Scope
 
-This policy covers the Vibe-Stack repository and its official packages. It does not cover:
+This policy covers the VibeNexus repository and its official packages. It does not cover:
 
 - Third-party skills or plugins
 - Custom deployments
@@ -66,7 +66,7 @@ This policy covers the Vibe-Stack repository and its official packages. It does 
 
 ## Security Features
 
-Vibe-Stack includes built-in security tools to protect your codebase:
+VibeNexus includes built-in security tools to protect your codebase:
 
 - **Integrated Security Scanner**: `lib/security-scan.js` automatically scans for OWASP Top 10 vulnerabilities (Injection, hardcoded secrets, etc.) during the `ship` phase.
 - **Precision Auditing**: The scanner is context-aware, reducing false positives in template literals while maintaining 100% coverage for dangerous `exec`/`spawn` calls.

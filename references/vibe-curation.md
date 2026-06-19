@@ -1,4 +1,4 @@
-# Vibe-Stack Curation Guide
+# VibeNexus Curation Guide
 
 How we find, verify, and add community tools to the curated catalog.
 
@@ -7,7 +7,7 @@ How we find, verify, and add community tools to the curated catalog.
 Build the best collection of **community-verified AI engineering tools** for vibe coders.
 Not 5000 tools. The *right* tools — proven, documented, and ready to use.
 
-## What Makes a Tool "Vibe-Stack Worthy"
+## What Makes a Tool "VibeNexus Worthy"
 
 1. **Solves a real problem** for a vibe coder (someone who doesn't write code)
 2. **Proven in the community** — GitHub stars, active maintenance, real users

@@ -1,6 +1,6 @@
 {
   "disableBundledSkills": true,
-  "enabledMcpjsonServers": ["vibe-stack"],
+  "enabledMcpjsonServers": ["vibenexus"],
   "hooks": {
     "SessionStart": [
       {
@@ -30,7 +30,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if echo \"$CLAUDE_TOOL_INPUT\" | grep -qE 'rm -rf [^.]{0,2}$|rm -rf \\*|DROP TABLE|truncate -s 0'; then echo 'Destructive command blocked by vibe-stack guardrails.' >&2; exit 2; fi",
+            "command": "if echo \"$CLAUDE_TOOL_INPUT\" | grep -qE 'rm -rf [^.]{0,2}$|rm -rf \\*|DROP TABLE|truncate -s 0'; then echo 'Destructive command blocked by vibenexus guardrails.' >&2; exit 2; fi",
             "timeout": 5
           }
         ]

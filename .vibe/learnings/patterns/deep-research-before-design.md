@@ -21,4 +21,4 @@ When designing any new workflow, phase structure, or pipeline. Especially import
 - `docs/gates.md` — every gate criterion references its community pattern
 
 ## Tested On
-Vibe-Stack, 2026-06-14 — 4 community patterns incorporated before writing a single file.
+VibeNexus, 2026-06-14 — 4 community patterns incorporated before writing a single file.

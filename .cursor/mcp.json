@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "vibe-stack": {
+    "vibenexus": {
       "command": "node",
       "args": ["bin/mcp-server.js"]
     }

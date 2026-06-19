@@ -1,103 +1,43 @@
-# Vibe-Stack
+# VibeNexus
 
 [![Quality Gates](https://github.com/rahlplx/project/actions/workflows/quality-gates.yml/badge.svg)](https://github.com/rahlplx/project/actions/workflows/quality-gates.yml)
 
-**The curated collection of AI tools for people who build with vibes.**
+**The AI-Native Core for Vibe Coders. Compressed Knowledge. Zero-Latency Routing. Secure Injection.**
 
-> You have an idea. Your AI agent has skills. We have the tools that connect them.
+VibeNexus is a hybrid autonomous system designed for the "vibe coder" — someone who builds primarily by talking to AI and shipping products. It features a mathematically proven Knowledge Mesh and a secure prompt engine to ensure 100% quality and zero AI slop.
 
-No terminal. No code. Just tell your AI agent what you want and it happens.
+## 🚀 The 5-Phase Journey
 
-## What This Is
+VibeNexus operates on a high-speed production pipeline:
 
-A curated collection of **community-verified AI engineering tools** — organized so your
-AI agent can find the right one for whatever you're building.
+1.  **SCOPE**: Define your vision. VibeNexus captures intent, researches the domain, and scaffolds the plan.
+2.  **BUILD**: Execution via Hybrid TDD. The system writes code, passing through the **Jaccard Similarity Gate** to ensure originality and quality.
+3.  **VERIFY**: 15+ automated production-readiness checks. No slop allowed.
+4.  **SHIP**: One-click deployment to Vercel, Netlify, or Cloudflare with zero-config.
+5.  **EVOLVE**: The system learns from every session, auto-tuning its rules and skills for your specific domain (Digital Marketing, SaaS, etc.).
 
-**45+ agent skills** + **curated catalog of best-in-class tools** = everything you need
-to go from idea to shipped product without writing code.
+## 🧠 Core Features
 
-## How It Works
+*   **Knowledge Mesh**: Securely store context, prompts, and domain logic in a compressed, OKF-compliant format.
+*   **Hybrid Router**: Zero-latency bitmask routing automatically triggers the right skills (Design, Security, DB) based on your natural language.
+*   **Anti-Slop Guardrails**: DSPy-style Chain of Thought and Secure Injection Gates block code smells and prompt injection.
+*   **Admin Dashboard**: Daily/Weekly reports on performance, token efficiency, and system evolution.
 
-```
-You say: "Make my site look professional"
-Agent  → loads design skills → checks anti-patterns → fixes typography → shows result
-        ↓
-You see: "Done. Your font is now readable, contrast is WCAG-compliant, and the layout
-         uses proper spacing. Here's a preview."
-```
+## 🛠️ How to Use (Slash Commands)
 
-1. **Talk to your AI agent** (Claude Code, Codex CLI, Cursor, OpenCode, etc.)
-2. **Agent reads the skills** — each skill knows how to do one thing well
-3. **Agent checks the catalog** — finds the best community tool for the job
-4. **Work happens** — you just see the result
+Interact with VibeNexus via your favorite AI agent (Cursor, Claude Code, Windsurf):
 
-## What You Can Do
+*   `/vibenexus:auto` — Run the full pipeline from idea to ship.
+*   `/vibenexus:status` — Check the current phase and health of your project.
+*   `/vibenexus:harness` — Run the quality gates and verify your build.
+*   `/vibenexus:maintenance` — Trigger the self-evolution cycle to improve system skills.
 
-| You want to...       | Your agent handles it                        |
-| -------------------- | -------------------------------------------- |
-| Start a new project  | Scaffolding, config, folder structure        |
-| Design something     | Colors, fonts, layouts, anti-slop prevention |
-| Test your app        | Unit tests, browser tests, security checks   |
-| Deploy to the world  | One-click Vercel/Netlify, custom domains     |
-| Understand an error  | Translate to plain English, suggest fixes    |
-| Remember context     | Save preferences, search by meaning          |
-| Do complex workflows | Plan, build, test, ship — orchestrated       |
+## 📁 Domain Agnostic Architecture
 
-## Documentation Audit
-
-Detailed analysis of our documentation strategy can be found in `docs/audit/DOCUMENTATION_STRATEGY.md`.
-
-## Documentation Audit
-
-Detailed analysis of our documentation strategy can be found in `docs/audit/DOCUMENTATION_STRATEGY.md`.
-
-## What's Inside
-
-```
-vibe-stack/
-├── SKILL.md           ← Instructions for your AI agent (start here)
-├── skills/            ← 45 agent skills your AI can use
-├── catalog/           ← Curated list of community-verified tools
-│   ├── tools.yaml     ← The catalog itself
-│   └── verified-by.md ← Who verified each tool and how
-├── references/        ← Guides for every phase of building
-├── bin/               ← MCP server (lets any agent use the skills)
-└── .vibe/             ← State, learnings, handoffs
-```
-
-## Getting Started
-
-1. **Clone this repo** — just once
-2. **Tell your AI agent about it** — point it at the `SKILL.md`
-3. **Start building** — describe what you want in plain language
-
-```bash
-git clone https://github.com/rahlplx/project.git my-vibe-stack
-```
-
-Then open your AI agent and say:
-
-> _"I just cloned Vibe-Stack. Help me build a landing page for my startup."_
-
-Your agent reads SKILL.md, finds the right skills, and makes it happen.
-
-## The Community Catalog
-
-We curate the best open-source AI tools so you don't have to figure out what's good.
-Every tool in the catalog is verified — someone tested it, it works, it's not abandoned.
-
-**Want to add a tool?** Open a PR. See `references/vibe-curation.md`.
-
-## Need Help?
-
-Your AI agent is your guide. Just ask:
-
-- "What can you do with this?"
-- "I'm stuck, what should I do next?"
-- "Is my project ready to ship?"
-- "Make this look better"
-- "Put it on the internet"
+VibeNexus is built as a **Modular Monolith**, making it perfect for:
+*   **Digital Marketing**: Automate campaign landing pages and lead-gen flows.
+*   **SaaS**: Build and ship multi-tenant applications with robust auth and billing.
+*   **Internal Tools**: High-performance automation for restaurant management and ops.
 
 ---
-
-_Built for vibe coders, by vibe coders._
+*VibeNexus: Build with vibes. Ship with certainty.*

@@ -16,4 +16,4 @@ Any large enhancement with 3+ independent features that touch different file tre
 - 50 files across 6 independent directory trees
 
 ## Tested On
-Vibe-Stack Curated Collection, 2026-06-14. 765 tests passing post-merge.
+VibeNexus Curated Collection, 2026-06-14. 765 tests passing post-merge.

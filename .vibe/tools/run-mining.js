@@ -20,7 +20,7 @@ function fetchGitHub(repoUrl) {
   const [, owner, repo] = m;
   return new Promise(resolve => {
     const req = https.get(`https://api.github.com/repos/${owner}/${repo}`, {
-      headers: { 'User-Agent': 'vibe-stack-miner', 'Accept': 'application/vnd.github.v3+json' }
+      headers: { 'User-Agent': 'vibenexus-miner', 'Accept': 'application/vnd.github.v3+json' }
     }, res => {
       let d = '';
       res.on('data', c => d += c);
@@ -129,7 +129,7 @@ function analyzeStructure(repoDir, name) {
   if (has('mcp') || has('MCP')) a.patterns.push('mcp');
   if (has('agent')) a.patterns.push('agents');
   if (has('rules')) a.patterns.push('rules');
-  if (has('harness') || has('retro') || has('vibe')) a.patterns.push('vibe-stack');
+  if (has('harness') || has('retro') || has('vibe')) a.patterns.push('vibenexus');
 
   if (!has('test')) a.anti_patterns.push('no-tests');
   if (!has('README.md')) a.anti_patterns.push('no-readme');
@@ -146,7 +146,7 @@ function analyzeStructure(repoDir, name) {
   if (a.patterns.includes('evolution')) q += 10;
   if (a.patterns.includes('mcp')) q += 5;
   if (a.patterns.includes('agents')) q += 5;
-  if (a.patterns.includes('vibe-stack')) q += 10;
+  if (a.patterns.includes('vibenexus')) q += 10;
   if (a.anti_patterns.includes('no-tests')) q -= 20;
   if (a.anti_patterns.includes('no-readme')) q -= 15;
   a.quality_score = Math.max(0, Math.min(100, q));
@@ -164,7 +164,7 @@ function extractCandidates(analysis) {
   if (analysis.patterns.includes('agents')) c.push('agent-arch');
   if (analysis.patterns.includes('telemetry')) c.push('telemetry-system');
   if (analysis.patterns.includes('rules')) c.push('rules-engine');
-  if (analysis.patterns.includes('vibe-stack')) c.push('vibe-stack-pattern');
+  if (analysis.patterns.includes('vibenexus')) c.push('vibenexus-pattern');
   return c;
 }
 

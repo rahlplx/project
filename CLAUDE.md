@@ -67,7 +67,7 @@ node -e "require('./lib/discovery-index').writeIndex(process.cwd())"
   phase, category, and optional `conditional` flag, then dispatches `process.argv[2]`.
 - `bin/mcp-server.js` exposes the same functionality over MCP so non-Claude agents
   (Codex, OpenCode, etc.) can call it.
-- `bin/skill-loader.js` / `bin/vibe-stack.js` are supporting entry points.
+- `bin/skill-loader.js` / `bin/vibenexus.js` are supporting entry points.
 
 ### `lib/vibe-commands/` — command handlers
 
@@ -166,7 +166,7 @@ to `.vibe/telemetry/sessions/` as significant events happen; these feed the next
 
 ## Slash Command Suite (`.claude/skills/`)
 
-The vibe-stack orchestrator is decomposed into invokable skills for Claude Code. Each wraps
+The vibenexus orchestrator is decomposed into invokable skills for Claude Code. Each wraps
 the same underlying `skills/` JS modules with consistent anti-slop/OWASP/taste-skill rules.
 
 | Command           | Wraps                                                                   | Use when                                                                        |
@@ -196,7 +196,7 @@ This project installs into 4 agent ecosystems without forking the skill library:
 | Claude Code | `plugin/.claude-plugin/plugin.json` | Plugin manifest; `plugin/skills` is a symlink to `.claude/skills/` (avoids colliding with the root `skills/` JS module library, which is a different thing); `plugin/.mcp.json` points at `bin/mcp-server.js` via `${CLAUDE_PLUGIN_ROOT}` |
 | Cursor      | `.cursor/mcp.json`                  | MCP server config calling `node bin/mcp-server.js`; `node bin/vibe.js install --cursor` additionally generates `.cursor/rules/*.mdc` from `CLAUDE.md`                                                                                     |
 | OpenCode    | `opencode.json`                     | `mcp` key, local stdio transport to `bin/mcp-server.js`                                                                                                                                                                                   |
-| Codex CLI   | `.codex/config.toml`                | `[mcp_servers.vibe-stack]` block (project-local auto-load varies by Codex CLI version — copy into `~/.codex/config.toml` if it isn't picked up)                                                                                           |
+| Codex CLI   | `.codex/config.toml`                | `[mcp_servers.vibenexus]` block (project-local auto-load varies by Codex CLI version — copy into `~/.codex/config.toml` if it isn't picked up)                                                                                           |
 
 `node bin/vibe.js install [--cursor|--windsurf|--trae|--kilocode|--claude-code|--all]` wraps
 `lib/install-ide.js` (`detectIDE`/`installForIDE`/`syncToIDE`) to generate IDE-native rule files

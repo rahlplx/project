@@ -56,7 +56,7 @@
       4
     ],
     [
-      "vibe-stack",
+      "vibenexus",
       2
     ],
     [
@@ -122,7 +122,7 @@
       3
     ],
     [
-      "vibe-stack-pattern",
+      "vibenexus-pattern",
       2
     ],
     [
@@ -248,7 +248,7 @@
         "mcp",
         "agents",
         "rules",
-        "vibe-stack"
+        "vibenexus"
       ],
       "anti_patterns": [],
       "candidates": [
@@ -259,7 +259,7 @@
         "agent-arch",
         "telemetry-system",
         "rules-engine",
-        "vibe-stack-pattern"
+        "vibenexus-pattern"
       ],
       "quality": 95
     },
@@ -318,7 +318,7 @@
         "telemetry",
         "mcp",
         "agents",
-        "vibe-stack"
+        "vibenexus"
       ],
       "anti_patterns": [],
       "candidates": [
@@ -326,7 +326,7 @@
         "mcp-integration",
         "agent-arch",
         "telemetry-system",
-        "vibe-stack-pattern"
+        "vibenexus-pattern"
       ],
       "quality": 75
     },

@@ -10,7 +10,7 @@ This caused 5 test suites to fail under Jest with "Your test suite must contain 
 ## Root Cause
 No upfront convention was declared before parallel subagent dispatch. Each subagent picked a style based on its training data. Track A/B/D used Jest style; Track C/E/F used node:test style.
 
-## How vibe-stack Should Catch It
+## How vibenexus Should Catch It
 - Declare `test_convention: "node:test"` in the handoff spec before parallel dispatch
 - Add harness check: scan all `*.test.js` for missing `require('node:test')` import
 - Run both `npx jest` AND `node --test` after merge to catch orphans

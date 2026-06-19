@@ -1,4 +1,4 @@
-# Vibe-Stack Orchestrator Integration Plan
+# VibeNexus Orchestrator Integration Plan
 
 **Date:** 2026-06-16
 **Author:** OpenCode Agent
@@ -14,7 +14,7 @@ extended with EXTRACTED/INFERRED/AMBIGUOUS tagging and reporting. QA workflow (3
 
 ## Executive Summary
 
-This plan outlines the systematic integration of characteristics from 5 repos into the vibe-stack project:
+This plan outlines the systematic integration of characteristics from 5 repos into the vibenexus project:
 
 1. **gsd-build/get-shit-done** - Context stabilization and auto-mode
 2. **garrytan/gstack** - Strategy, decisions, and QA workflows
@@ -22,7 +22,7 @@ This plan outlines the systematic integration of characteristics from 5 repos in
 4. **pbakaus/impeccable** - Design audit and quality scoring
 5. **leonxlnx/taste-skill** - Semantic design system
 
-The goal is to merge these repos' full systems into vibe-stack, ensuring they work together like magic while being tailored to our existing architecture.
+The goal is to merge these repos' full systems into vibenexus, ensuring they work together like magic while being tailored to our existing architecture.
 
 ## Current State Analysis
 
@@ -186,7 +186,7 @@ Extract from taste-skill to implement semantic design:
 
 ### Week 4: Integration & Testing
 
-1. Integrate all modules with existing vibe-stack commands
+1. Integrate all modules with existing vibenexus commands
 2. Run full test suite
 3. Run harness checks
 4. Update documentation

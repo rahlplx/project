@@ -1,4 +1,4 @@
-# Vibe-Stack Curated Tool Catalog
+# VibeNexus Curated Tool Catalog
 #
 # Community-verified AI engineering tools, organized for vibe coders.
 # The AI agent reads this to find the right tool for whatever the vibe coder needs.
@@ -51,7 +51,7 @@ tools:
     repo_url: https://github.com/pbakaus/impeccable
     category: design-ui
     license: Apache 2.0
-    verified_by: community-vibe-stack
+    verified_by: community-vibenexus
     verified_date: 2026-06-01
     what_it_does: >
       Your design partner. Runs anti-pattern checks, generates color palettes,

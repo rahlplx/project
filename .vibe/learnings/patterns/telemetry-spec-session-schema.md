@@ -23,4 +23,4 @@ Any project with telemetry instrumentation that needs actionable diagnostic data
 - `lib/telemetry-tracker.js` — command/correction/clarification tracker
 
 ## Tested On
-vibe-stack, 2026-06-14
+vibenexus, 2026-06-14

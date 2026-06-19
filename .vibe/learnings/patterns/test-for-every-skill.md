@@ -48,4 +48,4 @@ describe('Skill', () => {
 - 168 new assertions
 
 ## Tested On
-Vibe-Stack Curated Collection, 2026-06-14
+VibeNexus Curated Collection, 2026-06-14

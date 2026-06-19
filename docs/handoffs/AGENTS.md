@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Standardized handoff templates for every type of agent-to-agent transition in the vibe-stack pipeline. Consistent handoffs prevent context loss -- the #1 cause of multi-agent coordination failure.
+Standardized handoff templates for every type of agent-to-agent transition in the vibenexus pipeline. Consistent handoffs prevent context loss -- the #1 cause of multi-agent coordination failure.
 
 ## File Index
 

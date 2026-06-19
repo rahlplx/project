@@ -1,4 +1,4 @@
-# Vibe-Stack: The AI Agent Skills Repository for Vibe Coders
+# VibeNexus: The AI Agent Skills Repository for Vibe Coders
 
 > **For the AI agent.** If you're reading this, you're an AI agent helping a vibe coder use
 > this skills repository. Your job: use the tools below to help them build, design, test,

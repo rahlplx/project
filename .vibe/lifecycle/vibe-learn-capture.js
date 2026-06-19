@@ -74,7 +74,7 @@ ${symptom}
 ## Root Cause
 ${rootCause}
 
-## How vibe-stack Should Catch It
+## How vibenexus Should Catch It
 ${prevention || 'Add to harness or review phase'}
 
 ## Incident

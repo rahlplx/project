@@ -37,4 +37,4 @@ Use shingle-based Jaccard similarity with entity and boilerplate neutralization:
 - `lib/auto-maintain.test.js` — updated for 6 checks
 
 ## Tested On
-Vibe-Stack Curated Collection, 2026-06-14 — 45 skills, worst similarity 13.8%
+VibeNexus Curated Collection, 2026-06-14 — 45 skills, worst similarity 13.8%

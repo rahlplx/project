@@ -138,7 +138,7 @@ function showCrossProject() {
   const trends = generateCrossProjectTrends();
 
   console.log('\n═══════════════════════════════════════════');
-  console.log('  📈 vibe-stack Trends');
+  console.log('  📈 vibenexus Trends');
   console.log('═══════════════════════════════════════════\n');
 
   if (!trends) {

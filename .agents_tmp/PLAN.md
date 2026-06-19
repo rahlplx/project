@@ -27,7 +27,7 @@ Vibe coding is using AI and large language models to create executable code thro
 
 ## Target Users
 
-| User Type | Pain Points | How Vibe-Stack Helps |
+| User Type | Pain Points | How VibeNexus Helps |
 |-----------|-------------|---------------------|
 | **Non-coders / Beginners** | Can't read code, don't know what to ask AI, overwhelmed by errors | Project wizard, plain language explainers, visual previews |
 | **Founders & Entrepreneurs** | Need to move fast, no time for dev learning curve, fear shipping bad code | One-click deploy, design system templates, done checklists |
@@ -56,7 +56,7 @@ Vibe coders build FAST but the output is often FLAWED because:
 ## Architecture: 45 Skills Across 10 Categories
 
 ```
-vibe-stack/
+vibenexus/
 ├── setup/          (3 skills)  — Project wizard, prompt templates, quick start
 ├── preview/        (4 skills)  — Visual plans, diffs, flowcharts, screenshots
 ├── design/         (6 skills)  — Anti-slop, design system, 226+ templates

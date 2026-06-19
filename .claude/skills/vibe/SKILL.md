@@ -1,6 +1,6 @@
 ---
 name: vibe-orchestrator
-description: "The primary orchestrator for the 10-phase Vibe-Stack pipeline.
+description: "The primary orchestrator for the 10-phase VibeNexus pipeline.
   Use for: starting projects, planning features, and managing the end-to-end lifecycle.
   Phases: think, plan, break, build, harness, review, ship, retro, learn, evolve.
   Maintains state in .vibe/state.json and follows the 'Iron Law' of handoffs."
@@ -18,7 +18,7 @@ allowed-tools:
   - AskUserQuestion
 ---
 
-# Vibe-Stack Orchestrator — Unified Pipeline
+# VibeNexus Orchestrator — Unified Pipeline
 
 This orchestrator manages the full lifecycle of a vibe project. It coordinates multiple
 expert personas and enforces quality gates at every layer transition.

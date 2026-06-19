@@ -30,4 +30,4 @@ execFileSync('git', ['clone', repo, dir], { stdio: 'pipe' });
 - `skills/workflow/git-ops/index.js` — execFileSync('git', [...]) with array args
 
 ## Tested On
-Vibe-Stack Curated Collection, 2026-06-14
+VibeNexus Curated Collection, 2026-06-14

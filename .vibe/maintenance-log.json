@@ -2450,7 +2450,7 @@
         {
           "check": "eslint-lint-pass",
           "pass": false,
-          "error": "Command failed: C:\\Program Files\\nodejs\\node.exe C:\\Vibe-Stack The AI Agent Skills Repository for Vibe Coders\\node_modules\\eslint\\bin\\eslint.js lib/ bin/ --no-eslintrc -c .eslintrc.js --format json"
+          "error": "Command failed: C:\\Program Files\\nodejs\\node.exe C:\\VibeNexus The AI Agent Skills Repository for Vibe Coders\\node_modules\\eslint\\bin\\eslint.js lib/ bin/ --no-eslintrc -c .eslintrc.js --format json"
         },
         {
           "check": "tools-discovered-count",
@@ -2619,7 +2619,7 @@
         {
           "check": "eslint-lint-pass",
           "pass": false,
-          "error": "Command failed: C:\\Program Files\\nodejs\\node.exe C:\\Vibe-Stack The AI Agent Skills Repository for Vibe Coders\\node_modules\\eslint\\bin\\eslint.js lib/ bin/ --no-eslintrc -c .eslintrc.js --format json"
+          "error": "Command failed: C:\\Program Files\\nodejs\\node.exe C:\\VibeNexus The AI Agent Skills Repository for Vibe Coders\\node_modules\\eslint\\bin\\eslint.js lib/ bin/ --no-eslintrc -c .eslintrc.js --format json"
         },
         {
           "check": "tools-discovered-count",

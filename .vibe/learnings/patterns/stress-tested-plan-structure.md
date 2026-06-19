@@ -21,4 +21,4 @@ Any time creating or revising a plan document that will guide implementation.
 - `plans/plan-workflow-evolution.md` — full 7-section structure
 
 ## Tested On
-Vibe-Stack, 2026-06-14 — 6 risks identified, 17 total, all mitigated.
+VibeNexus, 2026-06-14 — 6 risks identified, 17 total, all mitigated.

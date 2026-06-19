@@ -15,7 +15,7 @@
     "telemetry",
     "mcp",
     "agents",
-    "vibe-stack"
+    "vibenexus"
   ],
   "anti_patterns": [],
   "candidates": [
@@ -23,6 +23,6 @@
     "mcp-integration",
     "agent-arch",
     "telemetry-system",
-    "vibe-stack-pattern"
+    "vibenexus-pattern"
   ]
 }

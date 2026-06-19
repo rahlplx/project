@@ -1,10 +1,10 @@
 {
-  "name": "@lablaunchpad/vibe-stack",
+  "name": "@lablaunchpad/vibenexus",
   "version": "2.9.1",
   "description": "45 AI agent skills for vibe coders — deploy, design, review, orchestrate. Works with Codex, OpenCode, Claude Code, Antigravity, and any MCP-compatible agent.",
   "main": "bin/vibe.js",
   "bin": {
-    "vibe-stack": "bin/vibe.js"
+    "vibenexus": "bin/vibe.js"
   },
   "files": [
     "bin/",
@@ -56,7 +56,7 @@
     "productivity",
     "development-tools"
   ],
-  "author": "Vibe Stack Team",
+  "author": "VibeNexus Team",
   "license": "MIT",
   "repository": {
     "type": "git",

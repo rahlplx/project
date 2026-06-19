@@ -4,7 +4,7 @@
 
 ### What's the 10-star version of this?
 
-The Vibe-Stack repo transforms from a static tool catalog into an **active development partner**:
+The VibeNexus repo transforms from a static tool catalog into an **active development partner**:
 
 - Agent auto-discovers what tools the user has installed and only recommends usable ones
 - Every directory has AI-readable docs so the agent never asks "how do I add a tool?"

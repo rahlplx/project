@@ -2,7 +2,7 @@
 
 ## 1. Executive Summary
 
-The documentation for `vibe-stack` is high-quality but suffers from significant architectural drift between the core repository and the agent-native skill layers. We have successfully unified the primary orchestrator definition and standardized 37% of the skill documentation (21/56 skills).
+The documentation for `vibenexus` is high-quality but suffers from significant architectural drift between the core repository and the agent-native skill layers. We have successfully unified the primary orchestrator definition and standardized 37% of the skill documentation (21/56 skills).
 
 ## 2. Key Findings
 

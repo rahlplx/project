@@ -2,7 +2,7 @@
 
 ## Context
 
-The vibe-stack auto pipeline (think→plan→break→build→harness→review→ship→retro) was
+The vibenexus auto pipeline (think→plan→break→build→harness→review→ship→retro) was
 designed for software features with code and tests. We needed to adapt it for YAML-only
 catalog work — adding tool entries, updating descriptions, verifying metadata.
 

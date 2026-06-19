@@ -36,4 +36,4 @@ Build an MCP adapter using `@modelcontextprotocol/sdk` that:
 - bin/skill-loader.js (augment discoverTools)
 
 ## Tested On
-vibe-stack, 2026-06-14
+vibenexus, 2026-06-14

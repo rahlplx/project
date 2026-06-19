@@ -1,6 +1,6 @@
 # Documentation Audit Expert Personas
 
-To perform a deep analysis of the `vibe-stack` documentation, we utilize a collaborative multi-persona approach. Each expert analyzes the documentation through a specific lens.
+To perform a deep analysis of the `vibenexus` documentation, we utilize a collaborative multi-persona approach. Each expert analyzes the documentation through a specific lens.
 
 ## 1. The Scribe 🖋️ (Technical Writing)
 

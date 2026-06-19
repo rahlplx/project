@@ -1,6 +1,6 @@
-# Contributing to Vibe-Stack
+# Contributing to VibeNexus
 
-Thank you for your interest in contributing to Vibe-Stack.
+Thank you for your interest in contributing to VibeNexus.
 
 ## Getting Started
 

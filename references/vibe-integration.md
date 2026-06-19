@@ -29,13 +29,13 @@ Update `.vibe/state.json`:
 
 ```bash
 # Capture intent
-vibe-stack intent --name "MyApp" --problem "Solve X"
+vibenexus intent --name "MyApp" --problem "Solve X"
 
 # Research project
-vibe-stack research --name "MyApp" --domain saas
+vibenexus research --name "MyApp" --domain saas
 
 # Generate docs
-vibe-stack generate --name "MyApp" --problem "Solve X" --domain saas
+vibenexus generate --name "MyApp" --problem "Solve X" --domain saas
 ```
 
 ## MCP Integration

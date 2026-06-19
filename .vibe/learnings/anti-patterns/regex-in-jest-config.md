@@ -12,7 +12,7 @@ Jest's `testPathIgnorePatterns` and `modulePathIgnorePatterns` use **regex patte
 
 This causes paths like `skills/quality/vibe-review/index.test.js` and `skills/workflow/tdd-vibe/index.test.js` to match the pattern, silently excluding them from test discovery.
 
-## How vibe-stack Should Catch It
+## How vibenexus Should Catch It
 - Harness check: `npx jest --listTests | wc -l` should match `glob.sync('**/*.test.js', { ignore: ['node_modules/**'] }).length`
 - If counts differ, one or more test files are being silently excluded
 
@@ -26,4 +26,4 @@ This causes paths like `skills/quality/vibe-review/index.test.js` and `skills/wo
 ```
 
 ## Incident
-Vibe-Stack Curated Collection, 2026-06-14. Two test files (10 tests) invisible for the entire lifecycle of the project.
+VibeNexus Curated Collection, 2026-06-14. Two test files (10 tests) invisible for the entire lifecycle of the project.

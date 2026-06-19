@@ -36,4 +36,4 @@ Create a lint checker that validates every `index.js` skill file for:
 - `lib/auto-maintain.test.js` — updated for 7 checks
 
 ## Tested On
-Vibe-Stack Curated Collection, 2026-06-14 — 45 skills, 39 clean, 6 warnings, 0 errors
+VibeNexus Curated Collection, 2026-06-14 — 45 skills, 39 clean, 6 warnings, 0 errors

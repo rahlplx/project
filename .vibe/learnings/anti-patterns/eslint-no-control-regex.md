@@ -6,7 +6,7 @@ ESLint `no-control-regex` rule fires on regex patterns containing `\x1b` (escape
 ## Root Cause
 ESLint's `no-control-regex` rule disallows control characters in regex patterns. ANSI escape sequences start with `\x1b` (ESC), which triggers this rule even when the regex is intentionally matching ANSI codes.
 
-## How vibe-stack Should Catch It
+## How vibenexus Should Catch It
 1. **ESLint config override** - Add rule exception for files that legitimately use ANSI patterns
 2. **Alternative approach** - Use `String.fromCharCode(27)` in an IIFE to avoid the literal in source
 3. **Lint exception comment** - `// eslint-disable-next-line no-control-regex` with justification
@@ -24,7 +24,7 @@ const ansiRegex = (() => {
 ```
 
 ## Incident
-vibe-stack, 2026-06-14: token-optimizer.js ANSI regex triggered ESLint error. Fixed with IIFE pattern.
+vibenexus, 2026-06-14: token-optimizer.js ANSI regex triggered ESLint error. Fixed with IIFE pattern.
 
 ## Prevention
 - Add `no-control-regex` exception to `.eslintrc.js` for lib/ files
