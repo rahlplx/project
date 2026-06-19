@@ -18,6 +18,19 @@ The `.vibe/` directory powers the autonomous lifecycle and self-improvement syst
 └── tools/                 # Internal tools (e.g., repo-miner.js)
 ```
 
+## File Index
+| File | Purpose |
+|------|---------|
+| `state.json` | Current phase, milestone, interaction count |
+| `lifecycle.json` | Session counters, maintenance trigger thresholds |
+| `evolution.json` | Active/retired/proposed rules, harness checks |
+| `maintenance-log.json` | Log of auto-maintenance runs |
+| `handoff.md` | Session summary for agent handoff |
+| `learnings/` | Pattern docs from past work |
+| `lifecycle/` | Auto-maintenance orchestrator scripts |
+| `telemetry/` | Usage data and repo-mining insights |
+| `tools/` | Internal tools (e.g., repo-miner.js) |
+
 ## Conventions
 - `state.json.phase` drives pipeline: think → plan → break → build → harness → review → ship → retro → learn → evolve → done
 - `lifecycle.json.interaction_count >= 10` OR `days_since_maintenance >= 7` triggers auto-maintenance

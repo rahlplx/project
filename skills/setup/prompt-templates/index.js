@@ -349,7 +349,7 @@ Call this from the session end hook or after each major phase transition.`,
           prompt: `Audit [MODULE_OR_FILE] for OWASP Top 10 vulnerabilities:
 - A01 Broken Access Control: check auth gates on every route/handler
 - A02 Crypto Failures: no plaintext secrets, bcrypt for passwords, TLS everywhere
-- A03 Injection: execSync/execFileSync with user input? SQL with string concat?
+- A03 Injection: shell command injection via interpolated args? SQL string concatenation?
 - A05 Security Misconfiguration: default credentials, open CORS, debug mode in prod
 - A06 Vulnerable Components: run npm audit; flag any CRITICAL/HIGH CVEs
 - A07 Auth Failures: session fixation, weak tokens, missing rate limiting
