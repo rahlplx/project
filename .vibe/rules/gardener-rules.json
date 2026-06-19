@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "patterns": {
+    "prompt": 47,
+    "subagent": 47
+  },
+  "connectors": [
+    "vibe-review"
+  ],
+  "last_updated": "2026-06-19T03:27:39.281Z"
+}

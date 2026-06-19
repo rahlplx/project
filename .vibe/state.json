@@ -15,7 +15,7 @@
     "evolve-complete"
   ],
   "auto_pipeline": {
-    "started": "2026-06-18T22:23:10.551Z",
+    "started": "2026-06-19T00:32:14.827Z",
     "goal": "--from=done",
     "state_machine": [
       "think",
@@ -33,5 +33,46 @@
     "failed_at_phase": null
   },
   "mode": "auto",
-  "updated": "2026-06-18T22:23:10.551Z"
+  "updated": "2026-06-19T00:34:53.990Z",
+  "_enriched": {
+    "original": "--from=done",
+    "skills": [],
+    "sources": [
+      {
+        "type": "goal_block",
+        "data": {
+          "phase": "think",
+          "goal": "write unit tests",
+          "nextStep": "Continue think phase — see .vibe/handoff.md for artifacts.",
+          "timestamp": "2026-06-18T23:31:34.203Z",
+          "resumeWith": "npx vibe-stack think"
+        }
+      },
+      {
+        "type": "chain_of_thought",
+        "data": {
+          "query": "--from=done",
+          "goal": "write unit tests",
+          "recentCommits": "",
+          "_signature": "Enrich a user query with project context for better agent response",
+          "_outputFields": [
+            "enriched_query",
+            "injected_context",
+            "reasoning"
+          ],
+          "reasoning_chain": [
+            "[THINK] Task: Enrich a user query with project context for better agent response",
+            "[INPUT] --from=done",
+            "[CONTEXT] Prior goal: write unit tests",
+            "[PLAN] Producing: enriched_query, injected_context, reasoning"
+          ],
+          "prompt_prefix": "[THINK] Task: Enrich a user query with project context for better agent response\n[INPUT] --from=done\n[CONTEXT] Prior goal: write unit tests\n[PLAN] Producing: enriched_query, injected_context, reasoning\n"
+        }
+      }
+    ],
+    "enrichedContext": "[GOAL] write unit tests (resume: npx vibe-stack think)\n[THINK] Task: Enrich a user query with project context for better agent response → [INPUT] --from=done → [CONTEXT] Prior goal: write unit tests → [PLAN] Producing: enriched_query, injected_context, reasoning",
+    "confidence": 0.35,
+    "label": "medium",
+    "selectedTemplate": null
+  }
 }
