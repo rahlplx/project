@@ -1,7 +1,9 @@
 #!/usr/bin/env node
+const { SkillBase } = require('../../../lib/skill-base.js');
 
-class TaskCoordinator {
+class TaskCoordinator extends SkillBase {
   constructor() {
+    super();
     this.name = 'task-coordinator';
     this.version = '1.0.0';
     this.description = 'Orchestrate multi-step workflows with dependency management';

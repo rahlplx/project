@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 
-class Dashboard {
+const { SkillBase } = require('../../../lib/skill-base.js');
+
+class Dashboard extends SkillBase {
   constructor(config = {}) {
+    super();
     this.name = 'dashboard';
     this.version = '1.0.0';
-    this.description = 'Visual project progress dashboard — reads tracker data and renders status';
+    this.description = 'Visual project progress dashboard - reads tracker data and renders status';
   }
 
   generateReport(trackerData = {}) {

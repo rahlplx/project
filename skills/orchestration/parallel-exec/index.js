@@ -1,7 +1,9 @@
 #!/usr/bin/env node
+const { SkillBase } = require('../../../lib/skill-base.js');
 
-class ParallelExec {
+class ParallelExec extends SkillBase {
   constructor() {
+    super();
     this.name = 'parallel-exec';
     this.version = '1.0.0';
     this.description = 'Run tasks simultaneously — parallel execution coordination';

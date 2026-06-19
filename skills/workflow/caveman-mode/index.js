@@ -1,3 +1,4 @@
+const { SkillBase } = require('../../../lib/skill-base.js');
 const fs = require('fs');
 const path = require('path');
 
@@ -49,8 +50,9 @@ const ARTICLES_CONJUNCTIONS = [/\b(?:the|a|an)\b\s*/gi, /\b(?:and|but|so)\b\s*/g
 
 const REVIEW_EMOJI = { critical: '🔴', warning: '🟡', info: '🟢' };
 
-class CavemanMode {
+class CavemanMode extends SkillBase {
   constructor(options = {}) {
+    super();
     this.name = 'caveman-mode';
     this.version = '1.0.0';
     this.description =

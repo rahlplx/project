@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "version": "1.0",
-  "generated_at": "2026-06-19T00:59:21.161Z",
+  "generated_at": "2026-06-19T02:19:32.468Z",
   "skill_count": 56,
   "skills": [
     {
@@ -18,7 +18,7 @@
       "category": "design",
       "description": "A deterministic anti-pattern detector that catches 41 common AI-generated design mistakes and enforces professional design quality.",
       "url": "/.well-known/agent-skills/anti-slop/SKILL.md",
-      "digest": "sha256-6b6edef3301d946c58c202dda65bcbbb128ccbaa37a1a0fa60d1020e7ddda387"
+      "digest": "sha256-096dc2d98a3d7959560380f82f6f87abb72d43460f689e86850a9b775be413e5"
     },
     {
       "name": "architect",
@@ -26,7 +26,7 @@
       "category": "workflow",
       "description": "Decomposes structured specs into executable task units following the RED/GREEN/REFACTOR/VERIFY pattern.",
       "url": "/.well-known/agent-skills/architect/SKILL.md",
-      "digest": "sha256-030fb06ffd4f1e41417d90a4b9deff84f8a0c97a92a1f475523c18cddcd00032"
+      "digest": "sha256-e45c60612a5e23d704baead046da6fb929c67eeefa8062bd489022ee8d87b544"
     },
     {
       "name": "caveman-mode",
@@ -34,7 +34,7 @@
       "category": "workflow",
       "description": "Terse-output mode. Strips filler, hedging, and scaffolding from agent responses to cut output tokens while preserving every technical fact, number, and code token. Ported from the community `caveman` skill (JuliusBrussee/caveman) into this repo's JS-module + tests convention.",
       "url": "/.well-known/agent-skills/caveman-mode/SKILL.md",
-      "digest": "sha256-e4ad74da530a2fa1842fad185f8cb11138cd81b6ba19dd78c54617f72539a042"
+      "digest": "sha256-b6ee4610907c9f7fab3b72efb0a06aba8c68a5a1f61e95e6e184c10d1755da0c"
     },
     {
       "name": "checkpoints",
@@ -42,7 +42,7 @@
       "category": "workflow",
       "description": "Milestone-based progress tracking with checkpoints",
       "url": "/.well-known/agent-skills/checkpoints/SKILL.md",
-      "digest": "sha256-21b0ff4730be474cfbb98466e90fe00ed9dc390c78bedeb79bd0535822e59def"
+      "digest": "sha256-a54a60ad66ec62c2f5e533f9d8d378b466b2f389f98ee377de5cc811421bb3be"
     },
     {
       "name": "code-explainer",
@@ -50,7 +50,7 @@
       "category": "explain",
       "description": "Explains code in plain English by analyzing structure and patterns",
       "url": "/.well-known/agent-skills/code-explainer/SKILL.md",
-      "digest": "sha256-204fe18287827afb1d6b5ace4a00d7ee6b3c4ddaa3003b5ae48e6c29eb2975e6"
+      "digest": "sha256-d6d8506916f08392c16773c166718ad334c8af8104bc9fd407653deddc709a7f"
     },
     {
       "name": "code-health",
@@ -74,7 +74,7 @@
       "category": "explain",
       "description": "Translate code between programming languages — maps common patterns",
       "url": "/.well-known/agent-skills/code-translator/SKILL.md",
-      "digest": "sha256-f6c3c94bfd3b9c2b21df0b8a109dc867a811456b66e36435754238fff69f107c"
+      "digest": "sha256-c924a338ef50e055f74f4fdf2c97d52e0447ca46477bfe23aac0f18258615736"
     },
     {
       "name": "color-gen",
@@ -82,7 +82,7 @@
       "category": "design",
       "description": "Generates WCAG-compliant color palettes with accessibility considerations. Supports brand color expansion, semantic color systems, and comprehensive contrast checking.",
       "url": "/.well-known/agent-skills/color-gen/SKILL.md",
-      "digest": "sha256-dcd1a42751025b1d600c335961504f927d984e9da1e6a44c3eaeed49b3b76c7b"
+      "digest": "sha256-64ca9ef6d4868f9cb9b2ecfbded67f369301478279c07c848e5e8612484d7bed"
     },
     {
       "name": "context-memory",
@@ -90,7 +90,7 @@
       "category": "knowledge",
       "description": "Persistent context across sessions — remembers preferences and decisions",
       "url": "/.well-known/agent-skills/context-memory/SKILL.md",
-      "digest": "sha256-2c8330a38a8a42626493723bd99fb0620b3b01c3415f4f3a295d1fa11cbb3270"
+      "digest": "sha256-bf35607457ce9295ba8e42b76f7441b5967d220e788a9174ec80f981ec13e234"
     },
     {
       "name": "dashboard",
@@ -98,7 +98,7 @@
       "category": "progress",
       "description": "Visual project progress dashboard — reads tracker data and renders status",
       "url": "/.well-known/agent-skills/dashboard/SKILL.md",
-      "digest": "sha256-59c69a7b53859710a90995b1a456b5ee074253c9461fe31d78ece3f172eae521"
+      "digest": "sha256-0f7da95979ed7a7d9b81754f8946b873ac30fba469d79181ae71f0c2ef5e5b64"
     },
     {
       "name": "design-system",
@@ -106,7 +106,7 @@
       "category": "design",
       "description": "A skill for managing and applying design tokens and themed components.",
       "url": "/.well-known/agent-skills/design-system/SKILL.md",
-      "digest": "sha256-80b8297ddba34b9a4d9d15f8c09fbd1645d757668408a99b285cd8e7bdf5a16b"
+      "digest": "sha256-b2f58e677be1c5f45fbcd2418fa061d44e2644acde5b443aa83af1a698803ea0"
     },
     {
       "name": "diff-preview",
@@ -114,7 +114,7 @@
       "category": "preview",
       "description": "Visual diff visualization for code changes. Perfect for reviewing code modifications, understanding updates, and comparing versions.",
       "url": "/.well-known/agent-skills/diff-preview/SKILL.md",
-      "digest": "sha256-df1396618c826f35754fc98d1307e139f220a020b412a282c1e799096467a7ce"
+      "digest": "sha256-33f2078d6545dea6c8e95f81ddccfbc58a744b3f537c5e4dbba2704ea9cfe7a3"
     },
     {
       "name": "done-checklist",
@@ -122,7 +122,7 @@
       "category": "progress",
       "description": "Production-ready checklist — tells non-coders if their project is ready to ship",
       "url": "/.well-known/agent-skills/done-checklist/SKILL.md",
-      "digest": "sha256-ba092685c38a9ac34b4ff770a1370d967b46b048b259d32fc6e7d4af152bbbf6"
+      "digest": "sha256-9660c52b3febced44b530a936748a64c3fba51975620da974f58c70b415c45e9"
     },
     {
       "name": "done-verifier",
@@ -138,7 +138,7 @@
       "category": "progress",
       "description": "Convert technical error messages to plain English — references MDN and common patterns",
       "url": "/.well-known/agent-skills/error-translator/SKILL.md",
-      "digest": "sha256-96b6c5d3107f846bd01e014a71b103d22e5e6b9ecac50d273b1903de7c338ec0"
+      "digest": "sha256-a52a69f04e37b82d0d5e50c879db697671b8df8deb64d8c8ec37ee2567246090"
     },
     {
       "name": "flowchart-gen",
@@ -146,7 +146,7 @@
       "category": "preview",
       "description": "Auto-generate architecture diagrams from code structure. Transform your codebase into visual flowcharts for documentation, planning, and understanding complex systems.",
       "url": "/.well-known/agent-skills/flowchart-gen/SKILL.md",
-      "digest": "sha256-18ac553840781e6d4dcf3f28f6f74aef942f78901f7dcf4fe665ffa89ebed859"
+      "digest": "sha256-b5e16d04ac0dcc5d7bcfa25559cd23b514e86842b35d1ddd494492a0d33de4e6"
     },
     {
       "name": "git-free-deploy",
@@ -162,7 +162,7 @@
       "category": "workflow",
       "description": "Git operations without CLI knowledge — wraps git CLI",
       "url": "/.well-known/agent-skills/git-ops/SKILL.md",
-      "digest": "sha256-b8175935acb7b763bafcf089ca853ede645007233815294db645ea0a8de9a66b"
+      "digest": "sha256-35f8476b6b71f414d201933e205c7cbc0599cbd079909f19ab9552a0468e7687"
     },
     {
       "name": "graphify",
@@ -170,7 +170,7 @@
       "category": "knowledge",
       "description": "Faithful port of safishamsi/graphify (https://github.com/safishamsi/graphify) — turns a folder of source files into a queryable dependency graph, tagging every edge EXTRACTED (found directly in source, confidence 1.0), INFERRED (a reasonable guess with a confidence score), or AMBIGUOUS (low-confidence, flagged for review). `analyze()`'s existing node/edge shape (`{from, to, type}`) is unchanged — every method below is additive and composes on top of its output.",
       "url": "/.well-known/agent-skills/graphify/SKILL.md",
-      "digest": "sha256-0543a6b045c5ef1bf20e5e1151a1c9e6d997a4cf92bff4bb4426fc8620fe61ef"
+      "digest": "sha256-77bcc333018cb7a97b3ee4c65f528ee382cdc5acfc6e15b3a1310768239ede46"
     },
     {
       "name": "gsd-workflow",
@@ -178,7 +178,7 @@
       "category": "orchestration",
       "description": "Faithful port of GSD's (Get Shit Done, https://github.com/gsd-build/get-shit-done) Define → Build → Ship lifecycle into this project's milestone → phase → task structure. Composes with the existing `.gsd/` milestone files and `lib/vibe-commands/break.js` rather than reimplementing them — this skill recommends _which_ GSD command to run next and validates the atomic-commit and wave-resume guarantees; it does not replace milestone file generation.",
       "url": "/.well-known/agent-skills/gsd-workflow/SKILL.md",
-      "digest": "sha256-181126a3c66dcb42c176db4e9df8cc90064c69c0e208284d75990a5f63ea9bd4"
+      "digest": "sha256-e4517b861ee5a53a48ae7c4eed630d4acf93da13dc0eb5c067d0bad02c02a83e"
     },
     {
       "name": "guardrails",
@@ -202,7 +202,7 @@
       "category": "design",
       "description": "A design quality workflow ported from the community `impeccable` skill (`pbakaus/impeccable`). Where `anti-slop` is purely a detector library, this skill adds impeccable's actual command structure: a one-time `init` that captures design context, plus `critique` (UX review) and `polish` (shipping-readiness) passes that sit on either side of the detector-based `audit`.",
       "url": "/.well-known/agent-skills/impeccable-audit/SKILL.md",
-      "digest": "sha256-747d3b13ca58a8a4311dc1e951ecf95d3cccd67dc3f8e7ae659fa2ffcc7f5c92"
+      "digest": "sha256-433508f31b763880cfc2cc8c3ecac2dc595837ac0d41af186d5018767abb15f0"
     },
     {
       "name": "intent-capture",
@@ -210,7 +210,7 @@
       "category": "explain",
       "description": "Extract structured project specs from natural language descriptions",
       "url": "/.well-known/agent-skills/intent-capture/SKILL.md",
-      "digest": "sha256-494878f88d7ab1ed4ec861a9e1f20f860a0fe15c91f21a4bdcbb672c4d249862"
+      "digest": "sha256-d7376aeb5bd116d9ae4a74825c755990b3dc81aff519ed82508e93f92ae6a8af"
     },
     {
       "name": "knowledge-base",
@@ -218,7 +218,7 @@
       "category": "knowledge",
       "description": "Project documentation generator — creates README, API docs, and guides",
       "url": "/.well-known/agent-skills/knowledge-base/SKILL.md",
-      "digest": "sha256-95d7ee0996bd0caabe30977aa424a26aceecfa92be65f6030199e38f4246197f"
+      "digest": "sha256-633d72b85c1dddbc90efaf6160700cc34b6c44f8dbb411a0aa4fec2de8333333"
     },
     {
       "name": "model-router",
@@ -226,7 +226,7 @@
       "category": "orchestration",
       "description": "Route tasks to optimal AI models based on capability and cost",
       "url": "/.well-known/agent-skills/model-router/SKILL.md",
-      "digest": "sha256-a659e8e427473dc1d2ead77633360650438a38ee12a9ee5fd92f7e4adb38a08a"
+      "digest": "sha256-15804e682ba7738112e9c55b421c92ba188ff89dd1436782ab4a2f95f3629064"
     },
     {
       "name": "nexus",
@@ -234,7 +234,7 @@
       "category": "orchestration",
       "description": "3 orchestration modes (Graph, Router, Adaptive). MCP + A2A protocol support. 100+ LLM providers.",
       "url": "/.well-known/agent-skills/nexus/SKILL.md",
-      "digest": "sha256-a6f61052f33cd810111979d79221f86603d2c853c1d8ed7a21d8f75764acde3b"
+      "digest": "sha256-333977972070705e01185521fd712d3c10511fdff55923f9d00124d4da7d5bb1"
     },
     {
       "name": "nit",
@@ -266,7 +266,7 @@
       "category": "orchestration",
       "description": "Run tasks simultaneously — parallel execution coordination",
       "url": "/.well-known/agent-skills/parallel-exec/SKILL.md",
-      "digest": "sha256-6ae473ed476ed9ed7aa39c1f4834d393afe98677103fecc7c40c7aa38989b2ae"
+      "digest": "sha256-5393e5b61deb1cb8d669ac37fb69657194757d596c75d5c5cb995a86b1f6d8e1"
     },
     {
       "name": "planning-agent",
@@ -274,7 +274,7 @@
       "category": "workflow",
       "description": "Breaks project descriptions into actionable task plans",
       "url": "/.well-known/agent-skills/planning-agent/SKILL.md",
-      "digest": "sha256-77ad88ba1a282066e8ec15cfda5c23931064307580ec80a9e0e1314c28b9be36"
+      "digest": "sha256-ee4f4d0daf9c2587d0ab076bfad7a4c74fed4c7803c906f2c91582dcb67bdbfe"
     },
     {
       "name": "project-wizard",
@@ -282,7 +282,7 @@
       "category": "setup",
       "description": "An interactive tool that guides users through creating a comprehensive project specification.",
       "url": "/.well-known/agent-skills/project-wizard/SKILL.md",
-      "digest": "sha256-ec1cdefdc08966a2f2790a03e261880bb6755c2ad3c28a8072dfaed1791f3a9f"
+      "digest": "sha256-4190e57c08f00c0bc65a05f087d7e5e0f24acf6028c039c1eda4dd69e5a7ece2"
     },
     {
       "name": "prompt-templates",
@@ -290,7 +290,7 @@
       "category": "setup",
       "description": "Pre-built, copy-paste prompt templates for common development tasks. These templates are designed to work with AI coding assistants and can be customized for your specific needs.",
       "url": "/.well-known/agent-skills/prompt-templates/SKILL.md",
-      "digest": "sha256-1401774c7e8ea396c0bba436a0db9bdeb5a60a67db03bb57cdbc365fb0a45b50"
+      "digest": "sha256-b48df032b27b9e2f0665375a3538058aba5101d4a88f217812940533785f312e"
     },
     {
       "name": "quick-start",
@@ -298,7 +298,7 @@
       "category": "setup",
       "description": "One-command project scaffolding for vibe coders. Get your project up and running in seconds.",
       "url": "/.well-known/agent-skills/quick-start/SKILL.md",
-      "digest": "sha256-d35f4d50137425afbe69fadf7c23e8aab854d2c9f5fcde109c54ab4e7a45328a"
+      "digest": "sha256-54b8d3bc18dd220deaecc3bd45bede36534e54a2427e8fd7d522a81eccb6bf8f"
     },
     {
       "name": "rollback",
@@ -306,7 +306,7 @@
       "category": "workflow",
       "description": "One-click rollback — undo changes safely",
       "url": "/.well-known/agent-skills/rollback/SKILL.md",
-      "digest": "sha256-5218189954876e59ada09074829dcb89e65cdfc559dbf38ba8db630557d8b76a"
+      "digest": "sha256-3982b1a622c9a2e5a6e2e1f3ab9718d3136205b67bf49bf483c608c96df83a39"
     },
     {
       "name": "screenshot-preview",
@@ -314,7 +314,7 @@
       "category": "preview",
       "description": "Capture screenshots and preview your application state. Essential for visual testing, documentation, and sharing progress with clients or teammates.",
       "url": "/.well-known/agent-skills/screenshot-preview/SKILL.md",
-      "digest": "sha256-75bcd289b5812c3ae1a2568b50aadfcba2196ea1a6d1bf0222b6a803cdc0c0b5"
+      "digest": "sha256-c2d31e53f89a3d769d0ec50b6ac308a4ab2d6b88fb088f77509f4f79052d811e"
     },
     {
       "name": "security-audit",
@@ -330,7 +330,7 @@
       "category": "quality",
       "description": "OWASP-aligned security checks for AI-generated code",
       "url": "/.well-known/agent-skills/security-defaults/SKILL.md",
-      "digest": "sha256-7eb2c7070c33e1dda2db5af01c5dd7e780a7b89ecc448cda12f82f2aec0e63f8"
+      "digest": "sha256-d164ee8c39dccafad871aa330a586c99d1e91e2834e5e30ca83e08cf37d1b0c2"
     },
     {
       "name": "spec-driven",
@@ -338,7 +338,7 @@
       "category": "workflow",
       "description": "Keep AI aligned with project intent using spec-driven development",
       "url": "/.well-known/agent-skills/spec-driven/SKILL.md",
-      "digest": "sha256-8117ab149d8e65d83d967a14dd4fd988507e4d0070cf87c46aecfacf65cc623c"
+      "digest": "sha256-f935ef1d8e72c85eeb7cf2721ccb8bfe022054111d3c318ff4252e0a8e3f17df"
     },
     {
       "name": "spec-engine",
@@ -346,7 +346,7 @@
       "category": "workflow",
       "description": "A skill for parsing natural language intent into structured specification documents.",
       "url": "/.well-known/agent-skills/spec-engine/SKILL.md",
-      "digest": "sha256-b1c7affb904cab828c20ea6caddca84d1037e4426a38da9aae68480e36edd402"
+      "digest": "sha256-539cce912dace10639bc09ed3577a7c6c8e40ba99b35d86101ac6f204ae2c82f"
     },
     {
       "name": "task-coordinator",
@@ -354,7 +354,7 @@
       "category": "orchestration",
       "description": "Orchestrate multi-step workflows with dependency management",
       "url": "/.well-known/agent-skills/task-coordinator/SKILL.md",
-      "digest": "sha256-51fdd5054c1fe32ee83d24a122516c22ab1bb058d2e7aad8f1f2bd23db1c0c6e"
+      "digest": "sha256-94d5c4eeadbd94778c87134ce9cddc89a29ee2a38246907ad01553080dc6986e"
     },
     {
       "name": "taste-skill",
@@ -362,7 +362,7 @@
       "category": "design",
       "description": "Faithful port of Leonxlnx/taste-skill (https://github.com/Leonxlnx/taste-skill) — gives the agent \"good taste\" by parameterizing layout risk, motion, and density through three dials, and enforcing the framework's hard, mechanically-checkable anti-slop rules (em-dash ban, duplicate-CTA-intent, hero/eyebrow discipline). Composes with `skills/design/anti-slop` for color/typography/layout coverage it already has — this skill does not re-implement those.",
       "url": "/.well-known/agent-skills/taste-skill/SKILL.md",
-      "digest": "sha256-2a3be72039f7d3e2ea857c141f4727c5cfa9105df87ec3c51a415cb09703b883"
+      "digest": "sha256-643e2b663b0f16a168e7b692966cfaa59fb6a50ab4943ac768816121c6c40ce6"
     },
     {
       "name": "tdd-vibe",
@@ -370,7 +370,7 @@
       "category": "workflow",
       "description": "Simplified TDD workflow for vibe coders — test-first without the jargon",
       "url": "/.well-known/agent-skills/tdd-vibe/SKILL.md",
-      "digest": "sha256-a8468a6021f45e9afc9b77aff9ba92639bcabd1f2bab7b034f2ba53b64d9acbb"
+      "digest": "sha256-29d5865afa48a995697301258da582a2f0b15877c35617c6ed6f61b235d549be"
     },
     {
       "name": "template-gallery",
@@ -378,7 +378,7 @@
       "category": "design",
       "description": "Browse and select from starter templates for common project types",
       "url": "/.well-known/agent-skills/template-gallery/SKILL.md",
-      "digest": "sha256-6a306f3c2128a350eed1712b3954878bba0c37d6da067a473eb9997c1f5fdc70"
+      "digest": "sha256-b6b2cd60837281df4dbc57b3e8d9e7fd82b763903d487571eec917fdd8e9ec0c"
     },
     {
       "name": "testing-guide",
@@ -386,7 +386,7 @@
       "category": "quality",
       "description": "Generates test case suggestions for your code",
       "url": "/.well-known/agent-skills/testing-guide/SKILL.md",
-      "digest": "sha256-ceb4d09e4bce89c0cab0ae17728ca126161e9f1b18cfe29c10114c470e324c0e"
+      "digest": "sha256-1cee5834f53cac5036073a7702fbd717d1f2b6cd855e93097ea16f5abbaf575f"
     },
     {
       "name": "theme-factory",
@@ -394,7 +394,7 @@
       "category": "design",
       "description": "Generates custom theme configurations with colors, fonts, and design tokens. Supports dark, light, and custom themes with accessibility compliance.",
       "url": "/.well-known/agent-skills/theme-factory/SKILL.md",
-      "digest": "sha256-687e67531fd7ffa5a83ca50205622345f7694f5f2726388c99bfc5197359fce1"
+      "digest": "sha256-3c6c69baedb8c3221a4b16cabd67abb4198140625fff572a9bab06f5de60a51c"
     },
     {
       "name": "tracker",
@@ -402,7 +402,7 @@
       "category": "progress",
       "description": "Tracks tasks through a visual kanban board (todo → in-progress → review → done)",
       "url": "/.well-known/agent-skills/tracker/SKILL.md",
-      "digest": "sha256-d6bad610b04057525e86b2edb38e3b4224532e5edfa1561a383b7f64a19984f2"
+      "digest": "sha256-5e855d1dc89b7b7f4b5d188347e5dbb5e056957448df691029e576249d1417ac"
     },
     {
       "name": "typography-rules",
@@ -410,7 +410,7 @@
       "category": "design",
       "description": "Typography best practices including font pairing rules, hierarchy guidelines, and systematic approaches to type selection for professional design.",
       "url": "/.well-known/agent-skills/typography-rules/SKILL.md",
-      "digest": "sha256-a91fd84b1eec266e2a5ce2975aabcdb68bd7973805cc17c13b94176e259c7ccc"
+      "digest": "sha256-649ce23298292b751342cb9bfbdeec9ea99cd9a32c2efd40393a3b7f1c6a41e6"
     },
     {
       "name": "verification",
@@ -418,7 +418,7 @@
       "category": "workflow",
       "description": "Verifies that behavior matches the project spec and requirements",
       "url": "/.well-known/agent-skills/verification/SKILL.md",
-      "digest": "sha256-1689ec06f65bebf9032bb2bb16465f576aa89080db8a5192b3c317ed2b183897"
+      "digest": "sha256-e0491b4de5262e512b7dd92e5d4ea9d94de5fbac68ce5df462cc86b500a6456f"
     },
     {
       "name": "vibe-review",
@@ -426,7 +426,7 @@
       "category": "quality",
       "description": "Non-technical code review — plain English feedback for vibe coders",
       "url": "/.well-known/agent-skills/vibe-review/SKILL.md",
-      "digest": "sha256-41afc8a02791ba01a5271e8f0ac076162b6f38107db86b44836bf02a2797bea4"
+      "digest": "sha256-8d7305522105086f5a601b66bff98c96d02031d7d48fc6ffa0dfb19af5df7066"
     },
     {
       "name": "virtual-team",
@@ -434,7 +434,7 @@
       "category": "orchestration",
       "description": "Role-based specialist agents for different perspectives",
       "url": "/.well-known/agent-skills/virtual-team/SKILL.md",
-      "digest": "sha256-f188167c0fbf2e47532a0221cf81153da6d4c148cb60e8a1c6a9e851e41e464d"
+      "digest": "sha256-da9365892979c4836f77a934c63ab1da031cc15d4cad33505d640b20fb11563c"
     },
     {
       "name": "visual-plans",
@@ -442,7 +442,7 @@
       "category": "preview",
       "description": "Generate UI mockups and visual plans from natural language descriptions.",
       "url": "/.well-known/agent-skills/visual-plans/SKILL.md",
-      "digest": "sha256-8fdc5da1129de1fe3af1811c712991dca9cd6fd62d2c22be26f0adfb4f443eaa"
+      "digest": "sha256-e10bad501461b0200f1824464e3d0222462915e7166c85a4c1288e7409644fdc"
     },
     {
       "name": "wednesday-graph",
@@ -450,7 +450,7 @@
       "category": "knowledge",
       "description": "Dependency analysis — answers",
       "url": "/.well-known/agent-skills/wednesday-graph/SKILL.md",
-      "digest": "sha256-e267538f5eda2cbb9b6c33bc99b798397d54b1fb3be416da066a93a10bddd451"
+      "digest": "sha256-987cdb292a6ff825a4fa8ce0bf70e11b1e4e9709b152f365d05c80d7253425bd"
     }
   ],
   "errors": []

@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
-class SpecDriven {
+const { SkillBase } = require('../../../lib/skill-base.js');
+
+class SpecDriven extends SkillBase {
   constructor() {
+    super();
     this.name = 'spec-driven';
     this.version = '1.0.0';
     this.description = 'Keep AI aligned with project intent using spec-driven development';

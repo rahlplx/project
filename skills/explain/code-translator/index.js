@@ -1,7 +1,9 @@
 #!/usr/bin/env node
+const { SkillBase } = require('../../../lib/skill-base.js');
 
-class CodeTranslator {
+class CodeTranslator extends SkillBase {
   constructor(config = {}) {
+    super();
     this.name = 'code-translator';
     this.version = '1.0.0';
     this.description = 'Translate code between programming languages — maps common patterns';

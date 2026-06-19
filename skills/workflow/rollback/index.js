@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
-class Rollback {
+const { SkillBase } = require('../../../lib/skill-base.js');
+
+class Rollback extends SkillBase {
   constructor() {
+    super();
     this.name = 'rollback';
     this.version = '1.0.0';
     this.description = 'One-click rollback — undo changes safely';

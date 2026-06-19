@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
-class Verification {
+const { SkillBase } = require('../../../lib/skill-base.js');
+
+class Verification extends SkillBase {
   constructor(config = {}) {
+    super();
     this.name = 'verification';
     this.version = '1.0.0';
     this.description = 'Verifies that behavior matches the project spec and requirements';

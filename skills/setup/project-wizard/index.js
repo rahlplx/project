@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+const { SkillBase } = require('../../../lib/skill-base.js');
+
 /**
  * Project Wizard - Interactive CLI for generating project specs
  * Usage: node index.js

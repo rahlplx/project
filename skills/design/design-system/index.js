@@ -5,8 +5,11 @@
  * Provides a comprehensive foundation for consistent, professional design.
  */
 
-class DesignSystem {
+const { SkillBase } = require('../../../lib/skill-base.js');
+
+class DesignSystem extends SkillBase {
   constructor(config = {}) {
+    super();
     this.name = 'design-system';
     this.description =
       'Industry-grade design rules for spacing, colors, typography, and components';

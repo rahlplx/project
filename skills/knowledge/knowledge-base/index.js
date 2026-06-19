@@ -1,7 +1,9 @@
 #!/usr/bin/env node
+const { SkillBase } = require('../../../lib/skill-base.js');
 
-class KnowledgeBase {
+class KnowledgeBase extends SkillBase {
   constructor() {
+    super();
     this.name = 'knowledge-base';
     this.version = '1.0.0';
     this.description = 'Project documentation generator — creates README, API docs, and guides';

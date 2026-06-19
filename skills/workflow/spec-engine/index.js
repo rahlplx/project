@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
+const { SkillBase } = require('../../../lib/skill-base.js');
 const fs = require('fs');
 
-class SpecEngine {
+class SpecEngine extends SkillBase {
   constructor() {
+    super();
     this.name = 'spec-engine';
     this.version = '1.0.0';
     this.description =

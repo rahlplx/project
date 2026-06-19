@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
-class Architect {
+const { SkillBase } = require('../../../lib/skill-base.js');
+
+class Architect extends SkillBase {
   constructor() {
+    super();
     this.name = 'architect';
     this.version = '1.0.0';
     this.description =

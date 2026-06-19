@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 
-class ErrorTranslator {
+const { SkillBase } = require('../../../lib/skill-base.js');
+
+class ErrorTranslator extends SkillBase {
   constructor(config = {}) {
+    super();
     this.name = 'error-translator';
     this.version = '1.0.0';
     this.description =
-      'Convert technical error messages to plain English — references MDN and common patterns';
+      'Convert technical error messages to plain English - references MDN and common patterns';
   }
 
   translate(errorText) {

@@ -3,8 +3,11 @@
  * Visual diff visualization for code changes
  */
 
-class DiffPreview {
+const { SkillBase } = require('../../../lib/skill-base.js');
+
+class DiffPreview extends SkillBase {
   constructor(options = {}) {
+    super();
     this.name = 'diff-preview';
     this.description = 'Visual diff visualization for code changes';
     this.contextLines = options.contextLines || 3;

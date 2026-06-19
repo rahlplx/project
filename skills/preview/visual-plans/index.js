@@ -3,8 +3,11 @@
  * Generates UI mockups and visual plans from natural language descriptions
  */
 
-class VisualPlansSkill {
+const { SkillBase } = require('../../../lib/skill-base.js');
+
+class VisualPlansSkill extends SkillBase {
   constructor(options = {}) {
+    super();
     this.name = 'visual-plans';
     this.description = 'Generate UI mockups and pseudo-code from descriptions';
     this.colorScheme = options.colorScheme || 'modern';

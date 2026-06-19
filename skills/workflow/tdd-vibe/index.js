@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
-class TDDVibe {
+const { SkillBase } = require('../../../lib/skill-base.js');
+
+class TDDVibe extends SkillBase {
   constructor() {
+    super();
     this.name = 'tdd-vibe';
     this.version = '1.0.0';
     this.description = 'Simplified TDD workflow for vibe coders — test-first without the jargon';

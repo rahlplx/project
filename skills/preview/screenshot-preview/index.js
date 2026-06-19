@@ -3,12 +3,14 @@
  * Browser screenshots and app state visualization
  */
 
+const { SkillBase } = require('../../../lib/skill-base.js');
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
 
-class ScreenshotPreview {
+class ScreenshotPreview extends SkillBase {
   constructor(options = {}) {
+    super();
     this.name = 'screenshot-preview';
     this.description = 'Capture screenshots and preview app state';
     this.outputDir = options.outputDir || './screenshots';

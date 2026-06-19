@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+const { SkillBase } = require('../../../lib/skill-base.js');
+
 /**
  * Quick Start - One-command project scaffolding
  *

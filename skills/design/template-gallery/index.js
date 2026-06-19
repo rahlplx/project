@@ -3,8 +3,11 @@
 const fs = require('fs');
 const path = require('path');
 
-class TemplateGallery {
+const { SkillBase } = require('../../../lib/skill-base.js');
+
+class TemplateGallery extends SkillBase {
   constructor() {
+    super();
     this.name = 'template-gallery';
     this.version = '1.0.0';
     this.description = 'Browse and select from starter templates for common project types';
