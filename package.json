@@ -88,9 +88,16 @@
     ]
   },
   "lint-staged": {
-    "*.js": ["eslint --fix", "prettier --write"],
-    "*.yaml": ["prettier --write"],
-    "*.yml": ["prettier --write"]
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.yaml": [
+      "prettier --write"
+    ],
+    "*.yml": [
+      "prettier --write"
+    ]
   },
   "overrides": {
     "@istanbuljs/load-nyc-config": {

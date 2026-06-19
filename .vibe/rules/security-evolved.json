@@ -36638,7 +36638,707 @@
       "flags": "i",
       "desc": "Evolved: frequent token 'Secrets'",
       "source": "auto"
+    },
+    {
+      "id": "evolved-spaced",
+      "pattern": "\\bspaced\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'spaced'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-passed",
+      "pattern": "\\bPASSED\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'PASSED'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-validateyaml",
+      "pattern": "\\bvalidateYAML\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'validateYAML'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-validatefilename",
+      "pattern": "\\bvalidateFileName\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'validateFileName'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-kebabcase",
+      "pattern": "\\bkebabCase\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'kebabCase'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-validateskillstructure",
+      "pattern": "\\bvalidateSkillStructure\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'validateSkillStructure'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-requiredfiles",
+      "pattern": "\\brequiredFiles\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'requiredFiles'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-runall",
+      "pattern": "\\brunAll\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'runAll'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-catalogdir",
+      "pattern": "\\bcatalogDir\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'catalogDir'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-_findfiles",
+      "pattern": "\\b_findFiles\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token '_findFiles'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-skilldirs",
+      "pattern": "\\bskillDirs\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'skillDirs'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-_getdirs",
+      "pattern": "\\b_getDirs\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token '_getDirs'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-wellknowndir",
+      "pattern": "\\bwellKnownDir\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'wellKnownDir'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-cigates",
+      "pattern": "\\bCIGates\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'CIGates'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-nversion",
+      "pattern": "\\bnversion\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'nversion'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-malformed",
+      "pattern": "\\bmalformed\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'malformed'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-myskill",
+      "pattern": "\\bmySkill\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'mySkill'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-forbidden",
+      "pattern": "\\bforbidden\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'forbidden'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-forbidden_command",
+      "pattern": "\\bFORBIDDEN_COMMAND\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'FORBIDDEN_COMMAND'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-sandbox",
+      "pattern": "\\bsandbox\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'sandbox'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-extractparamorder",
+      "pattern": "\\bextractParamOrder\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'extractParamOrder'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-intercept",
+      "pattern": "\\bIntercept\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'Intercept'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-testsandbox",
+      "pattern": "\\btestSandbox\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'testSandbox'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-allowedcommands",
+      "pattern": "\\ballowedCommands\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'allowedCommands'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-testcontexthygiene",
+      "pattern": "\\btestContextHygiene\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'testContextHygiene'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-oldcontext",
+      "pattern": "\\boldContext\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'oldContext'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-terminology",
+      "pattern": "\\bterminology\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'terminology'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-highdriftcontext",
+      "pattern": "\\bhighDriftContext\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'highDriftContext'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-stuff",
+      "pattern": "\\bstuff\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'stuff'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-flowers",
+      "pattern": "\\bflowers\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'flowers'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-gardening",
+      "pattern": "\\bgardening\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'gardening'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-lowdriftcontext",
+      "pattern": "\\blowDriftContext\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'lowDriftContext'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-updatecontextwithsafety",
+      "pattern": "\\bupdateContextWithSafety\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'updateContextWithSafety'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-incorrectly",
+      "pattern": "\\bincorrectly\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'incorrectly'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-rejected",
+      "pattern": "\\bREJECTED\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'REJECTED'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-accepted",
+      "pattern": "\\baccepted\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'accepted'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-similarity",
+      "pattern": "\\bSimilarity\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'Similarity'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-newcontext",
+      "pattern": "\\bnewContext\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'newContext'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-oldtokens",
+      "pattern": "\\boldTokens\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'oldTokens'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-newtokens",
+      "pattern": "\\bnewTokens\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'newTokens'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-oldshingles",
+      "pattern": "\\boldShingles\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'oldShingles'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-smaller",
+      "pattern": "\\bSmaller\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'Smaller'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-newshingles",
+      "pattern": "\\bnewShingles\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'newShingles'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-scorealt",
+      "pattern": "\\bscoreAlt\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'scoreAlt'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-finalscore",
+      "pattern": "\\bfinalScore\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'finalScore'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-drift",
+      "pattern": "\\bDRIFT\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'DRIFT'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-error_recovery",
+      "pattern": "\\berror_recovery\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'error_recovery'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-pending",
+      "pattern": "\\bPENDING\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'PENDING'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-zombie",
+      "pattern": "\\bZOMBIE\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'ZOMBIE'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-heartbeat",
+      "pattern": "\\bHeartbeat\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'Heartbeat'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-forcing",
+      "pattern": "\\bForcing\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'Forcing'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-error_recovery",
+      "pattern": "\\bERROR_RECOVERY\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'ERROR_RECOVERY'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-testzombiedeadlock",
+      "pattern": "\\btestZombieDeadlock\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'testZombieDeadlock'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-setting",
+      "pattern": "\\bSetting\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'Setting'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-seconds",
+      "pattern": "\\bseconds\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'seconds'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-zombie",
+      "pattern": "\\bzombie\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'zombie'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-capacity",
+      "pattern": "\\bcapacity\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'capacity'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-fillrate",
+      "pattern": "\\bfillRate\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'fillRate'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-limiter",
+      "pattern": "\\blimiter\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'limiter'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-simulated",
+      "pattern": "\\bsimulated\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'simulated'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-testratelimiter",
+      "pattern": "\\btestRateLimiter\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'testRateLimiter'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-concurrent",
+      "pattern": "\\bconcurrent\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'concurrent'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-1600ms",
+      "pattern": "\\b1600ms\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token '1600ms'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-requests",
+      "pattern": "\\bRequests\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'Requests'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-spanbuffers",
+      "pattern": "\\bspanBuffers\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'spanBuffers'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-flushtimeouts",
+      "pattern": "\\bflushTimeouts\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'flushTimeouts'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-enqueuespan",
+      "pattern": "\\benqueueSpan\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'enqueueSpan'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-spandata",
+      "pattern": "\\bspanData\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'spanData'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-flushtodisk",
+      "pattern": "\\bflushToDisk\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'flushToDisk'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-spanstoflush",
+      "pattern": "\\bspansToFlush\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'spansToFlush'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-tmppath",
+      "pattern": "\\btmpPath\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'tmpPath'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-existingcontent",
+      "pattern": "\\bexistingContent\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'existingContent'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-newcontent",
+      "pattern": "\\bnewContent\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'newContent'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-flushall",
+      "pattern": "\\bflushAll\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'flushAll'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-testracecondition",
+      "pattern": "\\btestRaceCondition\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'testRaceCondition'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-spanfile",
+      "pattern": "\\bspanFile\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'spanFile'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-iterations",
+      "pattern": "\\biterations\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'iterations'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-finished",
+      "pattern": "\\bFinished\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'Finished'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-waiting",
+      "pattern": "\\bWaiting\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'Waiting'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-_timeout",
+      "pattern": "\\b_timeout\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token '_timeout'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-register",
+      "pattern": "\\bRegister\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'Register'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-uncategorized",
+      "pattern": "\\buncategorized\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'uncategorized'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-_gettools",
+      "pattern": "\\b_getTools\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token '_getTools'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-deploytools",
+      "pattern": "\\bdeployTools\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'deployTools'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-marks",
+      "pattern": "\\bmarks\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'marks'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-replaces",
+      "pattern": "\\breplaces\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'replaces'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-registration",
+      "pattern": "\\bregistration\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'registration'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-temperature",
+      "pattern": "\\btemperature\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'temperature'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-outbound",
+      "pattern": "\\boutbound\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'outbound'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-yamlfiles",
+      "pattern": "\\byamlFiles\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'yamlFiles'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-simulating",
+      "pattern": "\\bSimulating\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'Simulating'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-deadlock",
+      "pattern": "\\bdeadlock\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'deadlock'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-terminated",
+      "pattern": "\\bterminated\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'terminated'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-transitioned",
+      "pattern": "\\btransitioned\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'transitioned'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-tokenbucket",
+      "pattern": "\\bTokenBucket\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'TokenBucket'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-setratelimit",
+      "pattern": "\\bsetRateLimit\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'setRateLimit'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-intervalms",
+      "pattern": "\\bintervalMs\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'intervalMs'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-reduced",
+      "pattern": "\\bReduced\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'Reduced'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-dispatching",
+      "pattern": "\\bDispatching\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'Dispatching'",
+      "source": "auto"
+    },
+    {
+      "id": "evolved-renamesync",
+      "pattern": "\\brenameSync\\b",
+      "flags": "i",
+      "desc": "Evolved: frequent token 'renameSync'",
+      "source": "auto"
     }
   ],
-  "last_scan": "2026-06-19T03:35:04.256Z"
+  "last_scan": "2026-06-19T17:21:12.922Z"
 }
