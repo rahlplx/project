@@ -33,6 +33,9 @@
     "failed_at_phase": null
   },
   "mode": "auto",
+  "infrastructure": {
+    "toolsDiscovered": 243
+  },
   "updated": "2026-06-19T00:34:53.990Z",
   "_enriched": {
     "original": "--from=done",
