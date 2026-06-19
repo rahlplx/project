@@ -3,11 +3,8 @@
  * Auto-generate architecture diagrams from code structure
  */
 
-const { SkillBase } = require('../../../lib/skill-base.js');
-
-class FlowchartGen extends SkillBase {
+class FlowchartGen {
   constructor(options = {}) {
-    super();
     this.name = 'flowchart-gen';
     this.description = 'Generate architecture diagrams from code structure';
     this.direction = options.direction || 'TB'; // TB (top-bottom), LR (left-right), RL, BT

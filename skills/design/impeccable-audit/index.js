@@ -1,7 +1,5 @@
 const AntiSlopSkill = require('../anti-slop');
 
-const { SkillBase } = require('../../../lib/skill-base.js');
-
 const COMMANDS = [
   { name: 'craft', description: 'Full shape-then-build flow with visual iteration' },
   {
@@ -97,9 +95,8 @@ const SUPPLEMENTAL_DETECTORS = {
   },
 };
 
-class ImpeccableAudit extends SkillBase {
+class ImpeccableAudit {
   constructor() {
-    super();
     this.name = 'impeccable-audit';
     this.version = '1.0.0';
     this.description =
@@ -223,7 +220,7 @@ class ImpeccableAudit extends SkillBase {
     if (!design.focalPoint) {
       findings.push({
         axis: 'hierarchy',
-        issue: 'No single focal point - everything competes for attention equally.',
+        issue: 'No single focal point — everything competes for attention equally.',
       });
     }
     if (design.genericness && design.genericness > 7) {
@@ -284,7 +281,7 @@ class ImpeccableAudit extends SkillBase {
     let md = '# Impeccable Audit\n\n';
     md += `${this.description}\n\n`;
     md += '## Commands\n\n';
-    for (const c of COMMANDS) md += `- \`/impeccable ${c.name}\` - ${c.description}\n`;
+    for (const c of COMMANDS) md += `- \`/impeccable ${c.name}\` — ${c.description}\n`;
     return md;
   }
 

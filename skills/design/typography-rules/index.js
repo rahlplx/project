@@ -5,11 +5,8 @@
  * and systematic approaches to type selection for professional design.
  */
 
-const { SkillBase } = require('../../../lib/skill-base.js');
-
-class TypographyRules extends SkillBase {
+class TypographyRules {
   constructor() {
-    super();
     this.name = 'typography-rules';
     this.description =
       'Typography best practices including font pairing, hierarchy, and type selection';

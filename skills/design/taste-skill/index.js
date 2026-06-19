@@ -1,14 +1,12 @@
 /**
  * Taste-Skill
  *
- * Faithful port of Leonxlnx/taste-skill (https://github.com/Leonxlnx/taste-skill) -
+ * Faithful port of Leonxlnx/taste-skill (https://github.com/Leonxlnx/taste-skill) —
  * three design dials, brief-inference workflow, and the deterministic, hard-rule
  * subset of its anti-slop engineering checks (em-dash ban, duplicate-CTA-intent,
  * hero/eyebrow discipline). Composes with the existing anti-slop skill for the
  * color/typography/layout rules it already covers rather than duplicating them.
  */
-
-const { SkillBase } = require('../../../lib/skill-base.js');
 
 const DIALS = {
   DESIGN_VARIANCE: {
@@ -109,9 +107,8 @@ const CTA_INTENT_GROUPS = [
   ['sign up', 'join now', 'create account', 'register'],
 ];
 
-class TasteSkill extends SkillBase {
+class TasteSkill {
   constructor() {
-    super();
     this.name = 'taste-skill';
     this.version = '1.0.0';
     this.description =
@@ -151,7 +148,7 @@ class TasteSkill extends SkillBase {
   }
 
   /**
-   * "Output one-line design read" - gstack/taste-skill Brief Inference Workflow step 2.
+   * "Output one-line design read" — gstack/taste-skill Brief Inference Workflow step 2.
    */
   describeBriefRead(brief = {}) {
     const { dials } = this.inferDials(brief);
@@ -163,15 +160,15 @@ class TasteSkill extends SkillBase {
   }
 
   /**
-   * Em-Dash Ban (Section 9.G) - "the single most-violated AI Tell."
+   * Em-Dash Ban (Section 9.G) — "the single most-violated AI Tell."
    */
   checkEmDash(text = '') {
-    const matches = [...String(text).matchAll(/[--]/g)];
+    const matches = [...String(text).matchAll(/[—–]/g)];
     return { violation: matches.length > 0, count: matches.length };
   }
 
   /**
-   * NO DUPLICATE CTA INTENT - two CTAs with the same intent on one page is a Pre-Flight Fail.
+   * NO DUPLICATE CTA INTENT — two CTAs with the same intent on one page is a Pre-Flight Fail.
    */
   checkDuplicateCTAIntent(ctas = []) {
     const normalized = ctas.map(c => c.toLowerCase().trim());
@@ -204,7 +201,7 @@ class TasteSkill extends SkillBase {
   }
 
   /**
-   * EYEBROW RESTRAINT - max 1 eyebrow per 3 sections.
+   * EYEBROW RESTRAINT — max 1 eyebrow per 3 sections.
    */
   checkEyebrowRestraint(eyebrowCount = 0, sectionCount = 0) {
     const max = Math.ceil(sectionCount / 3);
@@ -212,7 +209,7 @@ class TasteSkill extends SkillBase {
   }
 
   /**
-   * Pure black/white ban - use off-black/off-white instead.
+   * Pure black/white ban — use off-black/off-white instead.
    */
   checkPureBlackWhite(colors = []) {
     const violations = colors.filter(c => /^#(000000|ffffff)$/i.test(c));
@@ -228,7 +225,7 @@ class TasteSkill extends SkillBase {
 
   /**
    * Aggregate Pre-Flight Check across the deterministic hard rules above.
-   * Non-exhaustive vs. the real 80+ checklist - covers the checks that are
+   * Non-exhaustive vs. the real 80+ checklist — covers the checks that are
    * mechanically verifiable without a human aesthetic judgment call.
    */
   preflightCheck(design = {}) {

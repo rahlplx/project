@@ -5,11 +5,8 @@
  * Supports brand color expansion, semantic color systems, and contrast checking.
  */
 
-const { SkillBase } = require('../../../lib/skill-base.js');
-
-class ColorGenerator extends SkillBase {
+class ColorGenerator {
   constructor() {
-    super();
     this.name = 'color-gen';
     this.description = 'Generates WCAG-compliant color palettes with accessibility considerations';
     this.version = '1.0.0';

@@ -1,9 +1,6 @@
 #!/usr/bin/env node
-const { SkillBase } = require('../../../lib/skill-base.js');
-
-class Nexus extends SkillBase {
+class Nexus {
   constructor(config = {}) {
-    super();
     this.name = 'nexus';
     this.version = '1.0.0';
     this.description = 'Multi-agent orchestration with 3 modes — Graph, Router, Adaptive';

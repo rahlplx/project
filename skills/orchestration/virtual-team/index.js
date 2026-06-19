@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-const { SkillBase } = require('../../../lib/skill-base.js');
 
-class VirtualTeam extends SkillBase {
+class VirtualTeam {
   constructor() {
-    super();
     this.name = 'virtual-team';
     this.version = '1.0.0';
     this.description = 'Role-based specialist agents for different perspectives';

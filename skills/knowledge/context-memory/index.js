@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-const { SkillBase } = require('../../../lib/skill-base.js');
 
-class ContextMemory extends SkillBase {
+class ContextMemory {
   constructor() {
-    super();
     this.name = 'context-memory';
     this.version = '1.0.0';
     this.description = 'Persistent context across sessions — remembers preferences and decisions';

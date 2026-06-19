@@ -5,11 +5,8 @@
  * Supports dark, light, and custom themes with accessibility compliance.
  */
 
-const { SkillBase } = require('../../../lib/skill-base.js');
-
-class ThemeFactory extends SkillBase {
+class ThemeFactory {
   constructor() {
-    super();
     this.name = 'theme-factory';
     this.description =
       'Generates custom theme configurations with colors, fonts, and design tokens';

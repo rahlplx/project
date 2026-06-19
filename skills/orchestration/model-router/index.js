@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-const { SkillBase } = require('../../../lib/skill-base.js');
 
-class ModelRouter extends SkillBase {
+class ModelRouter {
   constructor() {
-    super();
     this.name = 'model-router';
     this.version = '1.0.0';
     this.description = 'Route tasks to optimal AI models based on capability and cost';

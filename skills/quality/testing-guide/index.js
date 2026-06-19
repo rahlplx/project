@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-const { SkillBase } = require('../../../lib/skill-base.js');
 
-class TestingGuide extends SkillBase {
+class TestingGuide {
   constructor(config = {}) {
-    super();
     this.name = 'testing-guide';
     this.version = '1.0.0';
     this.description = 'Generates test case suggestions for your code';

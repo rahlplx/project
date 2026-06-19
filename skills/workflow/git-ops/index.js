@@ -1,11 +1,9 @@
 #!/usr/bin/env node
 
-const { SkillBase } = require('../../../lib/skill-base.js');
 const { execFileSync } = require('child_process');
 
-class GitOps extends SkillBase {
+class GitOps {
   constructor() {
-    super();
     this.name = 'git-ops';
     this.version = '1.0.0';
     this.description = 'Git operations without CLI knowledge — wraps git CLI';

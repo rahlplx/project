@@ -1,10 +1,7 @@
 #!/usr/bin/env node
 
-const { SkillBase } = require('../../../lib/skill-base.js');
-
-class PromptTemplates extends SkillBase {
+class PromptTemplates {
   constructor(config = {}) {
-    super();
     this.name = 'prompt-templates';
     this.version = '1.0.0';
     this.description = 'Pre-built copy-paste prompt templates for AI coding assistants';

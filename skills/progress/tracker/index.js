@@ -5,15 +5,13 @@
  * All state is in-memory. No file I/O required.
  */
 
-const { SkillBase } = require('../../../lib/skill-base.js');
 const crypto = require('crypto');
 
-class TaskTracker extends SkillBase {
+class TaskTracker {
   constructor(options = {}) {
-    super();
     this.name = 'tracker';
     this.description =
-      'Tracks tasks through a visual kanban board (todo  in-progress  review  done)';
+      'Tracks tasks through a visual kanban board (todo → in-progress → review → done)';
     this.storageKey = options.storageKey || 'vibe-tracker';
     this.phases = options.phases || ['todo', 'in-progress', 'review', 'done'];
     this.tasks = [];

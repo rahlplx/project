@@ -6,8 +6,6 @@
  * rather than reimplementing them.
  */
 
-const { SkillBase } = require('../../../lib/skill-base.js');
-
 const STAGES = {
   define: {
     name: 'define',
@@ -29,9 +27,8 @@ const STAGES = {
 
 const AUXILIARY_COMMANDS = ['gsd-quick', 'gsd-progress', 'gsd-spike', 'gsd-sketch'];
 
-class GSDWorkflow extends SkillBase {
+class GSDWorkflow {
   constructor() {
-    super();
     this.name = 'gsd-workflow';
     this.version = '1.0.0';
     this.description =

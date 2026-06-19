@@ -1,10 +1,7 @@
 #!/usr/bin/env node
 
-const { SkillBase } = require('../../../lib/skill-base.js');
-
-class PlanningAgent extends SkillBase {
+class PlanningAgent {
   constructor() {
-    super();
     this.name = 'planning-agent';
     this.version = '1.0.0';
     this.description = 'Breaks project descriptions into actionable task plans';

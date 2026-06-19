@@ -1,10 +1,7 @@
 #!/usr/bin/env node
 
-const { SkillBase } = require('../../../lib/skill-base.js');
-
-class Checkpoints extends SkillBase {
+class Checkpoints {
   constructor() {
-    super();
     this.name = 'checkpoints';
     this.version = '1.0.0';
     this.description = 'Milestone-based progress tracking with checkpoints';

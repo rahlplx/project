@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-const { SkillBase } = require('../../../lib/skill-base.js');
 
-class WednesdayGraph extends SkillBase {
+class WednesdayGraph {
   constructor() {
-    super();
     this.name = 'wednesday-graph';
     this.version = '1.0.0';
     this.description = 'Dependency analysis — answers "what breaks if I change this?"';

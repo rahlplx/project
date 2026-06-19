@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-const { SkillBase } = require('../../../lib/skill-base.js');
 
-class SecurityDefaults extends SkillBase {
+class SecurityDefaults {
   constructor(config = {}) {
-    super();
     this.name = 'security-defaults';
     this.version = '1.0.0';
     this.description = 'OWASP-aligned security checks for AI-generated code';

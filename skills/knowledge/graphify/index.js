@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-const { SkillBase } = require('../../../lib/skill-base.js');
 /**
  * Faithful port of safishamsi/graphify (https://github.com/safishamsi/graphify) —
  * EXTRACTED/INFERRED/AMBIGUOUS edge tagging, god-node/surprising-connection
@@ -23,9 +22,8 @@ const CLI_COMMANDS = [
   { command: 'graphify hook install', description: 'Install post-commit automation.' },
 ];
 
-class Graphify extends SkillBase {
+class Graphify {
   constructor() {
-    super();
     this.name = 'graphify';
     this.version = '1.0.0';
     this.description =

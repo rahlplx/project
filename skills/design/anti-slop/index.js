@@ -5,11 +5,8 @@
  * Contains 41 rules that catch common design mistakes and enforce quality.
  */
 
-const { SkillBase } = require('../../../lib/skill-base.js');
-
-class AntiSlopSkill extends SkillBase {
+class AntiSlopSkill {
   constructor() {
-    super();
     this.name = 'anti-slop';
     this.version = '1.0.0';
     this.description = 'Detects and prevents 41 common AI design anti-patterns';
@@ -31,7 +28,7 @@ class AntiSlopSkill extends SkillBase {
         category: 'color',
         name: 'Purple Gradient Ban',
         pattern: /gradient.*purple|linear-gradient.*#?(?:8b5cf6|#8b5cf6|violet|purple)/i,
-        message: 'Purple gradients are an AI cliche. Use purposeful, brand-specific colors.',
+        message: 'Purple gradients are an AI cliché. Use purposeful, brand-specific colors.',
         severity: 'medium',
         fix: 'Use brand-appropriate gradient or solid colors from your design system.',
       },
@@ -307,7 +304,7 @@ class AntiSlopSkill extends SkillBase {
           const allCaps = headers.filter(h => h === h.toUpperCase() && h.length > 3);
           return allCaps.length > 0;
         },
-        message: 'ALL CAPS headers are an AI design cliche.',
+        message: 'ALL CAPS headers are an AI design cliché.',
         severity: 'medium',
         fix: 'Use title case or sentence case. ALL CAPS is acceptable for badges/labels only.',
       },
@@ -380,7 +377,7 @@ class AntiSlopSkill extends SkillBase {
           const sections = design.sections || [];
           return cards.length === 3 || sections.filter(s => s.type === 'features').length > 0;
         },
-        message: 'The 3-card feature layout is an AI design cliche.',
+        message: 'The 3-card feature layout is an AI design cliché.',
         severity: 'medium',
         fix: 'Use varied layouts: 2-column, masonry, asymmetric grids, or unique section designs.',
       },
@@ -745,12 +742,12 @@ class AntiSlopSkill extends SkillBase {
 
       /**
        * 40. Generic Stock Photos
-       * Using clich stock photo subjects
+       * Using cliché stock photo subjects
        */
       stockPhotoCliches: {
         id: 40,
         category: 'content',
-        name: 'Cliche Stock Photos',
+        name: 'Cliché Stock Photos',
         check: design => {
           const images = design.images || [];
           const clicheKeywords = [
@@ -764,7 +761,7 @@ class AntiSlopSkill extends SkillBase {
             clicheKeywords.some(kw => (img.alt || img.caption || '').toLowerCase().includes(kw))
           );
         },
-        message: 'Stock photo cliches undermine authenticity.',
+        message: 'Stock photo clichés undermine authenticity.',
         severity: 'medium',
         fix: 'Use real photography, illustrations, or abstract visuals. Consider AI-generated custom art.',
       },
@@ -894,7 +891,7 @@ class AntiSlopSkill extends SkillBase {
    */
   generateSummary(violations, warnings, score) {
     if (violations.length === 0 && warnings.length === 0) {
-      return 'No anti-patterns detected. Design passes all checks.';
+      return '✅ No anti-patterns detected. Design passes all checks.';
     }
 
     const parts = [];
@@ -905,7 +902,7 @@ class AntiSlopSkill extends SkillBase {
       parts.push(`${warnings.length} warning(s)`);
     }
 
-    return `${parts.join(', ')}. Score: ${score}/100`;
+    return `⚠️ ${parts.join(', ')}. Score: ${score}/100`;
   }
 
   /**

@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-const { SkillBase } = require('../../../lib/skill-base.js');
 
-class VibeReview extends SkillBase {
+class VibeReview {
   constructor(config = {}) {
-    super();
     this.name = 'vibe-review';
     this.version = '1.0.0';
     this.description = 'Non-technical code review — plain English feedback for vibe coders';
