@@ -36,6 +36,7 @@ Desktop.ini
 *.log
 jest_output.txt
 temp-test-output.txt
+commit_msg.txt
 
 # Vibe internal (sensitive)
 .vibe/repo-mining/
