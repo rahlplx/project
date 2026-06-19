@@ -1,13 +1,16 @@
 #!/usr/bin/env node
 
-class HealthCheck {
+const { SkillBase } = require('../../../lib/skill-base.js');
+
+class HealthCheck extends SkillBase {
   constructor(config = {}) {
+    super(config);
     this.name = 'health-check';
     this.version = '1.0.0';
     this.description = 'Check if your project dependencies and environment are healthy';
   }
 
-  checkProject(projectPath = '.') {
+  checkProjectSync(projectPath = '.') {
     const fs = require('fs');
     const path = require('path');
     const resolved = path.resolve(projectPath);
@@ -135,15 +138,23 @@ class HealthCheck {
     return recs;
   }
 
-  toJSON() {
+  toJSONSync() {
     return { name: this.name, version: this.version, description: this.description };
+  }
+
+  checkProject(projectPath = '.') {
+    return this.checkProjectSync(projectPath);
+  }
+
+  toJSON() {
+    return this.toJSONSync();
   }
 }
 
 if (require.main === module) {
   const skill = new HealthCheck();
   const dir = process.argv[2] || '.';
-  console.log(JSON.stringify(skill.checkProject(dir), null, 2));
+  console.log(JSON.stringify(skill.checkProjectSync(dir), null, 2));
 }
 
 module.exports = HealthCheck;

@@ -1,14 +1,17 @@
 #!/usr/bin/env node
 
-class Guardrails {
+const { SkillBase } = require('../../../lib/skill-base.js');
+
+class Guardrails extends SkillBase {
   constructor(config = {}) {
+    super();
     this.name = 'guardrails';
     this.version = '1.0.0';
     this.description = 'Safety confirmations for destructive actions — prevents accidents';
     this.config = config;
   }
 
-  check(action, _context = {}) {
+  checkSync(action, _context = {}) {
     if (!action) return { allowed: false, reason: 'No action specified.' };
 
     const guardrails = this._getGuardrails();
@@ -160,7 +163,7 @@ class Guardrails {
     ];
   }
 
-  confirm(guardrailId, action) {
+  confirmSync(guardrailId, action) {
     return {
       confirmed: true,
       guardrailId,
@@ -170,7 +173,7 @@ class Guardrails {
     };
   }
 
-  toJSON() {
+  toJSONSync() {
     return {
       name: this.name,
       version: this.version,
@@ -184,6 +187,10 @@ class Guardrails {
     };
   }
 }
+
+Guardrails.prototype.check = Guardrails.prototype.checkSync;
+Guardrails.prototype.confirm = Guardrails.prototype.confirmSync;
+Guardrails.prototype.toJSON = Guardrails.prototype.toJSONSync;
 
 if (require.main === module) {
   const skill = new Guardrails();

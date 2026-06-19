@@ -1,5 +1,7 @@
 'use strict';
 
+const { SkillBase } = require('../../../lib/skill-base.js');
+
 const DONE_CRITERIA = [
   {
     id: 'spec_met',
@@ -101,8 +103,9 @@ const DONE_CRITERIA = [
   },
 ];
 
-class DoneVerifier {
+class DoneVerifier extends SkillBase {
   constructor(options = {}) {
+    super();
     this.name = 'done-verifier';
     this.description =
       '14-point checklist verifying a feature is truly production-ready before shipping';
@@ -114,7 +117,7 @@ class DoneVerifier {
     return new Date().toISOString();
   }
 
-  startVerification(projectName) {
+  startVerificationSync(projectName) {
     const session = {
       id: Date.now().toString(36),
       projectName,
@@ -135,7 +138,11 @@ class DoneVerifier {
     };
   }
 
-  respond(sessionId, criterionId, passed, note) {
+  startVerification(projectName) {
+    return this.startVerificationSync(projectName);
+  }
+
+  respondSync(sessionId, criterionId, passed, note) {
     const session = this.sessions.find(s => s.id === sessionId);
     if (!session) {
       return { type: 'error', timestamp: this._ts(), message: `Session ${sessionId} not found` };
@@ -153,7 +160,11 @@ class DoneVerifier {
     };
   }
 
-  getReport(sessionId) {
+  respond(sessionId, criterionId, passed, note) {
+    return this.respondSync(sessionId, criterionId, passed, note);
+  }
+
+  getReportSync(sessionId) {
     const session = this.sessions.find(s => s.id === sessionId);
     if (!session) {
       return { type: 'error', timestamp: this._ts(), message: `Session ${sessionId} not found` };
@@ -189,7 +200,11 @@ class DoneVerifier {
     };
   }
 
-  quickCheck(answers) {
+  getReport(sessionId) {
+    return this.getReportSync(sessionId);
+  }
+
+  quickCheckSync(answers) {
     // answers = { criterionId: boolean }
     const failed = DONE_CRITERIA.filter(c => answers[c.id] === false && c.blocking);
     const unanswered = DONE_CRITERIA.filter(c => answers[c.id] === undefined);
@@ -205,12 +220,20 @@ class DoneVerifier {
     };
   }
 
-  getCriteria(category) {
+  quickCheck(answers) {
+    return this.quickCheckSync(answers);
+  }
+
+  getCriteriaSync(category) {
     const criteria = category ? DONE_CRITERIA.filter(c => c.category === category) : DONE_CRITERIA;
     return { type: 'criteria_list', timestamp: this._ts(), criteria };
   }
 
-  toMarkdown() {
+  getCriteria(category) {
+    return this.getCriteriaSync(category);
+  }
+
+  toMarkdownSync() {
     const lines = ['# Done Checklist', ''];
     const byCategory = {};
     for (const c of DONE_CRITERIA) {
@@ -228,8 +251,16 @@ class DoneVerifier {
     return lines.join('\n');
   }
 
-  toJSON() {
+  toMarkdown() {
+    return this.toMarkdownSync();
+  }
+
+  toJSONSync() {
     return { criteria: DONE_CRITERIA };
+  }
+
+  toJSON() {
+    return this.toJSONSync();
   }
 }
 

@@ -1,18 +1,25 @@
 #!/usr/bin/env node
 
-class OneClickNetlify {
+const { SkillBase } = require('../../../lib/skill-base.js');
+
+class OneClickNetlify extends SkillBase {
   constructor(config = {}) {
+    super();
     this.name = 'one-click-netlify';
     this.version = '1.0.0';
-    this.description = 'Deploy any project to Netlify — wraps the Netlify CLI';
+    this.description = 'Deploy any project to Netlify - wraps the Netlify CLI';
     this.cliCommand = config.cliCommand || 'npx netlify-cli';
   }
 
-  validateConfig() {
-    return { valid: true, message: 'Uses Netlify CLI — install with: npm i -g netlify-cli' };
+  validateConfigSync() {
+    return { valid: true, message: 'Uses Netlify CLI - install with: npm i -g netlify-cli' };
   }
 
-  buildDeployCommand(projectPath = '.', options = {}) {
+  validateConfig() {
+    return this.validateConfigSync();
+  }
+
+  buildDeployCommandSync(projectPath = '.', options = {}) {
     const parts = this.cliCommand.split(' ');
     const cmd = parts[0];
     const args = [...parts.slice(1), 'deploy', '--dir', projectPath];
@@ -23,17 +30,29 @@ class OneClickNetlify {
     return { cmd, args };
   }
 
-  buildInitCommand(projectPath = '.') {
+  buildDeployCommand(projectPath, options) {
+    return this.buildDeployCommandSync(projectPath, options);
+  }
+
+  buildInitCommandSync(projectPath = '.') {
     const parts = this.cliCommand.split(' ');
     return { cmd: parts[0], args: [...parts.slice(1), 'init', '--cwd', projectPath] };
   }
 
-  buildOpenCommand() {
+  buildInitCommand(projectPath) {
+    return this.buildInitCommandSync(projectPath);
+  }
+
+  buildOpenCommandSync() {
     const parts = this.cliCommand.split(' ');
     return { cmd: parts[0], args: [...parts.slice(1), 'open:site'] };
   }
 
-  buildEnvCommand(vars = {}) {
+  buildOpenCommand() {
+    return this.buildOpenCommandSync();
+  }
+
+  buildEnvCommandSync(vars = {}) {
     const parts = this.cliCommand.split(' ');
     const cmd = parts[0];
     const commands = Object.entries(vars).map(([key, value]) => ({
@@ -43,7 +62,11 @@ class OneClickNetlify {
     return { commands, count: commands.length };
   }
 
-  toJSON() {
+  buildEnvCommand(vars) {
+    return this.buildEnvCommandSync(vars);
+  }
+
+  toJSONSync() {
     return {
       name: this.name,
       version: this.version,
@@ -56,13 +79,17 @@ class OneClickNetlify {
       },
     };
   }
+
+  toJSON() {
+    return this.toJSONSync();
+  }
 }
 
 if (require.main === module) {
   const skill = new OneClickNetlify();
   const projectPath = process.argv[2] || '.';
   const isProd = process.argv.includes('--prod');
-  const cmd = skill.buildDeployCommand(projectPath, { production: isProd });
+  const cmd = skill.buildDeployCommandSync(projectPath, { production: isProd });
   console.log('Run this command:\n');
   console.log(`${cmd.cmd} ${cmd.args.join(' ')}`);
 }

@@ -1,7 +1,7 @@
 {
   "phase": "done",
   "step": 10,
-  "goal": "--from=done",
+  "mode": "auto",
   "completed": [
     "think-complete",
     "plan-complete",
@@ -14,9 +14,9 @@
     "learn-complete",
     "evolve-complete"
   ],
+  "status": "ERROR_RECOVERY",
+  "lastHeartbeat": 1781830926704,
   "auto_pipeline": {
-    "started": "2026-06-18T22:23:10.551Z",
-    "goal": "--from=done",
     "state_machine": [
       "think",
       "plan",
@@ -29,9 +29,6 @@
       "learn",
       "evolve",
       "done"
-    ],
-    "failed_at_phase": null
-  },
-  "mode": "auto",
-  "updated": "2026-06-18T22:23:10.551Z"
+    ]
+  }
 }

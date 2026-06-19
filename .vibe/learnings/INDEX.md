@@ -22,6 +22,8 @@ Last updated: 2026-06-14T12:00:00.000Z
 - [Telemetry Spec Session Schema](patterns/telemetry-spec-session-schema.md)
 - [Test for Every Skill](patterns/test-for-every-skill.md)
 - [Direct-to-Main for Catalog-Only Changes](patterns/yaml-only-direct-push.md)
+- [Agent-Native Tool Discovery with isUsable()](patterns/agent-native-tool-discovery.md)
+- [CI Quality Gates Driven by Harness Validation](patterns/ci-quality-gates-harness-driven.md)
 
 ## Anti-Patterns
 
@@ -38,6 +40,7 @@ Last updated: 2026-06-14T12:00:00.000Z
 - [Skip Test Verification on Docs-Only Changes](anti-patterns/skip-test-verification-on-docs-only.md)
 - [Writing Descriptions Before Verifying Tool Metadata](anti-patterns/verify-before-describe.md)
 - [writeIndex-arg-order-confusion](anti-patterns/writeIndex-arg-order-confusion.md)
+- [Test Teardown Causing Harness Timeouts](anti-patterns/test-teardown-harness-timeout.md)
 
 ## Projects
 

@@ -1,18 +1,25 @@
 #!/usr/bin/env node
 
-class OneClickVercel {
+const { SkillBase } = require('../../../lib/skill-base.js');
+
+class OneClickVercel extends SkillBase {
   constructor(config = {}) {
+    super();
     this.name = 'one-click-vercel';
     this.version = '1.0.0';
-    this.description = 'Deploy any project to Vercel — wraps the Vercel CLI';
+    this.description = 'Deploy any project to Vercel - wraps the Vercel CLI';
     this.cliCommand = config.cliCommand || 'npx vercel';
   }
 
-  validateConfig() {
-    return { valid: true, message: 'Uses Vercel CLI — install with: npm i -g vercel' };
+  validateConfigSync() {
+    return { valid: true, message: 'Uses Vercel CLI - install with: npm i -g vercel' };
   }
 
-  buildDeployCommand(projectPath = '.', options = {}) {
+  validateConfig() {
+    return this.validateConfigSync();
+  }
+
+  buildDeployCommandSync(projectPath = '.', options = {}) {
     const parts = this.cliCommand.split(' ');
     const cmd = parts[0];
     const args = [...parts.slice(1), '--cwd', projectPath, '--yes'];
@@ -23,7 +30,11 @@ class OneClickVercel {
     return { cmd, args };
   }
 
-  buildEnvCommand(vars = {}, projectPath = '.') {
+  buildDeployCommand(projectPath, options) {
+    return this.buildDeployCommandSync(projectPath, options);
+  }
+
+  buildEnvCommandSync(vars = {}, projectPath = '.') {
     const parts = this.cliCommand.split(' ');
     const cmd = parts[0];
     const commands = Object.entries(vars).map(([key, value]) => ({
@@ -33,12 +44,20 @@ class OneClickVercel {
     return { commands, count: commands.length };
   }
 
-  buildLinkCommand(projectPath = '.') {
+  buildEnvCommand(vars, projectPath) {
+    return this.buildEnvCommandSync(vars, projectPath);
+  }
+
+  buildLinkCommandSync(projectPath = '.') {
     const parts = this.cliCommand.split(' ');
     return { cmd: parts[0], args: [...parts.slice(1), 'link', '--cwd', projectPath, '--yes'] };
   }
 
-  toJSON() {
+  buildLinkCommand(projectPath) {
+    return this.buildLinkCommandSync(projectPath);
+  }
+
+  toJSONSync() {
     return {
       name: this.name,
       version: this.version,
@@ -51,13 +70,17 @@ class OneClickVercel {
       },
     };
   }
+
+  toJSON() {
+    return this.toJSONSync();
+  }
 }
 
 if (require.main === module) {
   const skill = new OneClickVercel();
   const projectPath = process.argv[2] || '.';
   const isProd = process.argv.includes('--prod');
-  const cmd = skill.buildDeployCommand(projectPath, { production: isProd });
+  const cmd = skill.buildDeployCommandSync(projectPath, { production: isProd });
   console.log('Run this command:\n');
   console.log(`${cmd.cmd} ${cmd.args.join(' ')}`);
 }

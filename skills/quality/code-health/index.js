@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { SkillBase } = require('../../../lib/skill-base.js');
 
 const HEALTH_CHECKS = [
   {
@@ -76,8 +77,9 @@ const HEALTH_CHECKS = [
   },
 ];
 
-class CodeHealth {
+class CodeHealth extends SkillBase {
   constructor(options = {}) {
+    super();
     this.name = 'code-health';
     this.description =
       'Static code health checks: no eval, no innerHTML, no empty catch, line length';
@@ -89,7 +91,7 @@ class CodeHealth {
     return new Date().toISOString();
   }
 
-  analyzeFile(filePath) {
+  analyzeFileSync(filePath) {
     const abs = path.isAbsolute(filePath) ? filePath : path.join(this.projectRoot, filePath);
     if (!fs.existsSync(abs)) {
       return { type: 'error', timestamp: this._ts(), message: `File not found: ${filePath}` };
@@ -132,7 +134,11 @@ class CodeHealth {
     };
   }
 
-  analyzeDirectory(dirPath, extensions) {
+  analyzeFile(filePath) {
+    return this.analyzeFileSync(filePath);
+  }
+
+  analyzeDirectorySync(dirPath, extensions) {
     const abs = path.isAbsolute(dirPath) ? dirPath : path.join(this.projectRoot, dirPath);
     const exts = extensions || ['.js', '.ts', '.jsx', '.tsx'];
     const results = [];
@@ -157,6 +163,10 @@ class CodeHealth {
     };
   }
 
+  analyzeDirectory(dirPath, extensions) {
+    return this.analyzeDirectorySync(dirPath, extensions);
+  }
+
   _walk(dir, exts, results) {
     if (!fs.existsSync(dir)) return;
     const skip = ['node_modules', '.git', 'dist', 'build', '.next', 'coverage'];
@@ -168,12 +178,12 @@ class CodeHealth {
         this._walk(full, exts, results);
       } else if (exts.some(e => item.endsWith(e))) {
         const rel = path.relative(this.projectRoot, full);
-        results.push(this.analyzeFile(rel));
+        results.push(this.analyzeFileSync(rel));
       }
     }
   }
 
-  getCheckList() {
+  getCheckListSync() {
     return {
       type: 'health_checks',
       timestamp: this._ts(),
@@ -186,7 +196,11 @@ class CodeHealth {
     };
   }
 
-  toMarkdown(analysis) {
+  getCheckList() {
+    return this.getCheckListSync();
+  }
+
+  toMarkdownSync(analysis) {
     if (!analysis) return '# Code Health\nRun analyzeFile() or analyzeDirectory() first.';
     const a = analysis;
     const lines = [
@@ -214,8 +228,16 @@ class CodeHealth {
     return lines.join('\n');
   }
 
-  toJSON() {
+  toMarkdown(analysis) {
+    return this.toMarkdownSync(analysis);
+  }
+
+  toJSONSync() {
     return { checks: HEALTH_CHECKS.map(c => ({ id: c.id, name: c.name, severity: c.severity })) };
+  }
+
+  toJSON() {
+    return this.toJSONSync();
   }
 }
 

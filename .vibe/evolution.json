@@ -609,5 +609,35 @@
       "false_positive": 0
     }
   ],
-  "updated": "2026-06-18T03:30:00Z"
+  "updated": "2026-06-18T15:45:00Z",
+  "rules": {
+    "agent-native-tool-discovery": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-18",
+      "status": "active",
+      "note": "ToolRegistry with isUsable() + 3s timeout. 56 skills registered. findUsable/getUnusable eliminates silent deploy failures. 15/15 tests pass."
+    },
+    "ci-quality-gates-harness-driven": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 1,
+      "last_updated": "2026-06-18",
+      "status": "active",
+      "note": "Harness as single source of truth: lint + typecheck + test + validate. 3 new gates (agents-md-exists, eslint-lint-pass, typecheck-gate). 19 checks total."
+    },
+    "test-teardown-timeout-prevention": {
+      "fires": 1,
+      "helpful": 1,
+      "false_positive": 0,
+      "quality_score": 0.8,
+      "last_updated": "2026-06-18",
+      "status": "proposed",
+      "note": "Install-ide.test.js leaks async handles causing 131s harness. Need Jest --detectOpenHandles gate or afterAll cleanup. Proposed for next cycle."
+    }
+  },
+  "updated": "2026-06-18T15:45:00Z"
 }

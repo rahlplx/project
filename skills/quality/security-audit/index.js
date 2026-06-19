@@ -1,5 +1,7 @@
 'use strict';
 
+const { SkillBase } = require('../../../lib/skill-base.js');
+
 // OWASP Top 10 aligned security checks
 const SECURITY_RULES = [
   {
@@ -163,8 +165,9 @@ const CODE_PATTERNS = [
   },
 ];
 
-class SecurityAudit {
+class SecurityAudit extends SkillBase {
   constructor(options = {}) {
+    super();
     this.name = 'security-audit';
     this.description = 'OWASP Top 10 aligned security audit with code pattern scanning';
     this.options = options;
@@ -174,7 +177,7 @@ class SecurityAudit {
     return new Date().toISOString();
   }
 
-  scanCode(code) {
+  scanCodeSync(code) {
     const found = CODE_PATTERNS.filter(p => p.pattern.test(code));
     return {
       type: 'code_scan',
@@ -185,7 +188,7 @@ class SecurityAudit {
     };
   }
 
-  auditChecklist(appType) {
+  auditChecklistSync(appType) {
     const relevant =
       appType === 'api'
         ? SECURITY_RULES.filter(r => !['A08_software_integrity'].includes(r.id))
@@ -206,7 +209,7 @@ class SecurityAudit {
     };
   }
 
-  evaluate(answers) {
+  evaluateSync(answers) {
     // answers = { ruleId: { passed: boolean, notes: string } }
     const results = SECURITY_RULES.map(r => {
       const answer = answers[r.id];
@@ -239,7 +242,7 @@ class SecurityAudit {
     };
   }
 
-  getOwaspRule(owaspId) {
+  getOwaspRuleSync(owaspId) {
     const rule = SECURITY_RULES.find(r => r.owasp === owaspId);
     if (!rule) {
       return { type: 'error', timestamp: this._ts(), message: `OWASP rule ${owaspId} not found` };
@@ -247,7 +250,7 @@ class SecurityAudit {
     return { type: 'owasp_rule', timestamp: this._ts(), ...rule };
   }
 
-  toMarkdown() {
+  toMarkdownSync() {
     const lines = ['# Security Audit Checklist (OWASP Top 10)', ''];
     for (const r of SECURITY_RULES) {
       const sev = r.severity === 'critical' ? '🔴' : r.severity === 'high' ? '🟠' : '🟡';
@@ -260,7 +263,7 @@ class SecurityAudit {
     return lines.join('\n');
   }
 
-  toJSON() {
+  toJSONSync() {
     return {
       rules: SECURITY_RULES.map(r => ({
         id: r.id,
@@ -269,6 +272,30 @@ class SecurityAudit {
         severity: r.severity,
       })),
     };
+  }
+
+  scanCode(code) {
+    return this.scanCodeSync(code);
+  }
+
+  auditChecklist(appType) {
+    return this.auditChecklistSync(appType);
+  }
+
+  evaluate(answers) {
+    return this.evaluateSync(answers);
+  }
+
+  getOwaspRule(owaspId) {
+    return this.getOwaspRuleSync(owaspId);
+  }
+
+  toMarkdown() {
+    return this.toMarkdownSync();
+  }
+
+  toJSON() {
+    return this.toJSONSync();
   }
 }
 
